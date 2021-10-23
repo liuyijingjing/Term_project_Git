@@ -1,0 +1,140 @@
+/*1.顶部*/
+/* 顶部外层容器 */
+.topbar{
+     height: 28px;
+     background-color:#101010;
+}
+/* 顶部里层容器 */
+.topbar .container{
+     height: 28px;
+     background-color: #101010;
+}
+/* 里面的P标签 */
+.topbar .container p{
+    height: 28px;
+    line-height: 28px;
+    color: #f1f1f1;
+}
+/* 第一个P标签 */
+.topbar .container p:first-child{
+    text-indent: 210px;
+ }
+ /* 第二个P标签 */
+ .topbar .container p:nth-child(2){
+    margin-right:10px;
+ }
+  /* 第一个P标签下面的a标签 */
+.topbar .container p:first-child a{
+   color: #fff;
+   text-decoration: none;
+   text-indent: 210px;
+}
+ /* 第二个P标签 下面的标题 和 注册 */
+.topbar .container p:nth-child(2) .title, 
+.topbar .container p:nth-child(2) .register{
+    color: #ff6700;
+}
+/*第二个P标签下面的登录*/
+.topbar .container p:nth-child(2) .login {
+    color: #fff;
+}
+/*2.导航*/
+.nav{
+    height: 80px;
+    background-color:#fff;
+}
+.nav .search-shopcart-order {
+    margin-top: 5px;
+    height: 35px;
+}
+.nav .category-menu {
+    margin-top: 15px;
+    height: 30px;
+    background-color: red;
+}
+.nav .search-shopcart-order .search-input {
+    width: 440px;
+    height: 35px;
+    background-color: #ff6700;
+    margin-right: 38px;
+}
+.nav .search-shopcart-order .search-input span {
+    display: inline-block;
+    width: 50px;
+    height: 35px;
+    position: absolute;
+    background-image: url(../img/bgicon.png);
+}
+.nav .search-shopcart-order .shopcart-order{
+    width: 200px;
+    height: 35px; 
+    background-color: pink;
+    font-size: 0;
+}
+.nav .search-shopcart-order .shopcart-order button {
+    width: 100px;
+    height: 35px;
+    background-color: #ebebeb;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    color:#333 ;
+}
+.nav .search-shopcart-order .shopcart-order button:nth-child(1){
+    background-color: #ff6700;
+    color: #ccc;
+    background-image: url(../img/bgicon.png);
+    background-position: -5px -44px;
+}
+.nav .search-shopcart-order .search-input .search {
+    width: 390px;
+    height: 31px;
+    border: 2px solid #ff6700;
+    text-indent: 10px;
+    color: #333;
+    outline: none;
+}
+/*3.分类导航和banner*/
+.menu{
+    height: 500px;
+    background-color:#333;
+}
+/*4.今日推介*/
+.recommend{
+    height: 500px;
+    background-color:#ccc;
+}
+/*5.电子书*/
+.ebooks{
+    height: 500px;
+    background-color: rgb(80, 23, 23);
+}
+/*6.服装*/
+.clothes{
+    height: 500px;
+    background-color:#444;
+}
+/*7.户外运动*/
+.sport{
+    height: 500px;
+    background-color:#333;
+}
+/*8.童装*/
+.children-clothes{
+    height: 500px;
+    background-color: red;
+}
+/*9.家居日用*/
+.daily{
+    height: 500px;
+    background-color:#444;
+}
+/*10.推广商品*/
+.promotion{
+    height: 500px;
+    background-color: rgb(51, 33, 33);
+}
+/*11.尾部*/
+.footer{
+    height: 500px;
+    background-color: rgb(59, 35, 35);
+}
