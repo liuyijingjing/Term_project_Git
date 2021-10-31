@@ -42,7 +42,7 @@
 				left:0;
 				top:25px;
 				background-color: black;
-				background-image:url(../images/nav.png);
+				background-image:url(../img/nav.png);
 				background-position: -10px 4px;
 				cursor: pointer;
 				z-index: 77;
@@ -55,7 +55,7 @@
 				right:0;
 				top:25px;
 				background-color: black;
-				background-image:url(../images/nav.png);
+				background-image:url(../img/nav.png);
 				background-position: -54px 4px;
 				cursor: pointer;
 				z-index: 77;
@@ -70,11 +70,11 @@
 				list-style: none;
 			}
 			.controls li{
-				width: 20px;
-				height:20px;
+				width: 25px;
+				height:25px;
 				background-color: gold;
 				float: left;
-				margin-right: 5px;
+				margin-right: 16px;
 				text-align: center;
 				border-radius:10px ;
 				cursor: pointer;

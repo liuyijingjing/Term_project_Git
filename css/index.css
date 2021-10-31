@@ -1,4 +1,4 @@
-/*1.顶部*/
+/*1.**************顶部****************/
 /* 顶部外层容器 */
 .topbar{
      height: 28px;
@@ -38,7 +38,7 @@
 .topbar .container p:nth-child(2) .login {
     color: #fff;
 }
-/*2.导航*/
+/*2.*******************导航*********************/
 .nav{
     height: 80px;
     background-color:#fff;
@@ -47,11 +47,7 @@
     margin-top: 5px;
     height: 35px;
 }
-.nav .category-menu {
-    margin-top: 15px;
-    height: 30px;
-    background-color: red;
-}
+
 .nav .search-shopcart-order .search-input {
     width: 440px;
     height: 35px;
@@ -93,47 +89,127 @@
     color: #333;
     outline: none;
 }
-/*3.分类导航和banner*/
-.menu{
-    height: 500px;
-    background-color:#333;
+.nav .category-menu {
+    margin-top: 15px;
+    height: 30px;
 }
-/*4.今日推介*/
+.nav .category-menu .left-logo{
+    height: 30px;
+    width:200px;
+    position: relative;
+}
+.nav .category-menu .left-logo img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.nav .category-menu ul{
+    width: 1000px;
+    height: 30px;
+}
+.nav .category-menu ul li{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 80px;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/*3.*********************分类导航和banner**********************/
+.menu{
+    height: 430px;
+}
+.menu .sideMenu{
+    height: 430px;
+    width: 200px;
+}
+.menu .sideMenu ul{
+    height: 430px;
+    width: 200px;
+    background-color: #f3f3f3;
+    position:relative;
+}
+.menu .sideMenu ul li{
+    height: 30px;
+    width: 200px;
+    line-height: 30px;
+    text-indent: 30px;
+}
+.menu .sideMenu ul li a{
+    color: #353535;
+    text-decoration: none;
+}
+.menu .sideMenu ul li:hover{
+    background-color: #fff;
+}
+.menu .sideMenu ul li .title{
+    width: 200px;
+    height:30px ;
+    line-height: 30px;
+}
+.menu .sideMenu ul li:hover .title{
+   background-color:#fff;
+   position: absolute;
+   z-index: 99;
+}
+.menu .sideMenu ul li:hover a{
+    color: #ff6700;
+}
+.menu .sideMenu ul li:hover  .subMenu{
+    display: block;
+}
+.menu .sideMenu ul li .subMenu {
+    position: absolute;
+    top: 0px;
+    left: 198px;
+    border: 2px solid #ff6700;
+    width: 500px;
+    height: 426px;
+    display: none;
+}
+.menu .banner { 
+    height: 430px;
+    width: 1000px;
+}
+/**********************4.今日推介**********************/
 .recommend{
     height: 500px;
     background-color:#ccc;
 }
-/*5.电子书*/
+/**********************5.电子书**********************/
 .ebooks{
     height: 500px;
     background-color: rgb(80, 23, 23);
 }
-/*6.服装*/
+/**********************6.服装**********************/
 .clothes{
     height: 500px;
     background-color:#444;
 }
-/*7.户外运动*/
+/**********************7.户外运动**********************/
 .sport{
     height: 500px;
     background-color:#333;
 }
-/*8.童装*/
+/**********************8.童装*********************/
 .children-clothes{
     height: 500px;
     background-color: red;
 }
-/*9.家居日用*/
+/**********************9.家居日用**********************/
 .daily{
     height: 500px;
     background-color:#444;
 }
-/*10.推广商品*/
+/**********************10.推广商品**********************/
 .promotion{
     height: 500px;
     background-color: rgb(51, 33, 33);
 }
-/*11.尾部*/
+/**********************11.尾部**********************/
 .footer{
     height: 500px;
     background-color: rgb(59, 35, 35);
