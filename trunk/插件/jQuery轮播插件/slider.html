@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="styles/slider.css"/>
+	</head>
+	<body>
+		<!--轮播开始-->
+		<div class="pptbox" id="bannerInner">
+			<!--轮播的内容-->
+			<ul class="innerwrapper">
+				<li>
+					<a href="#"><img src="images/banner1.jpg" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="images/banner2.jpg" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="images/banner3.jpg" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="images/banner4.jpg" /></a>
+				</li>
+				<li>
+					<a href="#"><img src="images/banner5.jpg" /></a>
+				</li>
+			</ul>
+			<!--数字控制器-->
+			<ul class="controls">
+				<li class="current">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<!--按钮控制器-->
+			<span class="btnleft"></span>
+			<span class="btnright"></span>
+		</div>
+		<!-- jquery.js -->
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<!--轮播插件-->
+		<script src="js/slider.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+	    	//主轮播图
+			$("#bannerInner").tyslide({
+				boxh:420,//盒子的高度
+				w:1000,//盒子的宽度
+				h:390,//图片的高度
+				isShow:true,//是否显示控制器
+				isShowBtn:true,//是否显示左右按钮
+				controltop:40,//控制按钮上下偏移的位置,要将按钮向下移动   首先保证boxh 高度>图片 h
+				controlsW:20,//控制按钮宽度
+				controlsH:20,//控制按钮高度
+				radius:0,//控制按钮圆角度数
+				controlsColor:"#d7d7d7",//普通控制按钮的颜色
+				controlsCurrentColor:"#ff6600",//当前控制按钮的颜色
+				isShowNum:true //是否显示数字
+			});
+		</script>
+	</body>
+</html>
