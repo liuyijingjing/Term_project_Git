@@ -1,3 +1,0 @@
-Firefox 3.5
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2008 Adobe Macromedia Software, LLC. All rights reserved.

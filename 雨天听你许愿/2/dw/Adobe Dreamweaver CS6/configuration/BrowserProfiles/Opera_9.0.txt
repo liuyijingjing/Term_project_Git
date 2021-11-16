@@ -1,5 +1,0 @@
-Opera 9.0 
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2006 Adobe Macromedia Software, LLC. All rights reserved.
-
-

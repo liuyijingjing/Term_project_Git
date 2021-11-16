@@ -1,7 +1,0 @@
-<participant>
-  <quickSearch><![CDATA[<cfinclude]]></quickSearch>
-  <searchPatterns whereToSearch="lock">
-    <searchPattern paramNames="include_relUrl"><![CDATA[/<cfinclude\s+template\s*=\s*"([^\r\n]*?)"\s*\/?>/im]]></searchPattern>
-    <searchPattern paramNames="include_relUrl"><![CDATA[/<cfinclude\s+template\s*=\s*'([^\r\n]*?)'\s*\/?>/im]]></searchPattern>
-  </searchPatterns>
-</participant>

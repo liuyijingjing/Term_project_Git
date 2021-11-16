@@ -1,9 +1,0 @@
-<participant>
-   <quickSearch><![CDATA[$row_]]></quickSearch>
-   <insertText location="replaceSelection">
-<![CDATA[<@ if (@@htmlEncode@@) @><?php echo htmlentities($row_@@sourceName@@['@@bindingName@@'], ENT_COMPAT, '@@encodingName@@'); ?><@ else @><?php echo $row_@@sourceName@@['@@bindingName@@']; ?><@endif@>]]>
-	</insertText>
-   <searchPatterns whereToSearch="directive">
-     <searchPattern paramNames="sourceName,bindingName"><![CDATA[/\$row_(\w+)\[['|"](\w+)['|"]\]/i]]></searchPattern>
-   </searchPatterns>  
-</participant>

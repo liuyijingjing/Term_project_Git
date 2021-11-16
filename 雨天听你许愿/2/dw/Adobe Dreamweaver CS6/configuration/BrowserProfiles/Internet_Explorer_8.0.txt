@@ -1,4 +1,0 @@
-Internet Explorer 8.0
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2008 Adobe Systems, Inc. All rights reserved.
-

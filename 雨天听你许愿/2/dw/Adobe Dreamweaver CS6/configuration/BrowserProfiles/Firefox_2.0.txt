@@ -1,3 +1,0 @@
-Firefox 2.0
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2006 Adobe Macromedia Software, LLC. All rights reserved.

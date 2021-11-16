@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding = "utf-8" ?>
-<info xmlns:MMString="http://www.macromedia.com/schemes/dat/string/">
-  <infoitem key="mm_new_doc_type" value="layout" />
-  <infoitem key="mm_new_doc_name" value="MMString:BuiltIn/Layouts/_notes/HTML5_twoColFixRtHdr_htm_mno/infoitem/value/2" />
-  <infoitem key="mm_new_doc_desc" value="MMString:BuiltIn/Layouts/_notes/HTML5_twoColFixRtHdr_htm_mno/infoitem/value/Two" />
-  <infoitem key="mm_new_doc_preview" value="HTML5_twoColFixRtHdr.png" />
-  <infoitem key="mm_new_doc_preferred_dtd_context" value="html5" />
-</info>

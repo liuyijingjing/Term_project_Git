@@ -1,8 +1,0 @@
-<codeColoring xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
-  <scheme MMString:name="JavaScript/scheme/name" id="JavaScript">
-    <classlibrary name="SpryValidationRadioClasses" id="CodeColor_JavascriptSpryClasses">
-      <class>Spry.Widget.ValidationRadio</class>
-      <class>Spry.Widget.ValidationRadio.addLoadListener</class>
-    </classlibrary>
-  </scheme>
-</codeColoring>
