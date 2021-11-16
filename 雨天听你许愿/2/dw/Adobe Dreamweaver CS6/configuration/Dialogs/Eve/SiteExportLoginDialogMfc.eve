@@ -1,0 +1,78 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SiteExportLoginDialogMfc
+{
+    view dialog(identifier: "IDD_EXPORT_LOGIN_PW",
+                name: "$$$/ExportLoginPw/Title/ExportSite=Export Site",
+                spacing: 5)
+    {
+        row()
+        {
+            column()
+            {
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/ExportLoginPw/Label/AreYou=Are you exporting this site to back up your settings or to share your settings with other users?");
+                }
+
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    radiogroup(tab_next_node:"IDOK")
+                    {
+                        radio_button(identifier: "IDC_BACKUP",
+                                     name: "$$$/ExportLoginPw/RadioButton/BackUp=&Back up my settings (includes login, password, and local paths).");
+
+                        radio_button(identifier: "IDC_SHARE",
+                                     name: "$$$/ExportLoginPw/RadioButton/ShareSettings=&Share settings with other users (does not include login, password, or local paths).");
+                    }
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC_NOTE",
+                                name: "$$$/ExportLoginPw/Label/NotePasswords=Note: Passwords are not exported in a secure or encrypted format.");
+                }
+            }
+
+            column(spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/ExportLoginPw/Button/Ok=OK",tab_next_node:"IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/ExportLoginPw/Button/Cancel=Cancel",tab_next_node:"ID_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/ExportLoginPw/Button/Help=&Help",tab_next_node:"IDC_BACKUP");
+            }
+        }
+    }
+}

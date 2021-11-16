@@ -1,0 +1,267 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PpPagePropsAppearanceHtml
+{
+    view subview(center: true,
+                 identifier: "IDD_PP_PAGE_PROPS_APPEARANCE_HTML",
+                 margin: 5,
+                 name: "$$$/PpPagePropsAppearanceHtml/Title/AppearanceHtml=Appearance (HTML)",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5)
+    {
+        column()
+        {
+            row(spacing: 5)
+            {
+                column(spacing: 14)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsAppearanceHtml/Label/BackgroundImage=Background &image:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsAppearanceHtml/Label/Background=Back&ground:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsAppearanceHtml/Label/Text=T&ext:");
+
+                    row(horizontal: @align_right)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    indent: 2,
+                                    name: "$$$/PpPagePropsAppearanceHtml/Label/Links=&Links:");
+                    }
+                }
+
+                column(child_horizontal: @align_left,
+                       horizontal: @align_left,
+                       spacing: 5)
+                {
+                    row(child_horizontal: @align_left,
+                        horizontal: @align_left,
+                        spacing: 0)
+                    {
+                        edit_text(auto_hscroll: true,
+                                  characters: 23,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_EDIT_BACKGROUND_IMAGE",
+                                  tab_next_node: "IDC_BUTTON_BROWSE");
+
+                        button(action: @do_action,
+                               default: false,
+                               identifier: "IDC_BUTTON_BROWSE",
+                               name: "$$$/PpPagePropsAppearanceHtml/Button/Browse=&Browse...",
+                               tab_next_node: "IDC_BUTTON_BACKGROUND_COLOR");
+                    }
+
+                    row(spacing: 2)
+                    {
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_BACKGROUND_COLOR",
+                                          indent: 1,
+                                          name: "$$$/PpPagePropsAppearanceHtml/IconButton/BackgroundColor=Background color",
+                                          tab_next_node: "IDC_EDIT_BACKGROUND_COLOR",
+                                          width: 21);
+
+                        edit_text(auto_hscroll: true,
+                                  characters: 7,
+                                  identifier: "IDC_EDIT_BACKGROUND_COLOR",
+                                  tab_next_node: "IDC_BUTTON_TEXT_COLOR_HTML");
+                    }
+
+                    row(child_vertical: @align_center,
+                        spacing: 5)
+                    {
+                        column(spacing: 8)
+                        {
+                            row(child_vertical: @align_center,
+                                margin: 0,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  horizontal: @align_left,
+                                                  identifier: "IDC_BUTTON_TEXT_COLOR_HTML",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsAppearanceHtml/IconButton/TextColor=Text color",
+                                                  tab_next_node: "IDC_EDIT_TEXT_COLOR_HTML",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 7,
+                                          identifier: "IDC_EDIT_TEXT_COLOR_HTML",
+                                          tab_next_node: "IDC_BUTTON_COLORVLINK");
+                            }
+
+                            row(child_vertical: @align_center,
+                                margin: 0,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  horizontal: @align_left,
+                                                  identifier: "IDC_BUTTON_COLORLINK",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsAppearanceHtml/IconButton/LinksColor=Links color",
+                                                  tab_next_node: "IDC_EDIT_LINKHEXCOLOR",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 7,
+                                          identifier: "IDC_EDIT_LINKHEXCOLOR",
+                                          tab_next_node: "IDC_BUTTON_COLORALINK");
+                            }
+                        }
+
+                        column(margin: 1,
+                               spacing: 0)
+                        {
+                            row(margin: 1,
+                                spacing: 5)
+                            {
+                                column(indent: 3,
+                                       spacing: 13)
+                                {
+                                    static_text(identifier: "IDC_STATIC",
+                                                name: "$$$/PpPagePropsAppearanceHtml/Label/VisitedLinks=&Visited links:");
+
+                                    static_text(horizontal: @align_right,
+                                                identifier: "IDC_STATIC",
+                                                name: "$$$/PpPagePropsAppearanceHtml/Label/ActiveLinks=&Active links:");
+                                }
+
+                                column(child_horizontal: @align_left,
+                                       spacing: 5)
+                                {
+                                    row(child_vertical: @align_left,
+                                        spacing: 2)
+                                    {
+                                        ownerdrawn_button(height: 18,
+                                                          identifier: "IDC_BUTTON_COLORVLINK",
+                                                          indent: 1,
+                                                          name: "$$$/PpPagePropsAppearanceHtml/IconButton/VisitedLinks=Visited links color",
+                                                          tab_next_node: "IDC_EDIT_VLINKHEXCOLOR",
+                                                          width: 21);
+
+                                        edit_text(auto_hscroll: true,
+                                                  characters: 7,
+                                                  horizontal: @align_center,
+                                                  identifier: "IDC_EDIT_VLINKHEXCOLOR",
+                                                  tab_next_node: "IDC_BUTTON_COLORLINK");
+                                    }
+
+                                    row(child_horizontal: @align_left,
+                                        spacing: 2)
+                                    {
+                                        ownerdrawn_button(height: 18,
+                                                          identifier: "IDC_BUTTON_COLORALINK",
+                                                          indent: 1,
+                                                          name: "$$$/PpPagePropsAppearanceHtml/IconButton/ActiveLinks=Active links color",
+                                                          tab_next_node: "IDC_EDIT_ALINKHEXCOLOR",
+                                                          width: 21);
+
+                                        edit_text(auto_hscroll: true,
+                                                  characters: 7,
+                                                  horizontal: @align_center,
+                                                  identifier: "IDC_EDIT_ALINKHEXCOLOR",
+                                                  tab_next_node: "IDC_EDIT_MARGINLEFT");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            separator();
+
+            row(spacing: 20)
+            {
+                column(spacing: 15)
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 2,
+                               spacing: 13)
+                        {
+                            static_text(identifier: "IDC_STATIC",
+                                        indent: 37,
+                                        name: "$$$/PpPagePropsAppearanceHtml/Label/LeftMargin=Le&ft margin:");
+
+                            static_text(identifier: "IDC_STATIC",
+                                        indent: 37,
+                                        name: "$$$/PpPagePropsAppearanceHtml/Label/TopMargin=To&p margin:");
+                        }
+
+                        column(spacing: 5)
+                        {
+                            edit_text(auto_hscroll: true,
+                                      characters: 7,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_MARGINLEFT",
+                                      tab_next_node: "IDC_EDIT_MARGINWIDTH");
+
+                            edit_text(auto_hscroll: true,
+                                      characters: 7,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_MARGINTOP",
+                                      tab_next_node: "IDC_EDIT_MARGINHEIGHT");
+                        }
+                    }
+                }
+
+                column(child_horizontal: @align_right,
+                       child_vertical: @align_center,
+                       margin: 2,
+                       spacing: 16)
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 3,
+                               spacing: 13)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC",
+                                        name: "$$$/PpPagePropsAppearanceHtml/Label/MarginWidth=Margin &width:");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC",
+                                        name: "$$$/PpPagePropsAppearanceHtml/Label/MarginHeight=Margi&n height:");
+                        }
+
+                        column(spacing: 5)
+                        {
+                            edit_text(auto_hscroll: true,
+                                      characters: 7,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_MARGINWIDTH",
+                                      tab_next_node: "IDC_EDIT_MARGINTOP");
+
+                            edit_text(auto_hscroll: true,
+                                      characters: 7,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_MARGINHEIGHT");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

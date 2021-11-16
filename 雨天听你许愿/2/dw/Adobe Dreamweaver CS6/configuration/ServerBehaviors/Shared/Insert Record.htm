@@ -1,0 +1,125 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+
+<SCRIPT>
+// Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+var EDIT_TYPE       = "MM_insert";
+var HELP_DOC        = MM.HELP_ssInsertRecord;
+var PROP_TYPE       = "insertRecord";
+</SCRIPT>
+
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ServerBehaviorClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/EditOperations.js"></SCRIPT>
+<SCRIPT SRC="../Shared/FieldTypes.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/ssDocManager.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/ssCmnElements.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/SQLTypes.js"></SCRIPT>
+
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+  <FORM name="theForm">
+    <TABLE border="0">
+      <tr valign="baseline">
+        <td align="right" nowrap><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Connection" /></td>
+        <td nowrap>
+          <select name="connectionList" class="connNameList" onChange="updateUI('connectionList')" wrap="virtual">
+            <OPTION selected></OPTION>
+          </select>
+          <input type="button" MMString:value="ServerBehaviors/Shared/Insert_Record/button/value/Define" onClick="updateUI('defineConnection')">
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td align="right"><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Insert" /></td>
+        <td>
+          <select name="tableList" class="connRSTableList" onChange="updateUI('tableList')" wrap="virtual">
+            
+          <OPTION selected></OPTION>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/After" /></td>
+        <td valign="baseline" nowrap>
+          <input name="redirectURL" type="text" class="largeTField">
+          <input type="button" MMString:value="ServerBehaviors/Shared/Insert_Record/button/value/Browse" onClick="updateUI('browseForFile');focus(this)">
+        </td>
+      </tr>
+      <tr><td colspan=2><hr></td></tr>
+      <TR>
+        <TD align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Get" /></TD>
+        <TD valign="baseline" nowrap>
+          <SELECT name="formList" class="tagList" onChange="updateUI('formList')">
+            
+          <OPTION selected></OPTION>
+          
+        </select>
+          <MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/When" /> </TD>
+      </TR>
+      <tr><td height="1"></td></tr>
+      <TR>
+        <TD align="right" valign="top" nowrap>
+          <img src="../../Shared/MM/Images/transparent.gif" height="3" width="20"><br>
+          <MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Form" /></TD>
+        <TD valign="baseline" nowrap>
+          <SELECT name="fieldsList" size="6" class="columnNameMultiList"  style="width:315px" onChange="updateUI('fieldsList')">
+            
+          <OPTION selected></OPTION>
+          </select>
+        </TD>
+      </TR>
+      <tr valign="baseline">
+        <td align="right"></td>
+        <td>
+          <table border="0">
+            
+          <tr>
+              
+            <td align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Column" /></td>
+            <td valign="baseline" nowrap>
+                <select name="fieldColList" class="columnNameList"  onChange="updateUI('fieldColList')" wrap="virtual">
+                  
+                <OPTION selected></OPTION>
+                
+              </select>
+                
+              </td>
+          </tr>
+          <tr>
+            <td align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/text/Submit" /></td>
+            <td valign="baseline" nowrap><select name="fieldColFormat" class="dataTypeList"  onChange="updateUI('fieldColFormat')">
+                  
+                <!-- Format values: value="char to wrap with, alt value if not wrapping, default value if empty" -->
+                  
+                <option value="',none,''" selected><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/',none,''/Text" /></option>
+                  
+                <option value="none,none,NULL"    ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/none,none,NULL/Numeric" /></option>
+                  
+                <option value="',none,NULL"       ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/',none,NULL/Date" /></option>
+                  
+                <option value="#,none,NULL"       ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/#,none,NULL/Date" /></option>
+                  
+                <option value="none,'Y','N'"      ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/none,'Y','N'/Checkbox" /></option>
+                  
+                <option value="none,1,0"          ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/none,1,0/Checkbox" /></option>
+                  
+                <option value="none,-1,0"         ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/none,-1,0/Checkbox" /></option>
+                  
+                <option value="none,Yes,No"       ><MMString:loadString id="ServerBehaviors/Shared/Insert_Record/option/none,Yes,No/Checkbox" /></option>
+                </select></td>
+          </tr>
+          </table>
+        </td>
+      </tr>
+    </TABLE>
+  </FORM>
+</BODY>
+</HTML>

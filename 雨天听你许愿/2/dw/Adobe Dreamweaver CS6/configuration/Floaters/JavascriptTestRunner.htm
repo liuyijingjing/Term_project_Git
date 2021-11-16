@@ -1,0 +1,46 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title>Javascript Test Runner</title>
+<link href="images/PL_MultiscreenPreview_Lg_R.png" rel="panel icon" />
+<script type="text/javascript" src="../JavascriptTests/FormatDate.js"></script>
+<script type="text/javascript" src="../JavascriptTests/MultifileRunner.js"></script>
+<script type="text/javascript" src="JavascriptTestRunnerPanel.js"></script>
+<script type="text/javascript" src="JavascriptTestRunnerPanel_Mediator.js"></script>
+<script type="text/javascript">
+
+var panel = new JavascriptTestRunnerPanel();  // Must use variable name 'panel'.
+
+function canShow(platform) 
+{
+	return 'true';
+}
+function initialSize()
+{
+	return '800,250';	
+}
+function selectionChanged()
+{
+	if (panel)
+		panel.selectionChanged();
+}
+function reloadExts()
+{	
+	if (this.dw.canSaveAll())
+		this.dw.saveAll();
+
+	dw.reloadExtensions();
+}
+</script>
+<style>
+input[type=button] {width:80px;}
+</style>
+</head>
+<body onShow="if (panel) panel.onShow();" onResize="if (panel) panel.onResize();" style="margin:0;background-color:#efefef;">
+	<div style="position:absolute;top:1px;left:1px;">
+		<input type=button value="Run All Tests" onClick="panel.onClickRunAllTests();"> <br>
+        <input type=button value="Reload Exts" onClick="reloadExts();"> <br>
+
+    </div>
+   	<mm:browsercontrol id="browserCtrl" style="position:absolute;top:0;left:95px;"></mm:browsercontrol>
+</body>
+</html>

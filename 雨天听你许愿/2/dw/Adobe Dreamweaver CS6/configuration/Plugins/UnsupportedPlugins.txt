@@ -1,0 +1,2 @@
+npdsplay.dll
+nppdf32.dll

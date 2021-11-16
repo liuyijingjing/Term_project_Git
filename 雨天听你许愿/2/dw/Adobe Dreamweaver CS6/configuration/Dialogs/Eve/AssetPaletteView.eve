@@ -1,0 +1,94 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout AssetPaletteView
+{
+    view subview(grow: false,
+                identifier: "IDD_ASSET_PALETTE",
+                margin: 0,
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(child_vertical: @align_center,
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_ASSET_LABEL",
+                            name: "$$$/AssetPalette/Label/Shockwave=Shockwave:");
+		radiogroup(){
+
+                radio_button(identifier: "IDC_SITE_CATALOG",
+                             name: "$$$/AssetPalette/RadioButton/Site=Site");
+
+                radio_button(identifier: "IDC_SITE_FAVORITES",
+                             name: "$$$/AssetPalette/RadioButton/Favorites=Favorites");}
+
+                static_text(height: 22.5,
+                            horizontal: @align_center,
+                            identifier: "IDC_FAVORITES_BMP",
+                            width: 24);
+            }
+
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                list_box(apron_click_deselection: true,
+                         empty_selection: true,
+                         height: 162,
+                         identifier: "IDC_LIST_MENU",
+                         keyboard_selectable: true,
+                         reDraw: false,
+                         vertical_scroll: true,
+                         width: 21);
+
+                placeholder(height: 200,
+                            width: 300);
+            }
+
+            row(child_vertical: @align_center,
+                margin: 0,
+                spacing: 5)
+            {
+                ownerdrawn_button(identifier: "IDC_ASSET_INSERT",
+                                  name: "$$$/AssetPalette/IconButton/Insert=Insert");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_REFRESH",
+                                  name: "$$$/AssetPalette/IconButton/RefreshSite=Refresh site list");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_ADDTOFAVORITES",
+                                  name: "$$$/AssetPalette/IconButton/AddTo=Add to favorites");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_NEWFOLDER",
+                                  name: "$$$/AssetPalette/IconButton/NewFavorites=New favorites folder");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_NEW",
+                                  name: "$$$/AssetPalette/IconButton/New=New");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_EDIT",
+                                  name: "$$$/AssetPalette/IconButton/Edit=Edit");
+
+                ownerdrawn_button(identifier: "IDC_ASSET_REMOVE",
+                                  name: "$$$/AssetPalette/IconButton/RemoveFrom=Remove from favorites");
+            }
+        }
+    }
+}

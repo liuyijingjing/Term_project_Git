@@ -1,0 +1,28 @@
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2002, 2003 Macromedia, Inc. All rights reserved. -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+
+<HEAD>
+
+<TITLE><MMString:loadString id="Commands/tempURL_afterSave/title" /></TITLE>
+<SCRIPT LANGUAGE="javascript">
+
+function isDOMRequired()
+{
+  return false;
+}
+
+function afterSave()
+{
+  dwscripts.copyDesignNotesFromTempURL();
+}
+
+</SCRIPT>
+
+</HEAD>
+
+<BODY onLoad="afterSave()">
+</BODY>
+
+</HTML>

@@ -1,0 +1,57 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SnippetPaletteView
+
+{
+    view subview(grow: false,
+                identifier: "IDD_SNIPPET_PALETTE",
+                margin: 0,
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row()
+        {
+            column(horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    ownerdrawn_button(identifier: "IDC_SNIPPET_INSERT",
+                                      name: "$$$/SnippetPalette/IconButton/Insert=Insert");
+
+                    ownerdrawn_button(identifier: "IDC_SNIPPET_NEWFOLDER",
+                                      name: "$$$/SnippetPalette/IconButton/NewSnippet=New snippet folder");
+
+                    ownerdrawn_button(identifier: "IDC_SNIPPET_NEW",
+                                      name: "$$$/SnippetPalette/IconButton/NewSnippet1=New snippet");
+
+                    ownerdrawn_button(identifier: "IDC_SNIPPET_EDIT",
+                                      name: "$$$/SnippetPalette/IconButton/EditSnippet=Edit snippet");
+
+                    ownerdrawn_button(identifier: "IDC_SNIPPET_REMOVE",
+                                      name: "$$$/SnippetPalette/IconButton/Remove=Remove");
+                }
+            }
+        }
+    }
+}

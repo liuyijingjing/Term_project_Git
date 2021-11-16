@@ -1,0 +1,295 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewShockwave
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_SHOCKWAVE",
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(spacing: 4)
+        {
+            row(indent: 50,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 6)
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE",
+                                name: "$$$/PropInspectShockwave/Label/Shockwave=Shockwave");
+
+                    edit_text(characters: 8,
+                              identifier: "IDC_EDIT_NAME",
+                              tab_next_node: "IDC_EDIT_WIDTH");
+                }
+
+                column(indent: 2,
+                       spacing: 13)
+                {
+                    row(indent: 20)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_WIDTH",
+                                    name: "$$$/PropInspectShockwave/Label/W=&W");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_HEIGHT",
+                                name: "$$$/PropInspectShockwave/Label/H=&H");
+                }
+
+                column(spacing: 1)
+                {
+                    edit_text(characters: 4,
+                              identifier: "IDC_EDIT_WIDTH",
+                              tab_next_node: "IDC_EDIT_HEIGHT");
+
+                    edit_text(characters: 4,
+                              identifier: "IDC_EDIT_HEIGHT",
+                              tab_next_node: "IDC_EDIT_SRC");
+                }
+
+                column(spacing: 2)
+                {
+                    ownerdrawn_button(height: 6,
+                                      identifier: "IDC_REFRESH_TOP",
+                                      name: "$$$/PropInspectShockwave/IconButton/ResetSize2=Reset Size",
+                                      width: 8);
+
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_BUTTON_REFRESH",
+                                      name: "$$$/PropInspectShockwave/IconButton/ResetSize=Reset Size",
+                                      width: 15);
+
+                    ownerdrawn_button(height: 6,
+                                      identifier: "IDC_REFRESH_BOTTOM",
+                                      name: "$$$/PropInspectShockwave/IconButton/ResetSize1=Reset Size",
+                                      width: 8);
+                }
+
+                column()
+                {
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_FLASH_SRC_IMAGE",
+                                      visible: false,
+                                      width: 15);
+                }
+
+                column(indent: 2,
+                       spacing: 13)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_SRC",
+                                name: "$$$/PropInspectShockwave/Label/File=&File");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_FLA",
+                                name: "$$$/PropInspectShockwave/Label/Src=S&rc");
+                }
+
+                column(spacing: 2)
+                {
+                    row(spacing: 3)
+                    {
+                        edit_text(characters: 25,
+                                  identifier: "IDC_EDIT_SRC",
+                                  tab_next_node: "IDC_BUTTON_LINK_SRC");
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_LINK_SRC",
+                                          tab_next_node: "IDC_BUTTON_BROWSE_SRC",
+                                          width: 16);
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BROWSE_SRC",
+                                          name: "$$$/PropInspectShockwave/IconButton/BrowseFor=Browse for file",
+                                          tab_next_node: "IDC_BUTTON_BGCOLOR",
+                                          width: 22);
+                    }
+
+                    row(spacing: 3)
+                    {
+                        edit_text(characters: 25,
+                                  identifier: "IDC_EDIT_FLA_SRC");
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_LINK_FLA_SRC",
+                                          indent: 2,
+                                          width: 16);
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BROWSE_FLA_SRC",
+                                          indent: 2,
+                                          name: "$$$/PropInspectShockwave/IconButton/BrowseForFile=Browse for file",
+                                          width: 22);
+                    }
+                }
+
+                column(indent: 2)
+                {
+                    static_text(identifier: "IDC_STATIC_BGCOLOR",
+                                indent: 15,
+                                name: "$$$/PropInspectShockwave/Label/Bg=B&g");
+                }
+
+                column(spacing: 2)
+                {
+                    row(spacing: 2)
+                    {
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_BGCOLOR",
+                                          indent: 1,
+                                          name: "$$$/PropInspectShockwave/IconButton/BackgroundColor=Background color",
+                                          tab_next_node: "IDC_EDIT_BGHEXCOLOR",
+                                          width: 21);
+
+                        edit_text(identifier: "IDC_EDIT_BGHEXCOLOR",
+                                  tab_next_node: "IDC_EDIT_VSPACE");
+                    }
+
+                    ownerdrawn_button(identifier: "IDC_BUTTON_MODIFY",
+                                      name: "$$$/PropInspectShockwave/IconButton/Edit=&Edit");
+                }
+            }
+
+            row()
+            {
+                column(indent: 2,
+                       spacing: 9)
+                {
+                    checkbox(identifier: "IDC_CHECK_LOOP",
+                             name: "$$$/PropInspectShockwave/CheckBox/Loop=&Loop");
+
+                    checkbox(identifier: "IDC_CHECK_AUTOPLAY",
+                             name: "$$$/PropInspectShockwave/CheckBox/Autoplay=A&utoplay");
+                }
+
+                column()
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 2,
+                               spacing: 12)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_VSPACE",
+                                        indent: 1,
+                                        name: "$$$/PropInspectShockwave/Label/VSpace=&V space");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_HSPACE",
+                                        indent: 1,
+                                        name: "$$$/PropInspectShockwave/Label/HSpace=H s&pace");
+                        }
+
+                        column(spacing: 2)
+                        {
+                            edit_text(characters: 4,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_VSPACE",
+                                      tab_next_node: "IDC_EDIT_HSPACE");
+
+                            edit_text(characters: 4,
+                                      horizontal: @align_center,
+                                      identifier: "IDC_EDIT_HSPACE",
+                                      tab_next_node: "IDC_COMBO_ALIGN");
+                        }
+                    }
+                }
+
+                column()
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 2,
+                               spacing: 11)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_QUALITY",
+                                        name: "$$$/PropInspectShockwave/Label/Quality=&Quality");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_SCALE",
+                                        name: "$$$/PropInspectShockwave/Label/Scale=&Scale");
+                        }
+
+                        column(spacing: 2)
+                        {
+                            combobox(horizontal: @align_fill,
+                                     identifier: "IDC_COMBO_QUALITY",
+                                     vertical_scroll: true);
+
+                            combobox(horizontal: @align_fill,
+                                     identifier: "IDC_COMBO_SCALE",
+                                     vertical_scroll: true);
+                        }
+                    }
+                }
+
+                column()
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 2)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_ALIGN",
+                                        name: "$$$/PropInspectShockwave/Label/Align=&Align");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_WMODE",
+                                        name: "$$$/PropInspectShockwave/Label/Wmode=W&mode");
+                        }
+
+                        column(spacing: 2)
+                        {
+                            row(spacing: 9)
+                            {
+                                popup(identifier: "IDC_COMBO_ALIGN",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      popup_maximum_width_chars: 5,
+                                      tab_next_node: "IDC_BUTTON_START_STOP",
+                                      vertical_scroll: true);
+
+                                ownerdrawn_button(identifier: "IDC_BUTTON_START_STOP",
+                                                  name: "$$$/PropInspectShockwave/IconButton/Play=Play",
+                                                  tab_next_node: "IDC_BUTTON_PARAMETERS",popup_maximum_width_chars: 5);
+                            }
+
+                            row(spacing: 9)
+                            {
+                                popup(identifier: "IDC_COMBO_WMODE",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      vertical_scroll: true);
+
+                                ownerdrawn_button(identifier: "IDC_BUTTON_PARAMETERS",
+                                                  name: "$$$/PropInspectShockwave/IconButton/Parameters=Parameters...");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewFormGeneric
+{
+    view subview(grow: false,
+                 identifier: "IDD_PROP_INSPECT_FORM_GENERIC",
+                 margin: 0,
+                 resizeChildren: false,
+                 spacing: 5,
+                height: 100, shouldConstrain: true,
+                width:700)
+    {
+        row(indent: 50,
+            margin: 3,
+            spacing: 5)
+        {
+            column(indent: 2,
+                   spacing: 6)
+            {
+                static_text(identifier: "IDC_STATIC_NAME",
+                            name: "$$$/PropInspectFormGeneric/Label/InputName=Input name");
+
+                edit_text(characters: 9,
+                          identifier: "IDC_EDIT_NAME",
+                          tab_next_node: "IDC_EDIT_TYPE");
+            }
+
+            column(indent: 3)
+            {
+                static_text(identifier: "IDC_STATIC_TYPE",
+                            indent: 44,
+                            name: "$$$/PropInspectFormGeneric/Label/Type=&Type");
+
+                static_text(identifier: "IDC_STATIC_VALUE",
+                            indent: 40,
+                            name: "$$$/PropInspectFormGeneric/Label/Value=&Value");
+            }
+
+            column(spacing: 3)
+            {
+                edit_text(characters: 25,
+                          identifier: "IDC_EDIT_TYPE",
+                          tab_next_node: "IDC_EDIT_VALUE");
+
+                edit_text(characters: 25,
+                          identifier: "IDC_EDIT_VALUE",
+                          tab_next_node: "IDC_BUTTON_PARAMETERS");
+            }
+
+            column()
+            {
+                row(indent: 20)
+                {
+                    ownerdrawn_button(identifier: "IDC_BUTTON_PARAMETERS",
+                                      name: "$$$/PropInspectFormGeneric/IconButton/Parameters=Parameters...");
+                }
+            }
+        }
+    }
+}

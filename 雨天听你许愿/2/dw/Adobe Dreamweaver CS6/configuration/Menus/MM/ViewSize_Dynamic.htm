@@ -1,0 +1,116 @@
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+  Copyright 2010 Adobe Systems Incorporated
+  All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and may be covered by U.S. and Foreign Patents,
+ patents in process, and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+-->
+<!-- MENU-LOCATION=VIEW -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="../../Shared/MM/Scripts/CMN/string.js"></script>
+<script type="text/javascript">
+<!--
+var MENU_MediaQueryManager = dw.loadString('menus/DWMenu_MediaQueries');
+
+function isDOMRequired()
+{
+  return true;
+}
+
+// This function converts the menu item into a number and calls 
+// the menu items handler which will call into the Document menu handler
+function receiveArguments()
+{
+    var numberArg = new Number(arguments[0]);
+    var dom = dw.getDocumentDOM();
+
+	if (dom)
+    {
+      var sizeArray = dom.getViewSizeMenuItems();
+	  if ((sizeArray.length > 0) && (numberArg.valueOf() < sizeArray.length))
+	      dom.invokeViewSizeMenuItem(numberArg.valueOf());
+	  else 
+	      dw.runCommand('Media Query Manager') ;
+	}
+}
+
+function canAcceptCommand()
+{
+  // convert the the menu item into a number return true if it is enabled
+  var dom = dw.getDocumentDOM();
+  var numberArg = new Number(arguments[0]);
+  if (dom)
+  {
+     var sizeArray = dom.getViewSizeMenuItems();
+     if ((sizeArray.length > 0) && (numberArg.valueOf() < sizeArray.length))
+         return dom.isViewSizeMenuItemEnabled(numberArg.valueOf());
+     else 
+         return dw.getDocumentDOM().getParseMode() == 'html'; 
+   }
+   return false ;
+}
+
+function isCommandChecked()
+{   
+    // convert the the menu item into a number and return true if it is checked
+  var dom = dw.getDocumentDOM();
+  var numberArg = new Number(arguments[0]);
+  if (dom)
+  {
+     var sizeArray = dom.getViewSizeMenuItems();
+     if ((sizeArray.length > 0) && (numberArg.valueOf() < sizeArray.length))
+         return dom.isViewSizeMenuItemChecked(numberArg.valueOf());
+  }
+  return false ;
+}
+
+// getDynamicContent returns the contents of a dynamically generated menu.
+// returns an array of strings to be placed in the menu, with a unique
+// identifier for each item separated from the menu string by a semicolon.
+//
+// return null from this routine to indicate that you are not adding any
+// items to the menu
+function getDynamicContent()
+{
+    var dom = dw.getDocumentDOM();
+	var menuItems = new Array();
+	if (dom) 
+	{
+	  var sizeArray = dom.getViewSizeMenuItems();
+	  if (sizeArray.length > 0)
+	  {
+	    var i;
+	    var ID=0;
+		for (i=0; i<sizeArray.length; i++, ID++)
+		{
+		    if (sizeArray[i] != "-")
+			    menuItems[i] = new String(sizeArray[i]) + ";id='"+ID+"'"; // each item needs an ID
+			else
+			    menuItems[i] = "-"; // no id (but still increment) for separator
+		}
+		menuItems[i++] = "-" ;
+	  }
+	  var mqItem = menuItems.length;
+	  menuItems[mqItem] = MENU_MediaQueryManager + ";id=9999"; 
+	}
+	return menuItems;
+}
+ // -->
+</script>
+</head>
+<body>
+</body>
+</html>
+

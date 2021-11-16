@@ -1,0 +1,244 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewTable
+{
+    view subview(grow: false,
+                 height: 100,
+                 horizontal: @align_fill,
+                 identifier: "IDD_PROP_INSPECT_TABLE",
+                 margin: 3,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(spacing: 6)
+        {
+            row(indent: 50,
+                spacing: 5)
+            {
+                column(child_horizontal: @align_fill,
+                       horizontal: @align_fill,
+                       indent: 2,
+                       spacing: 6)
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE",
+                                name: "$$$/PropInspectTable/Label/Xxx=XXX");
+
+                    combobox(horizontal: @align_fill,
+                             identifier: "IDC_COMBO_ID",
+                             sort: true,
+                             vertical_scroll: true);
+                }
+
+                column(indent: 2)
+                {
+                    row(indent: 45)
+                    {
+                        column(horizontal: @align_right)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_ROWS",
+                                        name: "$$$/PropInspectTable/Label/Rows=&Rows");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_COLS",
+                                        name: "$$$/PropInspectTable/Label/Cols=&Cols");
+                        }
+                    }
+                }
+
+                column(spacing: 3)
+                {
+                    edit_text(characters: 4,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_ROWS");
+
+                    edit_text(characters: 4,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_COLS");
+                }
+
+                column(indent: 3)
+                {
+                    row(horizontal: @align_right)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_WIDTH",
+                                    name: "$$$/PropInspectTable/Label/W=&W");
+                    }
+
+                    row(indent: 5)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_DIR9",
+                                    name: "$$$/PropInspectTable/Label/Direction=&Direction",
+                                    visible: false);
+                    }
+                }
+
+                column(spacing: 3)
+                {
+                    row(spacing: 3)
+                    {
+                        edit_text(characters: 4,
+                                  identifier: "IDC_EDIT_WIDTH");
+
+                        popup(identifier: "IDC_COMBO_UNITS",
+                              include_custom_item: false,
+                              is_searchable: false,
+                              items: [ { name: "$$$/PropInspectTable/Units/item1/",
+                                         value: " " },
+                                       { name: "$$$/PropInspectTable/Units/item2/Pixels",
+                                         value: " " } ]);
+                    }
+
+                    popup(identifier: "IDC_COMBO_DIRECTION",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          vertical_scroll: true,
+                          visible: false);
+                }
+
+                column(indent: 3)
+                {
+                    row(indent: 10)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_CELLPADDING",
+                                    name: "$$$/PropInspectTable/Label/Cellpad=Cell&Pad");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_CELLSPACING",
+                                name: "$$$/PropInspectTable/Label/Cellspace=Cell&Space");
+                }
+
+                column(spacing: 3)
+                {
+                    edit_text(characters: 3,
+                              identifier: "IDC_EDIT_CELLPADDING");
+
+                    edit_text(characters: 3,
+                              identifier: "IDC_EDIT_CELLSPACING");
+                }
+
+                column(indent: 3)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_ALIGN",
+                                name: "$$$/PropInspectTable/Label/Align=&Align");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_BORDER",
+                                name: "$$$/PropInspectTable/Label/Border=&Border");
+                }
+
+                column(spacing: 3)
+                {
+                    popup(identifier: "IDC_COMBO_ALIGN",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          vertical_scroll: true);
+
+                    edit_text(characters: 4,
+                              identifier: "IDC_EDIT_BORDER");
+                }
+            }
+
+            row(indent: 118,
+                spacing: 3)
+            {
+                column(spacing: 3)
+                {
+                    row(spacing: 2)
+                    {
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_BUTTON_TABLE_CLEAR_WIDTH",
+                                          name: "$$$/PropInspectTable/IconButton/ClearColumn=Clear column widths",
+                                          width: 18);
+
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_BUTTON_TABLE_CONVERT_TO_PIXELS",
+                                          name: "$$$/PropInspectTable/IconButton/ConvertTable=Convert table widths to pixels",
+                                          width: 18);
+
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_BUTTON_TABLE_CONVERT_TO_PERCENT",
+                                          name: "$$$/PropInspectTable/IconButton/ConvertTableWidthsToPercent=Convert table widths to percent",
+                                          width: 18);
+                    }
+
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_BUTTON_TABLE_CLEAR_HEIGHT",
+                                      name: "$$$/PropInspectTable/IconButton/ClearRow=Clear row heights",
+                                      width: 18);
+                }
+
+                column()
+                {
+                    row(indent: 45)
+                    {
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_FW_SRC_IMAGE",
+                                          indent: 2,
+                                          visible: false,
+                                          width: 17);
+                    }
+                }
+
+                column(indent: 2)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_BG",
+                                name: "$$$/PropInspectTable/Label/Xxx1=XXX");
+                }
+
+                column()
+                {
+                    edit_text(characters: 25,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_BG");
+                }
+
+                column()
+                {
+                    row(spacing: 3)
+                    {
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_LINK_HREF",
+                                          indent: 2,
+                                          width: 16);
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BG",
+                                          indent: 2,
+                                          name: "$$$/PropInspectTable/IconButton/BrowseFor=Browse for file",
+                                          width: 22);
+
+                        ownerdrawn_button(identifier: "IDC_BUTTON_EDIT",
+                                          indent: 2,
+                                          name: "$$$/PropInspectTable/IconButton/Edit=  Edit",
+                                          visible: false);
+                    }
+                }
+            }
+        }
+    }
+}

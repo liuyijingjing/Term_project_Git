@@ -1,0 +1,130 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsNewDocument
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_NEW_DOCUMENT",
+                 margin: 5,
+                 name: "$$$/PrefsNewDocument/Title/NewDocument=New Document",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(indent: 1,
+                   spacing: 18)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsNewDocument/Label/DefaultDocument=Def&ault document:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsNewDocument/Label/DefaultExtension=Default &extension:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_DTD_LABEL",
+                            name: "$$$/PrefsNewDocument/Label/DefaultDocumentTypeDtd=Default Document Type (DTD):");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsNewDocument/Label/DefaultEncoding=&Default encoding:");
+
+                placeholder(height: 25);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_LABEL_NORMALIZATION",
+                            name: "$$$/PrefsNewDocument/Label/UnicodeNormalization=Unicode Normalization &Form:");
+            }
+
+            column(horizontal: @align_fill)
+            {
+                row(spacing: 5)
+                {
+                    popup(identifier: "IDC_DEFAULT_DOC_POPUP",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          popup_minimum_width_chars: 15,
+                          set_default_focus: true,
+                          tab_next_node: "IDC_DEFAULT_EXTENSION",
+                          vertical_scroll: true);
+
+                    button(action: @do_action,
+                           horizontal: @align_right,
+                           identifier: "IDC_SERVER_SETTINGS_NEWDOCUMENT",
+                           name: "$$$/PrefsNewDocument/Button/Settings=Se&ttings...");
+                }
+
+                edit_text(enabled: false,
+                          identifier: "IDC_DEFAULT_EXTENSION",
+                          tab_next_node: "IDC_DTD_COMBO");
+
+                row()
+                {
+                    popup(identifier: "IDC_DTD_COMBO",
+                          include_custom_item: false,
+                          popup_minimum_width_chars: 15,
+                          tab_next_node: "IDC_DEFAULT_ENCODING",
+                          vertical_scroll: true);
+
+                    placeholder(width: 77);
+                }
+
+                row()
+                {
+                    popup(identifier: "IDC_DEFAULT_ENCODING",
+                          include_custom_item: false,
+                          popup_minimum_width_chars: 15,
+                          sort: true,
+                          tab_next_node: "IDC_CHECK_USE_ENCODING_FOR_OPENING",
+                          vertical_scroll: true);
+
+                    placeholder(width: 77);
+                }
+
+                checkbox(identifier: "IDC_CHECK_USE_ENCODING_FOR_OPENING",
+                         name: "$$$/PrefsNewDocument/CheckBox/UseWhen=Use when opening existing files that don't specify an encoding",
+                         tab_next_node: "IDC_COMBO_NORMALIZATION_FORM");
+
+                placeholder(height: 10);
+
+                row()
+                {
+                    popup(identifier: "IDC_COMBO_NORMALIZATION_FORM",
+                          include_custom_item: false,
+                          popup_minimum_width_chars: 15,
+                          tab_next_node: "IDC_CHECK_BOM",
+                          vertical_scroll: true);
+
+                    placeholder(width: 77);
+                }
+
+                checkbox(identifier: "IDC_CHECK_BOM",
+                         name: "$$$/PrefsNewDocument/CheckBox/IncludeUnicode=Include Unicode &Signature (BOM)",
+                         tab_next_node: "IDC_CHECK_BYPASS_NEW_DIALOG");
+
+                placeholder();
+
+                checkbox(identifier: "IDC_CHECK_BYPASS_NEW_DIALOG",
+                         name: "$$$/PrefsNewDocument/CheckBox/ShowNew=Show &New Document dialog box on Control+N");
+            }
+        }
+    }
+}

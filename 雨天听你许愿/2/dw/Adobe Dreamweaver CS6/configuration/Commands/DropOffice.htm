@@ -1,0 +1,71 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/DropOffice/title" /></title>
+<!-- Copyright 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script language="javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script language="javascript" src="InsertOfficeDoc.js"></script>
+<script language="javascript" src="DropOffice.js"></script>
+</head>
+<body onLoad="initializeUI()">
+<form name="theForm">
+  <table>
+    <tr valign="middle">
+      <td colspan=4 nowrap><MMString:loadString id="Commands/DropOffice/text/How" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td colspan="3" nowrap><input type="radio" name="opmode" value="content" checked onClick="disableTypes('false')">
+        <MMString:loadString id="Commands/DropOffice/radiobutton/opmode/Insert" /> </td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td nowrap>&nbsp;</td>
+      <td nowrap valign=middle>&nbsp;</td>
+      <td nowrap valign=middle><input name="pastetype" type="radio" value="text" onClick="disableCleanup('true')"/>
+        <MMString:loadString id="Commands/DropOffice/radiobutton/pastetype/Text" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td nowrap>&nbsp;</td>
+      <td nowrap valign=middle>&nbsp;</td>
+      <td nowrap valign=middle><input name="pastetype" type="radio" value="structure" onClick="disableCleanup('false')"/>
+        <MMString:loadString id="Commands/DropOffice/radiobutton/pastetype/Text_1" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td nowrap>&nbsp;</td>
+      <td nowrap valign=middle>&nbsp;</td>
+      <td nowrap valign=middle><input name="pastetype" type="radio" value="basic" onClick="disableCleanup('false')"/>
+        <MMString:loadString id="Commands/DropOffice/radiobutton/pastetype/Text_2" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td nowrap>&nbsp;</td>
+      <td nowrap valign=middle>&nbsp;</td>
+      <td nowrap valign=middle><input name="pastetype" type="radio" value="full" checked onClick="disableCleanup('true')"/>
+        <MMString:loadString id="Commands/DropOffice/radiobutton/pastetype/Text_3" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap></td>
+      <td nowrap></td>
+      <td nowrap></td>
+      <td nowrap></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td nowrap>&nbsp;</td>
+      <td nowrap valign=middle>&nbsp;</td>
+      <td nowrap valign=middle><input type="checkbox" name="cleanup" value="checkbox" >
+        <MMString:loadString id="Commands/DropOffice/checkbox/cleanup/Clean" /></td>
+    </tr>
+    <tr valign="middle">
+      <td nowrap>&nbsp;</td>
+      <td colspan="3" nowrap><input type="radio" name="opmode" value="link" onClick="disableTypes('true')"/>
+        <MMString:loadString id="Commands/DropOffice/radiobutton/opmode/Create" /> </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

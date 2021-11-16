@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html DIR="RTL">
+<head>
+<title>דחה את הסכם הרשיון</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./../default.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="./../domutils.js"></script>
+<script language="javascript" src="./../wizardcore.js"></script>
+</head>
+
+<body>
+
+<div id="eula_decline_main-title" class="main-title">
+  דחה את הסכם הרשיון
+</div>
+	<div id="eula_decline_sub-title" class="sub-title">
+  האם אתם בטוחים שברצונכם לדחות את הסכם הרשיון למשתמש הקצה?
+</div>
+
+
+<div id="eula_decline_content" class="content">
+  <p>עליכם לקבל את הסכם הרשיון למשתמש הקצה כדי להשתמש במוצר זה. כדי לחזור אחורה ולקבל את ההסכם, לחצו על הלחצן 'הקודם'. לדחיית ההסכם, לחצו על 'יציאה'.  </p>
+</div>
+
+
+<div id="eula_decline_rightbutton" class="rightbutton" style="text-align: left;left: 17%;">
+	 	<form name="eula_decline_form" onsubmit="return doEulaAccept();">
+   		<input name="eula_decline_back" type="button" id="eula_decline_back" accesskey="b" tabindex="2" onfocus="markName('eula_decline_back')" onclick="history.back()" value="  הקודם">
+   		&nbsp;&nbsp;&nbsp;
+   		<input name="eula_decline_Quit" type="button" id="eula_decline_quit" accesskey="q" tabindex="1" value="יציאה" onfocus="markName('eula_decline_quit')" onclick="doDecline()">
+		</form>
+</div>
+
+</body>
+</html>

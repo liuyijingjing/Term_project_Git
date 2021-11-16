@@ -1,0 +1,67 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout EditColdfusionAdminurlDialog
+{
+    view dialog(identifier: "IDD_EDIT_COLDFUSION_ADMINURL",
+                name: "$$$/EditColdfusionAdminurl/Title/ColdfusionAdministrator=ColdFusion Administrator URL",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 5,
+                   vertical: @align_center)
+            {
+                row(spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/EditColdfusionAdminurl/Label/ColdfusionAdministrator=ColdFusion administrator URL:");
+
+                    edit_text(characters: 50,
+                              identifier: "IDC_CF_ADMINURL",
+                              tab_next_node: "IDOK");
+                }
+            }
+	    static_text(identifier: "IDC_IBANYURL_PREVIEW_SEPARATOR",
+                                visible:false);
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/EditColdfusionAdminurl/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/EditColdfusionAdminurl/Button/Cancel=Cancel",
+                       tab_next_node: "IDC_TEST");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_TEST",
+                       name: "$$$/EditColdfusionAdminurl/Button/Test=Test",
+                       tab_next_node: "IDC_CF_ADMINURL");
+            }
+        }
+    }
+}

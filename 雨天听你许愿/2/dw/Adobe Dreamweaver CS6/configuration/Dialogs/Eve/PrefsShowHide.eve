@@ -1,0 +1,295 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsShowHide
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_INVISIBLES",
+                 margin: 0,
+                 name: "$$$/PrefsInvisibles/Title/InvisibleElements=Invisible Elements",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        column(margin: 5)
+        {
+            row(margin: 5,
+                spacing: 5)
+            {
+                column()
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_LI_STR",
+                                name: "$$$/PrefsInvisibles/Label/Show=Show:");
+
+                    placeholder(height: 230);
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_DYNAMIC_TEXT_STATIC",
+                                name: "$$$/PrefsInvisibles/Label/ShowDynamic=Show dynamic text as:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PrefsInvisibles/Label/ServersideIncludes=Server-Side includes:");
+                }
+
+                column(spacing: 5)
+                {
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_NAMED_ANCHORS",
+                                 tab_next_node: "IDC_SHOW_SCRIPTS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19,
+                                        identifier: "IDC_NA_BMP",
+                                        width: 18);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/NamedAnchors=Named anchors");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_SCRIPTS",
+                                 tab_next_node: "IDC_SHOW_COMMENTS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_SCR_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/Scripts=Scripts");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_COMMENTS",
+                                 tab_next_node: "IDC_SHOW_LINE_BREAKS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_COMM_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/Comments=Comments");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_LINE_BREAKS",
+                                 tab_next_node: "IDC_SHOW_CS_IMG_MAPS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_BR_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/LineBreaks=Line breaks");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_CS_IMG_MAPS",
+                                 tab_next_node: "IDC_SHOW_STYLES");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_MAP_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/ClientsideImage=Client-Side image maps");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_STYLES",
+                                 tab_next_node: "IDC_SHOW_HIDDEN_FIELDS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_STY_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/EmbeddedStyles=Embedded styles");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_HIDDEN_FIELDS",
+                                 tab_next_node: "IDC_SHOW_FORM_DELIM");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_HFF_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/HiddenForm=Hidden form fields");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_FORM_DELIM",
+                                 tab_next_node: "IDC_SHOW_LAYER_POINTS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_FD_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/FormDelimiter=Form delimiter");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_LAYER_POINTS",
+                                 tab_next_node: "IDC_SHOW_ANCHOR_PTS");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_LP_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/AnchorPoints=Anchor points for AP elements");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_ANCHOR_PTS",
+                                 tab_next_node: "IDC_SHOW_VISUAL_SERVER_MARKUP");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_AP_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/AnchorPointsForAlignedElements=Anchor points for aligned elements");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_VISUAL_SERVER_MARKUP",
+                                 tab_next_node: "IDC_SHOW_NONVISUAL_SERVER_MARKUP");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_VISUAL_SERVER_MARKUP_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/VisualServer=Visual Server Markup Tags (ASP, CFML, ...)");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_NONVISUAL_SERVER_MARKUP",
+                                 tab_next_node: "IDC_SHOW_CSS_DISPLAY_NONE");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_NONVISUAL_SERVER_MARKUP_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/NonvisualServer=Nonvisual Server Markup Tags (ASP, CFML, ...)");
+                        }
+                    }
+
+                    row(spacing: 3)
+                    {
+                        checkbox(identifier: "IDC_SHOW_CSS_DISPLAY_NONE",
+                                 tab_next_node: "IDC_DYNAMIC_TEXT_COMBO");
+
+                        row(spacing: 22)
+                        {
+                            static_text(height: 19.5,
+                                        identifier: "IDC_CSS_DISPLAY_NONE_BMP",
+                                        width: 22.5);
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsInvisibles/CheckBox/CssDisplay=CSS display: none");
+                        }
+                    }
+
+                    row(horizontal: @align_fill)
+                    {
+                        popup(horizontal: @align_fill,
+                              iconpopup_font_size: 11,
+                              iconpopup_icon_column_width: 20,
+                              iconpopup_include_vertical_separator: false,
+                              iconpopup_item_height: 22,
+                              iconpopup_selection_column_width: 22,
+                              iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                              iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                              identifier: "IDC_DYNAMIC_TEXT_COMBO",
+                              include_custom_item: false,
+                              items: [ { name: "$$$/PrefsInvisibles/DynamicText/item1/Recordsetfield",
+                                         value: " " },
+                                       { name: "$$$/PrefsInvisibles/DynamicText/item2/",
+                                         value: " " } ],
+                              popup_maximum_width_chars: 255,
+                              tab_next_node: "IDC_TRANSLATE_SSI",
+                              vertical_scroll: true);
+
+                        placeholder(width: 58);
+                    }
+
+                    row()
+                    {
+                        checkbox(identifier: "IDC_TRANSLATE_SSI",
+                                 name: "$$$/PrefsInvisibles/CheckBox/ShowContents=Show contents of included file");
+                    }
+                }
+            }
+
+            placeholder(height: 20);
+        }
+    }
+}

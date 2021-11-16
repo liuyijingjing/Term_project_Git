@@ -1,0 +1,69 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TagDialogAttrCase
+{
+    view dialog(identifier: "IDD_TAG_LIBRARY_ATTR_CASE",
+                name: "$$$/TagLibraryAttrCase/Title/AttributeName=Attribute Name Mixed Case",
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 15)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 5,
+                spacing: 5)
+            {
+                static_text(characters: 20,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/TagLibraryAttrCase/Label/TypeThe=Type the name of the attribute as it should appear in the code view.");
+            }
+
+            row(child_vertical: @align_center,
+                horizontal: @align_right,
+                indent: 20,
+                margin: 5,
+                spacing: 0)
+            {
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/TagLibraryAttrCase/Label/AttributeName=Attribute name:");
+
+                edit_text(characters: 20,
+                          identifier: "IDC_EDIT_NAME",
+                          tab_next_node: "IDOK");
+            }
+        }
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5)
+        {
+            button(action: @do_ok,
+                   default: true,
+                   identifier: "IDOK",
+                   name: "$$$/TagLibraryAttrCase/Button/Ok=OK",
+                   tab_next_node: "IDCANCEL");
+
+            button(action: @do_cancel,
+                   default: false,
+                   identifier: "IDCANCEL",
+                   name: "$$$/TagLibraryAttrCase/Button/Cancel=Cancel",
+                   tab_next_node: "IDC_EDIT_NAME");
+        }
+    }
+}

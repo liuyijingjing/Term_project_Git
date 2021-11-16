@@ -1,0 +1,65 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanDialogGenericReport
+{
+    view dialog(identifier: "IDD_GENERIC_REPORT",
+                name: "$$$/GenericReport/Title/Title=Title",
+                spacing: 5)
+    {
+        column()
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC_PROMPT",
+                            name: "$$$/GenericReport/Label/Prompt=Prompt");
+            }
+
+            row(margin: 0,
+                spacing: 5)
+            {
+                edit_text(characters: 43,
+                          horizontal_scroll: true,
+                          identifier: "IDC_EDIT_REPORT",
+                          lines: 11,
+                          multiLine: true,
+                          readonly: true,
+                          scrollable: true,
+                          tab_next_node: "IDOK",
+                          vertical_scroll: true);
+            }
+
+            row(horizontal: @align_right,
+                spacing: 5)
+            {
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/GenericReport/Button/Cancel=Cancel");
+
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/GenericReport/Button/Ok=OK",
+                       tab_next_node: "IDC_EDIT_REPORT");
+            }
+        }
+    }
+}

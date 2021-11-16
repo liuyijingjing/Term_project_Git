@@ -1,0 +1,65 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout W3CValidatorinfoDialog
+{
+	view dialog(identifier: "IDD_W3C_DETAILED_INFO",
+				name: "$$$/W3cDetailedInfo/Title/W3cError=W3C Error Info",
+				grow: false,
+				margin: 0,
+				resizeChildren: false,
+				spacing: 5)
+	{
+		column(margin: 5,
+			spacing: 5)
+		{
+ 			row(guide_mask: [ @guide_label ],
+				margin: 0,
+				spacing: 5)
+			{
+ 				edit_text(identifier: "IDC_RESULTS_DESC",
+						characters: 59,
+						lines: 5,
+						scrollable: true,
+						vertical_scroll:true, tab_next_node: "IDC_DETAIL_OK");
+			}
+			row(guide_mask: [ @guide_label ],
+				margin: 0,
+				spacing: 5)
+			{
+ 				static_text(identifier: "IDC_STATIC_DESCRIPTION",
+							name: "$$$/W3cDetailedInfo/Label/ServerGenerated=Server generated code used for validation (different from the code in code view): ");
+			}
+			row(guide_mask: [ @guide_label ],
+				margin: 0,
+				spacing: 5)
+			{
+ 				static_text(identifier: "IDC_BROWSER_PROXY",
+							name: "$$$/W3cDetailedInfo/Label/Static=Static");
+			}
+			row(margin: 0,
+				spacing: 5)
+			{
+ 				button(identifier: "IDC_DETAIL_OK",
+						name: "$$$/W3cDetailedInfo/Button/Close=Close",
+						action: @do_action,
+						default: true, tab_next_node: "IDC_RESULTS_DESC");
+			}
+		}
+	}
+}

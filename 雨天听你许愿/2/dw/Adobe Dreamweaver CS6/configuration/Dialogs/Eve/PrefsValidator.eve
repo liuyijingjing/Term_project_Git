@@ -1,0 +1,128 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsValidator
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_VALIDATOR",
+                 margin: 5,
+                 name: "$$$/PrefsValidator/Title/W3cValidator=W3C Validator",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(margin: 5,
+            spacing: 5)
+        {
+            column(horizontal: @align_fill)
+            {
+                row(spacing: 5)
+                {
+                    column()
+                    {
+                        row()
+                        {
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsValidator/Label/IfNo=If no DOCTYPE is detected, validate against:");
+                        }
+
+                        row()
+                        {
+                            sft_tree(apron_click_deselection: true,
+                                     empty_selection: true,
+                                     height: 147,
+                                     identifier: "IDC_VERSION_LIST",
+                                     keyboard_selectable: true,
+                                     width: 432);
+                        }
+                    }
+                }
+
+                row(indent: 25,
+                    margin: 10,
+                    spacing: 5)
+                {
+                    column()
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    name: "$$$/PrefsValidator/Label/Display=Display:");
+
+                        placeholder(height: 19);
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    name: "$$$/PrefsValidator/Label/Filter=Filter:");
+                    }
+
+                    column()
+                    {
+                        row()
+                        {
+                            checkbox(identifier: "IDC_SHOW_ERRORS",
+                                     name: "$$$/PrefsValidator/CheckBox/Errors=Errors");
+                        }
+
+                        row()
+                        {
+                            checkbox(identifier: "IDC_SHOW_WARNINGS",
+                                     name: "$$$/PrefsValidator/CheckBox/Warnings=Warnings");
+                        }
+
+                        row(horizontal: @align_fill)
+                        {
+                            column(horizontal: @align_left,
+                                   vertical: @align_center)
+                            {
+                                static_text(horizontal: @align_left,
+                                            identifier: "IDC_STATIC",
+                                            name: "$$$/PrefsValidator/Label/HiddenErrors=Hidden Errors and Warnings");
+                            }
+
+                            column(horizontal: @align_right)
+                            {
+                                button(action: @do_action,
+                                       horizontal: @align_right,
+                                       identifier: "IDC_OPTIONS",
+                                       name: "$$$/PrefsValidator/Button/Manage=Manage...");
+                            }
+                        }
+
+                        row()
+                        {
+                            static_text(characters: 25,
+                                        identifier: "IDC_STATIC",
+                                        name: "$$$/PrefsValidator/Label/ToHide=To hide a message, click on the message you want to hide in the error list and right click to choose hide");
+                        }
+                    }
+                }
+
+                row(horizontal: @align_fill)
+                {
+                    column(indent: 5)
+                    {
+                        checkbox(horizontal: @align_proportional,
+                                 identifier: "IDC_DONT_SHOW_NOTIFICATION",
+                                 name: "$$$/PrefsValidator/CheckBox/DontShow=&Don't show W3C validator notification dialog",
+                                 set_default_focus: true);
+                    }
+                }
+            }
+        }
+    }
+}

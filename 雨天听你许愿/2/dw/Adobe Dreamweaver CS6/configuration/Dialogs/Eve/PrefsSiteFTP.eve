@@ -1,0 +1,199 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsSiteFTP
+{
+    view subview(identifier: "IDD_PREFS_SITEFTP",
+                 margin: 5,
+                 name: "$$$/PrefsSiteftp/Title/Site=Site",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 19)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/AlwaysShow=Always &show:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/DependentFiles=Dependent files:");
+
+                placeholder(height: 10);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/FtpConnection=FTP connection:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/FtpTime=F&TP time out:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/FtpTransfer=FTP transfer options:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/ProxyHost=Pro&xy host:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/ProxyPort=&Proxy port:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/PutOptions=Put options:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsSiteftp/Label/MoveOptions=Move options:");
+            }
+
+            column()
+            {
+                row(spacing: 5)
+                {
+                    popup(identifier: "IDC_PRIMARY_VIEW",
+                          include_custom_item: false,
+                          items: [ { name: "$$$/PrefsSiteftp/PrimaryView/item1/LocalFiles",
+                                     value: " " },
+                                   { name: "$$$/PrefsSiteftp/PrimaryView/item2/RemoteFiles",
+                                     value: " " } ],
+                          popup_minimum_width_chars: 5,
+                          set_default_focus: true,
+                          tab_next_node: "IDC_LEFT_OR_RIGHT",
+                          vertical_scroll: true);
+
+                    static_text(horizontal: @align_left,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PrefsSiteftp/Label/OnThe=on t&he");
+
+                    popup(identifier: "IDC_LEFT_OR_RIGHT",
+                          include_custom_item: false,
+                          items: [ { name: "$$$/PrefsSiteftp/LeftOrRight/item1/Left",
+                                     value: " " },
+                                   { name: "$$$/PrefsSiteftp/LeftOrRight/item2/Right",
+                                     value: " " } ],
+                          popup_minimum_width_chars: 5,
+                          tab_next_node: "IDC_DOWNLOADDEP",
+                          vertical_scroll: true);
+                }
+
+                row()
+                {
+                    checkbox(identifier: "IDC_DOWNLOADDEP",
+                             indent: 2,
+                             name: "$$$/PrefsSiteftp/CheckBox/PromptOn=Prompt on get/check &out",
+                             tab_next_node: "IDC_UPLOADDEP");
+                }
+
+                row()
+                {
+                    checkbox(identifier: "IDC_UPLOADDEP",
+                             indent: 6,
+                             name: "$$$/PrefsSiteftp/CheckBox/PromptOnPutcheckIn=Prompt on put/check &in",
+                             tab_next_node: "IDC_DISCONNECT");
+                }
+
+                row(spacing: 5)
+                {
+                    checkbox(identifier: "IDC_DISCONNECT",
+                             indent: 6,
+                             name: "$$$/PrefsSiteftp/CheckBox/DisconnectAfter=&Disconnect after",
+                             tab_next_node: "IDC_DISCONNECTEDIT");
+
+                    edit_text(characters: 4,
+                              horizontal: @align_center,
+                              identifier: "IDC_DISCONNECTEDIT",
+                              tab_next_node: "IDC_FTPTIMEOUT");
+
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/PrefsSiteftp/Label/MinutesIdle=Minutes idle");
+                }
+
+                row(spacing: 5)
+                {
+                    edit_text(characters: 6,
+                              identifier: "IDC_FTPTIMEOUT",
+                              indent: 1,
+                              tab_next_node: "IDC_AUTODISMISS");
+
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/PrefsSiteftp/Label/Seconds=Seconds");
+                }
+
+                row(spacing: 5)
+                {
+                    checkbox(identifier: "IDC_AUTODISMISS",
+                             indent: 5,
+                             name: "$$$/PrefsSiteftp/CheckBox/SelectDefault=Select default &action in dialogs after",
+                             tab_next_node: "IDC_AUTODISMISS_EDIT");
+
+                    edit_text(characters: 4,
+                              identifier: "IDC_AUTODISMISS_EDIT",
+                              tab_next_node: "IDC_PROXYEDIT");
+
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/PrefsSiteftp/Label/Seconds1=seconds");
+                }
+
+                row()
+                {
+                    edit_text(characters: 29,
+                              identifier: "IDC_PROXYEDIT",
+                              tab_next_node: "IDC_PORTEDIT");
+                }
+
+                row()
+                {
+                    edit_text(characters: 6,
+                              identifier: "IDC_PORTEDIT",
+                              indent: 1,
+                              tab_next_node: "IDC_SAVEBEFOREPUT");
+                }
+
+                row()
+                {
+                    checkbox(identifier: "IDC_SAVEBEFOREPUT",
+                             indent: 4,
+                             name: "$$$/PrefsSiteftp/CheckBox/SaveFiles=Save files before &putting",
+                             tab_next_node: "IDC_MOVECONFIRM");
+                }
+
+                row()
+                {
+                    checkbox(identifier: "IDC_MOVECONFIRM",
+                             indent: 7,
+                             name: "$$$/PrefsSiteftp/CheckBox/PromptBefore=Prompt before mo&ving files on server",
+                             tab_next_node: "IDC_DEFINE_SITES_BUTTON");
+                }
+
+                row()
+                {
+                    button(action: @do_action,
+                           identifier: "IDC_DEFINE_SITES_BUTTON",
+                           indent: 3,
+                           name: "$$$/PrefsSiteftp/Button/ManageSites=&Manage Sites...");
+                }
+            }
+        }
+    }
+}

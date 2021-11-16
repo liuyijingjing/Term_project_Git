@@ -1,0 +1,520 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//floater">
+<html xmlns:MMString="http://www.adobe.com/schemes/data/string/">
+    <title><MMString:loadString id="PGB/title" /></title> 
+
+    <link href="../PhoneGapBuildPlugin/PhoneGapBuildPlugin.css" 
+        rel="stylesheet" type="text/css">
+
+    <link href="../PhoneGapBuildPlugin/images/Build-Bot.png" 
+        rel="panel icon" />
+
+    <script language="javascript"
+        src="../PhoneGapBuildPlugin/js/json/json2.js">
+    </script>
+    <script language="javascript" 
+        src="../PhoneGapBuildPlugin/js/PollFile.js">
+    </script>
+    <script language="javascript" 
+        src="../PhoneGapBuildPlugin/js/FilePoller.js">
+    </script>
+    <script language="javascript"
+        src="../PhoneGapBuildPlugin/js/PhoneGapPlugin.js">
+    </script>
+    <script language="javascript"
+        src="../PhoneGapBuildPlugin/js/BusinessLogic.js">
+    </script>
+    <script language="javascript" 
+        src="../PhoneGapBuildPlugin/js/FrameworkSetup.js">
+    </script>
+    <script language"javascript">
+        var this_loaded = false;
+
+        function displayHelp() { 
+            dwscripts.displayDWHelp(
+                MM.HELP_phoneGapBuildService); 
+        }
+
+        function onview(force_restart) {
+            if (this_loaded) return;
+            addLocaleToGoUrl(
+                    new Array(
+                        'new_user_url',
+                        'need_help_url'
+                        )
+                    );
+            browser = document.getElementById("myBrowser");
+            browser.style.width="160px";
+            browser.style.height="20px";
+            browser.setScrollbarMode("off", "both");
+            browser.openURL(
+                phoneGapPlugin.pluginDir() + "/res/loader.htm"
+                );
+            this_loaded = true;
+            onready();
+        }
+    </script>
+</head>
+
+<body onShow="onview();" onResize="onview();">
+    <form id="view">
+        <div id="statusBarContainer" style="width: 100%; text-align: center; display: none;">
+            <MM:BrowserControl id="myBrowser" width="160" height="20">
+        </div>
+        <div id="no-site-view" style="display: none;">
+            <table align="center">
+                <tr>
+                    <td>
+                        <p class="note">
+                        <MMString:loadString id="PGB/settings/no_site_found"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                          <input type="button" 
+                              onclick="onready()" 
+                              MMString:value="PGB/buttons/retry_start"
+                            >
+                    </td>
+                </tr>
+            </table>
+        </div>
+		<div id="no-connection-view" style="display: none;">
+            <table align="center">
+                <tr>
+                    <td>
+                        <p class="note">
+                        	You are not currently connected to the internet.  Please check your connection.
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                          <input type="button" 
+                              onclick="goBack()" 
+                              MMString:value="PGB/buttons/retry_start"
+                            >
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="init-view" style="display: none">
+          <fieldset id="init-view-set">
+          <table>
+              <tr>
+                <td>
+                  <p class="note">
+                    <b>
+                    <MMString:loadString id="PGB/init/missing_project_file_sentence1" />
+                    </b>
+                    <br>
+                    <br>
+                    <MMString:loadString id="PGB/init/missing_project_file_sentence2" />
+                    <br>
+                    <br>
+                    <MMString:loadString id="PGB/init/missing_project_file_sentence3" />
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" colspan="2">
+                <select id="init-project-select">
+                  <option value="new" selected="selected">
+                    <MMString:loadString 
+                        id="PGB/init/create_as_new_project" />
+                  </option>
+                  <option value="new" disabled="true">
+                    --------------
+                  </option>
+                </select>
+                </td>
+              </tr>
+            <tr>
+              <td align="center" colspan="2">
+                <input type="button" MMString:value="PGB/buttons/continue" 
+                  onclick="initProject(); this.disabled = 'true'"
+                  id="platform-all-continue-button"
+                  >
+              </td>
+            </tr>
+          </table>
+          </fieldset>
+        </div>
+        <div id="checking-auth-view" align="center">
+          <input type="button" MMString:value="PGB/service/start" 
+                id="platform-all-start-button" onclick="onview();">
+        </div>
+
+        <div id="login-view" style="display: none;">
+           <table>
+               <tr>
+                   <td colspan="2" align="center">
+                       <img src="../PhoneGapBuildPlugin/images/build-logo.png">
+                   </td>
+               </tr>
+               <tr>
+                   <td style="width: 50px">
+                       <label for="username">
+                           <MMString:loadString 
+                                id="PGB/auth/email" />
+                        </label>
+                    </td>
+                   <td><input type="text" id="username"></td>
+               </tr>
+               <tr>
+                   <td style="width: 50px">
+                        <label for="password">
+                            <MMString:loadString 
+                                id="PGB/auth/password" />
+                        </label>
+                   </td>
+                   <td><input type="password" id="password"></td>
+               </tr>
+               <tr>
+                   <td colspan="2">
+                       <input type="button" id="login" 
+                            MMString:value="PGB/buttons/login" onclick="doAuth();">
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="2">
+                       <p class="note">
+                          <a href="http://www.adobe.com/go/dw_phonegap_regn" id="new_user_url">
+                          <MMString:loadString 
+                              id="PGB/auth/new_user_string" />
+                          </a>
+                       </p>
+                   </td>
+               </tr>
+           </table>
+       </div>
+       <div id="app-error-view" style="display:none;">
+          <div class="package" id="error_header">
+              <div style="float: left; width: 100%;">
+                  <div class="header"></div>
+                  <div style="font-style: italic; font-family: arial; font-size: 10px;">
+                        <MMString:loadString 
+                            id="PGB/error/title" />
+                  </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div style="text-align: center; padding-top: 10px;">
+                  <textarea id="error_message_field" readonly="readonly"></textarea>
+                  <br>
+                  <input type="button" 
+                      onclick="toggleView('packages-view')" 
+                      MMString:value="PGB/buttons/back_to_build_panel"
+                    >
+              </div>
+          </div>
+       </div>
+       <div id="qr-view" style="display:none;">
+          <div class="package" id="qr_header">
+              <div style="float: left; width: 100%;">
+                  <div class="header"></div>
+                  <div style="font-style: italic; font-family: arial; font-size: 10px;">
+                        <MMString:loadString 
+                            id="PGB/qr_code/title" />
+                  </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div style="text-align: center; padding-top: 10px;">
+                  <img src="" id="qr_code_img" 
+                      style="border-style: solid; border-color: #000; border-width: 2px;">
+                  <br>
+                  <input type="button" 
+                      onclick="toggleView('packages-view')" 
+                      MMString:value="PGB/buttons/back_to_build_panel"
+                    >
+              </div>
+          </div>
+       </div>
+       </div>
+       <div id="emulate-android-view" style="display:none;">
+          <div class="package android" style="font-size:11px;">
+              <div style="float: left; width: 100%;">
+                  <div class="header"></div>
+                  <div style="font-style: italic; font-family: arial; font-size: 10px;">
+                      <MMString:loadString id="PGB/run/title" />
+                  </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div style="text-align: center; padding-top: 10px;display:none;" id="android-emulate-error-div">
+			  	<p class="note">
+                    <span id="android-emulate-error"></span>
+                </p>
+				<input type="button" 
+                      onclick="refreshList('android', true)"
+                      MMString:value="PGB/buttons/try_again"
+                    >
+				<br/>
+				 <input type="button" 
+	                      onclick="toggleView('packages-view')"
+                          MMString:value="PGB/buttons/back_to_build_panel"
+	                    >
+              </div>
+              <div style="text-align: center; padding-top: 10px;" id="android-emulate-div">
+                  <div style="border-bottom: 1px dotted #999;">
+                      <MMString:loadString 
+                          id="PGB/run/android_select_avd" />:<br/>
+                      <select id="android-device-select" style="width:180px"></select><br/>
+	                  <input type="button" id="android-launch-button" 
+	                      onclick="run('android')"
+	                      MMString:value="PGB/buttons/launch"
+	                    >
+                  </div>
+				  <div style="border-bottom: 1px dotted #999;">
+					  <MMString:loadString id="PGB/label/select_target" /><br><select style="width:180px" id="android-version-select"></select><br/>
+	                  <input type="button" id="android-emulate-button-1" 
+	                      onclick="createAVD()"
+	                      MMString:value="PGB/run/android_create_avd"
+	                    >
+						<input type="button"
+		                      onclick="launchAVDManager()"
+		                      MMString:value="PGB/buttons/avd_manager"
+		                >
+                  </div>
+                  <br>
+                  <textarea id="platform-android-emulator-monitor" style="height:70px"></textarea>
+                  <br>
+					<input type="button"
+					  	  id="android-emulate-button-2"
+	                      onclick="refreshList('android', true)"
+	                      MMString:value="PGB/buttons/refresh"
+	                >
+					<input type="button" 
+                      onclick="cancelEmulateAction()"
+                      MMString:value="PGB/buttons/back_to_build_panel"
+                    >
+              </div>
+          </div>
+       </div>
+       <div id="emulate-webos-view" style="display:none;">
+          <div class="package webos" id="emulate_header">
+              <div style="float: left; width: 100%;">
+                  <div class="header"></div>
+                  <div style="font-style: italic; font-family: arial; font-size: 10px;">
+                      <MMString:loadString id="PGB/run/title" />
+                  </div>
+              </div>
+              <div style="clear: both;"></div>
+              <div style="text-align: center; padding-top: 10px;display:none;" 
+                    id="webos-emulate-error-div">
+                    <p class="note">
+                        <span id="webos-emulate-error"></span>
+                    </p>
+                    <input type="button" 
+                          onclick="refreshList('webos', true)"
+                          MMString:value="PGB/buttons/try_again"
+                        >
+                    <br/>
+                     <input type="button" 
+                              onclick="toggleView('packages-view')"
+                              MMString:value="PGB/buttons/back_to_build_panel"
+                            >
+              </div>
+              <div style="text-align: center; padding-top: 10px; display: none;" 
+                  id="webos-emulate-div">
+                  <div><MMString:loadString id="PGB/label/run_on" /><select id="webos-device-select"></select></div>
+                  <br>
+                  <input type="button" 
+                      id="platform-webos-launch-button"
+                      onclick="run('webos')" 
+	                  MMString:value="PGB/buttons/launch"
+                  >
+                  <br>
+                  <textarea id="platform-webos-emulator-monitor" readonly="readonly"></textarea>
+                  <br>
+                  <input type="button" 
+                      onclick="cancelEmulateAction()" 
+                      MMString:value="PGB/buttons/back_to_build_panel"
+                    >
+              </div>
+          </div>
+       </div>
+       <div id="packages-view" style="display: none;">
+           <div class="package ios queued" id="platform-ios">
+               <div class="header">
+               </div>
+               <div class="status" id="platform-ios-status-message">
+               </div>
+               <div class="viewErrorButton" id="platform-ios-error-button" 
+                   style="display: none">
+                   <input type="image" onclick="viewError('ios')" 
+                      src="../PhoneGapBuildPlugin/images/PGB_view_error.png"
+                      >
+               </div>
+               <div class="action">
+				   <input type="image" MMString:alt="PGB/tooltips/view_qr" class="qr-code" 
+                        id="platform-ios-qrcode-button"
+                        disabled
+                        onclick="qr_url('ios')"
+                        src="../phonegapbuildplugin/images/pgb_qr.png"
+                    />
+                   <input type="image" MMString:alt="PGB/tooltips/download" class="download" 
+                        id="platform-ios-download-button" 
+                        disabled
+                        onclick="download('ios')"
+                        src="../phonegapbuildplugin/images/pgb_dl.png"
+                    />
+               </div>
+           </div>
+           <div class="package android complete" id="platform-android">
+               <div class="header">
+               </div>
+               <div class="status" id="platform-android-status-message">
+               </div>
+               <div class="viewErrorButton" id="platform-android-error-button"
+                   style="display: none">
+                   <input type="image" onclick="viewError('android')" 
+                      src="../PhoneGapBuildPlugin/images/PGB_view_error.png"
+                      >
+               </div>
+               <div class="action">
+                   <input type="image" MMString:alt="PGB/tooltips/emulate" class="emulate"
+                        id="platform-android-emulate-button" 
+                        disabled
+                        onclick="download('android', true)"
+                        src="../phonegapbuildplugin/images/pgb_em.png"
+                    />
+				   <input type="image" MMString:alt="PGB/tooltips/view_qr" class="qr-code" 
+                        id="platform-android-qrcode-button"
+                        disabled
+                        onclick="qr_url('android')"
+                        src="../phonegapbuildplugin/images/pgb_qr.png"
+                    />
+                   <input type="image" MMString:alt="PGB/tooltips/download" class="download"
+                        id="platform-android-download-button" 
+                        disabled
+                        onclick="download('android')"
+                        src="../phonegapbuildplugin/images/pgb_dl.png"
+                    />
+               </div>
+           </div>
+           <div class="package blackberry queued" id="platform-blackberry">
+               <div class="header">
+               </div>
+               <div class="status" id="platform-blackberry-status-message">
+               </div>
+               <div class="viewErrorButton" id="platform-blackberry-error-button"
+                   style="display: none">
+                   <input type="image" onclick="viewError('blackberry')" 
+                      src="../PhoneGapBuildPlugin/images/PGB_view_error.png"
+                      >
+               </div>
+               <div class="action">
+                   <input type="image" MMString:alt="PGB/tooltips/view_qr" class="qr-code"
+                        id="platform-blackberry-qrcode-button" 
+                        disabled
+                        onClick="qr_url('blackberry')"
+                        src="../PhoneGapBuildPlugin/images/PGB_qr.png"
+                    />
+                  <input type="image" MMString:alt="PGB/tooltips/download" class="download"
+                      id="platform-blackberry-download-button" 
+                      disabled
+                      onClick="download('blackberry')"
+                      src="../PhoneGapBuildPlugin/images/PGB_dl.png"
+                    />
+               </div>
+           </div>
+           <div class="package webos queued" id="platform-webos">
+               <div class="header">
+               </div>
+               <div class="status" id="platform-webos-status-message">
+               </div>
+               <div class="viewErrorButton" id="platform-webos-error-button"
+                    style="display: none">
+                    <input type="image" onclick="viewError('webos')" 
+                        src="../PhoneGapBuildPlugin/images/PGB_view_error.png"
+                        >
+               </div>
+               <div class="action">
+                  <input type="image" MMString:alt="PGB/tooltips/emulate" class="emulate" 
+                          id="platform-webos-emulate-button" 
+                          disabled
+                          onclick="download('webos', true)"
+                          src="../phonegapbuildplugin/images/pgb_em.png"
+                      />
+                  <input type="image" MMString:alt="PGB/tooltips/view_qr" class="qr-code" 
+                          id="platform-webos-qrcode-button" 
+                          disabled
+                          onClick="qr_url('webos')"
+                          src="../PhoneGapBuildPlugin/images/PGB_qr.png"
+                       />
+                   <input type="image" MMString:alt="PGB/tooltips/download" class="download" 
+                           id="platform-webos-download-button" 
+                           disabled
+                           onClick="download('webos')"
+                           src="../PhoneGapBuildPlugin/images/PGB_dl.png"
+                       />
+               </div>
+           </div>
+           <div class="package symbian queued" id="platform-symbian">
+               <div class="header">
+               </div>
+               <div class="status" id="platform-symbian-status-message">
+               </div>
+               <div class="viewErrorButton" id="platform-symbian-error-button" 
+                  >
+                   <input type="image" onclick="viewError('symbian')" 
+                      src="../PhoneGapBuildPlugin/images/PGB_view_error.png"
+                      >
+               </div>
+               <div class="action">
+                  <input type="image" MMString:alt="PGB/tooltips/view_qr" class="qr-code"
+                           id="platform-symbian-qrcode-button"
+                           disabled
+                           onClick="qr_url('symbian')"
+                           src="../PhoneGapBuildPlugin/images/PGB_qr.png"
+                       />
+                   <input type="image" MMString:alt="PGB/tooltips/download" class="download"
+                           id="platform-symbian-download-button"
+                           disabled
+                           onClick="download('symbian');"
+                           src="../PhoneGapBuildPlugin/images/PGB_dl.png"
+                       />
+               </div>
+           </div>
+           <div style="padding: 16px 8px; width: 100%;">
+               <table align="left">
+                  <tr>
+                    <td>
+                       <div style="border-width: 0px 1px 0px 0px; border-style: dotted; border-color: #999; padding: 0px 8p 8px 8px;">
+                       <input type="button" MMString:value="PGB/buttons/logout"
+                           onclick="logout()"/>
+                       </div>
+                    </td>
+                  <tr>
+                </table>
+                <table align="right">
+                  <tr>
+                    <td align="right">
+                        <MMString:loadString id="PGB/build/rebuild" />
+                    </td>
+                    <td>
+                        <input type="image" class="rebuild" id="rebuild-button" 
+                               onClick="rebuildApp();"
+                               src="../PhoneGapBuildPlugin/images/PGB_rebuild.png"
+                           />
+                    </td>
+                  </tr>
+                </table>
+           </div>
+       </div>
+      <div id="help-view" align="center">
+          <table>
+              <tr>
+                  <td align="center">
+                      <p>
+                          <a href="http://www.adobe.com/go/dw_phonegap" id="need_help_url">
+                              <MMString:loadString 
+                                  id="PGB/help/need_help"/> 
+                          </a>
+                      </p>
+                  <td>
+              </tr>
+          </table>
+      </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,103 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout EditConnectionSchemaCatalog
+{
+    view dialog(identifier: "ID_EditConnectionSchemaCatalog",
+                margin: 15,
+                name: "$$$/EditConnectionSchemaCatalog/Title/Restrict=Restrict",
+                spacing: 10)
+    {
+        column(spacing: 5)
+        {
+            row(child_vertical: @align_center,
+                spacing: 0)
+            {
+                display_text(identifier: "ID_EditConnectionSchemaCatalog_Schema",
+                             name: "$$$/EditConnectionSchemaCatalog/Label/Schema=Schema:");
+
+                edit_text(characters: 32,
+                          identifier: "ID_EditConnectionSchemaCatalog_SchemaString",
+                          set_default_focus: true);
+            }
+
+            row(child_vertical: @align_center,
+                spacing: 0)
+            {
+                display_text(identifier: "ID_EditConnectionSchemaCatalog_Catalog",
+                             name: "$$$/EditConnectionSchemaCatalog/Label/Catalog=Catalog:");
+
+                edit_text(characters: 32,
+                          identifier: "ID_EditConnectionSchemaCatalog_CatalogString");
+            }
+
+            row(child_vertical: @align_top,
+                spacing: 0)
+            {
+                column(spacing: 0)
+                {
+                    display_text(identifier: "ID_EditConnectionSchemaCatalog_Note",
+                                 name: "$$$/EditConnectionSchemaCatalog/Label/Note=Note:");
+                }
+
+                column(spacing: 0)
+                {
+                    static_text(characters: 22,
+                                identifier: "ID_EditConnectionSchemaCatalog_OnlyDatabase",
+                                name: "$$$/EditConnectionSchemaCatalog/Label/OnlyDatabase=Only database items (tables, views and stored procedures) belonging to the specified Schema and or Catalog will be shown within Dreamweaver. If no Schema or Catalog is specified, all database items will be shown.");
+                }
+            }
+        }
+
+        separator(identifier: "ID_EditConnectionSchemaCatalog_IbanyurlPreviewSeparator",
+                  orientation: @vertical);
+
+        column(child_horizontal: @align_fill,
+               spacing: 0,
+               vertical: @align_fill)
+        {
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_top,
+                placement: @place_column,
+                spacing: 5,
+                vertical: @align_proportional)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "ID_EditConnectionSchemaCatalog_Okbutton",
+                       name: "$$$/EditConnectionSchemaCatalog/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       identifier: "ID_EditConnectionSchemaCatalog_Cancelbutton",
+                       name: "$$$/EditConnectionSchemaCatalog/Button/Cancel=Cancel");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_bottom,
+                placement: @place_column,
+                spacing: 0,
+                vertical: @align_proportional)
+            {
+                button(action: @do_help,
+                       identifier: "ID_EditConnectionSchemaCatalog_RestrictHelp",
+                       name: "$$$/EditConnectionSchemaCatalog/Button/Help=Help",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

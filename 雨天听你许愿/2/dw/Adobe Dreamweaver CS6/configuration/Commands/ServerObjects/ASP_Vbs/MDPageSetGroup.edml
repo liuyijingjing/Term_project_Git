@@ -1,0 +1,9 @@
+<group>
+	<groupParticipants selectParticipant="recordset_main2">
+		<groupParticipant name="connectionref_statement" />
+		<groupParticipant name="recordset_variable" />
+		<groupParticipant name="recordset_main2" />
+		<groupParticipant name="MasterDetail_DetailTable" />
+		<groupParticipant name="recordset_close" />
+	</groupParticipants>
+</group>

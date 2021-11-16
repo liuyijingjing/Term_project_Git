@@ -1,0 +1,134 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Include the UI helper functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/UI.js"></SCRIPT>
+<!-- Include DOM functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/DOM.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Cmn/string.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<SCRIPT src="../Shared/Common/Scripts/ImageButtonClass.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+<script src="ShortcutClass.js"></script> 
+<script src="../Shared/MM/Scripts/keyCodes.js"></script> 
+<script src="TemplateParams.js"></script>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT>
+<!--Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved.-->
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var LABEL_NameCol 	= dw.loadString('Commands/TemplateParams/LABEL_NameCol');
+var LABEL_ValueCol 	= dw.loadString('Commands/TemplateParams/LABEL_ValueCol');
+var LABEL_NoParams	= dw.loadString('Commands/TemplateParams/LABEL_NoParams');
+var LABEL_TRUE 		= dw.loadString('Commands/TemplateParams/LABEL_TRUE');
+var LABEL_FALSE 		= dw.loadString('Commands/TemplateParams/LABEL_FALSE');
+
+var LABEL_Show 		= dw.loadString('Commands/TemplateParams/LABEL_Show');
+var LABEL_Passthrough	= dw.loadString('Commands/TemplateParams/LABEL_Passthrough');
+
+var MSG_mustChoose = dw.loadString('Commands/TemplateParams/MSG_mustChoose');
+var MSG_CantRun = dw.loadString('Commands/TemplateParams/MSG_CantRun');
+var MSG_isNAN = dw.loadString('Commands/TemplateParams/MSG_isNAN');
+
+//--------------- END LOCALIZEABLE   ---------------
+
+
+//---------------    END JAVASCRIPT    ---------------
+
+</SCRIPT>
+
+<style type="text/css">
+<!--
+.controls      {
+	position:absolute;
+	left:10px;
+	top:50px;
+	width:330px;
+	height:100px;
+	z-index:8;
+	visibility: hidden;
+}
+-->
+</style>
+
+
+<title><MMString:loadString id="Commands/TemplateParams/title" /></title>
+
+
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI();">
+
+<form name="theForm">
+
+  <table border="0" cellpadding="4" cellspacing="0" id="mainTable">
+    <tr> 
+    <td colspan=4>
+    </td>
+    </tr>
+   
+    <tr> 
+      <td valign="top"></td>
+      <td  valign="top" colspan="2">
+		<mm:treecontrol name= "theTreeControl" style="width:353px;" size="10" onChange="updateUI('theTreeControl');focus()">
+          <mm:treecolumn name="Name" MMString:value="Commands/TemplateParams/mm:treecolumn/value/Name" width="200"> </mm:treecolumn> 
+          <mm:treecolumn name="Value" MMString:value="Commands/TemplateParams/mm:treecolumn/value/Value" width="130"> </mm:treecolumn> 
+          <!--
+          <mm:treenode  value="bool field|true|true" 		paramName="bool Field" valueType="boolean" ></mm:treenode> 
+          <mm:treenode  value="number field|10|10" 			paramName="number Field" valueType="number" ></mm:treenode> 
+          <mm:treenode  value="color field|#FFFFFF|#FFFFFF" 	paramName="color Field" valueType="color" ></mm:treenode>  
+          <mm:treenode  value="text field|| " 	paramName="text Field" valueType="text" ></mm:treenode>  
+          <mm:treenode  value = "link Field|http://www.yahoo.com" 	paramName="link Field" valueType="link" ></mm:treenode>  
+          -->
+      </mm:treecontrol>
+      </td>
+      <td valign="top">&nbsp;</td>
+    </tr>
+    
+    <tr>
+    <td colspan="4" height="5"></td>
+    </tr>
+        
+    <tr> 
+      <td> 
+       </td>
+      <td  valign="top" colspan="2"> 
+      <span class="controls" name="booleanControls" >
+<INPUT TYPE="checkbox" NAME="booleanCheck" VALUE="true"  onClick="updateUI('boolCheck')"> <span name="propLabel"><MMString:loadString id="Commands/TemplateParams/text/Property" /></span> </span>
+      <span class="controls" name="numberControls" ><span name="propLabel"><MMString:loadString id="Commands/TemplateParams/text/Property" /></span>: <INPUT TYPE="text" NAME="numberField" VALUE="" SIZE=30 onBlur="updateUI('numberField')"></span>
+      <span class="controls" name="colorControls" ><span name="propLabel"><MMString:loadString id="Commands/TemplateParams/text/Property" /></span>: <input type="mmcolorbutton"  name="colorPicker" value="" onChange='updateUI("colorPicker")'>
+        <input name="colorField" type="text" class="smallTField" onBlur="updateUI('colorField')" value=""  maxlength="16">
+ </span>
+      <span class="controls" name="textControls" ><span name="propLabel"><MMString:loadString id="Commands/TemplateParams/text/Property" /></span>: 
+        <INPUT NAME="textField" TYPE="text" class="medTField" onBlur="updateUI('textField')" VALUE="">
+        </span>
+      <span class="controls" name="linkControls" ><span name="propLabel"><MMString:loadString id="Commands/TemplateParams/text/Property" /></span>: 
+        <INPUT NAME="linkField" TYPE="text" class="medTField" onBlur="updateUI('linkField')" VALUE=""> <input type="image" name="browseBtn" src="../Shared/MM/Images/folder.gif" width="16" height="16" onClick="dwscripts.browseFile(document.theForm.linkField);updateUI('linkField')">
+        </span>
+      <span class="controls" name="noControls" ><MMString:loadString id="Commands/TemplateParams/text/Nothing" /></span>
+      
+      <span name="visibleSpan"><MMString:loadString id="Commands/TemplateParams/text/Property_5" /> 
+        <INPUT NAME="textField" TYPE="text" class="medTField" VALUE="">
+        </span>
+      <BR> 
+      <span name="passthroughSpan"> <INPUT TYPE="checkbox" NAME="passthroughCheck" VALUE="true" onClick="updateUI('passthroughCheck')"> <MMString:loadString id="Commands/TemplateParams/checkbox/passthroughCheck/Allow" /></span>
+      </td>
+      <td></td>
+    </tr>
+    
+    <tr> 
+      <td height="5" colspan="4"></td>
+    </tr>
+    
+    <tr> 
+      <td  colspan="4">&nbsp; 
+        
+      </td>
+    </tr>
+  </table>
+        </form>
+</body>
+</html>

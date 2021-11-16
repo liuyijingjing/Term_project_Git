@@ -1,0 +1,14 @@
+<participant>
+     <quickSearch><![CDATA[.Close()]]></quickSearch>
+     <insertText location="belowHTML+50">
+<![CDATA[
+<%
+@@rsName@@.Close()
+Set @@rsName@@ = Nothing
+%>
+]]>
+     </insertText>
+	   <searchPatterns whereToSearch="directive">
+		   <searchPattern paramNames="rsName" isOptional="false" limitSearch="all"><![CDATA[/\b(\w+?)\b\.Close\(\)(?:[ \t\r\n]+?Set\s+\1\s*=\s*Nothing)?/i]]></searchPattern>
+	   </searchPatterns>
+</participant>

@@ -1,0 +1,359 @@
+<codehints xmlns:MMString="http://www.adobe.com/schemes/data/string/">
+<menugroup MMString:name="codehints_spry" id="CodeHints_Spry" attrNameSpace="Spry">
+  <description>
+  <MMString:loadString id="codehints_spry" />
+  </description>
+  <menu pattern="{" type="spryDataReferences">
+  </menu>
+  <menu pattern="::" type="spryDataReferences">
+  </menu>	
+  <menu pattern="{ds_">
+	<menuitem label="RowID"					value="RowID}"						icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowNumber"				value="RowNumber}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowNumberPlus1"		value="RowNumberPlus1}"				icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowCount"				value="RowCount}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="UnfilteredRowCount"	value="UnfilteredRowCount}"			icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="CurrentRowID"			value="CurrentRowID}"				icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="CurrentRowNumber"		value="CurrentRowNumber}"			icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="SortColumn"			value="SortColumn}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="SortOrder"				value="SortOrder}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="EvenOddRow"			value="EvenOddRow}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+  </menu>		
+  <menu pattern="::ds_">
+	<menuitem label="RowID"					value="RowID}"						icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowNumber"				value="RowNumber}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowNumberPlus1"		value="RowNumberPlus1}"				icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="RowCount"				value="RowCount}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="UnfilteredRowCount"	value="UnfilteredRowCount}"			icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="CurrentRowID"			value="CurrentRowID}"				icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="CurrentRowNumber"		value="CurrentRowNumber}"			icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="SortColumn"			value="SortColumn}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="SortOrder"				value="SortOrder}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+	<menuitem label="EvenOddRow"			value="EvenOddRow}"					icon="shared/mm/images/hintSpryDataSet.gif" />	
+  </menu>		
+  <!-- added as top level item -->
+  <function pattern="Spry" source="Spry"	displayrestriction="JavaScript" icon="shared/mm/images/hintPackage.png"/>
+  <menu pattern="Spry." casesensitive="true" displayrestriction="JavaScript">
+  	<menuitem label="Data" icon="shared/mm/images/hintPackage.png" />
+	<menuitem label="Debug" icon="shared/mm/images/hintPackage.png" />
+	<menuitem label="Effect" icon="shared/mm/images/hintPackage.png" />
+	<menuitem label="Utils" icon="shared/mm/images/hintPackage.png" />
+	<menuitem label="Widget" icon="shared/mm/images/hintPackage.png" />
+  </menu>	
+  <menu pattern="Spry.Data." casesensitive="true" displayrestriction="JavaScript">
+    <menuitem label="HTMLDataSet" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="XMLDataSet" icon="shared/mm/images/hintClass.png" />
+  	<menuitem label="Region" icon="shared/mm/images/hintClass.png" />
+  </menu>	
+  <menu pattern="Spry.Data.Region." casesensitive="true" displayrestriction="JavaScript">
+	<menuitem label="debug" icon="shared/mm/images/hintProperty.png" />
+  </menu>	
+  <menu pattern="Spry.Widget." casesensitive="true" displayrestriction="JavaScript">
+    <menuitem label="Accordion" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="CollapsiblePanel" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="MenuBar" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="TabbedPanels" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="ValidationCheckbox" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="ValidationSelect" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="ValidationTextarea" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="ValidationTextField" icon="shared/mm/images/hintClass.png" />
+  </menu>	
+  <menu pattern="Spry.Effect." casesensitive="true" displayrestriction="JavaScript">
+    <menuitem label="Highlight" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Shake" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Fade" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Grow" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Squish" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Blind" icon="shared/mm/images/hintClass.png" />
+    <menuitem label="Slide" icon="shared/mm/images/hintClass.png" />
+  </menu>	
+  <function pattern="Spry.Data.XMLDataSet(xmlsource, xpath, {options})" caseSensitive="true" displayrestriction="JavaScript">
+	<parammenu pattern='"' name="xmlsource" index="0" type="url">
+	</parammenu>
+	<parammenu pattern='{,' name="options" index="2" type="optionArray" allowwhitespaceprefix="true">
+		<parammenuitem label="sortOnLoad"			value="sortOnLoad:"			icon="shared/mm/images/hintMisc.gif" datatype="string"/>
+		<optionparammenu   pattern="sortOrderOnLoad" label="sortOrderOnLoad" value="sortOrderOnLoad:"	icon="shared/mm/images/hintMisc.gif" type="enumerated" datatype="string">
+			<optionparammenuitem label="ascending"	value="ascending"			icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="descending"	value="descending"			icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<optionparammenu   pattern="distinctOnLoad"	label="distinctOnLoad"	 value="distinctOnLoad:"		icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<optionparammenu   pattern="useCache"		label="useCache"		value="useCache:"					icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<parammenuitem label="loadInterval"	value="loadInterval:"				icon="shared/mm/images/hintMisc.gif"/>			
+	</parammenu> 		
+  </function>
+  <menu classpattern="Spry.Data.XMLDataSet" displayrestriction="JavaScript" additionaldismisschars=".;">
+	<method pattern="getData()"													icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getUnfilteredData()"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getLoadDataRequestIsPending()"								icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getDataWasLoaded()"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="loadData()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="cancelLoadData()"											icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getCurrentRow()"											icon="shared/mm/images/hintFunction.png" />
+	<method pattern="setCurrentRow(rowID)"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="setCurrentRowNumber(rowNumber)"							icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getRowNumber(rowObj)"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="setColumnType(columnName, columnType)"						icon="shared/mm/images/hintFunction.png"  >
+		<parammenu pattern='"' name="columnName" index="0" type="spryDataReferences">
+		</parammenu>
+		<parammenu pattern='"' name="columnType" index="1" type="enumerated">
+			<parammenuitem label="number"		value="number"					icon="shared/mm/images/hintMisc.gif"/>
+			<parammenuitem label="html"		value="html"					icon="shared/mm/images/hintMisc.gif"/>
+			<parammenuitem label="date"			value="date"					icon="shared/mm/images/hintMisc.gif"/>			
+			<parammenuitem label="string"		value="string"					icon="shared/mm/images/hintMisc.gif"/>			
+		</parammenu> 		
+	</method>
+	<method pattern="getColumnType(columnName)"									icon="shared/mm/images/hintFunction.png"  >
+		<parammenu pattern='"' name="columnName" index="0" type="spryDataReferences">
+		</parammenu>
+	</method>
+	<method pattern="distinct()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getSortColumn()"											icon="shared/mm/images/hintFunction.png" />
+	<method pattern="sort()"													icon="shared/mm/images/hintFunction.png" />
+	<method pattern="filterData(filterFunc)"									icon="shared/mm/images/hintFunction.png" />
+	<method pattern="filter(filterFunc)"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="startLoadInterval(interval)"								icon="shared/mm/images/hintFunction.png" />
+	<method pattern="stopLoadInterval()"										icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getURL()"													icon="shared/mm/images/hintFunction.png" />
+	<method pattern="setURL(url, {options})"									icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getXPath()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="setXPath(xpath)"											icon="shared/mm/images/hintFunction.png" />
+	<method pattern="getDocument()"												icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Data.HTMLDataSet(htmlsource, elementId, {options})" caseSensitive="true" displayrestriction="JavaScript">
+    <parammenu pattern='"' name="htmlsource" index="0" type="url">
+    </parammenu>
+    <parammenu pattern='{,' name="options" index="2" type="optionArray" allowwhitespaceprefix="true">
+      <optionparammenu   pattern="hideDataSourceElement"	label="hideDataSourceElement"	 value="hideDataSourceElement:"		icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <optionparammenu   pattern="firstRowAsHeaders"	label="firstRowAsHeaders"	 value="firstRowAsHeaders:"		icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <parammenuitem label="rowSelector"	value="rowSelector:"				icon="shared/mm/images/hintMisc.gif"/>
+      <parammenuitem label="dataSelector"	value="dataSelector:"				icon="shared/mm/images/hintMisc.gif"/>
+      <parammenuitem label="columnNames"	value="columnNames: []"				icon="shared/mm/images/hintMisc.gif"/>
+      <parammenuitem label="sortOnLoad"			value="sortOnLoad:"			icon="shared/mm/images/hintMisc.gif" datatype="string"/>
+      <optionparammenu   pattern="sortOrderOnLoad" label="sortOrderOnLoad" value="sortOrderOnLoad:"	icon="shared/mm/images/hintMisc.gif" type="enumerated" datatype="string">
+        <optionparammenuitem label="ascending"	value="ascending"			icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="descending"	value="descending"			icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <optionparammenu   pattern="distinctOnLoad"	label="distinctOnLoad"	 value="distinctOnLoad:"		icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <optionparammenu   pattern="useCache"		label="useCache"		value="useCache:"					icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <parammenuitem label="loadInterval"	value="loadInterval:"				icon="shared/mm/images/hintMisc.gif"/>
+    </parammenu>
+  </function>
+  <menu classpattern="Spry.Data.HTMLDataSet" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="getData()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getUnfilteredData()"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getLoadDataRequestIsPending()"								icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getDataWasLoaded()"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="loadData()"												icon="shared/mm/images/hintFunction.png" />
+    <method pattern="cancelLoadData()"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getCurrentRow()"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setCurrentRow(rowID)"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setCurrentRowNumber(rowNumber)"							icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getRowNumber(rowObj)"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setColumnType(columnName, columnType)"						icon="shared/mm/images/hintFunction.png"  >
+      <parammenu pattern='"' name="columnName" index="0" type="spryDataReferences">
+      </parammenu>
+      <parammenu pattern='"' name="columnType" index="1" type="enumerated">
+        <parammenuitem label="number"		value="number"					icon="shared/mm/images/hintMisc.gif"/>
+        <parammenuitem label="html"		value="html"					icon="shared/mm/images/hintMisc.gif"/>
+        <parammenuitem label="date"			value="date"					icon="shared/mm/images/hintMisc.gif"/>
+        <parammenuitem label="string"		value="string"					icon="shared/mm/images/hintMisc.gif"/>
+      </parammenu>
+    </method>
+    <method pattern="getColumnType(columnName)"									icon="shared/mm/images/hintFunction.png"  >
+      <parammenu pattern='"' name="columnName" index="0" type="spryDataReferences">
+      </parammenu>
+    </method>
+    <method pattern="distinct()"												icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getSortColumn()"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="sort()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="filterData(filterFunc)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="filter(filterFunc)"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="startLoadInterval(interval)"								icon="shared/mm/images/hintFunction.png" />
+    <method pattern="stopLoadInterval()"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getURL()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setURL(url, {options})"									icon="shared/mm/images/hintFunction.png" />
+
+    <method pattern="setSourceElement(externalDataElement)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getSourceElement()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getSourceElementID()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setSourceElementID(sourceElementID)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getRowSelector()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setRowSelector(rowSelector)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getDataSelector()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="setDataSelector(dataSelector)"									icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Widget.Accordion(element, {options})" caseSensitive="true" displayrestriction="JavaScript">
+  	<parammenu pattern='{,' name="options" index="1" type="optionArray" allowwhitespaceprefix="true">
+		<parammenuitem label="defaultPanel"	value="defaultPanel:"				icon="shared/mm/images/hintMisc.gif"/>			
+		<optionparammenu pattern="openClass" label="openClass" value="openClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">			
+		</optionparammenu>
+		<optionparammenu pattern="closedClass" label="closedClass" value="closedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">			
+		</optionparammenu>
+		<optionparammenu pattern="hoverClass" label="hoverClass" value="hoverClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">			
+		</optionparammenu>
+		<optionparammenu pattern="focusedClass" label="focusedClass" value="focusedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">			
+		</optionparammenu>
+		<optionparammenu   pattern="enableAnimation" label="enableAnimation" value="enableAnimation:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<optionparammenu   pattern="enableKeyboardNavigation" label="enableKeyboardNavigation" value="enableKeyboardNavigation:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<parammenuitem label="previousPanelKeyCode"	value="previousPanelKeyCode:" icon="shared/mm/images/hintMisc.gif"/>			
+		<parammenuitem label="nextPanelKeyCode"		value="nextPanelKeyCode:"	 icon="shared/mm/images/hintMisc.gif"/>			
+		<parammenuitem label="duration"				value="duration:"			 icon="shared/mm/images/hintMisc.gif"/>			
+		<parammenuitem label="fps"				value="fps:"			 icon="shared/mm/images/hintMisc.gif"/>			
+		<parammenuitem label="transition"				value="transition:"			 icon="shared/mm/images/hintMisc.gif"/>			
+		<optionparammenu   pattern="useFixedPanelHeights" label="useFixedPanelHeights" value="useFixedPanelHeights:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+		<parammenuitem label="fixedPanelHeight"				value="fixedPanelHeight:"			 icon="shared/mm/images/hintMisc.gif"/>			
+	</parammenu> 		
+  </function>
+
+  <menu classpattern="Spry.Widget.Accordion" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="openNextPanel()"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="openPreviousPanel()"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="openFirstPanel()"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getPanels()"												icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getPanelTab(panel)"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getPanelContent(panel)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="addNewPanel(tab, content)"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="focus()"													icon="shared/mm/images/hintFunction.png" />
+  </menu>
+
+  <function pattern="Spry.Widget.TabbedPanels(element, {options})" caseSensitive="true" displayrestriction="JavaScript">
+    <parammenu pattern='{,' name="options" index="1" type="optionArray" allowwhitespaceprefix="true">
+      <parammenuitem label="defaultTab"	value="defaultTab:"				icon="shared/mm/images/hintMisc.gif"/>
+      <optionparammenu pattern="tabSelectedClass" label="tabSelectedClass" value="tabSelectedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="tabHoverClass" label="tabHoverClass" value="tabHoverClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="tabFocusedClass" label="tabFocusedClass" value="tabFocusedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="panelVisibleClass" label="panelVisibleClass" value="panelVisibleClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="enableKeyboardNavigation" label="enableKeyboardNavigation"	value="enableKeyboardNavigation:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+    </parammenu>
+  </function>
+
+  <menu classpattern="Spry.Widget.TabbedPanels" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="getTabGroup()"										icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getTabs()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getContentPanelGroup()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getContentPanels()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getTabIndex(element)"													icon="shared/mm/images/hintFunction.png"  />
+    <method pattern="getCurrentTabIndex()"													icon="shared/mm/images/hintFunction.png"  />
+    <method pattern="getTabbedPanelCount(element)"													icon="shared/mm/images/hintFunction.png"  />
+    <method pattern="showPanel(elementOrIndex)"													icon="shared/mm/images/hintFunction.png"  />
+  </menu>
+
+
+  <function pattern="Spry.Widget.CollapsiblePanel(element, {options})" caseSensitive="true" displayrestriction="JavaScript">
+    <parammenu pattern='{,' name="options" index="1" type="optionArray" allowwhitespaceprefix="true">
+      <optionparammenu pattern="hoverClass" label="hoverClass" value="hoverClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="focusedClass" label="focusedClass" value="focusedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="openClass" label="openClass" value="openClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="closedClass" label="closedClass" value="closedClass:" icon="shared/mm/images/hintCss.gif" type="cssStyle" datatype="string">
+      </optionparammenu>
+      <optionparammenu pattern="enableKeyboardNavigation" label="enableKeyboardNavigation"	value="enableKeyboardNavigation:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <optionparammenu pattern="enableAnimation" label="enableAnimation"	value="enableAnimation:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+      <optionparammenu pattern="contentIsOpen" label="contentIsOpen"	value="contentIsOpen:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+        <optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+        <optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>
+      </optionparammenu>
+    </parammenu>
+  </function>
+
+  <menu classpattern="Spry.Widget.CollapsiblePanel" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="open()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="close()"									icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getTab()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="getContent()"													icon="shared/mm/images/hintFunction.png" />
+    <method pattern="isOpen()"													icon="shared/mm/images/hintFunction.png"  />
+    <method pattern="focus()"													icon="shared/mm/images/hintFunction.png"  />
+  </menu>
+
+
+  <function pattern="Spry.Widget.MenuBar(element, {options})" caseSensitive="true" displayrestriction="JavaScript"/>
+  <menu classpattern="Spry.Widget.MenuBar" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="showSubmenu(menu)"											icon="shared/mm/images/hintFunction.png" />
+    <method pattern="hideSubmenu(menu)"										icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Widget.ValidationTextField(element, type, {options})" caseSensitive="true" displayrestriction="JavaScript"/>
+  <menu classpattern="Spry.Widget.ValidationTextField" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="validate()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="reset()"													icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Widget.ValidationSelect(element, {options})" caseSensitive="true" displayrestriction="JavaScript"/>
+  <menu classpattern="Spry.Widget.ValidationSelect" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="validate()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="reset()"													icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Widget.ValidationCheckbox(element, {options})" caseSensitive="true" displayrestriction="JavaScript"/>
+  <menu classpattern="Spry.Widget.ValidationCheckbox" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="validate()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="reset()"													icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Widget.ValidationTextarea(element, {options})" caseSensitive="true" displayrestriction="JavaScript"/>
+  <menu classpattern="Spry.Widget.ValidationTextarea" displayrestriction="JavaScript" additionaldismisschars=".;">
+    <method pattern="validate()"												icon="shared/mm/images/hintFunction.png" />
+	<method pattern="reset()"													icon="shared/mm/images/hintFunction.png" />
+  </menu>
+  <function pattern="Spry.Effect.Highlight(targetElement,{options})" caseSensitive="true" displayrestriction="JavaScript">
+	<parammenu pattern='"' name="targetElement" index="0" type="cssId">
+	</parammenu>	
+	<parammenu pattern='{,' name="options" index="1" type="optionArray" allowwhitespaceprefix="true">
+		<parammenuitem label="duration"	value="duration:"				icon="shared/mm/images/hintMisc.gif"/>			
+		<optionparammenu pattern="from" label="from" value="from:" icon="shared/mm/images/hintColor.gif" type="color" datatype="string">			
+		</optionparammenu>
+		<optionparammenu pattern="to" label="to" value="to:" icon="shared/mm/images/hintColor.gif" type="color" datatype="string">			
+		</optionparammenu>
+		<optionparammenu pattern="restoreColor" label="restoreColor" value="restoreColor:" icon="shared/mm/images/hintColor.gif" type="color" datatype="string">			
+		</optionparammenu>
+		<optionparammenu   pattern="toggle" label="toggle" value="toggle:" icon="shared/mm/images/hintFlag.gif" type="enumerated">
+			<optionparammenuitem label="true"		value="true"				icon="shared/mm/images/hintMisc.gif"/>
+			<optionparammenuitem label="false"		value="false"				icon="shared/mm/images/hintMisc.gif"/>		
+		</optionparammenu>
+	</parammenu> 		
+  </function>
+  <menu classpattern="Spry.Effect.Highlight" displayrestriction="JavaScript" additionaldismisschars=".;">
+  <!-- empty class constructor -->
+  </menu>
+</menugroup>
+</codehints>
+
+

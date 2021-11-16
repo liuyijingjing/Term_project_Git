@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<keyboardlayout>
+
+<keyboard name="com.apple.keylayout.Australian" locName="Australian" script="smRoman" lang_Region="en_AU" />
+<keyboard name="com.apple.keylayout.British" locName="British" script="smRoman" lang_Region="en_GB" />
+<keyboard name="com.apple.keylayout.Canadian" locName="Canadian English" script="smRoman" lang_Region="_CA" />
+<keyboard name="com.apple.keylayout.Dvorak" locName="Dvorak" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Dvorak-Left" locName="Dvorak - Left" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.DVORAK-QWERTYCMD" locName="Dvorak - Qwerty ‚åò" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Dvorak-Right" locName="Dvorak - Right" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Irish" locName="Irish" script="smRoman" lang_Region="ga_IE" />
+<keyboard name="com.apple.keylayout.US" locName="U.S." script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.USExtended" locName="U.S. Extended" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.USInternational-PC" locName="U.S. International - PC" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.Kotoeri.Roman" locName="Romaji" script="smRoman" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.Kotoeri.Japanese" locName="Hiragana" script="smJapanese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.Kotoeri.Japanese.Katakana" locName="Katakana" script="smJapanese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.Kotoeri.Japanese.FullWidthRoman" locName="Full-width Romaji" script="smJapanese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.Kotoeri.Japanese.HalfWidthKana" locName="Half-width Katakana" script="smJapanese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.kotoeri.Ainu" locName="Ainu" script="smJapanese" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Turkish" locName="Turkish" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Turkish-QWERTY" locName="Turkish - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Turkish-QWERTY-PC" locName="Turkish - QWERTY PC" script="smUnicodeScript" lang_Region="tr_TR" />
+<keyboard name="com.apple.inputmethod.Korean.2SetKorean" locName="2-Set Korean" script="smKorean" lang_Region="ko_KR" />
+<keyboard name="com.apple.inputmethod.Korean.3SetKorean" locName="3-Set Korean" script="smKorean" lang_Region="ko_KR" />
+<keyboard name="com.apple.inputmethod.Korean.390Sebulshik" locName="390 Sebulshik" script="smKorean" lang_Region="ko_KR" />
+<keyboard name="com.apple.inputmethod.Korean.GongjinCheongRomaja" locName="GongjinCheong Romaja" script="smKorean" lang_Region="ko_KR" />
+<keyboard name="com.apple.inputmethod.Korean.HNCRomaja" locName="HNC Romaja" script="smKorean" lang_Region="ko_KR" />
+<keyboard name="com.apple.inputmethod.Tamil.AnjalIM" locName="Anjal" script="smUnicodeScript" lang_Region="tr_TR" />
+<keyboard name="com.apple.inputmethod.Tamil.Tamil99" locName="Tamil99" script="smUnicodeScript" lang_Region="tr_TR" />
+<keyboard name="com.apple.keylayout.Canadian-CSA" locName="Canadian French - CSA" script="smRoman" lang_Region="_CA" />
+<keyboard name="com.apple.keylayout.French" locName="French" script="smRoman" lang_Region="fr_FR" />
+<keyboard name="com.apple.keylayout.French-numerical" locName="French - Numerical" script="smRoman" lang_Region="fr_FR" />
+<keyboard name="com.apple.keylayout.SwissFrench" locName="Swiss French" script="smRoman" lang_Region="fr_CH" />
+<keyboard name="com.apple.keylayout.Belgian" locName="Belgian" script="smRoman" lang_Region="nl_BE" />
+<keyboard name="com.apple.keylayout.Dutch" locName="Dutch" script="smRoman" lang_Region="nl_NL" />
+<keyboard name="com.apple.keylayout.Austrian" locName="Austrian" script="smRoman" lang_Region="de_AT" />
+<keyboard name="com.apple.keylayout.German" locName="German" script="smRoman" lang_Region="de_DE" />
+<keyboard name="com.apple.keylayout.SwissGerman" locName="Swiss German" script="smRoman" lang_Region="de_CH" />
+<keyboard name="com.apple.keylayout.Spanish" locName="Spanish" script="smRoman" lang_Region="es_ES" />
+<keyboard name="com.apple.keylayout.Spanish-ISO" locName="Spanish - ISO" script="smRoman" lang_Region="es_ES" />
+<keyboard name="com.apple.keylayout.Italian" locName="Italian" script="smRoman" lang_Region="it_IT" />
+<keyboard name="com.apple.keylayout.Italian-Pro" locName="Italian - Pro" script="smRoman" lang_Region="it_IT" />
+<keyboard name="com.apple.keylayout.Brazilian" locName="Brazilian" script="smRoman" lang_Region="pt_BR" />
+<keyboard name="com.apple.keylayout.Portuguese" locName="Portuguese" script="smRoman" lang_Region="pt_PT" />
+<keyboard name="com.apple.keylayout.Swedish" locName="Swedish" script="smRoman" lang_Region="sv_SE" />
+<keyboard name="com.apple.keylayout.Swedish-Pro" locName="Swedish - Pro" script="smRoman" lang_Region="sv_SE" />
+<keyboard name="com.apple.keylayout.SwedishSami-PC" locName="Swedish Sami - PC" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Norwegian" locName="Norwegian" script="smRoman" lang_Region="nb_NO" />
+<keyboard name="com.apple.keylayout.NorwegianExtended" locName="Norwegian Extended" script="smUnicodeScript" lang_Region="nb_NO" />
+<keyboard name="com.apple.keylayout.NorwegianSami-PC" locName="Norwegian Sami - PC" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Danish" locName="Danish" script="smRoman" lang_Region="da_DK" />
+<keyboard name="com.apple.keylayout.Finnish" locName="Finnish" script="smRoman" lang_Region="fi_FI" />
+<keyboard name="com.apple.keylayout.FinnishExtended" locName="Finnish Extended" script="smUnicodeScript" lang_Region="fi_FI" />
+<keyboard name="com.apple.keylayout.FinnishSami-PC" locName="Finnish Sami - PC" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Russian" locName="Russian" script="smCyrillic" lang_Region="ru_RU" />
+<keyboard name="com.apple.keylayout.RussianWin" locName="Russian - PC" script="smCyrillic" lang_Region="en_GB" />
+<keyboard name="com.apple.keylayout.Russian-Phonetic" locName="Russian - Phonetic" script="smCyrillic" lang_Region="fr_FR" />
+<keyboard name="com.apple.keylayout.Polish" locName="Polish" script="smCentralEuroRoman" lang_Region="pl_PL" />
+<keyboard name="com.apple.keylayout.PolishPro" locName="Polish Pro" script="smCentralEuroRoman" lang_Region="hr_HR" />
+<keyboard name="com.apple.keylayout.Arabic" locName="Arabic" script="smUnicodeScript" lang_Region="ar" />
+<keyboard name="com.apple.keylayout.ArabicPC" locName="Arabic - PC" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Arabic-QWERTY" locName="Arabic - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Armenian-HMQWERTY" locName="Armenian - HM QWERTY" script="smUnicodeScript" lang_Region="hy_AM" />
+<keyboard name="com.apple.keylayout.Armenian-WesternQWERTY" locName="Armenian - Western QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Azeri" locName="Azeri" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Byelorussian" locName="Byelorussian" script="smCyrillic" lang_Region="be_BY" />
+<keyboard name="com.apple.keylayout.Bulgarian" locName="Bulgarian" script="smCyrillic" lang_Region="bg_BG" />
+<keyboard name="com.apple.keylayout.Bulgarian-Phonetic" locName="Bulgarian - Phonetic" script="smCyrillic" lang_Region="ca_ES" />
+<keyboard name="com.apple.keylayout.Cherokee-Nation" locName="Cherokee - Nation" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Cherokee-QWERTY" locName="Cherokee - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.SCIM.ITABC" locName="Pinyin - Simplified" script="smSimpChinese" lang_Region="zh_CN" />
+<keyboard name="com.apple.inputmethod.SCIM.ITABC" locName="Pinyin - Simplified" script="smSimpChinese" lang_Region="zh_CN" />
+<keyboard name="com.apple.inputmethod.SCIM.WBX" locName="Wubi Xing" script="smSimpChinese" lang_Region="zh_CN" />
+<keyboard name="com.apple.inputmethod.SCIM.WBH" locName="Wubi Hua" script="smSimpChinese" lang_Region="zh_CN" />
+<keyboard name="com.apple.inputmethod.TCIM.Zhuyin" locName="Zhuyin" script="smTradChinese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.TCIM.Pinyin" locName="Pinyin - Traditional" script="smTradChinese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.TCIM.Cangjie" locName="Cangjie" script="smTradChinese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.TCIM.Jianyi" locName="Jianyi" script="smTradChinese" lang_Region="en_US" />
+<keyboard name="com.apple.inputmethod.TCIM.Dayi" locName="Dayi Pro" script="smTradChinese" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Croatian" locName="Croatian" script="smUnicodeScript" lang_Region="hr_HR" />
+<keyboard name="com.apple.keylayout.Croatian-PC" locName="Croatian - PC" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Czech" locName="Czech" script="smCentralEuroRoman" lang_Region="cs_CZ" />
+<keyboard name="com.apple.keylayout.Czech-QWERTY" locName="Czech - QWERTY" script="smCentralEuroRoman" lang_Region="und" />
+<keyboard name="com.apple.keylayout.Estonian" locName="Estonian" script="smCentralEuroRoman" lang_Region="et_EE" />
+<keyboard name="com.apple.keylayout.Faroese" locName="Faroese" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Greek" locName="Greek" script="smUnicodeScript" lang_Region="el_GR" />
+<keyboard name="com.apple.keylayout.GreekPolytonic" locName="Greek Polytonic" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Gujarati" locName="Gujarati" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Gujarati-QWERTY" locName="Gujarati - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Hawaiian" locName="Hawaiian" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Hebrew" locName="Hebrew" script="smUnicodeScript" lang_Region="he_IL" />
+<keyboard name="com.apple.keylayout.Hebrew-QWERTY" locName="Hebrew - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Devanagari" locName="Devanagari" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Devanagari-QWERTY" locName="Devanagari - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Hungarian" locName="Hungarian" script="smCentralEuroRoman" lang_Region="hu_HU" />
+<keyboard name="com.apple.keylayout.Icelandic" locName="Icelandic" script="smUnicodeScript" lang_Region="is_IS" />
+<keyboard name="com.apple.keylayout.Inuktitut-Nunavut" locName="Inuktitut - Nunavut" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Inuktitut-Nutaaq" locName="Inuktitut - Nutaaq" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Inuktitut-QWERTY" locName="Inuktitut - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.InuttitutNunavik" locName="Inuttitut Nunavik" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.IrishExtended" locName="Irish Extended" script="smUnicodeScript" lang_Region="nb_NO" />
+<keyboard name="com.apple.keylayout.Kazakh" locName="Kazakh" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Latvian" locName="Latvian" script="smCentralEuroRoman" lang_Region="lv_LV" />
+<keyboard name="com.apple.keylayout.Lithuanian" locName="Lithuanian" script="smCentralEuroRoman" lang_Region="lt_LT" />
+<keyboard name="com.apple.keylayout.Macedonian" locName="Macedonian" script="smCyrillic" lang_Region="mk_MK" />
+<keyboard name="com.apple.keylayout.Jawi-QWERTY" locName="Jawi - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Maltese" locName="Maltese" script="smUnicodeScript" lang_Region="fr_CA" />
+<keyboard name="com.apple.keylayout.Maori" locName="Maori" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Nepali" locName="Nepali" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.NorthernSami" locName="Northern Sami" script="smUnicodeScript" lang_Region="se" />
+<keyboard name="com.apple.keylayout.Sami-PC" locName="Sami - PC" script="smUnicodeScript" lang_Region="cy" />
+<keyboard name="com.apple.keylayout.AfghanPashto" locName="Afghan Pashto" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.AfghanDari" locName="Afghan Dari" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Persian" locName="Persian" script="smUnicodeScript" lang_Region="fa_IR" />
+<keyboard name="com.apple.keylayout.Persian-ISIRI2901" locName="Persian - ISIRI 2901" script="smUnicodeScript" lang_Region="fa_IR" />
+<keyboard name="com.apple.keylayout.Persian-QWERTY" locName="Persian - QWERTY" script="smUnicodeScript" lang_Region="pl_PL" />
+<keyboard name="com.apple.keylayout.Gurmukhi" locName="Gurmukhi" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Gurmukhi-QWERTY" locName="Gurmukhi - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Romanian" locName="Romanian" script="smUnicodeScript" lang_Region="ro_RO" />
+<keyboard name="com.apple.keylayout.Romanian-Standard" locName="Romanian - Standard" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Serbian-Latin" locName="Serbian - Latin" script="smUnicodeScript" lang_Region="sr_RS" />
+<keyboard name="com.apple.keylayout.Serbian" locName="Serbian" script="smCyrillic" lang_Region="sr_RS" />
+<keyboard name="com.apple.keylayout.Slovak" locName="Slovak" script="smCentralEuroRoman" lang_Region="sk_SK" />
+<keyboard name="com.apple.keylayout.Slovak-QWERTY" locName="Slovak - QWERTY" script="smCentralEuroRoman" lang_Region="hu_HU" />
+<keyboard name="com.apple.keylayout.Slovenian" locName="Slovenian" script="smUnicodeScript" lang_Region="sl_SI" />
+<keyboard name="com.apple.keylayout.Thai" locName="Thai" script="smUnicodeScript" lang_Region="th_TH" />
+<keyboard name="com.apple.keylayout.Thai-PattaChote" locName="Thai - PattaChote" script="smUnicodeScript" lang_Region="th_TH" />
+<keyboard name="com.apple.keylayout.TibetanOtaniUS" locName="Tibetan - Otani" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Tibetan-QWERTY" locName="Tibetan - QWERTY" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Tibetan-Wylie" locName="Tibetan - Wylie" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Uyghur-QWERTY" locName="Uyghur - QWERTY" script="smUnicodeScript" lang_Region="ug" />
+<keyboard name="com.apple.keylayout.Ukrainian" locName="Ukrainian" script="smCyrillic" lang_Region="uk_UA" />
+<keyboard name="com.apple.keylayout.AfghanUzbek" locName="Afghan Uzbek" script="smUnicodeScript" lang_Region="en_US" />
+<keyboard name="com.apple.keylayout.Vietnamese" locName="Vietnamese" script="smUnicodeScript" lang_Region="vi_VN" />
+<keyboard name="com.apple.inputmethod.VietnameseIM.VietnameseSimpleTelex" locName="Simple Telex" script="smRoman" lang_Region="fi_FI" />
+<keyboard name="com.apple.inputmethod.VietnameseIM.VietnameseTelex" locName="Telex" script="smRoman" lang_Region="fi_FI" />
+<keyboard name="com.apple.inputmethod.VietnameseIM.VietnameseVNI" locName="VNI" script="smRoman" lang_Region="fi_FI" />
+<keyboard name="com.apple.inputmethod.VietnameseIM.VietnameseVIQR" locName="VIQR" script="smRoman" lang_Region="fi_FI" />
+<keyboard name="com.apple.keylayout.Welsh" locName="Welsh" script="smUnicodeScript" lang_Region="cy" />
+<keyboard name="com.apple.keylayout.UnicodeHexInput" locName="Unicode Hex Input" script="smUnicodeScript" lang_Region="en_US" />
+
+
+</keyboardlayout>

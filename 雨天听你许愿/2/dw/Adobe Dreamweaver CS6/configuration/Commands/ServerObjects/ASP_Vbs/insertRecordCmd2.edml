@@ -1,0 +1,9 @@
+<group>
+	<groupParticipants>
+		<groupParticipant name="connectionref_statement" />
+		<groupParticipant name="functionIIF" />
+		<groupParticipant name="editOps_declareVars2" />
+		<groupParticipant name="insertRecord_query2" />
+		<groupParticipant name="editOps_form" />
+	</groupParticipants>
+</group>

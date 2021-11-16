@@ -1,0 +1,102 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout XMLSourceLocator
+{
+    view dialog(identifier: "IDD_XML_SOURCE_LOCATOR",
+                margin: 15,
+                name: "$$$/XmlSourceLocator/Title/LocateXml=Locate XML Source",
+                spacing: 0)
+    {
+        column(margin: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(characters: 0,
+                            identifier: "IDC_STATIC_DESCRIPTION",
+                            name: "$$$/XmlSourceLocator/Label/ChooseOne=Choose one of the following options to locate the source file.");
+            }
+
+            column(guide_mask: [ @guide_label ],
+                   spacing: 5)
+            {
+                radiogroup()
+                {
+                    radio_button(default: true,
+                                 identifier: "IDC_RADIO_LOCAL",
+                                 name: "$$$/XmlSourceLocator/RadioButton/AttachA=Attach a &local file on my computer or local area network",
+                                 tab_next_node: "IDC_EDIT_LOCATION");
+
+                    radio_button(identifier: "IDC_RADIO_REMOTE",
+                                 name: "$$$/XmlSourceLocator/RadioButton/AttachARemoteFileOnTheInternet=Attach a &remote file on the Internet",
+                                 tab_next_node: "IDC_EDIT_LOCATION");
+                }
+                row(spacing: 5)
+                {
+                    edit_text(characters: 40,
+                              identifier: "IDC_EDIT_LOCATION",
+                              indent: 10,
+                              tab_next_node: "IDC_BUTTON_BROWSE");
+
+	                button(action: @do_action,
+	                       identifier: "IDC_BUTTON_BROWSE",
+	                       indent: 10,
+	                       name: "$$$/XmlSourceLocator/Button/Browse=&Browse...",
+	                       tab_next_node: "IDHELP");
+                }
+            }
+
+            row(child_horizontal: @align_right,
+                horizontal: @align_fill,
+                spacing: 5)
+            {
+                row(horizontal: @align_fill)
+                {
+                    row(child_horizontal: @align_fill,
+                        horizontal: @align_left,
+                        indent: 14)
+                    {
+                        button(action: @do_help,
+                               default: false,
+                               identifier: "IDHELP",
+                               name: "$$$/XmlSourceLocator/Button/Help=&Help",
+                               tab_next_node: "IDOK");
+                    }
+
+                    row(child_horizontal: @align_fill,
+                        horizontal: @align_right)
+                    {
+                        button(action: @do_cancel,
+                               identifier: "IDCANCEL",
+                               name: "$$$/XmlSourceLocator/Button/Cancel=Cancel",
+                               tab_next_node: "IDC_RADIO_LOCAL");
+
+		                button(action: @do_ok,
+		                       default: true,
+		                       identifier: "IDOK",
+		                       indent: 26,
+		                       name: "$$$/XmlSourceLocator/Button/Ok=OK",
+		                       tab_next_node: "IDCANCEL");
+                    }
+                }
+            }
+        }
+    }
+}

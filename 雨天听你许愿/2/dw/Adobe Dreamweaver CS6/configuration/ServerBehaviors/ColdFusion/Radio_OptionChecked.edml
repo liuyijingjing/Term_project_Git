@@ -1,0 +1,5 @@
+<participant version="5.0">
+     <insertText>
+    <![CDATA[<cfoutput>#Iif(@@DefaultChecked@@ EQ @@ItemValue@@,DE("@@checked@@"),DE(""))#</cfoutput>]]>
+     </insertText>
+</participant>

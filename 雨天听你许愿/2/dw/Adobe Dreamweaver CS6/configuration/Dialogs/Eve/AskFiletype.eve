@@ -1,0 +1,111 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout AskFiletype
+{
+    view dialog(identifier: "ID_AskFiletype",
+                name: "$$$/AskFiletype/Title/DefaultEditor=Default Editor",
+                placement: @place_column,
+                spacing: 14)
+    {
+        row(placement: @place_column,
+            spacing: 20)
+        {
+            row(guide_mask: [ @guide_label ],
+                horizontal: @align_fill,
+                spacing: 0)
+            {
+                display_text(identifier: "ID_AskFiletype_AdobeDreamweaver",
+                             name: "$$$/AskFiletype/Label/AdobeDreamweaver=Adobe Dreamweaver CS5 will set itself as the default editor for the following file types:");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                horizontal: @align_fill)
+            {
+                column(horizontal: @align_fill,
+                       vertical: @align_fill)
+                {
+                    checkbox(identifier: "ID_AskFiletype_Asp",
+                             name: "$$$/AskFiletype/CheckBox/ActiveServer=Active Server Pages (asp)");
+
+                    checkbox(identifier: "ID_AskFiletype_Jsp",
+                             name: "$$$/AskFiletype/CheckBox/JavaServer=Java Server Pages (jsp)");
+
+                    checkbox(identifier: "ID_AskFiletype_Cf",
+                             name: "$$$/AskFiletype/CheckBox/ColdfusionCfm=ColdFusion (cfm, cfc)");
+
+                    checkbox(identifier: "ID_AskFiletype_Aspn",
+                             name: "$$$/AskFiletype/CheckBox/AspnetAspx=ASP.NET (aspx, ascx)");
+
+                    checkbox(identifier: "ID_AskFiletype_Php",
+                             name: "$$$/AskFiletype/CheckBox/PhpPhp=PHP (php, php3, php4)");
+                }
+
+                column(horizontal: @align_fill,
+                       spacing: 36,
+                       vertical: @align_fill)
+                {
+                    row(horizontal: @align_fill,
+                        placement: @place_column,
+                        vertical: @align_top)
+                    {
+                        checkbox(identifier: "ID_AskFiletype_Js",
+                                 name: "$$$/AskFiletype/CheckBox/JavascriptJs=JavaScript (js)");
+
+                        checkbox(identifier: "ID_AskFiletype_Css",
+                                 name: "$$$/AskFiletype/CheckBox/CascadingStyle=Cascading Style Sheet (css)");
+
+                        checkbox(identifier: "ID_AskFiletype_Xml",
+                                 name: "$$$/AskFiletype/CheckBox/ExtensibleMarkup=Extensible Markup Language (xml)");
+
+                        checkbox(identifier: "ID_AskFiletype_Xsl",
+                                 name: "$$$/AskFiletype/CheckBox/XslStyle=XSL Style Sheets (xsl, xslt)");
+                    }
+
+                    row(child_horizontal: @align_fill,
+                        horizontal: @align_fill,
+                        vertical: @align_bottom)
+                    {
+                        button(action: @do_action,
+                               identifier: "ID_AskFiletype_All",
+                               name: "$$$/AskFiletype/Button/SelectAll=Select All");
+
+                        button(action: @do_action,
+                               identifier: "ID_AskFiletype_None",
+                               name: "$$$/AskFiletype/Button/DeselectAll=Deselect All");
+                    }
+                }
+            }
+        }
+
+        row(horizontal: @align_fill,
+            placement: @place_column,
+            vertical: @align_bottom)
+        {
+            separator(identifier: "ID_AskFiletype_Static");
+
+            button(action: @do_ok,
+                   default: true,
+                   horizontal: @align_center,
+                   identifier: "ID_Okbutton",
+                   name: "$$$/AskFiletype/Button/Ok=OK",
+                   vertical: @align_center);
+        }
+    }
+}

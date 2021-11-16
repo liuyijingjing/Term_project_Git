@@ -1,0 +1,8 @@
+<participant>
+	<insertText location="replaceSelection"><![CDATA[MM_IIF(@@expression@@, @@trueValue@@, @@falseValue@@)]]></insertText>
+	<searchPatterns whereToSearch="directive">
+		<searchPattern paramNames="expression,trueValue,falseValue" isOptional="false" limitSearch="all"><![CDATA[/MM_IIF\(([^\r\n]*?), ([^\r\n]*?), ([^\r\n]*?)\)/i]]></searchPattern>
+	</searchPatterns>
+	<quickSearch>
+	</quickSearch>
+</participant>

@@ -1,0 +1,92 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanDialogParameters
+{
+    view dialog(center: true,
+                grow: false,
+                identifier: "IDD_DIALOG_PARAMETERS",
+                margin: 0,
+                name: "$$$/Parameters/Title/Parameters=Parameters",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row(margin: 10,
+            spacing: 5)
+        {
+            column()
+            {
+                row(spacing: 3)
+                {
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_BUTTON_ADD",
+                                      name: "$$$/Parameters/IconButton/AddItem=Add item",
+                                      width: 18);
+
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_BUTTON_REMOVE",
+                                      name: "$$$/Parameters/IconButton/RemoveItem=Remove item",
+                                      width: 18);
+
+                    placeholder(width: 230);
+
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_BUTTON_UP",
+                                      name: "$$$/Parameters/IconButton/MoveItem=Move item up in list",
+                                      width: 18);
+
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_BUTTON_DOWN",
+                                      name: "$$$/Parameters/IconButton/MoveItemDownInList=Move item down in list",
+                                      width: 18);
+                }
+
+                row()
+                {
+                    list_control(apron_click_deselection: true,
+                                 edit_labels: true,
+                                 empty_selection: true,
+                                 height: 131,
+                                 identifier: "IDC_LIST_PARAMS",
+                                 keyboard_selectable: true,
+                                 single_selection: true,
+                                 width: 324);
+                }
+            }
+
+            column(spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/Parameters/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/Parameters/Button/Cancel=Cancel");
+
+                button(action: @do_help,
+                       identifier: "ID_HELP",
+                       name: "$$$/Parameters/Button/Help=Help",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

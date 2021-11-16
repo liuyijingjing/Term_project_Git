@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shortcutset language="Turkish">
+<shortcut platform="win" key="Cmd+Shift+>" newkey="Cmd+Shift+ö" />
+<shortcut platform="win" key="Cmd+Shift+<" newkey="Cmd+Shift+ç" />
+<shortcut platform="mac" key="Cmd+`" newkey="Cmd+>" />
+<shortcut platform="win" key="Cmd+`" newkey="Cmd+," />
+<shortcut platform="mac" key="Ctrl+`" newkey="Ctrl+W" />
+<shortcut platform="mac" key="Cmd+-" newkey="Cmd+ş" />
+<shortcut platform="mac" key="Cmd+Shift+-" newkey="Cmd+Shift+ş" />
+<shortcut key="Cmd+[" newkey="Cmd+ğ" />
+<shortcut key="Cmd+]" newkey="Cmd+ü" />
+<shortcut key="Cmd+Shift+]" newkey="Cmd+Shift+ü" />
+<shortcut key="Cmd+Shift+[" newkey="Cmd+Shift+ğ" />
+<shortcut key="Cmd+Opt+]" newkey="Cmd+Opt+Shift+ü" />
+<shortcut key="Cmd+Opt+[" newkey="Cmd+Opt+Shift+ğ" />
+<shortcut key="Cmd+'" newkey="Cmd+ö" />
+<shortcut platform="mac" key="Cmd+Shift+/" newkey="Cmd+Opt+Shift+ç" />
+</shortcutset>

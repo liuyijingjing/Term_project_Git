@@ -1,0 +1,122 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsHTML
+{
+    view subview(grow: false,
+                 horizontal: @align_center,
+                 identifier: "IDD_PREFS_HTML",
+                 margin: 5,
+                 name: "$$$/PrefsHtml/Title/CodeRewriting=Code Rewriting",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 12)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsHtml/Label/RewriteCode=Rewrite code:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 78,
+                                name: "$$$/PrefsHtml/Label/NeverRewrite=Never rewrite code:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 3,
+                                name: "$$$/PrefsHtml/Label/SpecialCharacters=Special characters:");
+                }
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsHtml/Label/UrlEncoding=URL encoding:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC_ACTIVE_CONTENT",
+                            name: "$$$/PrefsHtml/Label/ActiveContent=Active Content:");
+            }
+
+            column()
+            {
+                row()
+                {
+                    checkbox(identifier: "IDC_REWRITE_INVALID",
+                             indent: 1,
+                             name: "$$$/PrefsHtml/CheckBox/FixInvalidly=&Fix invalidly nested and unclosed tags",
+                             set_default_focus: true,
+                             tab_next_node: "IDC_CHECK_RENAME_FORM_ITEMS");
+                }
+
+                checkbox(identifier: "IDC_CHECK_RENAME_FORM_ITEMS",
+                         name: "$$$/PrefsHtml/CheckBox/RenameForm=&Rename form items when pasting",
+                         tab_next_node: "IDC_TOSSENDTAGS");
+
+                checkbox(identifier: "IDC_TOSSENDTAGS",
+                         name: "$$$/PrefsHtml/CheckBox/RemoveExtra=Re&move extra closing tags",
+                         tab_next_node: "IDC_WARN_REWRITE");
+
+                checkbox(identifier: "IDC_WARN_REWRITE",
+                         name: "$$$/PrefsHtml/CheckBox/WarnWhen=&Warn when fixing or removing tags",
+                         tab_next_node: "IDC_NEVER_REWRITE_ENABLED");
+
+                row(set_default_focus: true,
+                    spacing: 3)
+                {
+                    checkbox(identifier: "IDC_NEVER_REWRITE_ENABLED",
+                             name: "$$$/PrefsHtml/CheckBox/InFiles=In fi&les with extensions",
+                             tab_next_node: "IDC_NEVER_REWRITE_EXTENSIONS");
+
+                    edit_text(characters: 20,
+                              identifier: "IDC_NEVER_REWRITE_EXTENSIONS",
+                              tab_next_node: "IDC_ENCODE_ENTITIES");
+                }
+
+                checkbox(identifier: "IDC_ENCODE_ENTITIES",
+                         name: "$$$/PrefsHtml/CheckBox/Encode=En&code <, >, &&, and \' in attribute values using &&",
+                         tab_next_node: "IDC_URL_DONT_ENCODE");
+
+                radiogroup()
+                {
+                    radio_button(identifier: "IDC_URL_DONT_ENCODE",
+                                 name: "$$$/PrefsHtml/RadioButton/DoNot=&Do not encode special characters");
+
+                    radio_button(identifier: "IDC_URL_AMPERSAND",
+                                 name: "$$$/PrefsHtml/RadioButton/EncodeSpecial=&Encode special characters in URLs using &&#");
+
+                    radio_button(identifier: "IDC_URL_PERCENT",
+                                 name: "$$$/PrefsHtml/RadioButton/EncodeSpecialCharactersInUrlsUsing=E&ncode special characters in URLs using %");
+                }
+
+                checkbox(identifier: "IDC_INSERT_906_FIX",
+                         name: "$$$/PrefsHtml/CheckBox/InsertUsing=&Insert using browser-safe scripts");
+
+                checkbox(identifier: "IDC_CHECK906_ON_OPEN",
+                         name: "$$$/PrefsHtml/CheckBox/ConvertTags=C&onvert tags to scripts on file open");
+            }
+        }
+    }
+}

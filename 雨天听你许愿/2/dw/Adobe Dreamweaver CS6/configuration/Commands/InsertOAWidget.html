@@ -1,0 +1,427 @@
+<!-- MENU-LOCATION=NONE -->
+<html>
+<head>
+<!-- Copyright 2009 Adobe Systems Incorporated.  All rights reserved. -->
+<title>Insert OA Widget</title>
+<script type="text/javascript" src="../Shared/OAWidget/OAWidgetManager.js" ></script>
+<script type="text/javascript">
+
+var gWidgetID = "";
+var gPropertiesXML = "<properties></properties>";
+
+function isDOMRequired()
+{
+    return true;
+}
+
+function receiveArguments(widgetID, propertiesXML)
+{
+    gWidgetID = widgetID ? widgetID : "";
+    gPropertiesXML = propertiesXML ? propertiesXML : "<properties></properties>";
+}
+
+function getScriptAndLinkElements(root, results)
+{
+    if (root)
+    {
+        if (!results)
+            results = new Array();
+
+        var child = root.firstChild;
+        while (child)
+        {
+            if (child.nodeType == 1)
+            {
+                var nodeName = child.nodeName;
+                if (nodeName == "SCRIPT" || nodeName == "LINK")
+                    results.push(child);
+            }
+
+            // We need to recurse down into any nodes that contain children
+            // so that we can find script and links inside Dreamweaver design
+            // time markup like template elements, etc.
+
+            if (child.firstChild)
+                getScriptAndLinkElements(child, results);
+
+            child = child.nextSibling;
+        }
+    }
+    return results;
+}
+
+function findScriptOrLinkByTargetPath(eleArr, targetPath)
+{
+    if (eleArr && eleArr.length && targetPath)
+    {
+        for (var i = 0; i < eleArr.length; i++)
+        {
+            var e = eleArr[i];
+            var path = e.getAttribute(e.nodeName == "SCRIPT" ? "src" : "href");
+            if (path && path.lastIndexOf(targetPath) != -1)
+                return e;
+        }
+    }
+    return null;
+}
+
+function getSelectionRelativeToBody(dom)
+{
+    // Get the current selection offsets.
+
+    var curSel = dom.getSelection();
+
+    // Get the offset to the left of the body's start tag.
+
+    var bodyOffset = dom.nodeToOffsets(dom.getElementsByTagName("body").item(0))[0];
+
+    curSel[0] -= bodyOffset;
+    curSel[1] -= bodyOffset;
+
+    return curSel;
+}
+
+function setSelectionRelativeToBody(dom, startOffset, endOffset)
+{
+    var bodyOffset = dom.nodeToOffsets(dom.getElementsByTagName("body").item(0))[0];
+    dom.setSelection(startOffset + bodyOffset, endOffset + bodyOffset);
+}
+
+function widgetMarkupRequiresEditableHead(widgetMarkup)
+{
+    if (widgetMarkup.headMarkup)
+        return true;
+
+    var reqs = widgetMarkup.requires;
+
+    for (var i = 0; i < reqs.length; i++)
+    {
+        var r = reqs[i];
+        if (r.includeRef || r.inlineContent)
+            return true;
+    }
+    return false;
+}
+
+function widgetMarkupRequiresEditableBody(widgetMarkup)
+{
+    return widgetMarkup.widgetMarkup || widgetMarkup.widgetBodyEndMarkup;
+}
+
+function selectionIsInsideBodyEditableRegion(docInfo)
+{
+    // Make sure the current selection is entirely
+    // within an editable region in the body.
+
+    var doc = docInfo.doc;
+    var body = docInfo.body;
+
+    var selNode = doc.getSelectedNode(); 
+    var sel = selNode ? doc.nodeToOffsets(selNode) : [0, 0]; // Force to start of body if no selNode.
+    var brgns = docInfo.bodyEditRgns
+    var numRgns = brgns.length;
+
+    for (var i = 0; i < numRgns; i++)
+    {
+        var rgn = brgns.item(i);
+        if (rgn)
+        {
+            var offsets = doc.nodeToOffsets(rgn);
+            if (sel[0] >= offsets[0] && sel[1] <= offsets[1])
+                return true;
+        }
+    }
+
+    return false;  
+}
+
+function forceSelectionIntoBody(docInfo)
+{
+    if (docInfo.body)
+    {
+        // Convert the current selection into a node selection.
+        // This provides us with a quick test to see if the selection
+        // is completely within the body. This also gets us around
+        // the wierd selection offsets that get returned when the
+        // caret is placed outside of an editable region in a
+        // template instance document, which make it seem like it
+        // is inside the editable region.
+
+        var doc = docInfo.doc;
+        var selNode = doc.getSelectedNode();
+        var nodeOffsets = selNode ? doc.nodeToOffsets(selNode) : [0,0]; // Force to start of body if no selNode.
+        var bodyOffsets = doc.nodeToOffsets(docInfo.body);
+
+        if (nodeOffsets[0] <= bodyOffsets[0] || nodeOffsets[1] >= bodyOffsets[1])
+        {
+            // We know that at least a part of the selection is outside
+            // the body, if the start of the selection is before the body,
+            // we collapse to the start of the body, otherwise, we collapse
+            // to the end.
+
+            var sel = doc.getSelection();
+            doc.setSelectedNode(docInfo.body, true);
+            var bodySel = doc.getSelection();
+            var offset = bodySel[(sel[0] <= bodySel[0]) ? 0 : 1];
+            doc.setSelection(offset, offset);
+        }
+    }
+}
+
+function insertWidget()
+{
+    if (!gWidgetID)
+        return;
+
+    var dom = dw.getDocumentDOM();
+
+    // We require CodeView and DesignView to be in sync so force
+    // the sync now.
+
+    dom.synchronizeDocument();
+
+    var widgetManager = OAWidgetManager.getManagerForDoc(dom);
+
+    // Ask the widget manager to generate all of the markup and code for the
+    // widget that will be inserted into the document.
+
+    var widgetMarkup = widgetManager.createWidgetMarkup(gWidgetID, gPropertiesXML);
+    if (!widgetMarkup)
+        return;
+
+    var exchangeID = widgetManager.getExchangeIDForWidgetID(gWidgetID);
+    var docAlreadyContainsInstance = widgetManager.getWidgetsUsedWithinDocument(dom)[exchangeID] != null;
+
+    var docInfo = widgetManager.getDocInfo(dom);
+
+    if (!docAlreadyContainsInstance && widgetMarkupRequiresEditableHead(widgetMarkup) && !docInfo.headIsEditable())
+    {
+        alert(dw.loadString("insertbar/oawidget/headReadOnlyError"));
+        return;
+    }
+
+    if (widgetMarkupRequiresEditableBody(widgetMarkup))
+    {
+        if (!docInfo.bodyIsEditable())
+        {
+            alert(dw.loadString("insertbar/oawidget/bodyReadOnlyError"));
+            return;
+        }
+
+        if (docInfo.isTemplateInstance)
+        {
+            // If the document is a template instance, make sure the
+            // entire selection is within an editable region in the
+            // body. If not, notify the user then bail.
+
+            if (!selectionIsInsideBodyEditableRegion(docInfo))
+            {
+                alert(dw.loadString("insertbar/oawidget/selNotInBodyEditableRgnError"));
+                return;
+            }
+        }
+        else
+        {
+            // The document is a non-template-instance document. If the selection
+            // extends outside of the body, collapse the selection so that it is
+            // at the start or end of the body.
+
+            forceSelectionIntoBody(docInfo);
+        }
+    }
+
+    // Insert any <body> markup that is on a per-widget basis.
+
+    if (widgetMarkup.widgetMarkup)
+        dom.insertHTML(widgetMarkup.widgetMarkup, false);
+
+    // Now that we've inserted our main body markup, we need to save our resulting
+    // selection so that we can restore it after making the edits necessary to insert
+    // any of the widget's <require> references and inline content.
+
+    var savedSelection = getSelectionRelativeToBody(dom);
+
+    // Insert any per-widget "atEnd" script code.
+
+    if (widgetMarkup.bodyEndMarkup)
+        dom.addJavaScript(widgetMarkup.bodyEndMarkup, false);
+
+    // Call copyAssets() to insert any script or link references.
+
+    if (widgetMarkup.assetInfo.length)
+        dom.copyAssets(widgetMarkup.assetInfo);
+
+    // If there is no instance of this widget already on the page, insert the
+    // inline <require> content for the widget that is shared by all instances.
+
+    if (!docAlreadyContainsInstance)
+    {
+        // We need to run through the <require> list and notate any
+        // inline js/css/content requires so we can figure out where they
+        // should be inserted within the document. Adjacent inlines will
+        // be merged to reduce the number of document insertions.
+
+        var reqs = widgetMarkup.requires;
+        var inlineObj = null;
+        var prevInc = -1;
+        var nextInc = -1;
+        var insertList = [];
+        var lastReqIndex = reqs.length - 1;
+        var inlineRequireCount = 0;
+        var lastInsertObj = null;
+
+        for (var i = 0; i <= lastReqIndex; i++)
+        {
+            var r = reqs[i];
+            var hasInlineContent = (!r.src && r.inlineContent);
+            if (hasInlineContent)
+            {
+                // We have some inline content. Create an inline object, if necessary,
+                // that will hold the content to be inserted. Adjacent inline requires
+                // will be added to the same inline object to reduce the number of edits
+                // required to insert the content into the document.
+
+                ++inlineRequireCount;
+
+                if (!inlineObj)
+                {
+                    inlineObj = new Object;
+                    inlineObj.prevInc = prevInc;
+                    inlineObj.nextInc = -1;
+                    inlineObj.content = "";
+                    inlineObj.contentAfterNextInc = null;
+                }
+
+                var content = r.inlineContent + OAMetaData.conditionalNewLine(r.inlineContent);
+                if (r.type == "javascript")
+                    content = "<" + "script type=\"text/javascript\">\n// BeginOAWidget_Shared_" + exchangeID + "\n" + content + "// EndOAWidget_Shared_" + exchangeID + "\n<" + "/script>\n";
+                else if (r.type == "css")
+                    content = "<style type=\"text/css\">\n/* BeginOAWidget_Shared_" + exchangeID + " */\n" + content + "/* EndOAWidget_Shared_" + exchangeID + " */\n</style>\n";
+                else /* if (r.type == "inline") */
+                    content = "<!-- BeginOAWidget_Shared_" + exchangeID + " -->\n" + content + "<!-- EndOAWidget_Shared_" + exchangeID + " -->\n";
+
+                inlineObj.content += content;
+            }
+            else if (r.includeRef)
+            {
+                if (!inlineObj)
+                    prevInc = i;
+                else
+                    nextInc = i;
+            }
+
+            if (inlineObj && ((!hasInlineContent && r.includeRef) || i == lastReqIndex))
+            {
+                inlineObj.nextInc = nextInc;
+
+                if (lastInsertObj)
+                {
+                    // Check to see if the last inlineObject we created has a nextInc
+                    // that matches this inlineObject's prevInc. If so, we can combine
+                    // it into one outerHTML insert.
+
+                    if (lastInsertObj.nextInc == prevInc)
+                    {
+                        lastInsertObj.contentAfterNextInc = inlineObj;
+                        inlineObj = null;
+                    }
+                }
+
+                if (inlineObj)
+                {
+                    insertList.push(inlineObj);
+                    lastInsertObj = inlineObj;
+                }
+
+                inlineObj = null;
+                prevInc = nextInc;
+                nextInc = -1;
+            }
+        }
+
+        // If we have any inline content, insert them into the document.
+
+        if (inlineRequireCount > 0)
+        {
+            // Find all <link> and <script> elements in the head. We'll need to insert our inline script/css/content
+            // relative to these nodes.
+
+            var scriptAndLinks = getScriptAndLinkElements(dom.getElementsByTagName("head").item(0));
+
+            for (var i = 0; i < insertList.length; i++)
+            {
+                var io = insertList[i];
+                if (io.prevInc == -1 && io.nextInc == -1)
+                {
+                    // The widget has no <script> or <link> elements to key off of!
+                    // Just add the inline content to the end of the head.
+
+                    // The following insertList.length check is just a debugging
+                    // ASSERTION that makes sure the inline object creation code
+                    // that built the insertList is combining edits properly!
+
+                    if (insertList.length != 1)
+                        alert("Multiple inline content edit objects created but no script or link references exist!");
+
+                    // Calculate the selection offset that is to the left of the closing </head> tag,
+                    // place the selection there, then insert the inline content. If we are inserting
+                    // into a template instance document, set the selection at the end of the last editable
+                    // region in the head and then do the insert.
+
+                    if (docInfo.isTemplateInstance && docInfo.headEditRgns)
+                        OAWidgetManager.setSelectionInsideEnd(docInfo.headEditRgns.item(docInfo.headEditRgns.length - 1));
+                    else
+                        OAWidgetManager.setSelectionInsideEnd(dom.getElementsByTagName("head").item(0));
+ 
+                    dom.insertHTML(io.content);
+                }
+                else if (io.nextInc != -1)
+                {
+                    var r = reqs[io.nextInc];
+                    var ele = findScriptOrLinkByTargetPath(scriptAndLinks, r.target);
+                    if (ele)
+                        ele.outerHTML = io.content + ele.outerHTML + (io.contentAfterNextInc ? io.contentAfterNextInc.content : "");
+                }
+                else // io.prevInc != -1
+                {
+                    var r = reqs[io.prevInc];
+                    var ele = findScriptOrLinkByTargetPath(scriptAndLinks, r.target);
+                    if (ele)
+                        ele.outerHTML = ele.outerHTML + io.content + (io.contentAfterNextInc ? io.contentAfterNextInc.content : "");
+                }
+            }
+        }
+    }
+
+    // Insert any <head> markup that is on a per-widget-instance basis. Note, we
+    // do this insert last so that this content gets inserted after any inline
+    // <require> content that may get inserted into the head.
+    //
+    // XXX: This is head content that must be injected into the head for each instance
+    //      of the widget. This isn't an OAA standard, yet, but we know we need something
+    //      like this to support more widgets.
+
+    if (widgetMarkup.headMarkup)
+    {
+        OAWidgetManager.setSelectionInsideEnd(dom.getElementsByTagName("head").item(0));
+        dom.insertHTML(widgetMarkup.headMarkup);
+    }
+
+    // Add this widget instance to the document's widget list <script> element.
+
+    var wmd = widgetManager.getWidgetMetaData(gWidgetID);
+    widgetManager.addEntryToDocumentWidgetList(dom, gWidgetID, wmd.bindingMethod, widgetMarkup.bindingValue);
+
+    // Now that we've made all of our necessary edits to the document, restore the
+    // selection to what it was after we inserted the widget's main content. To do
+    // this, we'll need to select the <body> element temporarily so we can properly
+    // calculate the selection offsets for our widget content.
+
+    setSelectionRelativeToBody(dom, savedSelection[0], savedSelection[1]);
+}
+
+</script>
+</head>
+<body onLoad="insertWidget();">
+</body>
+</html>

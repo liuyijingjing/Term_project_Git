@@ -1,0 +1,87 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsDiff
+{
+    view subview(child_horizontal: @align_fill,
+                 grow: false,
+                 horizontal: @align_fill,
+                 identifier: "IDD_PREFS_DIFF",
+                 margin: 5,
+                 name: "$$$/PrefsDiff/Title/FileCompare=File Compare",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        column(child_horizontal: @align_fill,
+               child_vertical: @align_fill,
+               horizontal: @align_fill,
+               spacing: 20,
+               vertical: @align_fill)
+        {
+            row(child_vertical: @align_top,
+                guide_mask: [ @guide_label ],
+                spacing: 5,
+                vertical: @align_top)
+            {
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/PrefsDiff/Label/ChooseApplication=Choose application to compare files:");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                horizontal: @align_fill,
+                spacing: 0,
+                vertical: @align_fill)
+            {
+                column(child_horizontal: @align_fill,
+                       child_vertical: @align_fill,
+                       horizontal: @align_fill,
+                       vertical: @align_fill)
+                {
+                    row(child_vertical: @align_top,
+                        spacing: 5,
+                        vertical: @align_top)
+                    {
+                        edit_text(characters: 40,
+                                  identifier: "IDC_EDIT_PATH",
+                                  set_default_focus: true,
+                                  tab_next_node: "IDC_BUTTON_BROWSE");
+
+                        button(action: @do_action,
+                               default: false,
+                               identifier: "IDC_BUTTON_BROWSE",
+                               name: "$$$/PrefsDiff/Button/Browse=&Browse...");
+                    }
+
+                    row(child_horizontal: @align_fill,
+                        child_vertical: @align_top,
+                        horizontal: @align_fill,
+                        vertical: @align_fill)
+                    {
+                        static_text(characters: 20,
+                                    horizontal: @align_fill,
+                                    identifier: "IDC_GO_URL_LINK",
+                                    name: "$$$/PrefsDiff/Label/Static=Staticzzzzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+                                    vertical: @align_fill);
+                    }
+                }
+            }
+        }
+    }
+}

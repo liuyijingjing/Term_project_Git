@@ -1,0 +1,26 @@
+<shortcutset language="Canadian French">
+<shortcut key="Cmd+[" newkey="Cmd+&ccedil;" />
+<shortcut key="Cmd+]" newkey="Cmd+&agrave;" />
+<shortcut platform="win" key="Cmd+Shift+>" newkey="Cmd+." />  
+<shortcut platform="mac" key="Cmd+Shift+>" newkey="Cmd+&ugrave;" />  
+<shortcut platform="win" key="Cmd+Shift+<" newkey="Cmd+," />  
+<shortcut platform="mac" key="Cmd+Shift+<" newkey="Cmd+Shift+&ugrave;" />  
+<shortcut key="Cmd+'" newkey="Cmd+&egrave;" /> 
+<shortcut platform="win" key="Cmd+Opt+E" newkey="Cmd+Opt+Shift+E" />
+<shortcut platform="win" key="Cmd+Opt+1" newkey="Cmd+Opt+Shift+1" />  
+<shortcut platform="win" key="Cmd+Opt+2" newkey="Cmd+Opt+Shift+2" />  
+<shortcut platform="win" key="Cmd+Opt+3" newkey="Cmd+Opt+Shift+3" />  
+<shortcut platform="win" key="Cmd+Opt+4" newkey="Cmd+Opt+Shift+4" />  
+<shortcut platform="win" key="Cmd+Opt+5" newkey="Cmd+Opt+Shift+5" />  
+<shortcut platform="win" key="Cmd+Opt+6" newkey="Cmd+Opt+Shift+6" />  
+<shortcut platform="win" key="Cmd+Opt+8" newkey="Cmd+Opt+Shift+8" />  
+<shortcut platform="win" key="Cmd+Opt+0" newkey="Cmd+Opt+&egrave;" />  
+<shortcut key="Ctrl+`" newkey="Ctrl+&eacute;" />  
+<shortcut key="Cmd+Shift+/" newkey="Cmd+Shift+&egrave;" />  
+<shortcut key="Cmd+Shift+[" newkey="Cmd+Shift+&ccedil;" />  
+<shortcut key="Cmd+Shift+]" newkey="Cmd+Shift+&agrave;" />  
+<shortcut platform="mac" key="Cmd+Opt+[" newkey="Cmd+Opt+&ccedil;" />  
+<shortcut platform="mac" key="Cmd+Opt+]" newkey="Cmd+Opt+&agrave;" />  
+<shortcut platform="mac" key="Cmd+`" newkey="Cmd+&eacute;" />  
+<shortcut platform="mac" key="Cmd+Shift+`" newkey="Cmd+Shift+&eacute;" />
+</shortcutset>

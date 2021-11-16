@@ -1,0 +1,58 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PreviewErrorDialog
+{
+    view dialog(identifier: "IDD_PREVIEW_ERROR",
+                name: "$$$/PreviewError/Title/LiveData=Live Data Error",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 5)
+            {
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    static_text(characters: 20,
+                                identifier: "IDC_STATIC_TEXT",
+                                name: "$$$/PreviewError/Label/AnError=An error occurred while requesting the document from the testing server:");
+                }
+            }
+
+	    static_text(identifier: "IDC_STATIC_LINE",visible:false);
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/PreviewError/Button/Ok=OK",
+                       width: 80,tab_next_node:"IDC_MORE_INFO");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_MORE_INFO",
+                       name: "$$$/PreviewError/Button/MoreInfo=More Info...",tab_next_node:"IDOK");
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<title><MMString:loadString id="Commands/Request_Variable/title" /></title>
+<script src="Request Variable.js"></script>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onLoad="initializeUI()">
+<form>
+  <div ALIGN="center"> 
+    <table border="0" cellpadding="2" cellspacing="4">
+      <tr> 
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Request_Variable/text/Type" /></td>
+        <td valign="baseline" nowrap> 
+          <select name="theType" class="dataTypeList">
+            <option value="request" selected><MMString:loadString id="Commands/Request_Variable/option/request/Request" /></option>
+            <option value="cookie"          ><MMString:loadString id="Commands/Request_Variable/option/cookie/RequestCookie" /></option>
+            <option value="querystring"     ><MMString:loadString id="Commands/Request_Variable/option/querystring/RequestQueryString" /></option>
+            <option value="form"            ><MMString:loadString id="Commands/Request_Variable/option/form/RequestForm" /></option>
+            <option value="servervar"       ><MMString:loadString id="Commands/Request_Variable/option/servervar/RequestServerVariables" /></option>
+            <option value="clientcert"      ><MMString:loadString id="Commands/Request_Variable/option/clientcert/RequestClientCertificates" /></option>
+          </select>
+        </td>
+      </tr>
+      <tr> 
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Request_Variable/text/Name" /></td>
+        <td valign="baseline" nowrap> 
+          <input name="theName" type="text" class="medTField">
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+</body>
+</html>

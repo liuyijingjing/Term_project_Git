@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Payload adobeCode="{A4ED5E53-7AA0-11E1-BF04-B2D4D4A5360E}">
+		<!-- defaultAdobeCode for development use. -->
+		<Data key="defaultAdobeCode">Dreamweaver-Installer-AdobeCode</Data>
+		<Data key="LicensingCode">Dreamweaver-CS6-Win-GM</Data>
+		<Data key="BridgeTalkCode">/adobe/bridgetalk/dreamweaver-12.0</Data>
+		<Data key="AMTConfigPath">C:\dw\Adobe Dreamweaver CS6\amt\application.xml</Data><Data key="DefaultDriverPayload">{A4ED5E53-7AA0-11E1-BF04-B2D4D4A5360E}</Data><Data key="InstallDate">1604322370</Data><Data key="driverAMTConfigPath">C:\dw\Adobe Dreamweaver CS6\amt\application.xml</Data><Data key="driverLEID">Dreamweaver-CS6-Win-GM</Data><Data key="installedLanguages">zh_CN</Data></Payload>
+	<Other adobeCode="Dreamweaver-CS6-Win-GM">
+		<Data key="LicensingCode">Dreamweaver-CS6-Win-GM</Data>
+		<Data key="EPIC_APP">Adobe Dreamweaver CS6</Data>
+		<Data key="EPIC_APP_192">Adobe Dreamweaver CS6</Data>
+		<!-- Note: This is a win-only serial -->
+		<Data key="TrialSerialNumber">979087066330277388303269</Data>
+		<Data key="PayloadCode">{A4ED5E53-7AA0-11E1-BF04-B2D4D4A5360E}</Data></Other>
+	<Other adobeCode="/adobe/bridgetalk/dreamweaver-12.0">
+		<Data key="Specifier">dreamweaver-12.0</Data>
+		<Data key="ExecutableBasename">Dreamweaver</Data>
+		<Data key="DisplayName">Adobe Dreamweaver CS6</Data>
+		<Data key="WindowClassName">_macr_dreamweaver_frame_window_</Data>
+		<Data key="BundleIdentifier">com.adobe.dreamweaver-12.0</Data>
+	</Other>
+</Configuration>

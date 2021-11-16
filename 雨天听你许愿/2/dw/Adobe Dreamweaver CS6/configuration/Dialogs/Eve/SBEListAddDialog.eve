@@ -1,0 +1,105 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SBEListAddDialog
+{
+    view dialog(identifier: "IDD_SBE_LSTADD",
+                name: "$$$/SbeLstadd/Title/NewServer=New Server Behavior",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(indent: 2,
+                   spacing: 14)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/SbeLstadd/Label/DocumentType=Document type:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/SbeLstadd/Label/Name=Name:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/SbeLstadd/Label/Option=Option:");
+            }
+
+            column(spacing: 8)
+            {
+                row(horizontal: @align_fill)
+                {
+                    popup(horizontal: @align_fill,
+                          identifier: "IDC_SBE_LSTADD_MODEL_LIST",
+                          include_custom_item: false,
+                          sort: true,
+                          tab_next_node: "IDC_SBE_LSTADD_NAME",
+                          vertical_scroll: true);
+
+                    placeholder(width: 6);
+                }
+
+                edit_text(characters: 22,
+                          identifier: "IDC_SBE_LSTADD_NAME",
+                          tab_next_node: "IDC_SBE_COPY_CHECKBOX");
+
+                checkbox(identifier: "IDC_SBE_COPY_CHECKBOX",
+                         name: "$$$/SbeLstadd/CheckBox/CopyExisting=Copy existing server behavior",
+                         tab_next_node: "IDC_SBE_COPY_COMBO");
+
+                row(horizontal: @align_fill,
+                    indent: 20)
+                {
+                    static_text(identifier: "IDC_SBE_COPY_STATIC",
+                                name: "$$$/SbeLstadd/Label/BehaviorTo=Behavior to copy:");
+
+                    popup(horizontal: @align_fill,
+                          identifier: "IDC_SBE_COPY_COMBO",
+                          include_custom_item: false,
+                          sort: true,
+                          tab_next_node: "IDOK",
+                          vertical_scroll: true);
+                }
+            }
+
+            separator(identifier: "IDC_STATIC_LINE",
+                      orientation: @vertical);
+
+            column()
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/SbeLstadd/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SbeLstadd/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/SbeLstadd/Button/Help=Help",
+                       tab_next_node: "IDC_SBE_LSTADD_MODEL_LIST");
+            }
+        }
+    }
+}

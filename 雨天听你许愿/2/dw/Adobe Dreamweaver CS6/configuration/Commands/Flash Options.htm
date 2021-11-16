@@ -1,0 +1,50 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script src="Flash Options.js"></script>
+<script language="javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+
+<TITLE><MMString:loadString id="Commands/Flash_Options/title" /></TITLE>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+<form name="theForm" method="post" action="">
+  <table border="0" cellpadding="2" cellspacing="4">
+    <tr> 
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Flash_Options/text/Title" /></td>
+      <td colspan="7" valign="top" nowrap> 
+        <input name="title" type="text" class="basicTextField" style="width:200px">
+      </td>
+    </tr>
+    <tr> 
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Flash_Options/text/Access" /></td>
+      <td valign="baseline" nowrap align="left"> 
+        <input name="accesskey" type="text" class="smallNumOrChar">
+      </td>
+      <td valign="baseline" nowrap align="left"><MMString:loadString id="Commands/Flash_Options/text/Tab" /></td>
+      <td valign="baseline" nowrap align="left"> 
+        <input name="tabindex" type="text" class="smallNumOrChar">
+      </td>
+      <td valign="baseline" nowrap align="left">&nbsp;</td>
+      <td valign="baseline" nowrap align="right">&nbsp;</td>
+      <td valign="baseline" nowrap align="left">&nbsp; </td>
+      <td valign="baseline" nowrap>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="8">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="8">
+        <MMString:loadString id="Commands/Flash_Options/text/If" /> 
+        <a href="" onmousedown="dw.showPreferencesDialog('Accessibility')"><MMString:loadString id="Commands/Flash_Options/text/change" /></a>
+      </td>
+    </tr>
+  </table>
+  </form>
+</BODY>
+
+</HTML>
+

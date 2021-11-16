@@ -1,0 +1,101 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//floater">
+<html xmlns:MMString="http://www.adobe.com/schemes/data/string/">
+<head>
+    <title><MMString:loadString id="PGB/settings/title" /></title>
+
+    <script type="javascript" 
+        src="../PhoneGapBuildPlugin/js/PhoneGapPlugin.js">
+    </script>
+
+    <script type="javascript" 
+        src="../PhoneGapBuildPlugin/js/BusinessLogic.js">
+    </script>
+
+    <script type="javascript" 
+        src="../PhoneGapBuildPlugin/js/FrameworkSetup.js">
+    </script>
+
+    <script type="javascript" 
+        src="../PhoneGapBuildPlugin/js/json/json2.js">
+    </script>
+
+    <link href="../PhoneGapBuildPlugin/PhoneGapBuildPlugin.css" 
+        rel="stylesheet" type="text/css">
+
+    <link href="../PhoneGapBuildPlugin/images/Build-Bot.png" 
+        rel="panel icon" />
+
+    <script language"javascript">
+        function displayHelp() { 
+            dwscripts.displayDWHelp(
+                MM.HELP_phoneGapBuildServiceSettings
+                ); 
+        }
+    </script>
+</head>
+<body 
+    onShow="initSettings();"
+    onload="initSettings();"
+    onResize="initShow();" >
+<form id="mainForm">
+  <div id="settings-display-view">
+      <div class="settingsGroup note" style="margin: 10px;">
+          <MMString:loadString id="PGB/settings/config_message" />
+      </div>
+      <div class="package android settingsGroup">
+        <div class="header"></div>
+        <div class="settings">
+            <label id="androidSettingsGroup">
+            <span class="leftColLabels">
+                <MMString:loadString id="PGB/settings/sdk_location" />
+            </span>
+            <span class="rightColControls">
+                <input id="androidSDKPath" type="text" class="fileBrowser"/>
+                <input type="image" onClick="browseForFolder('androidSDKPath')" 
+                        src="../Shared/MM/Images/folderButton.png"
+                        width="15" height="14" MMString:alt="PGB/tooltips/select_a_location"
+                    />
+            </span>
+            </label>
+        </div>
+      </div>
+      <div class="package webos settingsGroup">
+        <div class="header"></div>
+        <div class="settings">
+            <label id="webosSettingsGroup">
+            <span class="leftColLabels">
+                <MMString:loadString id="PGB/settings/sdk_location" />
+            </span>
+            <span class="rightColControls">
+                <input id="webosSDKPath" type="text" class="fileBrowser"/>
+                <input type="image" onClick="browseForFolder('webosSDKPath')" 
+                        src="../Shared/MM/Images/folderButton.png"
+                        width="15" height="14" MMString:alt="PGB/tooltips/select_a_location" 
+                    />
+            </span>
+            </label>
+        </div>
+      </div>
+      <div class="settingsGroup">
+           <input type="button" MMString:value="PGB/buttons/save" 
+                   style="float: right;" onclick="saveSettings()" 
+               />
+      </div>
+      <div id="help-view" align="center">
+          <table>
+              <tr>
+                  <td align="center">
+                      <p>
+                          <a href="http://www.adobe.com/go/dw_phonegap" id="need_help_url">
+                              <MMString:loadString 
+                                  id="PGB/help/need_help"/> 
+                          </a>
+                      </p>
+                  <td>
+              </tr>
+          </table>
+      </div>
+    </div>
+</form>
+</body>
+</html>

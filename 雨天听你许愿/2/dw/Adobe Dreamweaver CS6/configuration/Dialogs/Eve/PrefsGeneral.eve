@@ -1,0 +1,230 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsGeneral
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_GENERAL",
+                 margin: 5,
+                 name: "$$$/PrefsGeneral/Title/General=General",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 196)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsGeneral/Label/DocumentOptions=Document options:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsGeneral/Label/EditingOptions=Editing options:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsGeneral/Label/Centering=Centering:",
+                            visible: false);
+            }
+
+            column()
+            {
+                row()
+                {
+                    column(horizontal: @align_right)
+                    {
+                        row()
+                        {
+                            checkbox(identifier: "IDC_CHECK_USE_MAC_DOC_TABS",
+                                     indent: 1,
+                                     name: "$$$/PrefsGeneral/CheckBox/DocumentTabs=&Open documents in tabs",
+                                     set_default_focus: true,
+                                     tab_next_node: "IDC_CHECK_SHOW_START_PAGE");
+                        }
+
+                        row()
+                        {
+                            column()
+                            {
+                                checkbox(identifier: "IDC_CHECK_SHOW_START_PAGE",
+                                         name: "$$$/PrefsGeneral/CheckBox/ShowWelcome=&Show Welcome Screen",
+                                         tab_next_node: "IDC_CHECK_SHOW_LAST_DOCS");
+
+                                checkbox(identifier: "IDC_CHECK_SHOW_LAST_DOCS",
+                                         name: "$$$/PrefsGeneral/CheckBox/ReopenDocuments=&Reopen documents on startup",
+                                         tab_next_node: "IDC_CHECK_MAKEWRITABLE");
+
+                                checkbox(identifier: "IDC_CHECK_MAKEWRITABLE",
+                                         name: "$$$/PrefsGeneral/CheckBox/WarnWhen=&Warn when opening read-only files",
+                                         tab_next_node: "IDC_CHECK_SHOW_RELATED_DOCS");
+
+                                checkbox(identifier: "IDC_CHECK_SHOW_RELATED_DOCS",
+                                         name: "$$$/PrefsGeneral/CheckBox/EnableRelated=Enable Rela&ted Files",
+                                         tab_next_node: "IDC_COMBO_DRF_DISCOVERY_METHOD");
+                            }
+                        }
+                    }
+                }
+
+                row(spacing: 5)
+                {
+                    column(horizontal: @align_fill,
+                           indent: 2)
+                    {
+                        static_text(identifier: "IDC_STATIC",
+                                    indent: 18,
+                                    name: "$$$/PrefsGeneral/Label/DiscoverDynamicallyrelated=&Discover Dynamically-Related Files:");
+                    }
+
+                    column()
+                    {
+                        popup(identifier: "IDC_COMBO_DRF_DISCOVERY_METHOD",popup_minimum_width_chars: 6,
+                              include_custom_item: false,
+                              tab_next_node: "IDC_COMBO_UPDATE_LINKS",
+                              vertical_scroll: true);
+                    }
+                }
+
+                row(spacing: 5)
+                {
+                    column(horizontal: @align_left,
+                           indent: 2,
+                           spacing: 0)
+                    {
+                        static_text(identifier: "IDC_STATIC",
+                                    indent: 2,
+                                    name: "$$$/PrefsGeneral/Label/UpdateLinks=Update &links when moving files:");
+                    }
+
+                    column()
+                    {
+                        popup(identifier: "IDC_COMBO_UPDATE_LINKS",
+                              include_custom_item: false,
+                              items: [ { name: "$$$/PrefsGeneral/UpdateLinks/item1/Always",
+                                         value: " " },
+                                       { name: "$$$/PrefsGeneral/UpdateLinks/item2/Never",
+                                         value: " " },
+                                       { name: "$$$/PrefsGeneral/UpdateLinks/item3/Prompt",
+                                         value: " " } ],
+                              tab_next_node: "IDC_CHECK_INSERT_POPUP",
+                              vertical_scroll: true);
+                    }
+                }
+
+                row()
+                {
+                    column(horizontal: @align_right)
+                    {
+                        checkbox(identifier: "IDC_CHECK_INSERT_POPUP",
+                                 name: "$$$/PrefsGeneral/CheckBox/ShowDialog=Show dialog when &inserting objects",
+                                 tab_next_node: "IDC_INLINE_INPUT");
+
+                        checkbox(identifier: "IDC_INLINE_INPUT",
+                                 name: "$$$/PrefsGeneral/CheckBox/EnableDoublebyte=Enable double-&byte inline input",
+                                 tab_next_node: "IDC_CHECK_FOLLOW_STYLES");
+
+                        checkbox(identifier: "IDC_CHECK_FOLLOW_STYLES",
+                                 name: "$$$/PrefsGeneral/CheckBox/SwitchTo=Switch to plain paragraph &after heading",
+                                 tab_next_node: "IDC_CHECK_MULTI_SPACES");
+
+                        checkbox(identifier: "IDC_CHECK_MULTI_SPACES",
+                                 name: "$$$/PrefsGeneral/CheckBox/AllowMultiple=Allow &multiple consecutive spaces",
+                                 tab_next_node: "IDC_CHECK_STRONG_EM");
+
+                        checkbox(identifier: "IDC_CHECK_STRONG_EM",
+                                 name: "$$$/PrefsGeneral/CheckBox/UseStrong=&Use <strong> and <em> in place of <b> and <i>",
+                                 tab_next_node: "IDC_CHECK_USE_CSS");
+
+                        checkbox(identifier: "IDC_CHECK_USE_CSS",
+                                 name: "$$$/PrefsGeneral/CheckBox/UseCss=Use CSS inst&ead of HTML tags",
+                                 tab_next_node: "IDC_CHECK_WARN_WHEN_EDIT_REGIONS");
+
+                        checkbox(identifier: "IDC_CHECK_WARN_WHEN_EDIT_REGIONS",
+                                 name: "$$$/PrefsGeneral/CheckBox/WarnWhenPlacingEditableRegionsWithinPOrH1h6Tags=Warn when placing editable regions within <p> or <h1>-<h6> tags",
+                                 tab_next_node: "IDC_EDIT_HISTORYSTEPS");
+                    }
+                }
+
+                row(placement: @place_overlay)
+                {
+                    row(horizontal: @align_left,
+                        indent: 10)
+                    {
+                        radiogroup()
+                        {
+                            radio_button(identifier: "IDC_RADIO_DIV",
+                                         name: "$$$/PrefsGeneral/RadioButton/UseDiv=Use <&div> tag",
+                                         visible: false);
+
+                            radio_button(identifier: "IDC_RADIO_CENTER",
+                                         name: "$$$/PrefsGeneral/RadioButton/UseCenter=Use <ce&nter> tag",
+                                         visible: false);
+                        }
+                    }
+
+                    row()
+                    {
+                        column(indent: 10,
+                               spacing: 3)
+                        {
+                            row(horizontal: @align_left,
+                                spacing: 5)
+                            {
+                                column(horizontal: @align_reverse_fill,
+                                       indent: 2)
+                                {
+                                    static_text(horizontal: @align_left,
+                                                identifier: "IDC_STATIC",
+                                                name: "$$$/PrefsGeneral/Label/MaximumNumber=Ma&ximum number of history steps:");
+                                }
+
+                                column(horizontal: @align_fill)
+                                {
+                                    edit_text(characters: 5,
+                                              identifier: "IDC_EDIT_HISTORYSTEPS",
+                                              tab_next_node: "IDC_COMBO_DICT");
+                                }
+                            }
+
+                            row(horizontal: @align_fill,
+                                spacing: 5)
+                            {
+                                column(indent: 2)
+                                {
+                                    static_text(identifier: "IDC_STATIC",
+                                                name: "$$$/PrefsGeneral/Label/SpellingDictionary=Spellin&g dictionary:");
+                                }
+
+                                column(horizontal: @align_fill)
+                                {
+                                    popup(horizontal: @align_fill,
+                                          identifier: "IDC_COMBO_DICT",popup_minimum_width_chars: 12,
+                                          include_custom_item: false,
+                                          sort: true,
+                                          vertical_scroll: true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- SAFE-IN-TEMPLATES -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD><link href="../../fields.css" rel="stylesheet" type="text/css">
+<SCRIPT LANGUAGE="javascript" SRC="Open Browser Window.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../Shared/MM/Scripts/CMN/file.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_BadChars = dw.loadString('Behaviors/Actions/Open_Browser_Window/MSG_BadChars');
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Open_Browser_Window/title" /></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</HEAD>
+<BODY onLoad="initializeUI()">
+<FORM NAME="theForm" ACTION="">
+      
+  <table border=0 cellpadding="4" cellspacing="0">
+    <tr valign="baseline"> 
+    <td align="right" nowrap> <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/text/URL" /></td>
+    <td colspan="4" nowrap> <input name="URL" type="text" class="basicTextField">
+    <input type="button" MMString:value="Behaviors/Actions/Open_Browser_Window/button/value/Browse" onClick="browseFile(document.theForm.URL);focus(this)"> 
+    </td>
+    </tr>
+    <tr valign="baseline"> 
+    <td align="right" nowrap> <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/text/Window" /></td>
+    <td nowrap> <input name="width" type="text" class="xsmallTField" value="">
+    </td>
+    <td nowrap>&nbsp;</td>
+    <td align="right" nowrap><MMString:loadString id="Behaviors/Actions/Open_Browser_Window/text/Window_1" /></td>
+    <td nowrap><INPUT NAME="height" TYPE="text" class="xsmallTField" VALUE=""></td>
+    </tr>
+    <tr valign="baseline"> 
+    <td align="right" nowrap> <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/text/Attributes" /></td>
+    <td colspan="3" nowrap> <input type="checkbox" name="toolbar">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/toolbar/Navigation" /></td>
+    <td nowrap> <INPUT TYPE="checkbox" NAME="menubar">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/menubar/Menu" /></td>
+    </tr>
+    <tr valign="baseline"> 
+    <td align="right" nowrap></td>
+    <td colspan="3" nowrap> <input type="checkbox" name="location">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/location/Location" /></td>
+    <td nowrap> <INPUT TYPE="checkbox" NAME="scrollbars">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/scrollbars/Scrollbars" /></td>
+    </tr>
+    <tr valign="baseline"> 
+    <td align="right" nowrap></td>
+    <td colspan="3" nowrap> <input type="checkbox" name="status">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/status/Status" /></td>
+    <td nowrap> <INPUT TYPE="checkbox" NAME="resizable">
+    <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/checkbox/resizable/Resize" /></td>
+    </tr>
+    <tr valign="baseline"> 
+    <td align="right"> <MMString:loadString id="Behaviors/Actions/Open_Browser_Window/text/Window_2" /></td>
+    <td colspan="4" nowrap> <input name="winName" type="text" class="basicTextField"></td>
+    </tr>
+  </table>
+  </FORM>
+</BODY>
+</HTML>

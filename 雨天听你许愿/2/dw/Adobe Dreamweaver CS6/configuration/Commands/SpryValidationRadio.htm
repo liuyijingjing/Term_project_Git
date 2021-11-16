@@ -1,0 +1,75 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2008 Adobe Systems Incorporated.  All rights reserved. -->
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsServer.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsExtData.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/GridControlClass.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/RadioGroupClass.js"></script>
+<script type="text/javascript" src="../Shared/Controls/Scripts/DynamicTextField.js"></script>
+<script type="text/javascript" src="../Shared/Controls/Scripts/TextField.js"></script>
+<script type="text/javascript" src="../Objects/Forms/formInsert.js"></script>
+<script type="text/javascript" src="RadioGroup.js"></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetBase.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/AssetInfoClass.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/TemplateUtils.js"></script> 
+<script type="text/javascript" src="../Shared/Spry/DesignTime/EditingUtils.js"></script> 
+<script type="text/javascript" src="../Objects/Forms/formInsert.js"></script> 
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationRadio/DesignTime/SpryValidRadioDesignTime.js"></script>
+
+<script type="text/javascript" src="SpryValidationRadio.js"></script>
+
+
+<title><MMString:LoadString id="Commands/ValidationRadio/text/Title" /></title>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onLoad="initializeUI()">
+<form>
+  <table border="0">
+    <tr>
+      <td align="right" nowrap><MMString:loadString id="Commands/ValidationRadio/text/Name" /></td>
+      <td nowrap>
+        <input name="GroupName" type="text" class="basicTextField">
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap><MMString:loadString id="Commands/ValidationRadio/text/Radio" /></td>
+      <td nowrap>
+        <input type="image" src="../Shared/MM/Images/btnAdd.gif" onClick="GC_RADIOS.add(new Array( MM.LABEL_Radio,MM.LABEL_Radio.toLowerCase() ));focus(this)">
+        <input type="image" src="../Shared/MM/Images/btnDel.gif" onClick="updateUI('deleteButton');focus(this)">
+        <img src="../Shared/MM/Images/transparent.gif" width="183" height="23">
+        <input type="image" src="../Shared/MM/Images/btnUp.gif" onClick="GC_RADIOS.moveUp();focus(this)">
+        <input type="image" src="../Shared/MM/Images/btnDown.gif" onClick="GC_RADIOS.moveDown();focus(this)">
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap></td>
+      <td nowrap>
+        <select name="LabelValuePairs" style="width:280px;" type=mmparameterlist MMString:columns="Commands/ValidationRadio/select/mmparameterlist/LabelValue" columnWidths="140,140" size=5>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" nowrap>
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap><MMString:loadString id="Commands/ValidationRadio/text/Lay" /></td>
+      <td nowrap>
+        <input type="radio" name="Layout" value="LineBreaks" checked>
+        <MMString:loadString id="Commands/ValidationRadio/radiobutton/Layout/Line" /></td>
+    </tr>
+    <tr>
+      <td align="right" nowrap></td>
+      <td nowrap>
+        <input type="radio" name="Layout" value="Table">
+        <MMString:loadString id="Commands/ValidationRadio/radiobutton/Layout/Table" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

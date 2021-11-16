@@ -1,0 +1,46 @@
+<!-- tag:source,priority:9,selection:exact,vline,hline -->
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 10.0//pi">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<TITLE><MMString:loadString id="Inspectors/source/title" /></TITLE>
+<SCRIPT src="source.js"></SCRIPT>
+</HEAD>
+<BODY>
+<!-- Specify the image that will appear in the Property inspector --> 
+<SPAN ID="image" STYLE="position:absolute; width:23px; height:17px; ¬
+    z-index:16; left: 3px; top: 2px"> <IMG SRC="marquee.png" WIDTH="36" HEIGHT="36" NAME="marqueeImage" /> </SPAN> <SPAN ID="label" STYLE="position:absolute; width:23px; height:17px; ¬
+    z-index:16; left: 44px; top: 5px"><MMString:loadString id="Inspectors/source/text/HTML5VIDEO" /></SPAN> 
+
+<!-- If your form fields are in different AP elements, you must ¬
+    create a separate form inside each AP element and reference it as ¬
+    shown in the inspectSelection() and setInterjectionTag() functions. --> 
+
+<SPAN ID="topLayer" STYLE="position:absolute; z-index:1; left: 149px; top: 3px; width: 431px; height: 32px">
+<FORM NAME="topLayerForm">
+  <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="3">
+    <TR>
+      <TD VALIGN="middle" ALIGN="left"><MMString:loadString id="Inspectors/source/text/Type" /></TD>
+      <TD VALIGN="baseline" ALIGN="right"><select name="marqDirection" style="width:86"
+                onChange="settype()">
+          <option value="Video/Ogg">Video/Ogg</option>
+          <option value="Video/Mp4" selected>Video/Mp4</option>
+          <option value="Video/3gp">Video/3gp</option>
+        </select></td>
+      <TD VALIGN="middle" ALIGN="right"><MMString:loadString id="Inspectors/source/text/Width" /> </td>
+      <TD VALIGN="baseline" ALIGN="right"><input name="width" type="text" id="textfield" size="8" onBlur="setwidth();" /></td>
+    </TR>
+    <TR>
+      <TD VALIGN="middle" ALIGN="right"><MMString:loadString id="Inspectors/source/text/Media" /></TD>
+      <TD VALIGN="baseline" ALIGN="right"><select name="media" style="width:86"
+                onChange="setMediaTag()">
+          <option value="screen" selected><MMString:loadString id="Inspectors/source/option/screen/Screen" /></option>
+          <option value="handheld"><MMString:loadString id="Inspectors/source/option/handheld/Handheld" /></option>
+        </select></td>
+      <TD VALIGN="middle" ALIGN="right"><MMString:loadString id="Inspectors/source/text/Height" /> </td>
+      <TD VALIGN="baseline" ALIGN="right"><input name="height" type="text" id="textfield2" size="8" onBlur="setheight();" /></td>
+    </TR>
+  </TABLE>
+</FORM>
+</SPAN>
+</BODY>
+</HTML>

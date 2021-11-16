@@ -1,0 +1,116 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout StyleRuleConflictDialog
+{
+    view dialog(identifier: "IDD_STYLE_RULE_CONFLICT",
+                name: "$$$/StyleRuleConflict/Title/RuleWith=Rule with Same Name Exists",
+                spacing: 5)
+    {
+        column()
+        {
+            row(guide_mask: [ @guide_label ],
+                indent: 7,
+                spacing: 5)
+            {
+                column(spacing: 9)
+                {
+                    static_text(identifier: "IDC_STATIC_CONFLICT_WARNING",
+                                name: "$$$/StyleRuleConflict/Label/ARule=A rule with the selector, exists in the destination style sheet ");
+
+                    static_text(characters: 39,
+                                identifier: "IDC_STATIC_CONFLICT_NOTE",
+                                name: "$$$/StyleRuleConflict/Label/WouldYou=Would you like to move the rule anyway? Moving the rule will not overwrite the current rule. It will appear adjacent to the current rule in the destination style sheet.");
+                }
+            }
+
+            row(indent: 7,
+                spacing: 222)
+            {
+                static_text(identifier: "IDC_STATIC_SOURCE_RULE",
+                            name: "$$$/StyleRuleConflict/Label/SourceCss=Source CSS Rule:");
+
+                static_text(identifier: "IDC_STATIC_DEST_RULE",
+                            name: "$$$/StyleRuleConflict/Label/DestinationCss=Destination CSS Rule:");
+            }
+
+            row(margin: 0)
+            {
+                edit_text(characters: 35,
+                          identifier: "IDC_EDIT_SOURCE_RULE",
+                          lines: 14,
+                          multiLine: true,
+                          readonly: true,
+                          scrollable: true,
+                          tab_next_node: "IDC_EDIT_DEST_RULE",
+                          vertical_scroll: true);
+
+                edit_text(characters: 35,
+                          identifier: "IDC_EDIT_DEST_RULE",
+                          lines: 14,
+                          multiLine: true,
+                          readonly: true,
+                          scrollable: true,
+                          tab_next_node: "IDC_CHECK_USE_FOR_ALL",
+                          vertical_scroll: true);
+            }
+
+            row(indent: 7,
+                spacing: 5)
+            {
+                checkbox(identifier: "IDC_CHECK_USE_FOR_ALL",
+                         name: "$$$/StyleRuleConflict/CheckBox/UseThis=&Use this decision for all remaining conflicts",
+                         tab_next_node: "IDOK");
+            }
+
+            row(horizontal: @align_fill,
+                indent: 7,
+                spacing: 5)
+            {
+                row()
+                {
+                    button(action: @do_help,
+                           default: false,
+                           identifier: "ID_HELP",
+                           name: "$$$/StyleRuleConflict/Button/Help=&Help",
+                           tab_next_node: "IDC_EDIT_SOURCE_RULE");
+                }
+
+                row(horizontal: @align_right,
+                    spacing: 5)
+                {
+                    button(action: @do_ok,
+                           default: true,
+                           identifier: "IDOK",
+                           name: "$$$/StyleRuleConflict/Button/Yes=Yes",
+                           tab_next_node: "IDNO");
+
+                    button(action: @do_action,
+                           identifier: "IDNO",
+                           name: "$$$/StyleRuleConflict/Button/No=No",
+                           tab_next_node: "IDCANCEL");
+
+                    button(action: @do_cancel,
+                           identifier: "IDCANCEL",
+                           name: "$$$/StyleRuleConflict/Button/Cancel=Cancel",
+                           tab_next_node: "ID_HELP");
+                }
+            }
+        }
+    }
+}

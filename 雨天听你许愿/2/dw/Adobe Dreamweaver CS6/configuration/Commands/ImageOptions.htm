@@ -1,0 +1,48 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Commands/ImageOptions/title" /></TITLE>
+
+<script src="ImageOptions.js"></script>
+<SCRIPT LANGUAGE="javascript" SRC="../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<script language="javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initUI()">
+<form name="form1" method="post" action="">
+  <table border="0" cellpadding="2" cellspacing="4">
+    <tr>
+      <td align="right" valign="middle" nowrap><MMString:loadString id="Commands/ImageOptions/text/Alternate" /></td>
+      <td>
+        <select name="alt" editable="true" edittext="" style="width: 100px">
+          <option value="noAltTag" selected name="noAltTag"></option>
+          <option value="empty" name="empty"><MMString:loadString id="Commands/ImageOptions/option/empty/empty" /></option>
+        </select>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td align="right" valign="middle" nowrap><MMString:loadString id="Commands/ImageOptions/text/Long" /></td>
+      <td valign="baseline" nowrap>
+        <input name="longdesc" type="text" class="basicTextField" style="width:200px" value="http://">
+      </td>
+      <td>
+        <input type="image" name="browseBtn" MMString:alt="Commands/ImageOptions/image/alt/Browse" src="../Shared/MM/Images/folder.gif" onClick="browseForURL()">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3"><MMString:loadString id="Commands/ImageOptions/text/If" /> 
+	<a href="" onmousedown="dw.showPreferencesDialog('Accessibility')"><MMString:loadString id="Commands/ImageOptions/text/change" /></a>
+      </td>
+     </tr>
+    </table>
+   </form>
+</BODY>
+
+</HTML>

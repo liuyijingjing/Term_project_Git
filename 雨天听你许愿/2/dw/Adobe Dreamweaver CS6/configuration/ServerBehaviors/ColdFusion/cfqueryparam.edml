@@ -1,0 +1,6 @@
+<participant>
+	<insertText><![CDATA[<cfqueryparam value="@@parameterValue@@" cfsqltype="@@parameterType@@"<@ if (@@parameterMaxLength@@) @> maxlength="@@parameterMaxLength@@"<@ endif @>>]]></insertText>
+	<searchPatterns whereToSearch="tag+cfqueryparam">
+		<searchPattern paramNames="parameterValue,parameterType,parameterMaxLength" isOptional="false" limitSearch="all"><![CDATA[/<cfqueryparam value="([^\r\n]*?)"(?: cfsqltype="([^\r\n]*?)")?(?: maxlength="([^\r\n]*?)")?\s*>/i]]></searchPattern>
+	</searchPatterns>
+</participant>

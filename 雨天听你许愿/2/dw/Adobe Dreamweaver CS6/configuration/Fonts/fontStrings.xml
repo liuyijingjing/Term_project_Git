@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Purposely uncompiled for easy reading and writing. -->
+<strings>
+	<string id="fonts/font1" value="Verdana, Geneva, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font2" value="Georgia, Times New Roman, Times, serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font3" value="Courier New, Courier, monospace" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font4" value="Arial, Helvetica, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font5" value="Tahoma, Geneva, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font13" value="Trebuchet MS, Arial, Helvetica, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font6" value="Arial Black, Gadget, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font7" value="Times New Roman, Times, serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font8" value="Palatino Linotype, Book Antiqua, Palatino, serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font9" value="Lucida Sans Unicode, Lucida Grande, sans-serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font10" value="MS Serif, New York, serif" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font11" value="Lucida Console, Monaco, monospace" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+  <string id="fonts/font12" value="Comic Sans MS, cursive" includeLocation="" uiType="ComboBox" resourceType="c" resourceParent="Text PI, CSS Rule Definition dialog" status="final" version="10" />
+</strings> 

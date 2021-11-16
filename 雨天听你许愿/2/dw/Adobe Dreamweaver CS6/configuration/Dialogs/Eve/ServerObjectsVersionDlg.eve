@@ -1,0 +1,59 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout ServerObjectsVersionDlg
+{
+	view dialog(identifier: "IDD_SERVEROBJECTSVERS_DIALOG",
+				name: "$$$/Serverobjectsvers/Title/ChooseVersion=Choose Version of Server Objects",
+				grow: false,
+				margin: 0,
+				resizeChildren: false,
+				spacing: 5)
+	{
+		row(){
+				column(){
+							static_text(identifier: "IDC_STATIC",
+							name: "$$$/Serverobjectsvers/Label/SelectThe=Select the version of server objects to be used with this page:");
+							radiogroup(spacing:8){
+											radio_button(identifier: "IDC_SERVER_OBJ_UD4_RADIO",
+							name: "$$$/Serverobjectsvers/RadioButton/Ultradev4=UltraDev &4",tab_next_node:"IDC_SERVER_OBJ_UD5_RADIO");
+				radio_button(identifier: "IDC_SERVER_OBJ_UD5_RADIO",
+							name: "$$$/Serverobjectsvers/RadioButton/DreamweaverMx=&Dreamweaver MX",tab_next_node:"IDOK");
+										}
+						}
+						
+				column(){
+							button(identifier: "IDOK",
+					name: "$$$/Serverobjectsvers/Button/Ok=OK",
+					action: @do_ok,
+					default: true,tab_next_node:"IDCANCEL");
+			button(identifier: "IDCANCEL",tab_next_node:"IDHELP",
+					name: "$$$/Serverobjectsvers/Button/Cancel=Cancel",
+					action: @do_cancel,
+					default: false);
+			button(identifier: "IDHELP",tab_next_node:"IDC_SERVER_OBJ_UD4_RADIO",
+					name: "$$$/Serverobjectsvers/Button/Help=&Help",
+					action: @do_help,
+					default: false);	
+						}
+		
+		
+		
+		}
+	}
+}

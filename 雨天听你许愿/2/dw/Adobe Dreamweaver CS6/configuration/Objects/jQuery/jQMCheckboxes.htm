@@ -1,0 +1,72 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated. All rights reserved. -->
+<script type="text/javascript" src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/DocUtilsClass.js"></script>
+<script type="text/javascript" src="../../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="../../Commands/jQMConstants.js"></script>
+
+<script>
+
+function isDOMRequired() {
+	return true;
+}
+
+function insertObject() {
+	var dom = dw.getDocumentDOM();
+	var docInfo = new DocUtils(dom);
+	
+	//Any locked regions?
+	if (!docInfo.headIsEditable()) {
+        alert(dw.loadString("insertbar/oawidget/headReadOnlyError"));
+    } else {
+		var option = "checkbox";
+		
+		//Is the insertion point valid?
+		var errStr = checkSelection(option);
+		
+		if (errStr == "") {
+			if (dw.getShowDialogsOnInsert()) {
+				return dreamweaver.runCommand("jQMCheckboxes", option);
+			} else {
+				//Generate default markup
+				widgetId = dwscripts.getUniqueNameForTag("input", option);
+				
+				var defNum = 3;
+				var optionsArr = new Array(defNum);
+				var optId;
+				
+				//Counter to generate unique IDs for checkboxes.
+				var cnt = 0;
+				for (var i = 0; i < defNum; i ++) {
+					do {
+						optId = widgetId+'_'+(cnt++);
+					} while (dom.getElementById(optId))
+					optionsArr[i] = optId;
+				}
+				
+				var checkbox0 = optionsArr[0];
+				var checkbox1 = optionsArr[1];
+				var checkbox2 = optionsArr[2];
+				
+				var optLabel = dw.loadString("Commands/jQM/dummy/generic/option");
+				
+				widgetMarkup = '<div mmTranslatedValue="transId=%22'+widgetId+'%22" data-role="fieldcontain">' + 
+							 '<fieldset data-role="controlgroup"><legend>Options:</legend><input type="checkbox" name="' + widgetId + '" id="' + checkbox0 +
+							 '" class="custom" value="" /><label for="' + checkbox0 + '">' + optLabel + '</label><input type="checkbox" name="' + widgetId + '" id="' + checkbox1 +
+							 '" class="custom" value="" /><label for="' + checkbox1 + '">' + optLabel + '</label><input type="checkbox" name="' + widgetId + '" id="' + checkbox2 +
+							 '" class="custom" value="" /><label for="' + checkbox2 + '">' + optLabel + '</label></fieldset></div>';
+				insertMarkup();
+			}
+		} else {
+			alert(errStr);
+		}
+		return "";
+	}
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>

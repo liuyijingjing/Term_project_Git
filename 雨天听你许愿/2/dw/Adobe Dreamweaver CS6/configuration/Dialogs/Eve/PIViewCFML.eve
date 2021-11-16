@@ -1,0 +1,69 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewCFML
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_CFML",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(margin: 3)
+        {
+            row(indent: 60,
+                spacing: 95)
+            {
+                column(indent: 4)
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE",
+                                name: "$$$/PropInspectCfml/Label/Cftransaction=CFTRANSACTION");
+                }
+
+                column(spacing: 0)
+                {
+                    row(spacing: 5)
+                    {
+                        column(spacing: 4)
+                        {
+                            ownerdrawn_button(identifier: "IDC_BUTTON_ATTRIBUTES",
+                                              name: "$$$/PropInspectCfml/IconButton/Attributes=Attributes...");
+
+                            static_text(identifier: "IDC_CFML_STATIC_EXPRESSION",
+                                        indent: 30,
+                                        name: "$$$/PropInspectCfml/Label/Expression=Expression",
+                                        textAlignment: "right");
+                        }
+
+                        column(spacing: 3)
+                        {
+                            ownerdrawn_button(identifier: "IDC_BUTTON_CONTENTS",
+                                              name: "$$$/PropInspectCfml/IconButton/Contents=Contents...");
+
+                            edit_text(characters: 30,
+                                      identifier: "IDC_CFML_EDIT_EXPRESSION");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

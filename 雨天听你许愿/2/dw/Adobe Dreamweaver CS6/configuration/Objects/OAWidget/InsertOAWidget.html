@@ -1,0 +1,44 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2009 Adobe Systems Incorporated.  All rights reserved. -->
+<title><MMString:LoadString id="insertbar/oawidget/title" /></title>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+
+#msgText {
+	display: none;
+}
+
+#widgetPanel td {
+	padding-top: 4px;
+	white-space: nowrap;
+}
+</style>
+<script language="javascript" src="../../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script type="text/javascript" src="../../Shared/OAWidget/OAWidgetManager.js" ></script>
+<script type="text/javascript" src="InsertOAWidget.js" ></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/dwscripts.js"></script>
+</head>
+<body onLoad="initUI();">
+<form>
+<div id="widgetPanel">
+    <table border="0">
+      <tr>
+        <td><label for="widgetList"><MMString:LoadString id="insertbar/oawidget/widgetSelectLabel" /></label></td>
+        <td><select id="widgetList" class="namedObjectsList" onChange="updatePresetsControl();" disabled="disabled"><option selected="selected"><MMString:LoadString id="insertbar/oawidget/noWidgetsOptionLabel" /></option></select></td>
+      </tr>
+      <tr>
+        <td><label for="presetList"><MMString:LoadString id="insertbar/oawidget/presetSelectLabel" /></label>
+        <td><select id="presetList" class="namedObjectsList" disabled="disabled"><option selected="selected"><MMString:LoadString id="insertbar/oawidget/noPresetsOptionLabel" /></option></select></td>
+      </tr>
+    </table>
+</div>
+<p id="msgText"><MMString:LoadString id="insertbar/oawidget/noWidgetMsg" /></p>
+<p id="widgetBrowserLinkContainer"><a href="#" onMouseDown="launchWidgetBrowser();"><MMString:LoadString id="insertbar/oawidget/widgetBrowserLinkText" /></a></p>
+</form>
+<br>
+</body>
+</html>

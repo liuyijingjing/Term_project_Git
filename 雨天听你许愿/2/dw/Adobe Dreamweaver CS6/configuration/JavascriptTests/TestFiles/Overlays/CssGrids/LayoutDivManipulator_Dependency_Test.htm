@@ -1,0 +1,44 @@
+<script src="../../../JavascriptTestRunner.js"></script>
+<script src="../../../../Shared/CssGrids/StyleSheetManager.js"></script> 
+<script language="javascript">   
+ 
+var runner = new TestRunner();           
+var mocker = runner.mocker;  
+
+runner.stopHere(); // No tests in this file will be run as long as this line is here.
+
+runner.addTestCase(	 
+{
+	name: 	'self.refs.styleSheetManager',  							
+
+	test: 	function()  							
+		{			
+			var ssm = new CssGrids.StyleSheetManager();
+			
+			var expectedPublicFunctions = [
+					'calcMarginOfError',
+					'calcCssWidthFromColSpan',
+					'calcCssMarginLeftFromColShift',
+					'getDeviceFromWindowWidth',
+					'setColSpan',
+					'setColShift',
+					'toggleStartsNewRow',
+					'beQuiet',
+					'getGridPropsRec',
+					'getMaxNumColsAllDevices'
+				]
+
+			runner.assertFunctionsArePublic(1, ssm, expectedPublicFunctions);
+		}	 										
+});
+
+runner.addTestCase(	 
+{
+	name: 	'PNGs',
+
+	test: 	function()  							
+		{			
+			runner.assertTrue(1, DWfile.exists(dw.getConfigurationPath() + '/Overlays/CssGrids/images/unwrapDiv.png'));
+			runner.assertTrue(2, DWfile.exists(dw.getConfigurationPath() + '/Overlays/CssGrids/images/wrapDiv.png'));
+		}	 										
+});													

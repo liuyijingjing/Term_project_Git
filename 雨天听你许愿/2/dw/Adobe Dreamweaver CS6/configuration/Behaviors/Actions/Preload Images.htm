@@ -1,0 +1,61 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- SAFE-IN-TEMPLATES -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD><link href="../../fields.css" rel="stylesheet" type="text/css">
+<SCRIPT SRC="Preload Images.js"></SCRIPT>
+<SCRIPT SRC="MM_preloadImages.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/DOM.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/file.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_NoImgNames = dw.loadString('Behaviors/Actions/Preload_Images/MSG_NoImgNames');
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Preload_Images/title" /></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</HEAD>
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm">
+    <DIV ALIGN="center">
+      <TABLE BORDER=0>
+        <TR>
+          <TD></TD>
+          <TD VALIGN="bottom">
+            <INPUT TYPE="image" MMString:alt="Behaviors/Actions/Preload_Images/image/alt/Add" SRC="../../Shared/MM/Images/btnAdd.gif" onClick="document.imgList.append();focus(this)">
+            <INPUT TYPE="image" MMString:alt="Behaviors/Actions/Preload_Images/image/alt/Remove" SRC="../../Shared/MM/Images/btnDel.gif"
+                   onClick="with(document.imgList){ del(); if(len==0)append()};focus(this)">
+          </TD>
+        </TR><TR>
+          
+        <TD></TD>
+          <TD VALIGN="top" ROWSPAN=2>
+            <SELECT NAME="itemList" SIZE="5" class="namedObjectsList" onChange="document.imgList.refresh()">
+              
+            <OPTION><MMString:loadString id="Behaviors/Actions/Preload_Images/option//loading" />
+            </select>
+        </TR><TR>
+          <TD ALIGN="right" VALIGN="top" NOWRAP>
+            <MMString:loadString id="Behaviors/Actions/Preload_Images/text/Preload" /></TD>
+          <TD></TD>
+        </TR><TR>
+          
+        <TD ALIGN="right" NOWRAP>
+            <MMString:loadString id="Behaviors/Actions/Preload_Images/text/Image" /></TD>
+          <TD VALIGN="top" NOWRAP>
+            <INPUT NAME="itemEntry" TYPE="text" class="xlargeTField" onBlur="document.imgList.set(this.value)">
+            <INPUT TYPE="button" MMString:value="Behaviors/Actions/Preload_Images/button/value/Browse" onClick="browseFileAndSet();focus(this)"></TD>
+        </TR>
+      </TABLE>
+    </DIV>
+
+  </FORM>
+</BODY>
+</HTML>

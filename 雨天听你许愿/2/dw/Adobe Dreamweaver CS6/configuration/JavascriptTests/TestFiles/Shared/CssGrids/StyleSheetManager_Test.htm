@@ -1,0 +1,1494 @@
+<script src="../../../JavascriptTestRunner.js"></script>
+<script src="../../../../Shared/CssGrids/StyleSheetManager.js"></script>
+<script language="javascript">   
+
+var runner = new TestRunner();            
+var mocker = runner.mocker;    
+
+runner.stopHere(); // No tests in this file will be run as long as this line is here.
+
+
+runner.addTestCase( 
+{
+	name:	'Public functions check', 
+
+	test:	function()
+		{					
+			var self = new CssGrids.StyleSheetManager();
+			
+			runner.assertListedPublicFunctionsExist(1, self);						
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'Member variable initialization', 
+
+	test:	function()
+		{			
+		
+			var inDw = {loadString:function(key){return key}};
+			var inDom = {};
+			var inDwscripts = {};
+			var inDWfile = {};
+			var inStyleSheet = {};
+					
+			var self = new CssGrids.StyleSheetManager(inDw, inDom, inDwscripts, inDWfile, inStyleSheet);
+
+			runner.assertEqual(1, self.refs.dw, inDw);
+			runner.assertEqual(1.5, self.refs.dom, inDom);
+			runner.assertEqual(2, self.refs.dwscripts, inDwscripts);
+			runner.assertEqual(3, self.refs.DWfile, inDWfile);
+			runner.assertEqual(4, self.refs.styleSheet, inStyleSheet);			
+						
+			runner.assertArraysEqual(5, self.consts.devices, ['mobile','tablet','desktop']);			
+			
+			runner.assertEqual(7, self.data.allColsWidth.desktop, -1);			
+			runner.assertEqual(8, self.data.allColsWidth.tablet, -1);	
+			runner.assertEqual(8.5, self.data.allColsWidth.tablet, -1);	
+			
+			runner.assertEqual(8.6, self.data.colWidth, -1);				
+			runner.assertEqual(8.7, self.data.gutterWidth, -1);	
+			
+			runner.assertEqual(9, self.data.maxNumCols.mobile, -1);
+			runner.assertEqual(10, self.data.maxNumCols.tablet, -1);
+			runner.assertEqual(11, self.data.maxNumCols.desktop, -1);
+			
+			runner.assertStringsEqual(12, self.consts.msgs.couldNotFindStyleSheet, 'command/insertFluidGridLayoutDiv/CouldNotFindStyleSheet/errMsg');
+			runner.assertStringsEqual(13, self.consts.msgs.couldNotCssText, 'command/insertFluidGridLayoutDiv/CouldNotCssText/errMsg');
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'beQuiet',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'beQuiet');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.shouldBeQuiet');
+
+			var retVal = self.beQuiet();
+			
+			runner.assertEqual(1, self.shouldBeQuiet, true);
+			runner.assertEqual(2, retVal, self);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'findCorrectSubSheet',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'findCorrectSubSheet');
+			
+			var subSheets = [{}, {}, {}];
+
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.sheet.getSubSheets()', subSheets);
+			
+			//
+			
+			var device = 'mobile';			
+
+			var retVal = self.findCorrectSubSheet(device);
+			
+			runner.assertEqual(1, retVal, subSheets[0]);
+
+			//
+			
+			var device = 'tablet';			
+
+			var retVal = self.findCorrectSubSheet(device);
+			
+			runner.assertEqual(2, retVal, subSheets[1]);
+
+			//
+			
+			var device = 'desktop';			
+
+			var retVal = self.findCorrectSubSheet(device);
+			
+			runner.assertEqual(3, retVal, subSheets[2]);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getAttachedStyleSheetRec',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getAttachedStyleSheetRec');
+			
+			function Uri(isCss, url)
+			{
+				this.isOfFileType = function(){return isCss};				
+				this.url = url;
+			}
+			
+			var dom = {documentElement:{outerHTML:'yes'}};
+						
+			mocker.bindChainRootToObject('self', self);			
+
+			mocker.mock('self.isLessFrameworkStyleSheet()', function(cssText){return cssText == 'yes'});
+			
+			//
+			
+			var depFiles = 	[	new Uri(false, 'nonexistent.txt'),
+								new Uri(false, 'img.png'),
+								new Uri(true, 'file.css')
+							];
+										
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			
+			mocker.mock('self.refs.dom.getDependentFiles()', depFiles);
+			
+			var retVal = self.getAttachedStyleSheetRec();
+			
+			runner.assertPropsEqual('1', 'fileUrl,cssText', retVal, {fileUrl:depFiles[2], cssText:'yes'});
+			
+			//					
+			
+			var depFiles = 	[new Uri(false, true, 'img.png')];
+			
+			mocker.mock('self.refs.dom.getDependentFiles()', depFiles);
+										
+			var retVal = self.getAttachedStyleSheetRec();
+			
+			runner.assertEqual('2', retVal, null);
+			
+			//					
+			
+			var depFiles = 	[	new Uri(false, false, 'nonexistent.txt'),
+								new Uri(false, true, 'img.png'),
+								new Uri(true, true, 'file.css')
+							];
+							
+			mocker.mock('self.refs.dom.getDependentFiles()', depFiles);
+													
+			mocker.mock('self.refs.dw.getDocumentDOM()', function(url){return url ? null : dom});			
+			
+			var retVal = self.getAttachedStyleSheetRec();
+			
+			runner.assertEqual('3', retVal, null);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getDeviceFromWindowWidth',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getDeviceFromWindowWidth');
+			
+			runner.assertStringsEqual(1, self.getDeviceFromWindowWidth(480), 'mobile');
+			runner.assertStringsEqual(2, self.getDeviceFromWindowWidth(481), 'tablet');
+			runner.assertStringsEqual(3, self.getDeviceFromWindowWidth(768), 'tablet');
+			runner.assertStringsEqual(4, self.getDeviceFromWindowWidth(769), 'desktop');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getEmbeddedStyleSheetRec',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getEmbeddedStyleSheetRec');
+						
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.isLessFrameworkStyleSheet()', function(cssText){return cssText.indexOf('css') != -1});
+
+			//			
+			
+			var styleElems = [{innerHTML: 'html'},{innerHTML: 'css'}];
+			
+			mocker.mock('self.refs.dom.getElementsByTagName()', styleElems);
+			
+			var retVal = self.getEmbeddedStyleSheetRec();			
+			
+			runner.assertPropsEqual(1, 'styleElem,cssText', retVal, {styleElem: styleElems[1], cssText: 'css'});
+			
+			//
+			
+			var styleElems = [{innerHTML: 'html'},{innerHTML: 'txt'}];
+			
+			mocker.mock('self.refs.dom.getElementsByTagName()', styleElems);
+			
+			var retVal = self.getEmbeddedStyleSheetRec();
+			
+			runner.assertEqual(2, retVal, null);			
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getStyleSheetRec',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getStyleSheetRec');
+
+			mocker.bindChainRootToObject('self', self);
+
+			var styleElem = {};
+			var styleSheetRec = {styleElem: styleElem, cssText: 'css'};					
+						
+			mocker.mock('self.refs.styleSheetRec', styleSheetRec);
+			mocker.mock('self.getEmbeddedStyleSheetRec()', styleSheetRec);
+
+			var retVal = self.getStyleSheetRec();			
+			
+			runner.assertEqual(1, retVal, styleSheetRec);
+			runner.assertCallCount(2, self.getEmbeddedStyleSheetRec, 0);			
+			
+			//						
+						
+			mocker.mock('self.refs.styleSheetRec', null);
+
+			var retVal = self.getStyleSheetRec();
+			
+			runner.assertPropsEqual(3, 'styleElem,cssText', retVal, {styleElem: styleElem, cssText: 'css'});
+			
+			//
+			
+			var styleSheetRec = {fileUrl: 'url', cssText: 'css2'};			
+
+			mocker.mock('self.refs.styleSheetRec', null);			
+			mocker.mock('self.getEmbeddedStyleSheetRec()', null);
+			mocker.mock('self.getAttachedStyleSheetRec()', styleSheetRec);
+			
+			var retVal = self.getStyleSheetRec();
+			
+
+			runner.assertPropsEqual(4, 'fileUrl,cssText', retVal, {fileUrl: 'url', cssText: 'css2'});
+			
+			//
+			
+			mocker.mock('self.refs.styleSheetRec', null);			
+			mocker.mock('self.getEmbeddedStyleSheetRec()', null);
+			mocker.mock('self.getAttachedStyleSheetRec()', null);
+			
+			var retVal = self.getStyleSheetRec();
+			
+			runner.assertEqual(5, retVal, null);
+									
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'isLessFrameworkStyleSheet',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'isLessFrameworkStyleSheet');						
+			
+			runner.assertTrue(1, self.isLessFrameworkStyleSheet('dw-num-cols-desktop'));
+			runner.assertFalse(2, self.isLessFrameworkStyleSheet(''));
+			runner.assertFalse(3, self.isLessFrameworkStyleSheet(3));			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'loadRule',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'loadRule');
+			
+			var device = 'mobile';
+			var selector = '#MyLayoutDiv';
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.subSheet');			
+
+			//
+			
+			mocker.mock('self.loadSubSheet()', null);
+			
+			var retVal = self.loadRule(device, selector);
+
+			runner.assertFalse(1, retVal);
+			
+			//
+			
+			var rule = {};
+			
+			mocker.mock('self.loadSubSheet()');
+			mocker.mock('self.refs.sheet.getRule()', rule);
+
+			
+			var retVal = self.loadRule(device, selector);
+
+			runner.assertTrue(2, retVal);
+			
+			//
+			
+			var rule = {};
+			
+			mocker.mock('self.loadSubSheet()');
+			mocker.mock('self.refs.sheet.getRule()', null);
+			
+			var retVal = self.loadRule(device, selector);
+
+			runner.assertFalse(3, retVal);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'loadSubSheet',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'loadSubSheet');
+			
+			var device = 'mobile';
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.consts.msgs.couldNotFindStyleSheet');
+			mocker.mock('self.consts.msgs.couldNotParseCssText');
+			mocker.mock('self.reportError()');			
+			mocker.mock('self.data.device', '');
+			
+			//			
+			
+			mocker.mock('self.refs.styleSheetRec', null);
+			mocker.mock('self.getStyleSheetRec()', null);
+						
+			var retVal = self.loadSubSheet(device);
+		
+			runner.assertParamsPassedIn(1, self.reportError, [self.consts.msgs.couldNotFindStyleSheet]);
+			runner.assertFalse(2, retVal);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			var styleSheetRec = {};
+			var sheet = {errorStr:'error'};
+			
+			mocker.mock('self.getStyleSheetRec()', styleSheetRec);
+			mocker.mock('self.refs.styleSheet.loadCss()', sheet);
+						
+			var retVal = self.loadSubSheet(device);
+	
+			runner.assertParamsPassedIn(3, self.refs.styleSheet.loadCss, [self.refs.styleSheetRec.cssText]);
+			runner.assertParamsPassedIn(4, self.reportError, [self.consts.msgs.couldNotParseCssText]);
+			runner.assertFalse(5, retVal);			
+						
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('self.refs.styleSheetRec', {});
+			mocker.mock('self.findCorrectSubSheet()', null);
+			
+			var retVal = self.loadSubSheet(device);
+	
+			runner.assertParamsPassedIn(6, self.reportError, ["Could not find the proper sub sheet."]);
+			runner.assertFalse(7, retVal);			
+						
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			var correctSubSheet = {};
+
+			mocker.mock('self.refs.styleSheetRec', {});
+			mocker.mock('self.findCorrectSubSheet()', correctSubSheet);
+			
+			var retVal = self.loadSubSheet(device);
+	
+			runner.assertCallCount(8, self.reportError, 0);
+			runner.assertTrue(9, retVal);					
+			runner.assertEqual(10, self.refs.subSheet, correctSubSheet);
+			runner.assertEqual(11, self.data.device, device);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'reportError',
+	
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'reportError');
+			
+			var str = 'the error';			
+
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.alert()');
+
+			//
+			
+			mocker.mock('self.shouldBeQuiet', false);
+						
+			var retVal = self.reportError(str);
+			
+			runner.assertParamsPassedIn(1, self.alert, [str]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.shouldBeQuiet', true);
+						
+			var retVal = self.reportError(str);
+			
+			runner.assertCallCount(2, self.alert, 0);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'reset',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'reset');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.styleSheetRec', {});
+			mocker.mock('self.refs.sheet', {});
+			mocker.mock('self.refs.subSheet', {});
+			
+			var retVal = self.reset();
+						
+			runner.assertEqual(1, self.refs.styleSheetRec, null);
+			runner.assertEqual(2, self.refs.sheet, null);
+			runner.assertEqual(3, self.refs.subSheet, null);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setProperties',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'setProperties');
+
+			var rule = {};			
+			var declarations = [{property: 'prop1', value: 'val1'},{property: 'prop2', value: 'val2'}];
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.sheet.setProperty()');
+
+			var retVal = self.setProperties(rule, declarations);
+			
+			runner.assertTrue(1, retVal);
+			runner.assertParamsPassedIn(2, self.refs.sheet.setProperty, [rule, 'prop1', 'val1'], [rule, 'prop2', 'val2']);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setProperty',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'setProperty');
+			
+			var rule = {};
+			var inProperty = {};
+			var inValue = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.setProperties()');
+
+			var retVal = self.setProperty(rule, inProperty, inValue);			
+			
+			var mockFunctionRec = runner.mocker.getMockFunctionRec(self.setProperties);
+			
+			//runner.dump(0, mockFunctionRec);
+			runner.assertEqual(1, mockFunctionRec.params[0][0], rule);
+			runner.assertPropsEqual(3, 'property,value', mockFunctionRec.params[0][1][0], {property:inProperty, value:inValue});
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'updateCss',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'updateCss');
+						
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.styleSheetRec', null);
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()');
+			mocker.mock('self.refs.styleSheetRec.type');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()');
+			mocker.mock('self.refs.dw.openDocument()');
+			mocker.mock('self.refs.dw.setActiveWindow()');
+
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(1, dom.documentElement.outerHTML, 'old')
+			
+			//
+			
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet', null);
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()');
+			mocker.mock('self.refs.styleSheetRec.type');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()');
+			mocker.mock('self.refs.dw.openDocument()');
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(2, dom.documentElement.outerHTML, 'old')
+			
+			//
+
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet', null);
+			mocker.mock('self.refs.sheet.toString()');
+			mocker.mock('self.refs.styleSheetRec.type');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()');
+			mocker.mock('self.refs.dw.openDocument()');
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(3, dom.documentElement.outerHTML, 'old')
+			
+			//
+		
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css');
+			mocker.mock('self.refs.styleSheetRec.type', 'embedded');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()');
+			mocker.mock('self.refs.dw.openDocument()');
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(4, self.refs.styleSheetRec.styleElem.innerHTML, 'css');
+			
+			//
+			
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css2');
+			mocker.mock('self.refs.styleSheetRec.type', 'attached');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()', 'FALSE');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()', false);
+			var relatedDom = {documentElement:{outerHTML:''}};
+			mocker.mock('self.refs.dw.openDocument()', relatedDom);			
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(5, relatedDom.documentElement.outerHTML, 'css2');
+			
+			//
+
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css2');
+			mocker.mock('self.refs.styleSheetRec.type', 'attached');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()', 'TRUE');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()', false);
+			var relatedDom = {documentElement:{outerHTML:''}};
+			mocker.mock('self.refs.dw.openDocument()', relatedDom);	
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(6, relatedDom.documentElement.outerHTML, '');
+			runner.assertCallCount(6.5, self.refs.dw.setActiveWindow, 1);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+		
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css2');
+			mocker.mock('self.refs.styleSheetRec.type', 'attached');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()', 'FALSE');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', dom);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()', true);
+			var relatedDom = {documentElement:{outerHTML:''}};
+			mocker.mock('self.refs.dw.openDocument()', relatedDom);	
+			mocker.mock('self.refs.dw.setActiveWindow()');
+						
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(7, relatedDom.documentElement.outerHTML, '');
+			runner.assertCallCount(8, self.refs.dw.openDocument, 0);
+			runner.assertCallCount(8.5, self.refs.dw.setActiveWindow, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css2');
+			mocker.mock('self.refs.styleSheetRec.type', 'attached');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()', 'FALSE');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', null);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()', true);
+			var relatedDom = {documentElement:{outerHTML:''}};
+			mocker.mock('self.refs.dw.openDocument()', relatedDom);	
+			mocker.mock('self.refs.dw.setActiveWindow()');
+			
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(9, relatedDom.documentElement.outerHTML, '');
+			runner.assertCallCount(10, self.refs.dwscripts.fileIsCurrentlyOpen, 0);
+			runner.assertCallCount(10.5, self.refs.dw.setActiveWindow, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('self.refs.styleSheetRec');
+			mocker.mock('self.refs.sheet');
+			mocker.mock('self.refs.subSheet');
+			mocker.mock('self.refs.sheet.toString()', 'css2');
+			mocker.mock('self.refs.styleSheetRec.type', 'random');
+			mocker.mock('self.refs.styleSheetRec.styleElem.innerHTML');
+			mocker.mock('self.refs.styleSheetRec.fileUrl');
+			mocker.mock('self.refs.dw.getPreferenceString()', 'FALSE');
+			var dom = {documentElement:{outerHTML:'old'}};
+			mocker.mock('self.refs.dw.getDocumentDOM()', null);
+			mocker.mock('self.refs.dwscripts.fileIsCurrentlyOpen()', true);
+			var relatedDom = {documentElement:{outerHTML:''}};
+			mocker.mock('self.refs.dw.openDocument()', relatedDom);	
+			mocker.mock('self.refs.dw.setActiveWindow()');
+						
+			var retVal = self.updateCss();
+			
+			runner.assertStringsEqual(11, relatedDom.documentElement.outerHTML, '');
+			runner.assertCallCount(12, self.refs.dwscripts.fileIsCurrentlyOpen, 0);
+			runner.assertCallCount(13, self.refs.dw.getPreferenceString, 0);
+			runner.assertCallCount(14, self.refs.dw.setActiveWindow, 0);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'calcCssMarginLeftFromColShift',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'calcCssMarginLeftFromColShift');
+					
+			var device = 'desktop';
+			var colShift = 5;
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.data.allColsWidth', {desktop: 896});
+			mocker.mock('self.data.colWidth', 68);
+			mocker.mock('self.data.gutterWidth', 24);
+			mocker.mock('self.percentFormat()', 'percent format result');
+			
+			//
+
+			var startsNewRow = false;
+			
+			var retVal = self.calcCssMarginLeftFromColShift(device, colShift, startsNewRow);
+			
+			runner.assertStringsEqual(1, retVal, 'percent format result%');
+			runner.assertParamsPassedIn(2, self.percentFormat, [.5401785714285714]);
+
+			//
+			
+			var colShift = 0;
+			
+			var startsNewRow = true;
+			mocker.mock('self.percentFormat()', 0);
+			
+			var retVal = self.calcCssMarginLeftFromColShift(device, colShift, startsNewRow);
+
+			runner.assertStringsEqual(3, retVal, '0');
+						
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'calcCssWidthFromColSpan',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'calcCssWidthFromColSpan');
+
+			var device = 'tablet';			
+
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.data.allColsWidth', {tablet: 500});
+			mocker.mock('self.data.colWidth', 68);
+			mocker.mock('self.data.gutterWidth', 24);
+			mocker.mock('self.percentFormat()', 'percent format result');
+		
+			//
+			
+			var retVal = self.calcCssWidthFromColSpan(device, 1);
+
+			runner.assertStringsEqual(1, retVal, 'percent format result%');
+			runner.assertParamsPassedIn(1.5, self.percentFormat, [.136]);
+
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			var retVal = self.calcCssWidthFromColSpan(device, 3);
+
+			runner.assertStringsEqual(2, retVal, 'percent format result%');
+			runner.assertParamsPassedIn(2.5, self.percentFormat, [.504]);			
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			var retVal = self.calcCssWidthFromColSpan(device, 5);			
+
+			runner.assertStringsEqual(3, retVal, 'percent format result%');
+			runner.assertParamsPassedIn(3.5, self.percentFormat, [.872]);			
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getCssToInsert',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getCssToInsert');
+					
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.calcCssMarginLeftFromColShift()', '12%');
+			mocker.mock('self.calcCssWidthFromColSpan()', '22%');
+			
+			//
+			
+			runner.assertStringsEqual(1, self.getCssToInsert('mobile', '#MyLayoutDiv', true), '#MyLayoutDiv { clear:both;float:left;margin-left:0;width:22%; }');
+			runner.assertStringsEqual(2, self.getCssToInsert('mobile', '#MyLayoutDiv', false), '#MyLayoutDiv { clear:none;float:left;margin-left:12%;width:22%; }');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'insertRule',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'insertRule');
+			
+			var selector = '#MyLayoutDiv';
+			var startsNewRow = true;
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getCssToInsert()', 'css text');			
+			mocker.mock('self.loadSubSheet()', function(device){
+					// Mock failure if we don't recognize the device passed in.
+					return ['mobile', 'tablet', 'desktop'].indexOf(device) != -1;
+				});
+			mocker.mock('self.updateCss()');
+			mocker.mock('self.refs.sheet.appendRule()');
+			mocker.mock('self.refs.sheet.getTextAfterApplyingEdits()', true);
+			mocker.mock('self.refs.subSheet');
+			
+			//
+			
+	self.insertRule = function(selector, startsNewRow) {
+		for (var i = 0; i < self.consts.devices.length; i++) {
+			var device = self.consts.devices[i];			
+			if (!self.loadSubSheet(device)) {
+				return;
+			}			
+			var ruleText = self.getCssToInsert(device, selector, startsNewRow);
+			self.refs.sheet.appendRule(self.refs.subSheet, ruleText, 'saveEditRecOnly');	
+		}
+		var stringRefObj = {theString: self.refs.sheet.getTextAfterApplyingEdits()};
+		self.updateCss(stringRefObj);
+	}
+			
+						
+			//
+			
+			mocker.mock('self.consts.devices', ['mobile', 'tablet', 'desktop']);
+			
+			var retVal = self.insertRule(selector, startsNewRow);
+			
+			runner.assertParamsPassedIn	(	1, 
+											self.getCssToInsert, 
+											['mobile', selector, startsNewRow],
+											['tablet', selector, startsNewRow],
+											['desktop', selector, startsNewRow]
+										);
+										
+			runner.assertParamsPassedIn	(	2, 
+											self.refs.sheet.appendRule,	
+											[self.refs.subSheet, 'css text', 'saveEditRecOnly'],
+											[self.refs.subSheet, 'css text', 'saveEditRecOnly'],
+											[self.refs.subSheet, 'css text', 'saveEditRecOnly']
+										);
+										
+			runner.assertCallCount(3, self.updateCss, 1);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.consts.devices', ['mobile', 'tablet', 'desktoppppp']);
+			
+			var retVal = self.insertRule(selector, startsNewRow);
+			
+			runner.assertCallCount(4, self.updateCss, 0);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'calcMarginOfError',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'calcMarginOfError');
+			
+			var device = 'mobile';
+			
+			mocker.bindChainRootToObject('self', self);
+
+			//
+			
+			mocker.mock('self.data.maxNumCols', {mobile:1});
+			
+			runner.assertEqual(1, self.calcMarginOfError(device), 2);
+			
+			//
+			
+			mocker.mock('self.data.maxNumCols', {mobile:2});
+			
+			runner.assertEqual(2, self.calcMarginOfError(device), 4);
+			
+			//
+			
+			mocker.mock('self.data.maxNumCols', {mobile:3});
+			
+			runner.assertEqual(3, self.calcMarginOfError(device), 6);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setColShift',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'setColShift');
+			
+			var device = 'desktop';
+			var selector = '#MyLayoutDiv';
+			var colShift = 2;
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.calcCssMarginLeftFromColShift()');
+			mocker.mock('self.reset()');
+			mocker.mock('self.startsNewRow()');
+			mocker.mock('self.updateUserCssProperty()');
+			mocker.mock('self.refs.rule');
+			
+			//
+			
+			mocker.mock('self.loadRule()', false);
+			
+			var retVal = self.setColShift(device, selector, colShift);
+
+			runner.assertCallCount(.5, self.reset, 1)
+			runner.assertCallCount(.6, self.startsNewRow, 0);
+						
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.loadRule()', true);			
+
+			var retVal = self.setColShift(device, selector, colShift);
+			
+			runner.assertCallCount(1, self.reset, 1);
+			runner.assertParamsPassedIn	(	2, 
+											self.calcCssMarginLeftFromColShift,	
+											[	device, 
+												colShift, 
+												self.startsNewRow()
+											]
+										);			
+			runner.assertParamsPassedIn	(	3, 
+											self.updateUserCssProperty,
+											[	self.refs.rule,
+												'margin-left',
+												self.calcCssMarginLeftFromColShift()
+											]
+										);			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setColSpan',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'setColSpan');
+			
+			var device = 'string1';
+			var selector = 'string2';
+			var colSpan = 2;
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.calcCssWidthFromColSpan()');
+			mocker.mock('self.reset()');
+			mocker.mock('self.updateUserCssProperty()');
+			mocker.mock('self.refs.rule');
+			
+			//
+
+			mocker.mock('self.loadRule()', true);
+			
+			var retVal = self.setColSpan(device, selector, colSpan);
+			
+			runner.assertCallCount(1, self.reset, 1);
+			runner.assertParamsPassedIn(2, self.calcCssWidthFromColSpan, [device, colSpan]);
+			runner.assertParamsPassedIn(3, self.updateUserCssProperty, [self.refs.rule, 'width', self.calcCssWidthFromColSpan()]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('self.loadRule()', false);
+			
+			var retVal = self.setColSpan(device, selector, colSpan);
+			
+			runner.assertCallCount(4, self.updateUserCssProperty, 0);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'updateUserCssProperty',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'updateUserCssProperty');
+			
+			var device = {};
+			var selector = {};
+			var inProperty = {};
+			var inValue = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.updateUserCssProperties()');
+			
+			self.updateUserCssProperty = function (device, selector, inProperty, inValue) 
+			{
+			    self.updateUserCssProperties(device, selector, [{property:inProperty, value:inValue}]);
+			}
+			
+			var retVal = self.updateUserCssProperty(device, selector, inProperty, inValue);
+			
+			runner.assertCallCount(1, self.updateUserCssProperties, 1);	
+			
+			var rec = mocker.getMockFunctionRec(self.updateUserCssProperties);		
+
+			runner.assertEqual(2, rec.params[0][2][0].property, inProperty);
+			runner.assertEqual(3, rec.params[0][2][0].value, inValue);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'updateUserCssProperties',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'updateUserCssProperties');
+			
+			var rule = {};
+			var declarations = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.setProperties()');
+			mocker.mock('self.updateCss()');
+
+			var retVal = self.updateUserCssProperties(rule, declarations);
+			
+			runner.assertParamsPassedIn(1, self.setProperties, [rule, declarations]);
+			runner.assertCallCount(2, self.updateCss, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'alert',
+
+	test:	function()
+		{
+			runner.assertTrue('This is just so the method does not show up as untested.', true);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getColShift',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getColShift');
+			
+			var rule = {};
+			var startsNewRow = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.data.device', 'mobile');
+			mocker.mock('self.data.maxNumCols', {mobile:3});
+			mocker.mock('self.calcCssMarginLeftFromColShift()', function(device, i){
+					return ['10%', '20%', '30%'][i];
+				});
+			
+			//			
+			
+			mocker.mock('self.refs.sheet.getProperty()', '20%');
+			
+			runner.assertEqual(1, self.getColShift(rule, startsNewRow), 1);
+			runner.assertParamsPassedIn(1.5, self.calcCssMarginLeftFromColShift, [self.data.device, 0, startsNewRow], [self.data.device, 1, startsNewRow]);
+			
+			//			
+			
+			mocker.mock('self.refs.sheet.getProperty()', '30%');
+			
+			runner.assertEqual(2, self.getColShift(rule, startsNewRow), 2);	
+					
+			//			
+			
+			mocker.mock('self.refs.sheet.getProperty()', '50%');
+			
+			runner.assertEqual(3, self.getColShift(rule, startsNewRow), -1);			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'startsNewRow',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'startsNewRow');
+			
+			var rule = {};
+			
+			mocker.bindChainRootToObject('self', self);
+
+			//
+			
+			mocker.mock('self.refs.sheet.getProperty()', 'both');
+
+			runner.assertTrue(1, self.startsNewRow(rule));
+			runner.assertParamsPassedIn(1.5, self.refs.sheet.getProperty, [rule, 'clear']);
+			
+			//
+			
+			mocker.mock('self.refs.sheet.getProperty()', 'none');
+
+			runner.assertFalse(2, self.startsNewRow(rule));
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'toggleStartsNewRow',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'toggleStartsNewRow');
+			
+			var device = {};
+			var selector = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.rule');
+			mocker.mock('self.reset()');
+			mocker.mock('self.startsNewRow()', true);
+						
+			//
+			
+			mocker.mock('self.loadRule()', false);
+			mocker.mock('self.startsNewRow()');
+
+			
+			var retVal = self.toggleStartsNewRow(device, selector);
+			
+			runner.assertCallCount(1, self.reset, 1);
+			runner.assertParamsPassedIn(2, self.loadRule, [device, selector]);
+			runner.assertCallCount(3, self.startsNewRow, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.loadRule()', true);
+			mocker.mock('self.getColShift()', -1);
+			mocker.mock('self.calcCssMarginLeftFromColShift()');
+			
+			var retVal = self.toggleStartsNewRow(device, selector);
+			
+			runner.assertParamsPassedIn(4, self.startsNewRow, [self.refs.rule]);
+			runner.assertParamsPassedIn(5, self.getColShift, [self.refs.rule, self.startsNewRow()]);
+			runner.assertCallCount(6, self.calcCssMarginLeftFromColShift, 0);			
+			
+			//
+
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.loadRule()', true);
+			mocker.mock('self.getColShift()', 1);
+			mocker.mock('self.calcCssMarginLeftFromColShift()');
+			mocker.mock('self.updateUserCssProperties()');
+			
+			var retVal = self.toggleStartsNewRow(device, selector);
+			
+			runner.assertParamsPassedIn(7, self.calcCssMarginLeftFromColShift, [device, 1, !self.startsNewRow()]);
+			var rec = mocker.getMockFunctionRec(self.updateUserCssProperties);			
+			runner.assertEqual(8, rec.params[0][1][0].property, 'margin-left');
+			runner.assertEqual(9, rec.params[0][1][0].value, self.calcCssMarginLeftFromColShift());
+			runner.assertEqual(10, rec.params[0][1][1].property, 'clear');
+			runner.assertEqual(11, rec.params[0][1][1].value, 'none');
+									
+			//
+
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.startsNewRow()', false);
+			
+			var retVal = self.toggleStartsNewRow(device, selector);
+
+			var rec = mocker.getMockFunctionRec(self.updateUserCssProperties);			
+			runner.assertEqual(12, rec.params[0][1][1].value, 'both');									
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getGridProp',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getGridProp');			
+			
+			mocker.bindChainRootToObject('self', self);
+
+			var sheetTxt = '';
+			var propNameAndColon = '';
+			
+			var retVal = self.getGridProp(sheetTxt, propNameAndColon);
+			
+			runner.assertEqual(1, retVal, -1);
+			
+			//
+			
+			var sheetTxt = 'prop: hello';
+			var propNameAndColon = 'prop:';
+			
+			var retVal = self.getGridProp(sheetTxt, propNameAndColon);
+			
+			runner.assertEqual(2, retVal, -1);
+			
+			//
+			
+			var sheetTxt = 'prop: 12 //hello';
+			var propNameAndColon = 'prop:';
+			
+			var retVal = self.getGridProp(sheetTxt, propNameAndColon);
+			
+			runner.assertEqual(3, retVal, 12);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getGridPropsRec',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getGridPropsRec');
+			
+			var device = 'mobile';
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.data.allColsWidth', {mobile: 100});
+			mocker.mock('self.data.maxNumCols', {mobile: 5});
+			mocker.mock('self.data.colWidth', 68);
+			mocker.mock('self.data.gutterWidth', 24);
+			
+			var retVal = self.getGridPropsRec(device);
+			
+			runner.assertPropsEqual(
+				1, 
+				'allColsWidth,numCols,colWidth,gutterWidth', 
+				retVal, 
+				{	allColsWidth:self.data.allColsWidth[device], 
+					numCols:self.data.maxNumCols[device], 
+					colWidth:self.data.colWidth, 
+					gutterWidth:self.data.gutterWidth
+				}
+			);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getMaxNumColsAllDevices',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'getMaxNumColsAllDevices');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.data.maxNumCols.tablet', 8);
+			mocker.mock('self.data.maxNumCols.mobile', 5);
+			mocker.mock('self.data.maxNumCols.desktop', 12);
+			
+			var retVal = self.getMaxNumColsAllDevices();
+			
+			runner.assertEqual(1, retVal, 12);
+			
+			//
+
+			mocker.mock('self.data.maxNumCols.tablet', 18);
+			mocker.mock('self.data.maxNumCols.mobile', 5);
+			mocker.mock('self.data.maxNumCols.desktop', 12);
+			
+			var retVal = self.getMaxNumColsAllDevices();
+			
+			runner.assertEqual(2, retVal, 18);
+			
+			//
+
+			mocker.mock('self.data.maxNumCols.tablet', 8);
+			mocker.mock('self.data.maxNumCols.mobile', 55);
+			mocker.mock('self.data.maxNumCols.desktop', 12);
+			
+			var retVal = self.getMaxNumColsAllDevices();
+			
+			runner.assertEqual(3, retVal, 55);
+			
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'isFluidGridDoc',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'isFluidGridDoc');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getStyleSheetRec()', {});
+			
+			var retVal = self.isFluidGridDoc();
+			
+			runner.assertTrue(1, retVal);
+			
+			//
+			
+			mocker.mock('self.getStyleSheetRec()', null);
+			
+			var retVal = self.isFluidGridDoc();
+			
+			runner.assertFalse(2, retVal);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'loadGridProps',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'loadGridProps');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			//
+			
+			mocker.mock('self.isFluidGridDoc()', false);
+			mocker.mock('self.reportError()');
+			mocker.mock('self.getStyleSheetRec()');
+			mocker.mock('self.consts.msgs.couldNotFindStyleSheet');			
+						
+			var retVal = self.loadGridProps();
+			
+			runner.assertParamsPassedIn(1, self.reportError, [self.consts.msgs.couldNotFindStyleSheet]);
+			runner.assertCallCount(2, self.getStyleSheetRec, 0);
+			runner.assertFalse(3, retVal);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.isFluidGridDoc()', true);
+			mocker.mock('self.getGridProp()', function (sheetTxt, propNameAndColon){
+				var map = {"dw-num-cols-desktop:": 18, "dw-num-cols-tablet:": 9, "dw-num-cols-mobile:": 6, "dw-gutter-percentage:": 33};
+				return map[propNameAndColon];
+			});						
+			mocker.mock('self.getStyleSheetRec().cssText');
+			mocker.mock('self.data.maxNumCols');
+			mocker.mock('self.data.colWidth');
+			
+			var retVal = self.loadGridProps();
+			
+			runner.assertTrue(4, retVal);
+			runner.assertPropsEqual(5, 'desktop,tablet,mobile', self.data.maxNumCols, {desktop: 18, tablet: 9, mobile: 6});
+			runner.assertEqual(6, self.data.gutterWidth, 33);
+			runner.assertPropsEqual(7, 'desktop,tablet,mobile', self.data.allColsWidth, {desktop: 2361, tablet: 1164, mobile: 765});
+			
+			//
+			
+			mocker.mock('self.getGridProp()', -1);						
+
+			var retVal = self.loadGridProps();
+			
+			runner.assertFalse(8, retVal);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'percentFormat',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.StyleSheetManager(), 'percentFormat');
+			
+			runner.assertEqual(1, self.percentFormat(.1234567),	12.34567);
+			runner.assertEqual(2, self.percentFormat(.7), 		70);
+			runner.assertEqual(3, self.percentFormat(.00657), 	.657);
+			runner.assertEqual(4, self.percentFormat(0), 		0);
+		}
+});
+
+
+
+runner.addTestCase(
+{	
+	name: 	'Dump Untested Functions',
+	
+	skip: 	1,
+
+	test: 	function()  
+			{				
+				runner.dumpUntestedFunctions(new CssGrids.StyleSheetManager());				
+			} 
+});
+
+if ( 0 )
+{
+	var method = 'percentFormat';
+	
+	prompt	(	'Your new test case:', 
+				runner.testCaseCreator.createTestCase	(	new CssGrids.StyleSheetManager(), 
+															'self', 
+															method, 
+															'CssGrids.StyleSheetManager'
+														)
+			);
+}
+

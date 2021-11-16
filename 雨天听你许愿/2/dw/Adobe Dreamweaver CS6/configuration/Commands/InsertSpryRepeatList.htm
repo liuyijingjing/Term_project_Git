@@ -1,0 +1,59 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<title><MMString:loadString id="Commands/InsertSpryRepeatList/title" /></title>
+<script language="javascript" src="../Shared/Common/Scripts/RadioGroupClass.js"></script>
+<script language="javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script language="javascript" src="../Shared/Spry/Data/DesignTime/SpryBaseDataSetDesignTime.js"></script>
+<script language="javascript" src="../Shared/Spry/Data/DesignTime/SpryHTMLDataSetDesignTime.js"></script>
+<script language="javascript" src="../Shared/Spry/Data/DesignTime/SpryXMLDataSetDesignTime.js"></script>
+<script language="javascript" src="../Shared/Spry/DesignTime/DataSetsManager.js"></script>
+<script language="javascript" src="../Shared/Common/Scripts/spry_ajax_utils.js"></script>
+<script language="javascript" src="../Shared/Common/Scripts/spry_dsListControl.js"></script>
+<script src="InsertSpryRepeatList.js"></script>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<script language="javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<!-- End removal area. -->
+<link href="../fields.css" rel="stylesheet" type="text/css">
+<link href="../Styles/InsertSpryRepeatList.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="initializeUI()">
+<form name="theForm">
+  <table border="0">
+	<tr valign="baseline">
+		<td align="right" nowrap><MMString:loadString id="Commands/InsertSpryRepeatList/text/Container" /> </td>
+		<td colspan="2" nowrap> 
+			<select name="spryListContainer" class="cls_InsertSpryRepeatList_select_spryListContainer" onChange="showOrHideValueCol();"></select>
+		</td>
+	</tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap><MMString:loadString id="Commands/InsertSpryRepeatList/text/Spry" /> </td>
+      <td colspan="2" nowrap> 
+        <select name="spryDS" class="cls_InsertSpryRepeatList_select_spryDS" onChange="buildColList();"></select>
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap>
+		<span id="displayColLabel"><MMString:loadString id="Commands/InsertSpryRepeatList/text/Display" /> </span>		
+		</td>
+      <td colspan="2" nowrap> 
+        <select name="spryDSColDis" class="cls_InsertSpryRepeatList_select_spryDSColDis"></select>
+      </td>
+    </tr>
+    <tr valign="baseline"> 
+      <td align="right" nowrap>
+		<span id="valColLabel" style="display:none"><MMString:loadString id="Commands/InsertSpryRepeatList/text/Value" /> </span>
+	  </td>
+      <td colspan="2" nowrap>  
+		<span id="valColControl" style="display:none">
+			<select name="spryDSColVal" class="cls_InsertSpryRepeatList_select_spryDSColVal"></select>
+		</span>
+		<span id="placeholder">&nbsp;</span>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

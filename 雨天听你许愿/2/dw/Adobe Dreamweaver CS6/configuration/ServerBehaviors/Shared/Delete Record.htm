@@ -1,0 +1,86 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+
+<SCRIPT>
+// Copyright 2001-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+var EDIT_TYPE       = "MM_delete";
+var HELP_DOC         = MM.HELP_ssDeleteRecord;
+var PROP_TYPE       = "deleteRecord";
+</SCRIPT>
+
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ServerBehaviorClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/SQLTypes.js"></SCRIPT>
+<SCRIPT SRC="../Shared/EditOperations.js"></SCRIPT>
+<SCRIPT SRC="../Shared/FieldTypes.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/ssDocManager.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/ssCmnElements.js"></SCRIPT>
+
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+<FORM name="theForm">
+  <TABLE border="0">
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/Connection" /></td>
+      <td nowrap>
+        <select name="connectionList" class="connNameList" onChange="updateUI('connectionList')" wrap="virtual">
+          <OPTION selected></OPTION>
+        </select>
+        <input type="button" MMString:value="ServerBehaviors/Shared/Delete_Record/button/value/Define" onClick="updateUI('defineConnection')">
+      </td>
+    </tr>
+    <tr><td height="1"></td></tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/Delete" /></td>
+      <td>
+        <select name="tableList" class="connRSTableList" onChange="updateUI('tableList')" wrap="virtual">
+          <OPTION selected></OPTION>
+        </select>
+      </td>
+    </tr>
+    <tr><td height="1"></td></tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/Select" /></td>
+      <td nowrap>
+        <select name="rsList" class="rsNameList" onChange="updateUI('rsList')" wrap="virtual">
+          <OPTION selected></OPTION>
+        </select>
+      </td>
+    </tr>
+    <tr><td height="1"></td></tr>
+    <tr valign="baseline">
+      <td align="right"><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/Unique" /></td>
+      <td nowrap>
+        <select name="tableColList" class="columnNameList" onChange="updateUI('tableColList')" wrap="virtual">
+          <OPTION selected></OPTION>
+        </select>
+        <input type="checkbox" name="colIsNum" checked>
+        <MMString:loadString id="ServerBehaviors/Shared/Delete_Record/checkbox/colIsNum/Numeric" /> </td>
+    </tr>
+    <tr><td height="1"></td></tr>
+    <TR>
+      <TD align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/Delete_1" /></TD>
+      <TD valign="baseline" nowrap>
+        <SELECT name="formList" class="tagList">
+          <OPTION selected></OPTION>
+        </select>
+      </TD>
+    </TR>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="ServerBehaviors/Shared/Delete_Record/text/After" /></td>
+      <td valign="baseline" nowrap>
+        <input name="redirectURL" type="text" class="largeTField">
+        <input type="button" MMString:value="ServerBehaviors/Shared/Delete_Record/button/value/Browse" onClick="updateUI('browseForFile');focus(this)">
+      </td>
+    </tr>
+  </TABLE>
+</FORM>
+</BODY>
+</HTML>

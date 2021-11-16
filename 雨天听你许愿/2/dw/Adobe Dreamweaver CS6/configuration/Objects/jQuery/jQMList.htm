@@ -1,0 +1,51 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated. All rights reserved. -->
+<script type="text/javascript" SRC="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/DocUtilsClass.js"></script>
+<script type="text/javascript" SRC="../../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="../../Commands/jQMConstants.js"></script>
+
+<script type="text/javascript">
+
+function insertObject() {
+	var dom = dw.getDocumentDOM();
+	var docInfo = new DocUtils(dom);
+	
+	//Any locked regions?
+	if (!docInfo.headIsEditable()) {
+        alert(dw.loadString("insertbar/oawidget/headReadOnlyError"));
+    } else {
+		var widgetStr = "list";
+		//Is the insertion point valid?
+		var errStr = checkSelection(widgetStr);
+		
+		if (errStr == "") {
+			if (dw.getShowDialogsOnInsert()) {
+				return dreamweaver.runCommand("jQMListView.htm");
+			} else {
+				//Generate default markup
+				
+				var pageLabel = dw.loadString("Commands/jQM/dummy/page/page");
+				widgetId = "jQMList";
+				widgetId = dwscripts.getUniqueId(widgetId);
+				widgetMarkup = '<ul mmTranslatedValue="transId=%22'+widgetId+'%22" data-role="listview"><li><a href="#">' + pageLabel + '</a></li><li><a href="#">' + pageLabel + '</a></li><li><a href="#">' + pageLabel + '</a></li></ul>';
+				insertMarkup();
+			}
+		} else {
+			alert(errStr);
+		}
+		return "";
+	}
+}
+
+</script>
+</head>
+
+<body>
+	<div>
+    	
+    </div>
+</body>
+
+</html>

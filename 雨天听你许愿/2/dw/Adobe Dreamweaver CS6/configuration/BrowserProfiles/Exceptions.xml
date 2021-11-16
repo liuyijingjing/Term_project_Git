@@ -1,0 +1,14 @@
+<exceptions>
+<!--
+Put tags in between <exceptions> and </exceptions> to prevent specific
+types of browser target check errors from being underlined in code view.
+Example for ignoring entire CSS property:
+<cssProperty property="font-family"/>
+Example for ignoring unknown values for a CSS property:
+<cssValue property="font-family"/>
+Example for ignoring a Browser Compatibility Issue (names and ids
+of issues can be found in the .html and .js files inside
+Configuration/BrowserProfiles/Issues/):
+<issue id="THREE_PIXEL_JOG" name="Three Pixel Text Jog"/>
+ -->
+</exceptions>

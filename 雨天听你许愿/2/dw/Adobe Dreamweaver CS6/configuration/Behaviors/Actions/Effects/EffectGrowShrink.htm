@@ -1,0 +1,99 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<link href="../../../fields.css" rel="stylesheet" type="text/css">
+<link href="../../../Styles/EffectGrowShrink.css" rel="stylesheet" type="text/css" />
+<SCRIPT LANGUAGE="javascript" SRC="EffectGrowShrink.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/Common/Scripts/effectsUtils.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/Common/Scripts/AssetInfoClass.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/MM/Scripts/setText.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_SelectIDOfTarget = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_SelectIDOfTarget');
+var MSG_NoValidTargetsAvailable = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_NoValidTargetsAvailable');
+var MSG_ThisElement = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_ThisElement');
+var MSG_SelectTargetOrCancel = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_SelectTargetOrCancel');
+var MSG_GrowFrom = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_GrowFrom');
+var MSG_GrowTo = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_GrowTo');
+var MSG_ShrinkFrom = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_ShrinkFrom');
+var MSG_ShrinkTo = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_ShrinkTo');
+var MSG_NotAValidValue = dw.loadString('Behaviors/Actions/Effects/EffectGrowShrink/MSG_NotAValidValue');
+
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/title" /></TITLE>
+</HEAD>
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm">
+    <DIV ALIGN="center">
+
+    <TABLE BORDER=0 cellpadding="2" cellspacing="4">
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/text/Target" /></div></TD>
+        <TD VALIGN="baseline" nowrap class="cls_EffectGrowShrink_td">
+          <!--<INPUT NAME="pageEltObj" TYPE="TEXT" class="largeTField">-->
+
+		  <SELECT NAME="pageEltObj" class="itemList">
+            <OPTION><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option//loading" />
+          </SELECT>		  </TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/text/Effect" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT NAME="durationObj" TYPE="TEXT" class="smallNumOrCharList" onBlur="checkDuration(0, this)" onFocus="storeValue(0, this)">
+          <MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/text/milliseconds" /> </TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap><div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/text/Effect_1" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+		  <SELECT NAME="effectTypeObj" class="width: 150px;" onChange="changeFromTo()">
+            <OPTION value="grow"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/grow/Grow" /></OPTION>
+            <OPTION value="shrink"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/shrink/Shrink" /></OPTION>
+          </SELECT>        </TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right" name="fromTxtObj"></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT NAME="fromObj" TYPE="TEXT" class="smallNumOrCharList" onBlur="checkFromToValue(1, this)" onFocus="storeValue(1, this)">
+          <SELECT NAME="fromTypeObj" class="cls_EffectGrowShrink_select_fromTypeObj" onChange="handleReferTypeVisibility()">
+            <OPTION value="%">%</OPTION>
+            <OPTION value="px"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/px/pixels" /></OPTION>
+          </SELECT>		</TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right" name="toTxtObj"></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT NAME="toObj" TYPE="TEXT" class="smallNumOrCharList" onBlur="checkFromToValue(2, this)" onFocus="storeValue(2, this)">
+            <SELECT NAME="toTypeObj" class="cls_EffectGrowShrink_select_toTypeObj" onChange="handleReferTypeVisibility()">
+            <OPTION value="%">%</OPTION>
+            <OPTION value="px"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/px/pixels" /></OPTION>
+          </SELECT> 
+          <select name="referTypeObj" class="cls_EffectGrowShrink_select_referTypeObj">
+            <option value="wide" selected="selected"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/wide/wide" /></option>
+            <option value="high"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/high/high" /></option>
+          </select></TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap><div align="right" name="directionTypeObj"></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <select name="growCenterObj" class="cls_EffectGrowShrink_select_growCenterObj">
+            <option value="topLeftCorner"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/topLeftCorner/Top" /></option>
+            <option value="center"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/option/center/Center" /></option>
+          </select></TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap></TD>
+        <TD VALIGN="baseline" nowrap><INPUT NAME="toggleObj" TYPE="checkbox"><MMString:loadString id="Behaviors/Actions/Effects/EffectGrowShrink/checkbox/toggleObj/Toggle" /></TD>
+      </TR>
+    </TABLE>
+    </DIV>
+  </FORM>
+</BODY></HTML>

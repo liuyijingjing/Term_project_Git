@@ -1,0 +1,143 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewImageMap
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_IMAGEMAP",
+                 margin: 3,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(margin: 2,
+               spacing: 4)
+        {
+            row(indent: 50,
+                spacing: 5)
+            {
+                column(indent: 2)
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE",
+                                name: "$$$/PropInspectImagemap/Label/Hotspot=Hotspot");
+                }
+
+                column(indent: 2)
+                {
+                    row(indent: 60)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_HREF",
+                                    name: "$$$/PropInspectImagemap/Label/Link=&Link");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_TARGET",
+                                name: "$$$/PropInspectImagemap/Label/Target=Ta&rget");
+                }
+
+                column(spacing: 1)
+                {
+                    row(spacing: 2)
+                    {
+                        edit_text(characters: 27,
+                                  identifier: "IDC_EDIT_HREF",
+                                  tab_next_node: "IDC_BUTTON_BROWSE_HREF");
+
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_LINK_HREF",
+                                          width: 16);
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BROWSE_HREF",
+                                          name: "$$$/PropInspectImagemap/IconButton/BrowseFor=Browse for file",
+                                          tab_next_node: "IDC_COMBO_TARGET",
+                                          width: 22);
+                    }
+
+                    combobox(identifier: "IDC_COMBO_TARGET",
+                             popup_minimum_width_chars: 15,
+                             tab_next_node: "IDC_COMBO_ALT",
+                             vertical_scroll: true);
+                }
+
+                column(child_horizontal: @align_fill,
+                       horizontal: @align_fill,
+                       vertical: @align_fill)
+                {
+                    row(child_horizontal: @align_fill,
+                        horizontal: @align_fill,
+                        indent: 25,
+                        spacing: 5,
+                        vertical: @align_bottom)
+                    {
+                        static_text(identifier: "IDC_STATIC_ALT",
+                                    name: "$$$/PropInspectImagemap/Label/Alt=Al&t");
+
+                        combobox(horizontal: @align_fill,
+                                 identifier: "IDC_COMBO_ALT",
+                                 tab_next_node: "IDC_EDIT_NAME", popup_minimum_width_chars: 7,
+                                 vertical_scroll: true);
+                    }
+                }
+            }
+
+            row(indent: 15,
+                margin: 3,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 8)
+                {
+                    static_text(horizontal: @align_fill,
+                                identifier: "IDC_IMAP_TOOLS",
+                                name: "$$$/PropInspectImagemap/Label/Map=&Map");
+
+                    ownerdrawn_button(height: 19,
+                                      identifier: "IDC_IMAP_POINTER",
+                                      width: 18);
+                }
+
+                column(spacing: 2)
+                {
+                    edit_text(characters: 7,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_NAME",
+                              notify_parent: false);
+
+                    row(spacing: 3)
+                    {
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_IMAP_RECT",
+                                          width: 18);
+
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_IMAP_CIRCLE",
+                                          width: 18);
+
+                        ownerdrawn_button(height: 19,
+                                          identifier: "IDC_IMAP_POLY",
+                                          width: 18);
+                    }
+                }
+            }
+        }
+    }
+}

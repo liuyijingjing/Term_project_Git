@@ -1,0 +1,30 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/ImportSelected/title" /></title>
+<script SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script language="javascript" src="ImportSelected.js">
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_ErrorHTTPno = dw.loadString('Commands/ImportSelected/MSG_ErrorHTTPno');
+var MSG_ErrorImport = dw.loadString('Commands/ImportSelected/MSG_ErrorImport');
+
+//--------------- END LOCALIZEABLE   ---------------
+</script>
+
+
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="initializeUI()">
+<form name="Form1">
+  <select name="SelectList" style="width:500px; height:200px" multiple align="left" size=3>
+     <option><MMString:loadString id="Commands/ImportSelected/option//Please" /> </option>
+  </select>
+</form>
+
+</body>
+
+</html>

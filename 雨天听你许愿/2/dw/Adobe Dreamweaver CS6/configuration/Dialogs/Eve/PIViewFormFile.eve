@@ -1,0 +1,72 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewFormFile
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_FORM_FILE",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        row(indent: 45,
+            margin: 3,
+            spacing: 5)
+        {
+            column(indent: 2,
+                   spacing: 6)
+            {
+                static_text(identifier: "IDC_STATIC_TYPE",
+                            name: "$$$/PropInspectFormFile/Label/FilefieldName=FileField name");
+
+                edit_text(characters: 9,
+                          identifier: "IDC_EDIT_NAME",
+                          tab_next_node: "IDC_EDIT_WIDTH");
+            }
+
+            column(indent: 1,
+                   spacing: 9)
+            {
+                row(indent: 20)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_WIDTH",
+                                indent: 2,
+                                name: "$$$/PropInspectFormFile/Label/CharWidth=Char &width");
+                }
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC_SIZE_LABEL",
+                            name: "$$$/PropInspectFormFile/Label/MaxChars=&Max chars");
+            }
+
+            column(spacing: 2)
+            {
+                edit_text(characters: 4,
+                          identifier: "IDC_EDIT_WIDTH",
+                          tab_next_node: "IDC_EDIT_LENGTH_OR_LINES");
+
+                edit_text(characters: 4,
+                          identifier: "IDC_EDIT_LENGTH_OR_LINES");
+            }
+        }
+    }
+}

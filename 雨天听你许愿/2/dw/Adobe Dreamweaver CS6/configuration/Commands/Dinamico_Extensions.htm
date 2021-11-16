@@ -1,0 +1,118 @@
+<!--MENU-LOCATION=NONE-->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2009-2010 Adobe Systems Incorporated.  All rights reserved. -->
+<title><MMString:LoadString id="Dinamico/Extensions/Title" /></title>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<!-- Include the UI helper functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/UI.js"></SCRIPT>
+<!-- Include DOM functions -->
+<script src="../Shared/MM/Scripts/Cmn/string.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../Shared/Common/Scripts/GridControlClass.js"></script>
+<script src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+
+<script type="text/javascript" src="../Shared/Dinamico/shared.js"></script>
+<script type="text/javascript" src="../Shared/Dinamico/UI/extensions_list.js"></script>
+
+<link href="../fields.css" rel="stylesheet" type="text/css" />
+<link href="../Shared/Dinamico/UI/ui.css" rel="stylesheet" type="text/css" />
+
+<script>
+<!--
+function commandButtons() { return []; }
+function windowDimensions() {
+	if (MM.dinamico.is_mac()) {
+		return dw.loadString("Dinamico/Extensions/WindowDimensions_Mac");
+	}
+	return dw.loadString("Dinamico/Extensions/WindowDimensions_PC");
+}
+function displayHelp() {
+	displayHelpShared("Extensions");
+}
+function cancelUI() {
+	extList.list.delAll();
+	window.close();
+}
+
+function receiveArguments() { }
+
+function initializeUI() {
+	MM.setBusyCursor();
+	MM.dinamico.swap_buttons_if_mac();
+	var extArr = [];
+	for (var n=0; n<MM.dinamico_extensions_ui.extensions.length; n++) {
+		extArr.push([MM.dinamico_extensions_ui.extensions[n]]);
+	}
+	extList.initializeUI("extList", "addExt", "delExt", extArr);
+	extList.add_button.focus();
+	MM.clearBusyCursor();
+}
+
+function finishUI() {
+	if (extList.validateUI()) {
+		var extArr = [];
+		var tExtArr = extList.list.getAll();
+		for (var n=0; n<tExtArr.length; n++) {
+			if (tExtArr[n][0]) {
+				extArr.push(tExtArr[n][0]);
+			}
+		}
+		MM.dinamico_extensions_ui.button = "ok";
+		MM.dinamico_extensions_ui.extensions = extArr;
+		extList.list.delAll();
+		window.close();
+	}
+}
+
+// Register the on enter hit event to prevent the dialog to close
+document.documentElement.addEventListener("DWDialogOk", function(e){finishUI(); e.preventDefault(); } , true);
+document.documentElement.addEventListener("DWDialogCancel", function(e){ window.close(); } , true);
+//-->
+</script>
+</head>
+
+<body onLoad="initializeUI();">
+  <form name="dinamicoExtensions" id="dinamicoExtensions">
+    <table cellpadding="3" cellspacing="0" border="0">
+      <tr>
+        <td nowrap valign="baseline" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Extensions/Label/Extensions" /></td>
+        <td nowrap align="left">
+          <input type="image" src="../Shared/MM/Images/btnAdd.gif" onClick="extList.add();" name="addExt" id="addExt" MMString:alt="Dinamico/Extensions/Alt/AddExt" tabindex="1" />
+          <input type="image" src="../Shared/MM/Images/btnDel.gif" onClick="extList.remove();" name="delExt" id="delExt" MMString:alt="Dinamico/Extensions/Alt/DelExt" tabindex="2" />
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="top" align="right" class="labelColumn">&nbsp;</td>
+        <td nowrap align="left">
+          <select class="extensionList" name="extList" id="extList" type="mmparameterlist" MMString:columns="Dinamico/Extensions/GridLabel" onChange="extList.onChange();focus(this);" tabindex="3"></select>
+        </td>
+      </tr>
+<!--
+      <tr><td height="1"></td></tr>
+      <tr>
+        <td nowrap valign="baseline" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Extensions/Label/Update" /></td>
+        <td nowrap align="left">
+          <input name="MenuText" type="text" class="medTField" onBlur="updateExtensionGrid();" />
+        </td>
+      </tr>
+-->
+    </table>
+    <table cellpadding="3" cellspacing="0" border="0" class="buttonsTable">
+      <tr>
+        <td id="helpButtonTD">
+          <input type="button" id="helpButton" name="helpButton" class="yesNoOkCancel" MMString:value="Dinamico/Extensions/Buttons/Help" onClick="displayHelp();focus(this);" tabindex="4" />
+        </td>
+        <td class="spacer">&nbsp;</td>
+        <td id="okButtonTD">
+          <input type="button" id="okButton" name="okButton" class="yesNoOkCancel" MMString:value="Dinamico/Extensions/Buttons/OK" onClick="finishUI();" tabindex="5" />
+        </td>
+        <td id="cancelButtonTD">
+          <input type="button" id="cancelButton" name="cancelButton" class="yesNoOkCancel" MMString:value="Dinamico/Extensions/Buttons/Cancel" onClick="cancelUI();" tabindex="6" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shortcutset language="Turkish">
+<shortcut platform="mac" key="Cmd+`" newkey="Cmd+\" />
+<shortcut platform="mac" key="Ctrl+`" newkey="Ctrl+Z" />
+</shortcutset>

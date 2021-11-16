@@ -1,0 +1,127 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:UL, priority:50, selection:exact, hideclass -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<title><MMString:loadString id="Inspectors/spry_menubar/title" /></title>
+<SCRIPT LANGUAGE="javascript" SRC="_pi_common.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../Shared/UltraDev/Scripts/ssDocManager.js"></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetBase.js"></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/MenuBar/DesignTime/SpryMenuBarDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetManager.js" ></script>
+<script src="spry_menubar.js"></script>
+<link href="../Styles/spry_menubar.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="image" class="cls_spry_menubar_div_image" style="position:absolute; z-index:1; ">
+  <img id="piImage" src="spry_menubar.png" MMString:alt="Inspectors/spry_menubar/img/alt/Menu" />
+</div>
+<div id="piId">
+  <div id="idBoxLayer" class="cls_spry_menubar_div_idBoxLayer" style="position:absolute; z-index:2; ">
+    <div id="piTitle">&nbsp;<MMString:loadString id="Inspectors/spry_menubar/img/alt/Menu" /></div>
+    <div id="piElementId" style="margin-top: 3px">
+      <input name="menubarID" type="text" id="Text1" class="cls_spry_menubar_input_Text1" onBlur="updateTag('id')">
+    </div>
+  </div>
+</div>
+<div id="styles" class="cls_spry_menubar_div_styles" style="position:absolute; z-index:3;">
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="17" align="left" valign="baseline"><a href="#" onMouseDown="updateTag('guide')"><MMString:loadString id="Inspectors/spry_menubar/text/Customize" /></a></td>
+  </tr>
+  <tr>
+    <td align="left" nowrap><input type="button" name="elemStyles" MMString:value="Inspectors/spry_menubar/button/elemStyles/Turn" onClick="updateTag('toggleStyles')"></td>
+  </tr>
+</table>
+</div>
+<div id="menu1" class="cls_spry_menubar_div_menu1" style="position:absolute; z-index:25;">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="baseline" nowrap><img src="../Shared/MM/Images/transparent.gif" width="5" height="8">
+          <input name="elemAdd1" type="image" id="elemAdd1"  onClick="updateTag('addItem1')" src="../Shared/MM/Images/btnAddSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Add" border="0">
+          <input name="elemDel1" type="image" id="elemDel1"  onClick="updateTag('deleteItem1')" src="../Shared/MM/Images/btnDelSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Remove" border="0">
+          <img src="../Shared/MM/Images/transparent.gif" width="20" height="5">
+          <input name="elemUp1" type="image" id="elemUp1" onClick="updateTag('moveItem1Up')" src="../Shared/MM/Images/btnUpSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move" border="0" >
+      <input name="elemDown1" type="image" id="elemDown1" onClick="updateTag('moveItem1Down')" src="../Shared/MM/Images/btnDownSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move_1" border="0" ></td>
+    </tr>
+    <tr>
+      <td nowrap><select name="elemList1" id="elemList1" class="cls_spry_menubar_select_elemList1" style="margin-top:4px" size="5" onFocus="updateTag('list1Selected');" onChange="updateTag('list1Selected');"/></td>
+    </tr>
+  </table>
+</div>
+<div id="menu2" class="cls_spry_menubar_div_menu2" style="position:absolute; z-index:25;">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="baseline" nowrap><img src="../Shared/MM/Images/transparent.gif" width="5" height="5">
+          <input name="elemAdd2" type="image" id="elemAdd2"  onClick="updateTag('addItem2')" src="../Shared/MM/Images/btnAddSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Add" border="0">
+          <input name="elemDel2" type="image" id="elemDel2"  onClick="updateTag('deleteItem2')" src="../Shared/MM/Images/btnDelSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Remove" border="0">
+          <img src="../Shared/MM/Images/transparent.gif" width="20" height="5" align="baseline">
+          <input name="elemUp2" type="image" id="elemUp2" onClick="updateTag('moveItem2Up')" src="../Shared/MM/Images/btnUpSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move" border="0" >
+      <input name="elemDown2" type="image" id="elemDown2" onClick="updateTag('moveItem2Down')" src="../Shared/MM/Images/btnDownSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move_1" border="0" ></td>
+    </tr>
+    <tr>
+     <td nowrap><select name="elemList2" id="elemList2" class="cls_spry_menubar_select_elemList2" style="margin-top:4px" size="5" onFocus="updateTag('list2Selected');" onChange="updateTag('list2Selected');"/></td>
+    </tr>
+  </table>
+</div>
+<div id="menu3" class="cls_spry_menubar_div_menu3" style="position:absolute; z-index:25;">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="baseline" nowrap><img src="../Shared/MM/Images/transparent.gif" width="5" height="5">
+          <input name="elemAdd3" type="image" id="elemAdd3"  onClick="updateTag('addItem3')" src="../Shared/MM/Images/btnAddSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Add" border="0">
+          <input name="elemDel3" type="image" id="elemDel3"  onClick="updateTag('deleteItem3')" src="../Shared/MM/Images/btnDelSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Remove" border="0">
+          <img src="../Shared/MM/Images/transparent.gif" width="20" height="5">
+          <input name="elemUp3" type="image" id="elemUp3" onClick="updateTag('moveItem3Up')" src="../Shared/MM/Images/btnUpSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move" border="0" >
+      <input name="elemDown3" type="image" id="elemDown3" onClick="updateTag('moveItem3Down')" src="../Shared/MM/Images/btnDownSmall.png" MMString:alt="Inspectors/spry_menubar/image/alt/Move_1" border="0" ></td>
+    </tr>
+    <tr>
+     <td nowrap><select name="elemList3" id="elemList3" class="cls_spry_menubar_select_elemList3" style="margin-top:4px" size="5" onFocus="updateTag('list3Selected');" onChange="updateTag('list3Selected');"/></td>
+    </tr>
+  </table>
+</div>
+<div id="menudetails" class="cls_spry_menubar_div_menudetails" style="position:absolute; z-index:25; ">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td valign="baseline" nowrap><MMString:loadString id="Inspectors/spry_menubar/text/Text" /></td>
+      <td colspan="3" valign="baseline" nowrap><input name="text" type="text" id="text" class="cls_spry_menubar_input_text" style="margin-left:2px" onBlur="updateTag('text')"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" nowrap><MMString:loadString id="Inspectors/spry_menubar/text/Link" /></td>
+      <td colspan="3" valign="baseline" nowrap><input name="link" type="text" id="link" class="cls_spry_menubar_input_link" style="margin-left:2px; margin-right:2px" onBlur="updateTag('link')">
+          <input name="image" type="image" onClick="updateTag('browse');focus()" src="../Shared/MM/Images/folder.gif" MMString:alt="Inspectors/spry_menubar/image/alt/Browse" align="bottom" border="0"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" nowrap><MMString:loadString id="Inspectors/spry_menubar/text/Title" /></td>
+      <td valign="baseline" nowrap><input name="title" type="text" id="title" class="cls_spry_menubar_input_title" style="margin-left:2px" onBlur="updateTag('title')">
+      &nbsp;
+      <MMString:loadString id="Inspectors/spry_menubar/text/Target" />
+      <input name="target" type="text" id="target" class="cls_spry_menubar_input_target" style="margin-left:2px" onBlur="updateTag('target')">
+	  <img src="../Shared/MM/Images/transparent.gif" width="1" height="16"></td>
+    </tr>
+  </table>
+</div>
+<div id="menuerror" class="cls_spry_menubar_div_menuerror" style="position:absolute; z-index:25; display:none">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../Shared/MM/Images/infoTopLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoTop.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoTopRight.png" width="7" height="7" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoLeft.png" width="7" height="57" border="0"></td>
+      <td align="center" valign="top" bgcolor="#FFFFCC"><img  src="../Shared/MM/Images/warningIcon.png" width="14" height="13" border="0"></td>
+      <td width="90%" valign="top" bgcolor="#FFFFCC"><MMString:loadString id="Inspectors/spry_menubar/text/This" /></td>
+      <td><img src="../Shared/MM/Images/infoRight.png" width="7" height="57" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoBottomLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoBottom.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoBottomRight.png" width="7" height="7" border="0"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

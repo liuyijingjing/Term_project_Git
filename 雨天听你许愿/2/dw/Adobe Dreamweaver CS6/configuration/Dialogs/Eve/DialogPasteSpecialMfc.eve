@@ -1,0 +1,111 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout DialogPasteSpecialMfc
+{
+    view dialog(grow: false,
+                identifier: "IDD_DIALOG_PASTE_SPECIAL",
+                margin: 0,
+                name: "$$$/PasteSpecial/Title/PasteSpecial=Paste Special",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row(margin: 5)
+        {
+            column(margin: 5,
+                   spacing: 5)
+            {
+                group(guide_mask: [ @guide_label ],
+                      identifier: "IDC_STATIC",
+                      name: "$$$/PasteSpecial/GroupBox/PasteAs=Paste as:")
+                {
+                    row()
+                    {
+                        radiogroup(tab_next_node: "IDC_DPS_RETAIN_BR")
+                        {
+                            radio_button(identifier: "IDC_DPS_TEXT",
+                                         name: "$$$/PasteSpecial/RadioButton/TextOnly=&Text only");
+
+                            radio_button(identifier: "IDC_DPS_STRUCTURE",
+                                         name: "$$$/PasteSpecial/RadioButton/TextWith=Text with &structure (paragraphs, lists, tables, etc.)");
+
+                            radio_button(identifier: "IDC_DPS_BASIC",
+                                         name: "$$$/PasteSpecial/RadioButton/TextWithStructurePlusBasicFormattingBoldItalic=Text with structure plus &basic formatting (bold, italic)");
+
+                            radio_button(identifier: "IDC_DPS_FULL",
+                                         name: "$$$/PasteSpecial/RadioButton/TextWithStructurePlusFullFormattingBoldItalicStyles=Text with structure plus &full formatting (bold, italic, styles)");
+                        }
+                    }
+
+                    separator();
+
+                    row()
+                    {
+                        column(spacing: 5)
+                        {
+                            checkbox(identifier: "IDC_DPS_RETAIN_BR",
+                                     name: "$$$/PasteSpecial/CheckBox/RetainLine=&Retain line breaks",
+                                     tab_next_node: "IDC_DPS_CLEAN_WORD");
+
+                            checkbox(identifier: "IDC_DPS_CLEAN_WORD",
+                                     name: "$$$/PasteSpecial/CheckBox/CleanUp=&Clean up Word paragraph spacing",
+                                     tab_next_node: "IDC_DPS_CONVERT_SMART_QUOTES");
+
+                            checkbox(identifier: "IDC_DPS_CONVERT_SMART_QUOTES",
+                                     name: "$$$/PasteSpecial/CheckBox/ConvertSmart=Convert smart &quotes to straight quotes",
+                                     tab_next_node: "IDC_PREFERENCES");
+                        }
+                    }
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    button(action: @do_action,
+                           default: false,
+                           identifier: "IDC_PREFERENCES",
+                           name: "$$$/PasteSpecial/Button/PastePreferences=&Paste Preferences...",
+                           tab_next_node: "IDOK");
+                }
+            }
+
+            column(child_horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/PasteSpecial/Button/Ok=&OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/PasteSpecial/Button/Cancel=&Cancel",
+                       tab_next_node: "IDC_BUTTON_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "IDC_BUTTON_HELP",
+                       name: "$$$/PasteSpecial/Button/Help=&Help",
+                       tab_next_node: "IDC_DPS_TEXT");
+            }
+        }
+    }
+}

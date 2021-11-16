@@ -1,0 +1,164 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout StylePropPageExtensions
+{
+    view subview(grow: false,
+                 identifier: "IDD_STYLE_PP_EXTENSIONS",
+                 margin: 5,
+                 name: "$$$/StylePpExtensions/Title/Extensions=Extensions",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(height: 18,
+                   indent: 18,
+                   spacing: 14)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpExtensions/Label/Pagebreakbefore=Page-break-before:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpExtensions/Label/Pagebreakafter=Page-break-after:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 15,
+                                name: "$$$/StylePpExtensions/Label/Cursor=Cursor:");
+                }
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpExtensions/Label/Filter=Filter:");
+            }
+
+            column(spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/StylePpExtensions/Label/PageBreak=Page break");
+
+                combobox(identifier: "IDC_STYLE_EXTENSIONS_PAGE_BREAK_BEFORE_COMBO",
+                         items: [ { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakBefore/item1/Auto",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakBefore/item2/Always",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakBefore/item3/Left",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakBefore/item4/Right",
+                                    value: " " } ],
+                         popup_minimum_width_chars: 7,
+                         tab_next_node: "IDC_STYLE_EXTENSIONS_PAGE_BREAK_AFTER_COMBO",
+                         vertical_scroll: true);
+
+                combobox(identifier: "IDC_STYLE_EXTENSIONS_PAGE_BREAK_AFTER_COMBO",
+                         items: [ { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakAfter/item1/Auto",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakAfter/item2/Always",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakAfter/item3/Left",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsPageBreakAfter/item4/Right",
+                                    value: " " } ],
+                         popup_minimum_width_chars: 7,
+                         tab_next_node: "IDC_STYLE_EXTENSIONS_CURSOR_COMBO",
+                         vertical_scroll: true);
+
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/StylePpExtensions/Label/VisualEffect=Visual effect");
+
+                combobox(identifier: "IDC_STYLE_EXTENSIONS_CURSOR_COMBO",
+                         items: [ { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item1/Crosshair",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item2/Text",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item3/Wait",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item/Pointer",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item4/Default",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item5/Help",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item6/Eresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item7/Neresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item8/Nresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item9/Nwresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item10/Wresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item11/Swresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item12/Sresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item13/Seresize",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsCursor/item14/Auto",
+                                    value: " " } ],
+                         popup_minimum_width_chars: 7,
+                         tab_next_node: "IDC_STYLE_EXTENSIONS_FILTER_COMBO",
+                         vertical_scroll: true);
+
+                combobox(identifier: "IDC_STYLE_EXTENSIONS_FILTER_COMBO",
+                         items: [ { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item1/AlphaopacityFinishopacity",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item2/Blendtransduration",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item3/BluraddDirection",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item4/Chromacolor",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item5/DropshadowcolorOffx",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item6/Fliph",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item7/Flipv",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item8/GlowcolorStrength",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item9/Gray",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item10/Invert",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item11/Light",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item12/Maskcolor",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item13/RevealtransdurationTransition",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item14/ShadowcolorDirection",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item15/WaveaddFreq",
+                                    value: " " },
+                                  { name: "$$$/StylePpExtensions/StyleExtensionsFilter/item16/Xray",
+                                    value: " " } ],
+                         popup_maximum_width_chars: 15,
+                         popup_minimum_width_chars: 15,
+                         vertical_scroll: true);
+            }
+        }
+    }
+}

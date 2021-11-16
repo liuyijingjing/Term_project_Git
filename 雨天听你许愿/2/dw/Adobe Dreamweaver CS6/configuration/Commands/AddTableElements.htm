@@ -1,0 +1,91 @@
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/AddTableElements/title" /></title>
+<script>
+//--------------- LOCALIZEABLE GLOBALS---------------
+var MSG_AddRowsTitle = dw.loadString('Commands/AddTableElements/MSG_AddRowsTitle');
+var MSG_AddColsTitle = dw.loadString('Commands/AddTableElements/MSG_AddColsTitle');
+var MSG_AddCellsTitle = dw.loadString('Commands/AddTableElements/MSG_AddCellsTitle');
+
+var MSG_AddRowsMessage = dw.loadString('Commands/AddTableElements/MSG_AddRowsMessage');
+var MSG_AddCellsMessage = dw.loadString('Commands/AddTableElements/MSG_AddCellsMessage');
+var MSG_AddColumnsMessage = dw.loadString('Commands/AddTableElements/MSG_AddColumnsMessage');
+
+
+//--------------- END LOCALIZEABLE   ---------------
+
+
+//This command runs a dialog that asks the user for the number of 
+//rows, columns or cells to insert, then does the operation on the current selection.
+//The first parameter passed in should be either "rows", "cells", or "columns".
+
+var dialogType = null; 
+var lastCellCount = 1;
+var lastRowCount = 1; 
+var lastColCount = 1; 
+
+
+function receiveArguments()
+	{
+	dialogType = arguments[0]; 
+	
+	}
+	
+function canAcceptCommand()
+	{
+	dialogType = arguments[0]; 
+	
+	if (dialogType == "rows")
+		return dw.getFocus() == 'document' && dw.getDocumentDOM().canInsertTableRows(); 
+	else if (dialogType == "columns")
+		return dw.getFocus() == 'document' && dw.getDocumentDOM().canInsertTableColumns();
+	
+	return false; 
+	} //canAcceptCommand
+	
+	
+function doCommand()
+	{
+	if (dialogType == null)
+		return; 
+		
+	var result = new Object(); 
+	result.returnValue = null; 
+
+	if (dialogType == "rows")
+		dw.runCommand("GetString.htm", MSG_AddRowsMessage, "" + lastRowCount, MSG_AddRowsTitle, result); 
+	else if (dialogType == "columns")
+		dw.runCommand("GetString.htm", MSG_AddCellsMessage, "" + lastColCount, MSG_AddColsTitle, result); 
+	else 
+		dw.runCommand("GetString.htm", MSG_AddColumnsMessage, "" + lastCellCount, MSG_AddCellsTitle, result); 
+	
+	if (result.returnValue != null)
+		{
+		result.returnValue = parseInt(result.returnValue);  
+		
+		if (dialogType == "rows")
+			{
+			lastRowCount = result.returnValue; 
+			dw.getDocumentDOM().insertTableRows(lastRowCount, true);
+			}
+		else if (dialogType == "columns") 
+			{
+			lastColCount = result.returnValue; 
+			dw.getDocumentDOM().insertTableColumns(lastColCount, true);
+			}
+		}
+		
+	dialogType = null; 
+	} //doCommand
+	
+</script>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="doCommand()">
+</body>
+</html>

@@ -1,0 +1,6 @@
+<group name="CheckNewUsername" serverBehavior="Check New Username2.htm" hideFromBuilder="true">
+	<groupParticipants selectParticipant="CheckNewUsername2_main">
+		<groupParticipant name="EditOps_SQLValueString" partType="member" />
+		<groupParticipant name="CheckNewUsername2_main" partType="identifier" />
+	</groupParticipants>
+</group>

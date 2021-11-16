@@ -1,0 +1,126 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout URLFileDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_IBANYURL_URL_FILE_DIALOG",
+                margin: 0,
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                placeholder(height: 99,
+                            horizontal: @align_left,
+                            identifier: "stc32",
+                            width: 370.5);
+            }
+
+            separator(identifier: "IDC_IBANYURL_STATIC_LINE");
+
+            row(child_vertical: @align_center,
+                indent: 5,
+                spacing: 5)
+            {
+                column()
+                {
+                    static_text(identifier: "IDC_IBANYURL_STATIC_URL",
+                                name: "$$$/IbanyurlUrlFile/Label/Url=URL:");
+                }
+
+                column()
+                {
+                    edit_text(characters: 30,
+                              horizontal: @align_right,
+                              identifier: "IDC_IBANYURL_EDIT_URL");
+                }
+            }
+
+            row(margin: 5,
+                spacing: 5)
+            {
+                column()
+                {
+                    static_text(identifier: "IDC_IBANYURL_STATIC_RELATIVE",
+                                name: "$$$/IbanyurlUrlFile/Label/RelativeTo=Relative to:");
+                }
+
+                column()
+                {
+                    popup(identifier: "IDC_IBANYURL_COMBO_URL_FORMAT",
+                          include_custom_item: false,
+                          vertical_scroll: true);
+                }
+
+                column()
+                {
+                    static_text(identifier: "IDC_IBANYURL_STATIC_DOC",
+                                name: "$$$/IbanyurlUrlFile/Label/DocName=<Doc name here>");
+                }
+            }
+
+            row(child_vertical: @align_center,
+                indent: 5,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_IBANYURL_STATIC_MSG",
+                            name: "$$$/IbanyurlUrlFile/Label/OccasionalMessage=Occasional message here...");
+
+                checkbox(identifier: "IDC_IBANYURL_CHECK_SHOW_PREVIEW",
+                         name: "$$$/IbanyurlUrlFile/CheckBox/PreviewImages=Preview images");
+            }
+        }
+
+        separator(identifier: "IDC_IBANYURL_PREVIEW_SEPARATOR",
+                  orientation: @vertical);
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5)
+        {
+            row()
+            {
+                static_text(horizontal: @align_center,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/IbanyurlUrlFile/Label/ImagePreview=Image preview");
+            }
+
+            row()
+            {
+                ownerdrawn_button(identifier: "IDC_IBANYURL_IMAGE_PREVIEW_FRAME",
+                                  name: "$$$/IbanyurlUrlFile/IconButton/PreviewFrame=Preview frame");
+            }
+
+            row()
+            {
+                column(indent: 150)
+                {
+                    static_text(horizontal: @align_center,
+                                identifier: "IDC_IBANYURL_IMAGE_INFO_STATIC",
+                                name: "$$$/IbanyurlUrlFile/Label/Static=Static");
+                }
+            }
+        }
+    }
+}

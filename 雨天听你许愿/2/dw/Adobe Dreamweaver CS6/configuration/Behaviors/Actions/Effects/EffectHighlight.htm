@@ -1,0 +1,79 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<link href="../../../fields.css" rel="stylesheet" type="text/css">
+<SCRIPT LANGUAGE="javascript" SRC="EffectHighlight.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/Common/Scripts/effectsUtils.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/Common/Scripts/AssetInfoClass.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/MM/Scripts/setText.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_SelectIDOfTarget = dw.loadString('Behaviors/Actions/Effects/EffectHighlight/MSG_SelectIDOfTarget');
+var MSG_NoValidTargetsAvailable = dw.loadString('Behaviors/Actions/Effects/EffectHighlight/MSG_NoValidTargetsAvailable');
+var MSG_ThisElement = dw.loadString('Behaviors/Actions/Effects/EffectHighlight/MSG_ThisElement');
+var MSG_SelectTargetOrCancel = dw.loadString('Behaviors/Actions/Effects/EffectHighlight/MSG_SelectTargetOrCancel');
+var MSG_NotAValidValue = dw.loadString('Behaviors/Actions/Effects/EffectHighlight/MSG_NotAValidValue');
+
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/title" /></TITLE>
+</HEAD>
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm">
+    <DIV ALIGN="center">
+
+    <TABLE BORDER=0 cellpadding="2" cellspacing="4">
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/Target" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <!--<INPUT NAME="pageEltObj" TYPE="TEXT" class="largeTField">-->
+
+		  <SELECT NAME="pageEltObj" class="itemList">
+            <OPTION><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/option//loading" />
+          </SELECT>
+		  
+		  </TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/Effect" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT NAME="durationObj" TYPE="TEXT" class="smallNumOrCharList" onBlur="checkDuration(0, this)" onFocus="storeValue(0, this)">
+          <MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/milliseconds" /> </TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/Start" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT TYPE="mmcolorbutton" NAME="startColorPicker" onChange="document.theForm.startColorObj.value = this.value">
+		  <INPUT TYPE="TEXT" NAME="startColorObj" class="smallTField" onBlur="HandleNewColorValue(1, this, document.theForm.startColorPicker)" onFocus="storeValue(1, this)" maxlength="7">
+		</TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/End" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT TYPE="mmcolorbutton" NAME="endColorPicker" onChange="document.theForm.endColorObj.value = this.value">
+		  <INPUT TYPE="TEXT" NAME="endColorObj" class="smallTField" onBlur="HandleNewColorValue(2, this, document.theForm.endColorPicker)" onFocus="storeValue(2, this)" maxlength="7">
+		</TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap> <div align="right"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/text/Color" /></div></TD>
+        <TD VALIGN="baseline" nowrap>
+          <INPUT TYPE="mmcolorbutton" NAME="restoreColorPicker" onChange="document.theForm.restoreColorObj.value = this.value">
+		  <INPUT TYPE="TEXT" NAME="restoreColorObj" class="smallTField" onBlur="HandleNewColorValue(3, this, document.theForm.restoreColorPicker)" onFocus="storeValue(3, this)" maxlength="7">
+		</TD>
+      </TR>
+      <TR>
+        <TD VALIGN="baseline" nowrap></TD>
+        <TD VALIGN="baseline" nowrap><INPUT NAME="toggleObj" TYPE="checkbox"><MMString:loadString id="Behaviors/Actions/Effects/EffectHighlight/checkbox/toggleObj/Toggle" /></TD>
+      </TR>
+    </TABLE>
+    </DIV>
+  </FORM>
+</BODY></HTML>

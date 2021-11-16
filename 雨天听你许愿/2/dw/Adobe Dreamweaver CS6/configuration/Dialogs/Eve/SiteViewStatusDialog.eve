@@ -1,0 +1,62 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SiteViewStatusDialog
+{
+    view dialog(centerMouse: true,
+                grow: false,
+                identifier: "IDD_SITEVIEW_BUILDTREE_DIALOG",
+                margin: 0,
+                name: "$$$/SiteviewBuildtree/Title/BuildingSite=Building Site Map",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row(margin: 10,
+            spacing: 5)
+        {
+            column(margin: 5,
+                   spacing: 5)
+            {
+                row(placement: @place_overlay,
+                    spacing: 5)
+                {
+                    placeholder(height: 50);
+
+                    static_text(characters: 20,
+                                identifier: "IDC_STATIC_STATUS",
+                                name: "$$$/SiteviewBuildtree/Label/StatusGoes=Status goes here Line 2 Line3");
+                }
+            }
+
+            static_text(identifier: "IDC_STATIC_LINE");
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_cancel,
+                       default: true,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SiteviewBuildtree/Button/Stop=Stop");
+            }
+        }
+    }
+}

@@ -1,0 +1,3 @@
+Firefox 1.0
+PROFILE_TYPE=BROWSER_PROFILE
+-- Copyright 2005 Macromedia Inc. All rights reserved.

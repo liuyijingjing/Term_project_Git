@@ -1,0 +1,71 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout WebFontsManager
+{
+    view dialog(height: 500,
+                name: "$$$/WebFontsManager/Title/WebFontsManager=Web Fonts Manager",
+                width: 500,
+                identifier: "ID_WebFontsManager"
+                )
+    {
+        column()
+        {
+            
+            static_text( name: "$$$/WebFontsManager/Title/AvailWebFonts=Available Web Fonts:" );
+            list(height: 200,
+                 width: 300, identifier: "ID_WebFontsManager_Fontlist");
+        }
+
+        column()
+        {
+            
+            button(name: "$$$/WebFontsManager/Button/Done=Done",
+                   identifier: "ID_WebFontsManager_OkButton",
+                   horizontal: @align_fill,   
+                   default: true,
+                   action: @do_ok);
+
+            button(name: "$$$/WebFontsManager/Button/AddFont=Add font...",
+                   identifier: "ID_WebFontsManager_AddFont",
+                   horizontal: @align_fill,   
+                   action: @do_addfont
+                   );
+
+            button(name: "$$$/WebFontsManager/Button/EditFont=Edit...",
+                   identifier: "ID_WebFontsManager_Edit",
+                   horizontal: @align_fill,   
+                   action: @do_editfont
+                   );
+
+            row(){ } /* for spacing */
+
+            button(name: "$$$/WebFontsManager/Button/DelFont=Delete",
+                   identifier: "ID_WebFontsManager_Delete",
+                   horizontal: @align_fill,   
+                   action: @do_deletefont
+                   );
+
+            button(name: "$$$/WebFontsManager/Button/Help=Help",
+                   identifier: "ID_WebFontsManager_Help",
+                   horizontal: @align_fill,   
+                   action: @do_help
+                   );
+        }
+    }
+}

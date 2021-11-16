@@ -1,0 +1,65 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewTarget
+{
+    view subview(child_horizontal: @align_center,
+                 grow: false,
+                 height: 50,
+                 horizontal: @align_fill,
+                 identifier: "IDD_PROP_INSPECT_TARGET",
+                 margin: 2,
+                 parent_container_id: "sub_inspector",
+                 resizeChildren: false,
+                 shouldConstrain: true,
+		 name:"PIViewTarget",
+                 spacing: 0,
+                 width: 700)
+    {
+        column(spacing: 0)
+        {
+            row(child_horizontal: @align_center,
+                indent: 35)
+            {
+                static_text(identifier: "IDC_STATIC_LINK_XSLFRAGMENT",
+                            indent: 3,
+                            name: "$$$/PropInspectTarget/Label/AhowDo=<a>How do I style XSLT Fragments?</a>",
+                            vertical: @align_top);
+
+                ownerdrawn_button(height: 20,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_BUTTON_PAGE_PROPERTIES",
+                                  indent: 3,
+                                  name: "$$$/PropInspectTarget/IconButton/PageProperties=Page Properties...",
+                                  vertical: @align_top,
+                                  width: 130,
+				  nl_width: 155,
+				  es_width: 155,
+				  pt_width: 155);
+
+                ownerdrawn_button(height: 20,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_BUTTON_EDIT_LIST",
+                                  indent: 3,
+                                  name: "$$$/PropInspectTarget/IconButton/ListItem=List Item...",
+                                  vertical: @align_top,
+                                  width: 155);
+            }
+        }
+    }
+}

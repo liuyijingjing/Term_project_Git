@@ -1,0 +1,125 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout VCSCommitDlgSVN
+{
+    view dialog(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                grow: true,
+                horizontal: @align_fill,
+                identifier: "IDD_SITE_VCSCOMMIT",
+                name: "$$$/SiteVcscommit/Title/Commit=Commit",
+                resizeChildren: true,
+                spacing: 5,
+                vertical: @align_fill)
+    {
+        column(child_horizontal: @align_fill,
+               horizontal: @align_fill,
+               spacing: 5)
+        {
+            row(child_horizontal: @align_fill,
+                guide_mask: [ @guide_label ],
+                horizontal: @align_fill,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC_TIP",
+                            name: "$$$/SiteVcscommit/Label/ToChange=To change an action, select a file and click on one of the icons below before clicking OK.");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                guide_mask: [ @guide_label ],
+                horizontal: @align_fill,
+                spacing: 5,
+                vertical: @align_fill)
+            {
+                list_control(apron_click_deselection: true,
+                             child_horizontal: @align_fill,
+                             child_vertical: @align_fill,
+                             empty_selection: true,
+                             height: 142,
+                             horizontal: @align_fill,
+                             identifier: "IDC_LIST_FILES",
+                             keyboard_selectable: true,
+                             vertical: @align_fill,
+                             width: 534);
+            }
+
+            row(horizontal: @align_fill,
+                spacing: 5)
+            {
+                ownerdrawn_button(height: 18,
+                                  identifier: "IDC_SYNC_PUT",
+                                  name: "$$$/SiteVcscommit/IconButton/PutLocal=Put local file",
+                                  visible: false,
+                                  width: 23);
+
+                ownerdrawn_button(height: 18,
+                                  identifier: "IDC_SYNC_IGNORE",
+                                  name: "$$$/SiteVcscommit/IconButton/IgnoreThis=Ignore this file",
+                                  visible: false,
+                                  width: 23);
+            }
+
+            row(child_horizontal: @align_fill,
+                guide_mask: [ @guide_label ],
+                horizontal: @align_fill,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC_LABEL",
+                            name: "$$$/SiteVcscommit/Label/CommitMessage=Commit Message:");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                horizontal: @align_fill,
+                spacing: 5,
+                vertical: @align_fill)
+            {
+                edit_text(characters: 60,
+                          horizontal: @align_fill,
+                          identifier: "IDC_EDIT1",
+                          lines: 4,
+                          multiLine: true,
+                          scrollable: true,
+                          vertical: @align_fill,
+                          vertical_scroll: true);
+            }
+
+            row(child_horizontal: @align_fill,
+                horizontal: @align_right,
+                spacing: 5)
+            {
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/SiteVcscommit/Button/Help=&Help");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SiteVcscommit/Button/Cancel=&Cancel");
+
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/SiteVcscommit/Button/Commit=C&ommit");
+            }
+        }
+    }
+}

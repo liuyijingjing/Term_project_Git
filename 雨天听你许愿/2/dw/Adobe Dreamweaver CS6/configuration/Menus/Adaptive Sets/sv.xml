@@ -1,0 +1,27 @@
+<shortcutset language="Swedish">
+<shortcut key="Cmd+[" newkey="Cmd+&ouml;" />
+<shortcut key="Cmd+]" newkey="Cmd+&auml;" />
+<shortcut platform="mac" key="Cmd+Shift+>" newkey="Cmd+<" />  
+<shortcut platform="win" key="Cmd+Shift+<" newkey="Cmd+," />  
+<shortcut platform="win" key="Cmd+Opt+E" newkey="Cmd+Opt+Shift+E" />
+<shortcut key="Cmd+=" newkey="Cmd++" />
+<shortcut platform="win" key="Cmd+Opt+1" newkey="Cmd+Opt+Shift+1" />  
+<shortcut platform="win" key="Cmd+Opt+2" newkey="Cmd+Opt+Shift+2" />  
+<shortcut platform="win" key="Cmd+Opt+3" newkey="Cmd+Opt+Shift+3" />  
+<shortcut platform="win" key="Cmd+Opt+4" newkey="Cmd+Opt+Shift+4" />  
+<shortcut platform="win" key="Cmd+Opt+5" newkey="Cmd+Opt+Shift+5" />  
+<shortcut platform="win" key="Cmd+Opt+6" newkey="Cmd+Opt+Shift+6" />  
+<shortcut platform="win" key="Cmd+Opt+8" newkey="Cmd+Opt+Shift+8" />  
+<shortcut platform="win" key="Cmd+Opt+0" newkey="Cmd+Opt+&aring;" />  
+<shortcut key="Ctrl+`" newkey="Ctrl+&aring;" />  
+<shortcut key="Cmd+;" newkey="Cmd+Shift+," />  
+<shortcut key="Cmd+Shift+;" newkey="Cmd+Shift+." />  
+<shortcut key="Cmd+Opt+;" newkey="Cmd+Opt+," />  
+<shortcut key="Cmd+Shift+/" newkey="Cmd+Opt+." />  
+<shortcut key="Cmd+Shift+[" newkey="Cmd+Shift+&ouml;" />  
+<shortcut key="Cmd+Shift+]" newkey="Cmd+Shift+&auml;" />  
+<shortcut key="Cmd+Opt+[" newkey="Cmd+Opt+&ouml;" />  
+<shortcut key="Cmd+Opt+]" newkey="Cmd+Opt+&auml;" />  
+<shortcut platform="mac" key="Cmd+`" newkey="Cmd+&aring;" />  
+<shortcut platform="mac" key="Cmd+Shift+`" newkey="Cmd+Shift+&aring;" />  
+</shortcutset>

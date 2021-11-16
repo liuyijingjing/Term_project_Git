@@ -1,0 +1,152 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+
+<SCRIPT>
+// Copyright 2002-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+var HELP_DOC = MM.HELP_sbLoginUser;
+</SCRIPT>
+
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ServerBehaviorClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/RadioGroupClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Controls/Scripts/CFDataSourceMenu.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Controls/Scripts/ConnectionTableMenu.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Controls/Scripts/ConnectionColumnMenu.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Controls/Scripts/TextField.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/accessControlCmn.js"></SCRIPT>
+<SCRIPT SRC="../Shared/AccessControlCmn.js"></SCRIPT>
+<SCRIPT SRC="FieldTypes.js"></SCRIPT>
+<SCRIPT SRC="Login User.js"></SCRIPT>
+
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/ssCmnElements.js"></SCRIPT>
+<TITLE><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/title" /> </TITLE>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm" ACTION="">
+    <table border="0">
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Get" /></td>
+        <td nowrap>
+          <select name="FormNode" class="tagList" onChange="updateUI('FormNode','onChange')">
+          </select>
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Username" /></td>
+        <td nowrap>
+          <select name="UsernameField" class="columnNameList">
+          </select>
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Password" /></td>
+        <td nowrap>
+          <select name="PasswordField" class="columnNameList">
+          </select>
+        </td>
+      </tr>
+      <tr valign="baseline"><td colspan="3" nowrap><hr></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Validate" /></td>
+        <td nowrap>
+          <select name="ConnectionName" class="connNameList" onChange="updateUI('ConnectionName','onChange')">
+          </select>
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Data" /></td>
+        <td colspan="2" nowrap>
+          <input name="UserName" type="text" class="medTField" onBlur="updateUI('UserName','onBlur')">
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Data_1" /></td>
+        <td colspan="2" nowrap>
+          <input name="Password" type="text" class="medTField" onBlur="updateUI('Password','onBlur')">
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Table" /></td>
+        <td nowrap>
+          <select name="TableName" class="connRSTableList"  onChange="updateUI('TableName','onChange')">
+          </select>
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Username_1" /></td>
+        <td nowrap>
+          <select name="UsernameCol" class="columnNameList">
+          </select>
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Password_1" /></td>
+        <td nowrap>
+          <select name="PasswordCol" class="columnNameList">
+          </select>
+        </td>
+      </tr>
+      <tr valign="baseline"><td colspan="3" nowrap><hr></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/If" /></td>
+        <td nowrap>
+          <input name="SuccessURL" type="text" class="basicTextField">
+          <input type="button" MMString:value="ServerBehaviors/ColdFusion/Login_User2/button/value/Browse" onClick="updateUI('SuccessURL','onClick')">
+        </td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td nowrap>&nbsp;</td>
+        <td nowrap>
+          <input name="GoToReferrerURL" type="checkbox" >
+          <MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/checkbox/GoToReferrerURL/Go" /></td>
+      </tr>
+      <tr valign="baseline">
+        <td nowrap align="right"><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/If_1" /></td>
+        <td nowrap>
+          <input name="FailureURL" type="text" class="basicTextField">
+          <input type="button" MMString:value="ServerBehaviors/ColdFusion/Login_User2/button/value/Browse" onClick="updateUI('FailureURL','onClick')">
+        </td>
+      </tr>
+      <tr valign="baseline"><td colspan="3" nowrap><hr></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Restrict" /> </td>
+        <td nowrap>
+          <input type="radio" name="securityMethod" value="securityMethodUP" onClick="updateUI('securityMethod')" checked>
+          <MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/radiobutton/securityMethod/Username" /></td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap>&nbsp;</td>
+        <td nowrap>
+          <input type="radio" name="securityMethod" value="securityMethodUPA" onClick="updateUI('securityMethod')">
+          <MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/radiobutton/securityMethod/Username_1" /></td>
+      </tr>
+      <tr><td height="1"></td></tr>
+      <tr valign="baseline">
+        <td align="right" nowrap>&nbsp;</td>
+        <td nowrap> <MMString:loadString id="ServerBehaviors/ColdFusion/Login_User2/text/Get_1" />
+          
+        <select name="AuthLevelCol" class="columnNameList">
+          </select>
+        </td>
+      </tr>
+    </table>
+  </FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,74 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout BtcDoCheck
+{
+    view dialog(identifier: "IDD_BTC_DO_CHECK",
+                name: "$$$/BtcDoCheck/Title/TargetBrowsers=Target Browsers",
+                spacing: 5)
+    {
+        column(margin: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/BtcDoCheck/Label/MinimumBrowser=Minimum &browser versions:");
+            }
+
+            row(margin: 0,
+                spacing: 5)
+            {
+                list_control(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 151.5,
+                             identifier: "IDC_BTC_TARGET_PREFS_TARGET_BROWSERS",
+                             keyboard_selectable: true,
+                             no_columnHeader: true,
+                             no_sortHeader: true,
+                             single_selection: true,
+                             width: 297);
+            }
+        }
+
+        separator(identifier: "IDC_STATIC",
+                  orientation: @vertical);
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5,
+               vertical: @align_fill)
+        {
+            button(action: @do_ok,
+                   default: true,
+                   identifier: "IDOK",
+                   name: "$$$/BtcDoCheck/Button/Ok=OK");
+
+            button(action: @do_cancel,
+                   default: false,
+                   identifier: "IDCANCEL",
+                   name: "$$$/BtcDoCheck/Button/Cancel=Cancel");
+
+            button(action: @do_help,
+                   identifier: "ID_HELP",
+                   name: "$$$/BtcDoCheck/Button/Help=&Help",
+                   vertical: @align_bottom);
+        }
+    }
+}

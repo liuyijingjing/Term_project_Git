@@ -1,0 +1,4 @@
+Internet Explorer 5.0
+PROFILE_TYPE=BROWSER_PROFILE
+-- Copyright 1999-2005 Macromedia, Inc. All rights reserved.
+

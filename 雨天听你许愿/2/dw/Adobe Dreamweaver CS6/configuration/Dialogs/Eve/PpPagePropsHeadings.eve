@@ -1,0 +1,646 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PpPagePropsHeadings
+{
+    view subview(horizontal: @align_default,
+                 identifier: "IDD_PP_PAGE_PROPS_HEADINGS",
+                 margin: 0,
+                 name: "$$$/PpPagePropsHeadings/Title/HeadingsCss=Headings (CSS)",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5,
+                 vertical: @align_default)
+    {
+        column(horizontal: @align_default,
+               margin: 5,
+               spacing: 5,
+               vertical: @align_default)
+        {
+            row(spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/HeadingFont=Heading &font:");
+
+                    row(horizontal: @align_right)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    indent: 3,
+                                    name: "$$$/PpPagePropsHeadings/Label/Heading1=Heading &1:");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/Heading2=Heading &2:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/Heading3=Heading &3:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/Heading4=Heading &4:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/Heading5=Heading &5:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PpPagePropsHeadings/Label/Heading6=Heading &6:");
+                }
+
+                column(horizontal: @align_fill,
+                       spacing: 5)
+                {
+                    row(child_vertical: @align_center,
+                        horizontal: @align_fill,
+                        spacing: 5)
+                    {
+                        column(horizontal: @align_fill)
+                        {
+                            combobox(horizontal: @align_fill,
+                                     identifier: "IDC_FONT_COMBO",
+                                     popup_minimum_width_chars: 14,
+                                     tab_next_node: "IDC_BUTTON_BOLD",
+                                     vertical_scroll: true);
+                        }
+
+                        column()
+                        {
+                            row(spacing: 0)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_BUTTON_BOLD",
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Bold=Bold",
+                                                  tab_next_node: "IDC_BUTTON_ITALIC",
+                                                  width: 21);
+
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_BUTTON_ITALIC",
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Italic=Italic",
+                                                  tab_next_node: "IDC_H1_SIZE_COMBO",
+                                                  width: 21);
+                            }
+                        }
+                    }
+
+                    row(child_vertical: @align_center,
+                        spacing: 35)
+                    {
+                        column(spacing: 5)
+                        {
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H1_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H1Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H1Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H1_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: false,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H1_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H1Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H1Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H1_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H2_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H2Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H2Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H2_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: true,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H2_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H2Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H2Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H2_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H3_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H3Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H3Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H3_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: true,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H3_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H3Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H3Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H3_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H4_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H4Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H4Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H4_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: true,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H4_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H4Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H4Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H4_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H5_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H5Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H5Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H5_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: true,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H5_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H5Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H5Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H5_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 5)
+                            {
+                                combobox(identifier: "IDC_H6_SIZE_COMBO",
+                                         items: [ { name: "$$$/PpPagePropsHeadings/H6Size/item1/9",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item2/10",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item3/12",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item4/14",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item5/16",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item6/18",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item7/24",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item8/36",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item9/Xxsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item10/Xsmall",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item11/Small",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item12/Medium",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item13/Large",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item14/Xlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item15/Xxlarge",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item16/Smaller",
+                                                    value: " " },
+                                                  { name: "$$$/PpPagePropsHeadings/H6Size/item17/Larger",
+                                                    value: " " } ],
+                                         tab_next_node: "IDC_H6_UNITS_COMBO",
+                                         vertical_scroll: true);
+
+                                popup(iconpopup_font_size: 11,
+                                      iconpopup_icon_column_width: 20,
+                                      iconpopup_include_vertical_separator: true,
+                                      iconpopup_item_height: 22,
+                                      iconpopup_selection_column_width: 22,
+                                      iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                                      iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                                      identifier: "IDC_H6_UNITS_COMBO",
+                                      include_custom_item: false,
+                                      items: [ { name: "$$$/PpPagePropsHeadings/H6Units/item1/Px",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item2/Pt",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item3/In",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item4/Cm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item5/Mm",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item6/Pc",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item7/Em",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item8/Ex",
+                                                 value: " " },
+                                               { name: "$$$/PpPagePropsHeadings/H6Units/item9/",
+                                                 value: " " } ],
+                                      popup_maximum_width_chars: 2,
+                                      tab_next_node: "IDC_H6_COLOR_BUTTON",
+                                      vertical_scroll: true);
+                            }
+                        }
+
+                        column(spacing: 5)
+                        {
+                            row(spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H1_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading1=Heading 1 color",
+                                                  tab_next_node: "IDC_H1_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H1_COLOR_EDIT",
+                                          tab_next_node: "IDC_H2_SIZE_COMBO");
+                            }
+
+                            row(child_vertical: @align_center,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H2_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading2=Heading 2 color",
+                                                  tab_next_node: "IDC_H2_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H2_COLOR_EDIT",
+                                          tab_next_node: "IDC_H3_SIZE_COMBO");
+                            }
+
+                            row(child_vertical: @align_center,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H3_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading3=Heading 3 color",
+                                                  tab_next_node: "IDC_H3_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H3_COLOR_EDIT",
+                                          tab_next_node: "IDC_H4_SIZE_COMBO");
+                            }
+
+                            row(child_vertical: @align_center,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H4_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading4=Heading 4 color",
+                                                  tab_next_node: "IDC_H4_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H4_COLOR_EDIT",
+                                          tab_next_node: "IDC_H5_SIZE_COMBO");
+                            }
+
+                            row(child_vertical: @align_center,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H5_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading5=Heading 5 color",
+                                                  tab_next_node: "IDC_H5_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H5_COLOR_EDIT",
+                                          tab_next_node: "IDC_H6_SIZE_COMBO");
+                            }
+
+                            row(child_vertical: @align_center,
+                                spacing: 2)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_H6_COLOR_BUTTON",
+                                                  indent: 1,
+                                                  name: "$$$/PpPagePropsHeadings/IconButton/Heading6=Heading 6 color",
+                                                  tab_next_node: "IDC_H6_COLOR_EDIT",
+                                                  width: 21);
+
+                                edit_text(auto_hscroll: true,
+                                          characters: 8,
+                                          identifier: "IDC_H6_COLOR_EDIT");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

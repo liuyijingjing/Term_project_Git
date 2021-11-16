@@ -1,0 +1,171 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsHTMLTagColors
+{
+    view subview(identifier: "IDD_PREFS_HTML_TAG_COLORS",
+                 margin: 5,
+                 name: "$$$/PrefsHtmlTagColors/Title/CodeColoring=Code Coloring",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 14)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsHtmlTagColors/Label/DocumentType=Document type:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 235,
+                                name: "$$$/PrefsHtmlTagColors/Label/DefaultBackground=&Default background:");
+                }
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsHtmlTagColors/Label/LiveCode=&Live Code background:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsHtmlTagColors/Label/ReadOnly=&Read only background:");
+            }
+
+            column()
+            {
+                row()
+                {
+                    list_box(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 200,
+                             identifier: "IDC_LIST_SCHEMES",
+                             keyboard_selectable: true,
+                             set_default_focus: true,
+                             tab_next_node: "IDC_BUTTON_EDIT_SCHEME",
+                             vertical_scroll: true,
+                             width: 313.5);
+                }
+
+                row()
+                {
+                    button(action: @do_action,
+                           default: false,
+                           identifier: "IDC_BUTTON_EDIT_SCHEME",
+                           name: "$$$/PrefsHtmlTagColors/Button/EditColoring=&Edit Coloring Scheme",
+                           tab_next_node: "IDC_EDIT_BACKGROUND");
+                }
+
+                placeholder(height: 10);
+
+                row(spacing: 15)
+                {
+                    column(spacing: 5)
+                    {
+                        row(spacing: 5)
+                        {
+                            ownerdrawn_button(height: 18,
+                                              identifier: "IDC_BUTTON_BACKGROUND",
+                                              indent: 2,
+                                              name: "$$$/PrefsHtmlTagColors/IconButton/BackgroundColor=Background color",
+                                              width: 21);
+
+                            edit_text(characters: 8,
+                                      identifier: "IDC_EDIT_BACKGROUND",
+                                      tab_next_node: "IDC_EDIT_LIVE_BACKGROUND");
+                        }
+
+                        row(spacing: 5)
+                        {
+                            ownerdrawn_button(height: 18,
+                                              identifier: "IDC_BUTTON_LIVE_BACKGROUND",
+                                              indent: 2,
+                                              name: "$$$/PrefsHtmlTagColors/IconButton/BackgroundColor1=Background color",
+                                              width: 21);
+
+                            edit_text(characters: 8,
+                                      identifier: "IDC_EDIT_LIVE_BACKGROUND",
+                                      tab_next_node: "IDC_EDIT_LOCKED_BACKGROUND");
+                        }
+
+                        row(spacing: 5)
+                        {
+                            ownerdrawn_button(height: 18,
+                                              identifier: "IDC_BUTTON_LOCKED_BACKGROUND",
+                                              indent: 2,
+                                              name: "$$$/PrefsHtmlTagColors/IconButton/BackgroundColor2=Background color",
+                                              width: 21);
+
+                            edit_text(characters: 8,
+                                      identifier: "IDC_EDIT_LOCKED_BACKGROUND",
+                                      tab_next_node: "IDC_EDIT_HIDDEN_CHARS");
+                        }
+                    }
+
+                    column(spacing: 0)
+                    {
+                        row(spacing: 5)
+                        {
+                            column(indent: 2,
+                                   spacing: 14)
+                            {
+                                static_text(horizontal: @align_right,
+                                            identifier: "IDC_STATIC",
+                                            name: "$$$/PrefsHtmlTagColors/Label/HiddenCharacters=&Hidden characters:");
+
+                                static_text(horizontal: @align_right,
+                                            identifier: "IDC_STATIC",
+                                            name: "$$$/PrefsHtmlTagColors/Label/LiveCodeChanges=Live Code &changes:");
+                            }
+
+                            column(spacing: 5)
+                            {
+                                row(spacing: 5)
+                                {
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_HIDDEN_CHARS",
+                                                      indent: 2,
+                                                      name: "$$$/PrefsHtmlTagColors/IconButton/BackgroundColor3=Background color",
+                                                      width: 21);
+
+                                    edit_text(characters: 8,
+                                              identifier: "IDC_EDIT_HIDDEN_CHARS",
+                                              tab_next_node: "IDC_EDIT_CHANGE_HIGHLIGHT");
+                                }
+
+                                row(spacing: 5)
+                                {
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_CHANGE_HIGHLIGHT",
+                                                      indent: 2,
+                                                      name: "$$$/PrefsHtmlTagColors/IconButton/BackgroundColor4=Background color",
+                                                      width: 21);
+
+                                    edit_text(characters: 8,
+                                              identifier: "IDC_EDIT_CHANGE_HIGHLIGHT");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:*, attrname:Spry.Widget.Accordion, priority:50, selection:exact, hideclass -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2006-2007 Adobe Systems Incorporated.  All rights reserved. -->
+<title>
+<MMString:LoadString id="spry/widgets/accordion/title" />
+</title>
+<!-- common includes -->
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/TagEditClass.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/UltraDev/Scripts/ssDocManager.js"></script>
+<script type="text/javascript" src="_pi_common.js"></script>
+
+<!-- accordion widget includes -->
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetBase.js"></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/Accordion/DesignTime/SpryAccordionDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetManager.js" ></script>
+<!-- accordion widget pi include -->
+<script type="text/javascript" src="spry_accordion.js"></script>
+<!-- pi styles -->
+<link href="_pi_common.css" rel="stylesheet" type="text/css" />
+<link href="../Styles/spry_accordion.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.buttonHeader{ }
+</style>
+</head>
+<body class="piBody">
+<!-- standard image & id fields -->
+<div id="piId"> 
+  <img id="piImage" src="spry_accordion.png" MMString:alt="Inspectors/spry_accordion/img/alt/Accordion" />
+  <div id="idBoxLayer" class="cls_spryaccordion_div_idBoxLayer">
+    <div id="piTitle"><p><MMString:loadString id="Inspectors/spry_accordion/img/alt/Accordion" /></p></div>
+    <div id="piElementId">
+      <input id="idEditBox" type="text" onBlur="updateTag('id')" />
+    </div>
+  </div>
+</div>
+<div id="topLayer">
+  <div id="panelEditingLabel" class="cls_spryaccordion_div_panelEditingLabel"><MMString:loadString id="Inspectors/spry_accordion/text/Panels" /></div>
+  <div id="message" class="cls_spryaccordion_div_message">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../Shared/MM/Images/infoTopLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoTop.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoTopRight.png" width="7" height="7" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoLeft.png" width="7" height="57" border="0"></td>
+      <td align="center" valign="top" bgcolor="#FFFFCC"><img  src="../Shared/MM/Images/warningIcon.png" width="14" height="13" border="0"></td>
+      <td width="90%" valign="top" bgcolor="#FFFFCC" id="messageText">&nbsp;</td>
+      <td><img src="../Shared/MM/Images/infoRight.png" width="7" height="57" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoBottomLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoBottom.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoBottomRight.png" width="7" height="7" border="0"></td>
+    </tr>
+  </table>
+  </div>
+  <div id="panelEditingMain" class="cls_spryaccordion_div_panelEditingMain">
+    <div class="buttonHeader">
+      <div class="fltlft">
+        <input id="elemAdd"  type="image"   MMString:alt="Inspectors/spry_accordion/image/alt/Add"   onclick="updateTag('addPanel')"   src="../Shared/MM/Images/btnAddSmall.png" />
+        <input id="elemDel"  type="image"  MMString:alt="Inspectors/spry_accordion/image/alt/Remove"  onclick="updateTag('deletePanel')"  src="../Shared/MM/Images/btnDelSmall.png" />
+      </div>
+      <div class="fltrt">
+        <input id="elemUp"  type="image"    MMString:alt="Inspectors/spry_accordion/image/alt/Move"   onclick="updateTag('movePanelUp')"  src="../Shared/MM/Images/btnUpSmall.png" />
+        <input id="elemDown" type="image"  MMString:alt="Inspectors/spry_accordion/image/alt/Move_1"   onclick="updateTag('movePanelDown')" src="../Shared/MM/Images/btnDownSmall.png" />
+      </div>
+    </div>
+    <select id="panelList" class="cls_spryaccordion_select_panelList" size="5" onChange="updateTag('panelSelected');"/>
+  </div>
+</div>
+<div id="bottomLayer">
+  <p><a href="#" onMouseDown="updateTag('guide')"><MMString:loadString id="Inspectors/spry_accordion/text/Customize" /></a></p>
+</div>
+<div id="errorLayer">
+  <table width="225" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../Shared/MM/Images/infoTopLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoTop.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoTopRight.png" width="7" height="7" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoLeft.png" width="7" height="57" border="0"></td>
+      <td align="center" valign="top" bgcolor="#FFFFCC"><img  src="../Shared/MM/Images/warningIcon.png" width="14" height="13" border="0"></td>
+      <td width="90%" valign="top" bgcolor="#FFFFCC" id="errorMessage">&nbsp;</td>
+      <td><img src="../Shared/MM/Images/infoRight.png" width="7" height="57" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoBottomLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoBottom.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoBottomRight.png" width="7" height="7" border="0"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

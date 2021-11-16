@@ -1,0 +1,264 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewActiveX
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_ACTIVEX",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(margin: 3,
+               spacing: 3)
+        {
+            row(indent: 50,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 8)
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE",
+                                name: "$$$/PropInspectActivex/Label/ActivexName=ActiveX name");
+
+                    edit_text(characters: 9,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_NAME",
+                              tab_next_node: "IDC_EDIT_WIDTH");
+                }
+
+                column(spacing: 3)
+                {
+                    row(indent: 21,
+                        spacing: 5)
+                    {
+                        static_text(identifier: "IDC_STATIC_WIDTH",
+                                    name: "$$$/PropInspectActivex/Label/W=&W");
+
+                        edit_text(characters: 4,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_EDIT_WIDTH",
+                                  tab_next_node: "IDC_EDIT_HEIGHT");
+                    }
+
+                    row(indent: 21,
+                        spacing: 5)
+                    {
+                        static_text(identifier: "IDC_STATIC_HEIGHT",
+                                    name: "$$$/PropInspectActivex/Label/H=&H");
+
+                        edit_text(characters: 4,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_EDIT_HEIGHT",
+                                  tab_next_node: "IDC_EDIT_EMBED");
+                    }
+                }
+
+                column(spacing: 3)
+                {
+                    row(indent: 10,
+                        spacing: 5)
+                    {
+                        static_text(identifier: "IDC_STATIC_CLASSID",
+                                    name: "$$$/PropInspectActivex/Label/Classid=&ClassID");
+
+                        combobox(identifier: "IDC_COMBO_CLASSID",
+                                 popup_maximum_width_chars: 7,
+                                 sort: true,
+                                 tab_next_node: "IDC_BUTTON_REMOVE",
+                                 vertical_scroll: true);
+
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_REMOVE",
+                                          indent: 1,
+                                          name: "$$$/PropInspectActivex/IconButton/RemoveItem=Remove item",
+                                          tab_next_node: "IDC_EDIT_EMBED_SRC",
+                                          width: 21);
+                    }
+
+                    row(indent: 10)
+                    {
+                        column(indent: 4)
+                        {
+                            checkbox(horizontal: @align_center,
+                                     identifier: "IDC_EDIT_EMBED",
+                                     name: "$$$/PropInspectActivex/CheckBox/Embed=&Embed",
+                                     tab_next_node: "IDC_COMBO_CLASSID");
+                        }
+
+                        column()
+                        {
+                            row(spacing: 5)
+                            {
+                                static_text(identifier: "IDC_STATIC_EMBED_SRC",
+                                            name: "$$$/PropInspectActivex/Label/Src=&Src");
+
+                                edit_text(characters: 15,
+                                          horizontal: @align_center,
+                                          identifier: "IDC_EDIT_EMBED_SRC",
+                                          tab_next_node: "IDC_BUTTON_BROWSE_SRC");
+
+                                ownerdrawn_button(height: 16,
+                                                  identifier: "IDC_BUTTON_BROWSE_SRC",
+                                                  indent: 1,
+                                                  name: "$$$/PropInspectActivex/IconButton/BrowseFor=Browse for file",
+                                                  tab_next_node: "IDC_COMBO_ALIGN",
+                                                  width: 22);
+                            }
+                        }
+                    }
+                }
+
+                column(indent: 2,
+                       spacing: 0)
+                {
+                    row(spacing: 0)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_ALIGN",
+                                    name: "$$$/PropInspectActivex/Label/Align=&Align");
+                    }
+                }
+
+                column(horizontal: @align_fill,
+                       spacing: 4)
+                {
+                    popup(horizontal: @align_fill,
+                          identifier: "IDC_COMBO_ALIGN",
+                          include_custom_item: false,
+                          tab_next_node: "IDC_BUTTON_START_STOP",
+                          vertical_scroll: true);
+
+                    ownerdrawn_button(height: 20,
+                                      identifier: "IDC_BUTTON_START_STOP",
+                                      name: "$$$/PropInspectActivex/IconButton/Play=Play",
+                                      tab_next_node: "IDC_EDIT_VSPACE",
+                                      width: 97);
+                }
+            }
+
+            row(spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    row(indent: 121)
+                    {
+                        column(indent: 2,
+                               spacing: 12)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_VSPACE",
+                                        name: "$$$/PropInspectActivex/Label/VSpace=&V space");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_HSPACE",
+                                        name: "$$$/PropInspectActivex/Label/HSpace=H s&pace");
+                        }
+                    }
+                }
+
+                column(spacing: 3)
+                {
+                    edit_text(characters: 4,
+                              identifier: "IDC_EDIT_VSPACE",
+                              tab_next_node: "IDC_EDIT_HSPACE");
+
+                    edit_text(characters: 4,
+                              identifier: "IDC_EDIT_HSPACE",
+                              tab_next_node: "IDC_EDIT_CODEBASE");
+                }
+
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    row(indent: 24,
+                        spacing: 0)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_CODEBASE",
+                                    name: "$$$/PropInspectActivex/Label/Base=&Base");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_ID",
+                                name: "$$$/PropInspectActivex/Label/Id=&ID");
+                }
+
+                column(spacing: 3)
+                {
+                    edit_text(characters: 22,
+                              identifier: "IDC_EDIT_CODEBASE",
+                              tab_next_node: "IDC_EDIT_ID");
+
+                    row(spacing: 5)
+                    {
+                        edit_text(characters: 8,
+                                  identifier: "IDC_EDIT_ID",
+                                  tab_next_node: "IDC_EDIT_DATA");
+
+                        column()
+                        {
+                            row(indent: 7,
+                                spacing: 5)
+                            {
+                                static_text(identifier: "IDC_STATIC_DATA",
+                                            name: "$$$/PropInspectActivex/Label/Data=&Data");
+
+                                edit_text(characters: 8,
+                                          identifier: "IDC_EDIT_DATA",
+                                          tab_next_node: "IDC_BUTTON_PARAMETERS");
+                            }
+                        }
+                    }
+                }
+
+                column(indent: 29)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_ALT",
+                                name: "$$$/PropInspectActivex/Label/AltImg=Al&t img");
+                }
+
+                column(spacing: 3)
+                {
+                    ownerdrawn_button(height: 20,
+                                      identifier: "IDC_BUTTON_PARAMETERS",
+                                      name: "$$$/PropInspectActivex/IconButton/Parameters=Parameters...",
+                                      tab_next_node: "IDC_EDIT_ALT",
+                                      width: 97);
+
+                    row(spacing: 3)
+                    {
+                        edit_text(identifier: "IDC_EDIT_ALT",
+                                  tab_next_node: "IDC_BUTTON_BROWSE_ALT");
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BROWSE_ALT",
+                                          indent: 1,
+                                          name: "$$$/PropInspectActivex/IconButton/BrowseForImage=Browse for image",
+                                          width: 22);
+                    }
+                }
+            }
+        }
+    }
+}

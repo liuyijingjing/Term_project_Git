@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<activeContent>
+	<featureEnabled>true</featureEnabled>
+	<!-- Dreamweaver searches for this regular expression in order to
+	     determine if a script block is actually a special
+	     active-content conversion script block: -->
+	<scriptPattern><![CDATA[/AC_.._RunContent/]]></scriptPattern>
+	<scriptReplacePattern><![CDATA[/AC_.._RunContent\([^\)]*.*/\/\end AC code/m]]></scriptReplacePattern>
+</activeContent>

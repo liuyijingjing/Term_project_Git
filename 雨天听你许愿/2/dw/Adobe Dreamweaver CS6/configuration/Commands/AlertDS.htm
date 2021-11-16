@@ -1,0 +1,41 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/AlertDS/title" /></title>
+<script language="Javascript" src="AlertDS.js"></script>
+<script language="Javascript">
+// Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved.
+
+</script>
+</head>
+
+<body onLoad="initialize()">
+<form name="theForm">
+
+   <table width="300" border=0>
+     <tr>
+       <td width="45"> <img name="confirmIcon" width="32" height="32"src="../Shared/MM/Images/confirmIcon.gif" align="middle"></td>
+       <td valign="middle"></td>
+       <td valign="middle" width="247"> <span name="msg" style=""><MMString:loadString id="Commands/AlertDS/text/Message" /></span> </td>
+       <td valign="middle" width="4"></td>
+     </tr>
+     <tr>
+       <td></td>
+       <td valign="top" colspan="3">
+         <div style="position:relative">
+           <input type="checkbox" name="cbDoNotAsk" style="position:absolute; top:0;">
+           <div style="position:absolute; top:10px;; left:30px;"><MMString:loadString id="Commands/AlertDS/text/Dont" /></div>
+         </div>
+       </td>
+     </tr>
+   </table>
+    <table width="300" border=0>
+      <tr>
+        <td id="buttonContainer" align="right" valign="baseline" nowrap><span name="btns">
+          <input type="button" MMString:value="Commands/AlertDS/button/button/OK" onClick="setResult(true)" name="button">
+          </span></td>
+      </tr>
+    </table>
+</form>
+</body>
+</html>

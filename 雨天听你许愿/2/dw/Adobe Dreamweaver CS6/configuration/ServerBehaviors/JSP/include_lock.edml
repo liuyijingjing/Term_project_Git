@@ -1,0 +1,7 @@
+<participant>
+  <quickSearch><![CDATA[jsp:include]]></quickSearch>
+  <searchPatterns whereToSearch="lock">
+    <searchPattern paramNames="include_relUrl"><![CDATA[/<jsp:include\s+.*?\s*page\s*=\s*["']([^\r\n]*?)["'].*?\s*\/>/im]]></searchPattern>
+    <searchPattern paramNames="include_relUrl"><![CDATA[/<jsp:include\s+.*?\s*page\s*=\s*["']([^\r\n]*?)["'].*?\s*>\s*(<jsp:param\s+.*?\s*\/>\s*)*\s*<\/jsp:include>/im]]></searchPattern>
+  </searchPatterns>
+</participant>

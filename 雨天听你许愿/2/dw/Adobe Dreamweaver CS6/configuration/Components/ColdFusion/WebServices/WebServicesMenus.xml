@@ -1,0 +1,20 @@
+<!-- WARNING: DO NOT CHANGE ANY ID ATTRIBUTES ASSOCIATED WITH MENU ITEMS. -->
+<!-- Changing IDs will make it impossible for other developers to locate -->
+<!-- menu items for installation purposes. -->
+<shortcutlist xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" id="DWWebServicesContext">
+	<shortcut key="Del" domRequired="false" enabled="(dw.serverComponentsPalette.getSelectedNode() != null && (dw.serverComponentsPalette.getSelectedNode().objectType=='Root'))" command="clickedDelete();"  id="DWShortcuts_ServerComponent_Delete" />
+</shortcutlist>
+<menubar name="" id="DWWebServicesContext">
+    <menu MMString:name="Components/ASP_NET_Csharp/WebServices/WebServicesMenus_xml/DWContext_WebServices/menu/name" id="DWContext_WebServices">
+        <menuitem MMString:name="Components/ASP_NET_Csharp/WebServices/WebServicesMenus_xml/DWContext_WebServices_EditWebService/menuitem/name" domRequired="false"	enabled="dw.serverComponentsPalette.getSelectedNode() != null && (dw.serverComponentsPalette.getSelectedNode().objectType=='Root') && dw.serverComponentsPalette.getSelectedNode().wsRec != null && dw.serverComponentsPalette.getSelectedNode().wsRec[ProxyGeneratorNamePropName] != null" command="editWebService()"		id="DWContext_WebServices_EditWebService" />
+        <menuitem MMString:name="Components/ASP_NET_Csharp/WebServices/WebServicesMenus_xml/DWContext_WebServices_RegenerateProxy/menuitem/name" domRequired="false"	enabled="dw.serverComponentsPalette.getSelectedNode() != null && (dw.serverComponentsPalette.getSelectedNode().objectType=='Root') && dw.serverComponentsPalette.getSelectedNode().wsRec != null && dw.serverComponentsPalette.getSelectedNode().wsRec[ProxyGeneratorNamePropName] != null" command="reGenerateProxy();" id="DWContext_WebServices_RegenerateProxy" />
+			  <separator/>
+				<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWShortcuts_ServerComponent_Insert/menuitem/name" domRequired="false" enabled="insertEnabled(dw.serverComponentsPalette.getSelectedNode());" command="clickedInsert(dw.serverComponentsPalette.getSelectedNode());" id="DWShortcuts_ServerComponent_Insert" />
+    </menu>
+</menubar>
+<menubar name="" id="DWWebServicesChoosersContext">
+    <menu MMString:name="Components/ASP_NET_Csharp/WebServices/WebServicesMenus_xml/DWContext_WebServicesChooser/menu/name" id="DWContext_WebServicesChooser">
+		<menuitem dynamic MMString:name="Components/ASP_NET_Csharp/WebServices/WebServicesMenus_xml/DWContext_WebServices_Chooser_List/menuitem/name" file="Menus/MM/WS_Choosers.htm" id="DWContext_WebServices_Chooser_List" />
+    </menu>
+</menubar>
+	

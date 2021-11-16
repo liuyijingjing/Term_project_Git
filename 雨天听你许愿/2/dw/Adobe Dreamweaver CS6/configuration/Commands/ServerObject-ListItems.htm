@@ -1,0 +1,118 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/ServerObject-ListItems/title" /></title>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="EditOpsCustomObjs.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/TreeControlClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Controls/Scripts/RadioGroup.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Controls/Scripts/RecordsetMenu.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Controls/Scripts/RecordsetFieldMenu.js"></SCRIPT>
+<SCRIPT SRC="ServerObject-MenuProps.js"></SCRIPT>
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<link href="../Styles/ServerObject-ListItems.css" rel="stylesheet" type="text/css" />
+</head>
+<body body onload="initializeUI()">
+<form name="form2" method="post" action="">
+  <table border="0" width="400px">
+      <tr>
+        <td align="right" valign="baseline" width="120"><MMString:loadString id="Commands/ServerObject-ListItems/text/Populate" /></td>
+        <td valign="baseline" nowrap>
+          <input type="radio" name="Populate" value="radiobutton" onClick="showDifferentLayer('manual')" checked>
+          <MMString:loadString id="Commands/ServerObject-ListItems/radiobutton/Populate/Manually" /></td>
+      </tr>
+      <tr>
+        <td align="right" valign="baseline">&nbsp;</td>
+        <td valign="baseline" nowrap>
+          <input type="radio" name="Populate" value="radiobutton" onClick="showDifferentLayer('database')">
+          <MMString:loadString id="Commands/ServerObject-ListItems/radiobutton/Populate/From" /></td>
+      </tr>
+	  <tr>
+	    <td height="190px" colspan="2">&nbsp;</td>
+      </tr>
+    </table>
+
+<div id="manualLayer" class="cls_ServerObjectListItems_div_manualLayer" style="position:absolute; z-index:1; visibility: hidden;">
+ <table border="0">
+      <tr>
+	<td nowrap valign="baseline" align="right" width="120"><MMString:loadString id="Commands/ServerObject-ListItems/text/List" /></td>
+        <td nowrap align="left">
+          <input type="image" name="elemAdd" src="../Shared/MM/Images/btnAdd.gif" onClick="addNewRow();focus(this)"  MMString:alt="Commands/ServerObject-ListItems/image/alt/Add">
+          <input type="image" name="elemDel" src="../Shared/MM/Images/btnDel.gif" onClick="delRow();focus(this);"  MMString:alt="Commands/ServerObject-ListItems/image/alt/Remove">
+          <img src="../Shared/MM/Images/transparent.gif" height=8 width="155"> 
+          <input type="image" border="0" name="elemUp" src="../Shared/MM/Images/btnUp.gif"  onClick="moveRowUp();focus(this)" MMString:alt="Commands/ServerObject-ListItems/image/alt/Move">
+          <input type="image" border="0" name="elemDown" src="../Shared/MM/Images/btnDown.gif"  onClick="moveRowDown();focus(this)" MMString:alt="Commands/ServerObject-ListItems/image/alt/Move_1">
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="top" align="right">&nbsp;</td>
+        <td nowrap align="left">
+          <mm:treecontrol class="cls_ServerObjectListItems_mmtreecontrol_MenuGrid" name="MenuGrid" onChange="displayGridValues()">
+		<mm:treecolumn width="110"> <mm:treecolumn width="110">
+          </mm:treecontrol>
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="baseline" align="right"><MMString:loadString id="Commands/ServerObject-ListItems/text/Label" /></td>
+        <td nowrap align="left">
+          <input name="MenuText" type="text" class="cls_ServerObjectListItems_input_MenuText" onBlur="updateGridRow()">
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="baseline" align="right"><MMString:loadString id="Commands/ServerObject-ListItems/text/Value" /></td>
+        <td nowrap align="left">
+          <input name="MenuValue" type="text" class="cls_ServerObjectListItems_input_MenuValue" onBlur="updateGridRow()">
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="baseline" align="right"><MMString:loadString id="Commands/ServerObject-ListItems/text/Select" /></td>
+        <td nowrap align="left">
+          <input name="DefaultValueManual" type="text" class="cls_ServerObjectListItems_input_DefaultValueManual">
+          <input type="image" name="bindDynData" src="../Shared/UltraDev/Images/Boltup.gif" width="15" height="14" align="absbottom" onClick="displayDynamicDataDialog(_DefaultManual)" MMString:alt="Commands/ServerObject-ListItems/image/alt/Bind">
+        </td>
+      </tr>  
+    </table>
+</div>
+
+<div id="databaseLayer" class="cls_ServerObjectListItems_div_databaseLayer" style="position:absolute; z-index:2; visibility: hidden;">
+<table border="0">
+      <tr>
+        <td align="right" valign="baseline" nowrap><span id="RecordsetDisplayName"><MMString:loadString id="Commands/ServerObject-ListItems/text/Recordset" /></span>:</td>
+        <td valign="baseline" nowrap colspan="4">
+          <select name="RecordsetName" class="cls_ServerObjectListItems_select_RecordsetName" onChange="updateColumns()">
+          </select>                   
+        </td>
+      </tr>
+	  <tr><td height="1"></td></tr>
+      <tr>
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/ServerObject-ListItems/text/Get" /></td>
+        <td valign="baseline" nowrap colspan="4">
+          <select name="MenuLabels" class="cls_ServerObjectListItems_select_MenuLabels">
+          </select>
+        </td>
+      </tr>
+	  <tr><td height="1"></td></tr>
+      <tr>
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/ServerObject-ListItems/text/Get_1" /></td>
+        <td valign="baseline" nowrap colspan="4">
+          <select name="MenuValues" class="cls_ServerObjectListItems_select_MenuValues">
+          </select>
+        </td>
+      </tr>      
+	  <tr><td height="1"></td></tr>
+      <tr>
+        <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/ServerObject-ListItems/text/Select" /></td>
+        <td nowrap align="left">
+          <input name="DefaultValueDatabase" type="text" class="cls_ServerObjectListItems_input_DefaultValueDatabase" >
+	  <input type="image" src="../Shared/UltraDev/Images/Boltup.gif" width="15" height="14" align="absbottom" onClick="displayDynamicDataDialog(TF_DEFAULT_DATABASE)" MMString:alt="Commands/ServerObject-ListItems/image/alt/Bind">
+        </td>
+      </tr> 
+    </table>
+</div>
+</form>
+</body>
+</html>

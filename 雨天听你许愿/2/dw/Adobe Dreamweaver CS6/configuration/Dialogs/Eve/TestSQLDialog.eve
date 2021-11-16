@@ -1,0 +1,63 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TestSQLDialog
+{
+    view dialog(identifier: "IDD_TESTSQL_DIALOG",
+                name: "$$$/Testsql/Title/TestSql=Test SQL Statement",
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(margin: 0,
+                spacing: 5)
+            {
+                list_control(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 440,
+                             identifier: "IDC_TESTSQLLIST",
+                             keyboard_selectable: true,
+                             width: 723,tab_next_node:"IDC_PREV_BUTTON");
+            }
+
+            row(horizontal: @align_fill,
+                margin: 5,
+                spacing: 5)
+            {
+                button(action: @do_action,
+                       default: false,
+                       enabled: false,
+                       identifier: "IDC_PREV_BUTTON",
+                       name: "$$$/Testsql/Button/PreviousXx=&Previous XX",tab_next_node:"IDC_NEXT_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       enabled: false,
+                       identifier: "IDC_NEXT_BUTTON",
+                       name: "$$$/Testsql/Button/NextXx=&Next XX",tab_next_node:"IDOK");
+
+                button(action: @do_ok,
+                       default: true,
+                       horizontal: @align_right,
+                       identifier: "IDOK",
+                       name: "$$$/Testsql/Button/Ok=OK",tab_next_node:"IDC_TESTSQLLIST");
+            }
+        }
+    }
+}

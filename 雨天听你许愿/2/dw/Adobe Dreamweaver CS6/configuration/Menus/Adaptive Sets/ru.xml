@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shortcutset language="Russian">
+	<shortcut platform="win" key="Ctrl+`" newkey="Ctrl+ё"/>
+	<shortcut platform="win" key="Cmd+]" newkey="Cmd+ъ" />
+	<shortcut platform="win" key="Cmd+[" newkey="Cmd+х"/>
+	<shortcut platform="win" key="Cmd+Shift+&gt;" newkey="Cmd+Shift+ю" />
+	<shortcut platform="win" key="Cmd+Shift+&lt;" newkey="Cmd+Shift+б" />
+	<shortcut platform="win" key="Cmd+'" newkey="Cmd+э"/>
+	<shortcut platform="win" key="Cmd+;" newkey="Cmd+ж" />
+	<shortcut platform="win" key="Cmd+Opt+;" newkey="Cmd+Opt+ж" />
+	<shortcut platform="win" key="Cmd+Shift+;" newkey="Cmd+Shift+ж" />
+	<shortcut platform="win" key="Cmd+Shift+]" newkey="Cmd+Shift+ъ" />
+	<shortcut platform="win" key="Cmd+Shift+[" newkey="Cmd+Shift+х" />
+	<shortcut platform="win" key="Cmd+Opt+]" newkey="Cmd+Opt+ъ" />
+	<shortcut platform="win" key="Cmd+Opt+[" newkey="Cmd+Opt+х" />
+</shortcutset>

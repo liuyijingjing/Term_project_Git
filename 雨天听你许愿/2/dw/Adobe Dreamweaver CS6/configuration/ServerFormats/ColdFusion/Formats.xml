@@ -1,0 +1,75 @@
+<formats xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" id="DWMenu_ServerFormatDef_CF_5">
+	<separator />
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DATETIME/menu/name" id="DWMenu_ServerFormatDef_CF_5_DATETIME">
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT1/format/title"	expression="#\s*LSDateFormat\(.*\)\s*#"	date="1" strNamedFormat="" id="DWMenu_ServerFormatDef_CF_5_DT1"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT4/format/title" expression="#\s*LSDateFormat\(.*,\s*\'DDDD, MMMM DD, YYYY\'\)\s*#"	strNamedFormat="DDDD, MMMM DD, YYYY" date="1" id="DWMenu_ServerFormatDef_CF_5_DT4"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT5/format/title"	expression="#\s*LSDateFormat\(.*,\s*\'DD MMMM YYYY\'\)\s*#"	strNamedFormat="DD MMMM YYYY" date="1" id="DWMenu_ServerFormatDef_CF_5_DT5"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT6/format/title" expression="#\s*LSDateFormat\(.*,\s*\'MMMM DD, YYYY\'\)\s*#"	strNamedFormat="MMMM DD, YYYY" date="1" id="DWMenu_ServerFormatDef_CF_5_DT6"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT7/format/title"	expression="#\s*LSDateFormat\(.*,\s*\'DD-MM-YY\'\)\s*#"	strNamedFormat="DD-MM-YY"	date="1" id="DWMenu_ServerFormatDef_CF_5_DT7"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT7/format/title_14"		expression="#\s*LSDateFormat\(.*,\s*\'YY-M-DD\'\)\s*#"	strNamedFormat="YY-M-DD" date="1" id="DWMenu_ServerFormatDef_CF_5_DT7"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT8/format/title"		expression="#\s*LSDateFormat\(.*,\s*\'YY-MM-DD\'\)\s*#"	date="1" strNamedFormat="YY-MM-DD" id="DWMenu_ServerFormatDef_CF_5_DT8"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT9/format/title"	expression="#\s*LSDateFormat\(.*,\s*\'DD-MM-YYYY\'\)\s*#"	date="1" strNamedFormat="DD-MM-YYYY" id="DWMenu_ServerFormatDef_CF_5_DT9"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT10/format/title"		expression="#\s*LSDateFormat\(.*,\s*\'M/DD/YY\'\)\s*#"	date="1" strNamedFormat="M/DD/YY" id="DWMenu_ServerFormatDef_CF_5_DT10"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT11/format/title"	expression="#\s*LSDateFormat\(.*,\s*\'DD/MM/YY\'\)\s*#"	date="1" strNamedFormat="DD/MM/YY" id="DWMenu_ServerFormatDef_CF_5_DT11"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT12/format/title"	expression="#\s*LSDateFormat\(.*,\s*\'YY/MM/DD\'\)\s*#"	date="1" strNamedFormat="YY/MM/DD" id="DWMenu_ServerFormatDef_CF_5_DT12"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT13/format/title"	expression="#\s*LSTimeFormat\(.*\)\s*#"	strNamedFormat="" time="1" id="DWMenu_ServerFormatDef_CF_5_DT13"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_CF14/format/title" expression="#\s*LSTimeFormat\(.*,\s*\'h:mm:ss tt\'\)\s*#"	time="1" strNamedFormat="h:mm:ss tt"	id="DWMenu_ServerFormatDef_CF_5_CF14"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT15/format/title" expression="#\s*LSTimeFormat\(.*,\s*\'HH:mm:ss\'\)\s*#"	time="1" strNamedFormat="HH:mm:ss"	id="DWMenu_ServerFormatDef_CF_5_DT15"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT16/format/title"  expression="#\s*LSTimeFormat\(.*,\s*\'hh:mm:ss t\'\)\s*#"	time="1" strNamedFormat="hh:mm:ss t" id="DWMenu_ServerFormatDef_CF_5_DT16"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_DT17/format/title"	expression="#\s*LSTimeFormat\(.*,\s*\'HH:mm\'\)\s*#"	time="1" strNamedFormat="HH:mm"	id="DWMenu_ServerFormatDef_CF_5_DT17"/>
+	</menu>
+	<separator />
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NUMBER/menu/name" id="DWMenu_ServerFormatDef_CF_5_NUMBER">
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO1/format/title" expression="#\s*LSNumberFormat\(.*\)\s*#"	 strNamedFormat=""	 id="DWMenu_ServerFormatDef_CF_5_NO1"/>
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO2/format/title"	expression="#\s*LSNumberFormat\(.*,\s*\',99999999999999.99\'\)\s*#"	 strNamedFormat=",99999999999999.99"	id="DWMenu_ServerFormatDef_CF_5_NO2"/>
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO3/format/title"	expression="#\s*LSNumberFormat\(.*,\s*\',99999999999999\'\)\s*#"	strNamedFormat=",99999999999999"	id="DWMenu_ServerFormatDef_CF_5_NO3"/>
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO6/format/title"			expression="#\s*LSNumberFormat\(.*,\s*\'\(,99999999999999\)\'\)\s*#" strNamedFormat="(,99999999999999)"	id="DWMenu_ServerFormatDef_CF_5_NO6"/>
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO7/format/title"		expression="#\s*LSNumberFormat\(.*,\s*\'-,99999999999999\'\)\s*#"	strNamedFormat="-,99999999999999"	id="DWMenu_ServerFormatDef_CF_5_NO7"/>
+		<format	file="Number"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO9/format/title"	expression="#\s*LSNumberFormat\(.*,\s*\'99999999999999\'\)\s*#"	 strNamedFormat="99999999999999"	id="DWMenu_ServerFormatDef_CF_5_NO9"/>
+	</menu>
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_CURRENCY/menu/name" id="DWMenu_ServerFormatDef_CF_5_CURRENCY">
+		<format	file="Currency"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO1/format/title_58" expression="#\s*LSCurrencyFormat\(.*,\s*\'none\'\)\s*#" func="LSCurrencyFormat" strNamedFormat="none"	 id="DWMenu_ServerFormatDef_CF_5_NO1"/>
+		<format	file="Currency"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO2/format/title_60" expression="#\s*DollarFormat\(.*\)\s*#" func="DollarFormat" strNamedFormat=""	 id="DWMenu_ServerFormatDef_CF_5_NO2"/>
+		<format	file="Currency"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO3/format/title_62" expression="#\s*LSCurrencyFormat\(.*,\s*\'local\'\)\s*#" func="LSCurrencyFormat" strNamedFormat="local"	 id="DWMenu_ServerFormatDef_CF_5_NO3"/>
+		<format	file="Currency"		MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_NO4/format/title" expression="#\s*LSCurrencyFormat\(.*,\s*\'international\'\)\s*#" func="LSCurrencyFormat" strNamedFormat="international"	 id="DWMenu_ServerFormatDef_CF_5_NO4"/>
+	</menu>
+	<separator />
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_ALPHACASE/menu/name" id="DWMenu_ServerFormatDef_CF_5_ALPHACASE">
+		<format	file="AlphaCase"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_CASELOWER/format/title"	expression="#\s*LCase\(.*\)\s*#" func="LCase"	id="DWMenu_ServerFormatDef_CF_5_CASELOWER"/>
+		<format	file="AlphaCase"	MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_CASEUPPER/format/title"	expression="#\s*UCase\(.*\)\s*#" func="UCase"	id="DWMenu_ServerFormatDef_CF_5_CASEUPPER"/>
+	</menu>
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_TRIM/menu/name" id="DWMenu_ServerFormatDef_CF_5_TRIM">
+		<format	file="Trim"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_TRIMLEFT/format/title"	expression="#\s*LTrim\(.*\)\s*#"	func="LTrim"	id="DWMenu_ServerFormatDef_CF_5_TRIMLEFT"/>
+			
+		<format	file="Trim"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_TRIMRIGHT/format/title" expression="#\s*RTrim\(.*\)\s*#"	func="RTrim" id="DWMenu_ServerFormatDef_CF_5_TRIMRIGHT"/>
+		<format	file="Trim"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_TRIMBOTH/format/title"	expression="#\s*Trim\(.*\)\s*#" 	func="Trim"	id="DWMenu_ServerFormatDef_CF_5_TRIMBOTH"/>
+		<format	file="Trim"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_STRIPCR/format/title"	expression="#\s*StripCR\(.*\)\s*#" 	func="StripCR"	id="DWMenu_ServerFormatDef_CF_5_STRIPCR"/>
+	</menu>
+	<separator />
+	<menu MMString:name = "ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH/menu/name" id="DWMenu_ServerFormatDef_CF_5_MATH">
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH01/format/title"	expression="#\s*Abs\(.*\)\s*#"	func="Abs"	id="DWMenu_ServerFormatDef_CF_5_MATH01"/>
+			
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH02/format/title" expression="#\s*Atn\(.*\)\s*#"	func="Atn" id="DWMenu_ServerFormatDef_CF_5_MATH02"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH03/format/title"	expression="#\s*Ceiling\(.*\)\s*#" 	func="Ceiling"	id="DWMenu_ServerFormatDef_CF_5_MATH03"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH04/format/title"	expression="#\s*Cos\(.*\)\s*#" 	func="Cos"	id="DWMenu_ServerFormatDef_CF_5_MATH04"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH05/format/title"	expression="#\s*DecrementValue\(.*\)\s*#" 	func="DecrementValue"	id="DWMenu_ServerFormatDef_CF_5_MATH05"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH06/format/title"	expression="#\s*Exp\(.*\)\s*#" 	func="Exp"	id="DWMenu_ServerFormatDef_CF_5_MATH06"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH07/format/title"	expression="#\s*Fix\(.*\)\s*#" 	func="Fix"	id="DWMenu_ServerFormatDef_CF_5_MATH07"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH08/format/title"	expression="#\s*IncrementValue\(.*\)\s*#" 	func="IncrementValue"	id="DWMenu_ServerFormatDef_CF_5_MATH08"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH09/format/title"	expression="#\s*Int\(.*\)\s*#" 	func="Int"	id="DWMenu_ServerFormatDef_CF_5_MATH09"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH10/format/title"	expression="#\s*Log\(.*\)\s*#" 	func="Log"	id="DWMenu_ServerFormatDef_CF_5_MATH10"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH11/format/title"	expression="#\s*Log10\(.*\)\s*#" 	func="Log10"	id="DWMenu_ServerFormatDef_CF_5_MATH11"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH12/format/title"	expression="#\s*Randomize\(.*\)\s*#" 	func="Randomize"	id="DWMenu_ServerFormatDef_CF_5_MATH12"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH13/format/title"	expression="#\s*Round\(.*\)\s*#" 	func="Round"	id="DWMenu_ServerFormatDef_CF_5_MATH13"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH14/format/title"	expression="#\s*Sgn\(.*\)\s*#" 	func="Sgn"	id="DWMenu_ServerFormatDef_CF_5_MATH14"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH15/format/title"	expression="#\s*Sin\(.*\)\s*#" 	func="Sin"	id="DWMenu_ServerFormatDef_CF_5_MATH15"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH16/format/title"	expression="#\s*Sqr\(.*\)\s*#" 	func="Sqr"	id="DWMenu_ServerFormatDef_CF_5_MATH16"/>
+		<format	file="Math"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_MATH17/format/title"	expression="#\s*Tan\(.*\)\s*#" 	func="Tan"	id="DWMenu_ServerFormatDef_CF_5_MATH17"/>
+	</menu>
+	<separator />
+	<format	file="Simple"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_HTMLCODEFORMAT/format/title"	expression="#\s*HTMLCodeFormat\(.*\)\s*#" 	func="HTMLCodeFormat"	id="DWMenu_ServerFormatDef_CF_5_HTMLCODEFORMAT"/>
+	<format	file="Simple"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_HTMLEDITFORMAT/format/title"	expression="#\s*HTMLEditFormat\(.*\)\s*#" 	func="HTMLEditFormat"	id="DWMenu_ServerFormatDef_CF_5_HTMLEDITFORMAT"/>
+	<format	file="Simple"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_URLENCODE/format/title"	expression="#\s*URLEncodedFormat\(.*\)\s*#" 	func="URLEncodedFormat"	id="DWMenu_ServerFormatDef_CF_5_URLENCODE"/>
+	<format	file="Simple"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_PREVSINGLEQUOTES/format/title"	expression="#\s*PreserveSingleQuotes\(.*\)\s*#" 	func="PreserveSingleQuotes"	id="DWMenu_ServerFormatDef_CF_5_PREVSINGLEQUOTES"/>
+	<format	file="Simple"			MMString:title="ServerFormats/ColdFusion/Formats/DWMenu_ServerFormatDef_CF_5_REVERSE/format/title"		expression="#\s*Reverse\(.*\)\s*#" 		func="Reverse"	id="DWMenu_ServerFormatDef_CF_5_REVERSE"/>
+</formats>

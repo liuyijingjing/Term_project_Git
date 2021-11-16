@@ -1,0 +1,38 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- Copyright 2003 Macromedia, Inc. All rights reserved. -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:LoadString id="newDocumentDialog/savePageDesign" /></title>
+<script src="Save Page Design.js"></script>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="initializeUI()">
+<form name="theForm">
+  <table border="0">
+    <tr>
+    <td colspan="2" valign="middle" nowrap><MMString:loadString id="Commands/Save_Page_Design/text/Would" /><br>
+    <MMString:loadString id="Commands/Save_Page_Design/text/or" /></td>
+    </tr>
+    
+    <tr>
+    <td colspan="2" valign="middle" nowrap height="1"><img src="../Shared/MM/Images/spacer.gif" height="1"></td>
+    </tr>
+    
+    <tr>
+    <td valign="middle">&nbsp;</td>
+    <td valign="middle" nowrap><input name="localOrServer" type="radio" value="local">
+    <MMString:loadString id="Commands/Save_Page_Design/radiobutton/localOrServer/Local" /></td>
+    </tr>
+    
+    <tr>
+    <td valign="middle">&nbsp;</td>
+    <td valign="middle" nowrap><input name="localOrServer" type="radio" value="server">
+    <MMString:loadString id="Commands/Save_Page_Design/radiobutton/localOrServer/FTP/RDS" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

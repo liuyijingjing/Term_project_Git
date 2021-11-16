@@ -1,0 +1,498 @@
+<script src="../../JavascriptTestRunner.js"></script>
+<script src="../../../Floaters/JavascriptTestRunnerPanel_Mediator.js"></script>
+<script language="javascript">   
+
+var runner = new TestRunner();
+
+// These 'prototype' assignments allow us to override the hard-wired dependencies
+// and inject these fake dependencies so we can isolate the module under test.
+//
+JavascriptTestRunnerPanel_Mediator.prototype.multifileRunner 	= new FakeMultifileRunner();
+JavascriptTestRunnerPanel_Mediator.prototype.dw 				= new FakeDreamweaver();
+
+function FakeJavascriptTestRunnerPanel()
+{
+	this.mediator 				= new JavascriptTestRunnerPanel_Mediator(this);
+	this.browserCtrl 			= new FakeBrowserCtrl(this);
+
+	// Flags for mocking. 
+	this.initUICalled 						= false;
+	this.initUICallCount 					= 0;
+	this.initUI2Called 						= false;
+	this.setBrowserCtrlMainContentCalled 	= false;
+	this.makeBrowserCtrlFitPanelCalled		= false;
+	// End of flags for mocking.
+	
+	this.initUI = function()
+		{
+			this.initUICalled = true;
+			this.initUICallCount++;
+			this.browserCtrl.onLoad = function() { this.parent.initUI2() };
+			this.browserCtrl.loadHTML('<html>hello</html>');
+		}
+		
+	this.initUI2 = function() 
+		{
+			this.initUI2Called = true;
+			this.mediator.runTests();
+		}
+		
+	this.setBrowserCtrlMainContent = function(html)
+		{
+			this.setBrowserCtrlMainContentCalled 	= true;	
+			this.browserCtrl.mainContent 			= html;
+		}
+		
+	this.makeBrowserCtrlFitPanel = function()
+		{
+			this.makeBrowserCtrlFitPanelCalled = true;
+		}
+}
+
+function FakeBrowserCtrl(parent)
+{
+	this.parent = parent;
+	
+	// Flags for mocking.
+	this.loadHTMLCalled = false;
+	// End of flags for mocking.
+	
+	this.loadHTML = function(html)
+		{
+			this.loadHTMLCalled = true;
+			if (this.onLoad)
+				this.onLoad();
+		}
+
+	this.onLoad = null;
+}
+
+function FakeMultifileRunner()
+{
+	// Flags for mocking.
+	this.runTestsCalled = false;
+	this.returnValue 	= {status:'passed', numTestFiles:12, numTestCases:33, theDate: new Date()}; 
+	// End of flags for mocking.
+	
+	this.runTests = function()
+		{
+			this.runTestsCalled = true;			
+			return this.returnValue;
+		}
+}
+
+// Fake function
+function formatDate(aDate)
+{
+	return '11:59:59pm';	
+}
+
+function FakeDreamweaver()
+{
+	// Flags for mocking.
+	this.openDocumentCalled = false;
+	this.fileUrlToOpen 		= '';
+	this.canSaveAllCalled	= false;
+	this.saveAllCalled		= false;
+	// End of flags for mocking.
+	
+	this.openDocument = function(fileUrl)
+		{
+			this.openDocumentCalled = true;
+			this.fileUrlToOpen 		= fileUrl;
+		}
+		
+	this.getConfigurationPath = function()
+		{
+			return 'file:///c/DreamweaverConfigurationPath';
+		}
+		
+	this.canSaveAll = function()
+		{
+			this.canSaveAllCalled = true;
+			return true;
+		}
+	
+	this.saveAll = function()
+		{
+			this.saveAllCalled = true;
+		}
+}
+
+runner.addTestCase( 
+{	
+	name: 	'Should be able to create a FakeMultifileRunner()',
+	
+	given: 	'',
+	when: 	'',  
+	
+	test: 	function() 
+			{
+				var multifileRunner = new FakeMultifileRunner();
+								
+				runner.assertEqual('multifileRunner should be a Javascript object.', typeof multifileRunner, 'object' ); 				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Should be able to create a FakeJavascriptTestRunnerPanel()',
+	
+	given: 	'',
+	when: 	'',  
+	
+	test: 	function() 
+			{
+				
+				var panel = new FakeJavascriptTestRunnerPanel();
+				
+				runner.assertEqual('panel should be a Javascript object.', typeof panel, 'object' ); 
+				runner.assertEqual('panel.mediator should be a Javascript object.', typeof panel.mediator, 'object' ); 				
+			} 
+});
+
+
+runner.addTestCase( 
+{	
+	name: 	'Panel should initialize when first API call is onShow.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'onShow is the first API function called.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onShow();
+								
+				runner.assertTrue('panel.initUI() should be called.', panel.initUICalled ); 				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Panel should initialize when first API call is onResize.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'onResize is the first API function called.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onResize();
+								
+				runner.assertTrue('panel.initUI() should be called.', panel.initUICalled ); 				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Panel should initialize when first API call is selectionChanged.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'selectionChanged is the first API function called.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.selectionChanged();
+								
+				runner.assertTrue('panel.initUI() should be called.', panel.initUICalled ); 				
+			} 
+});
+ 
+runner.addTestCase(
+{
+	name: 	'UI of panel should not be initialized more than once.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'onResize is called.  onShow is called.  selectionChanged is called.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onResize();
+				panel.mediator.onShow();
+				panel.mediator.selectionChanged();
+								
+				runner.assertEqual('panel.initUI() call count should be one.', panel.initUICallCount, 1); 				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'loadHTML() should be called on browser ctrl when panel inited.',
+	
+	given: 	'A JavascriptTestRunnerPanel is created.',
+	when: 	'panel.mediator.onShow() is called.',
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onShow();
+								
+				runner.assertTrue('panel.browserCtrl.loadHTML() should be called.', panel.browserCtrl.loadHTMLCalled);				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'panel.initUI2() should be called when browserCtrl.loadHTML() is called in panel.initUI().',
+	
+	given: 	'A JavascriptTestRunnerPanel is created.',
+	when: 	'panel.mediator.onShow() is called.',
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onShow();
+								
+				runner.assertTrue('panel.initUI2() should be called.', panel.initUI2Called);				
+			} 
+});
+
+
+runner.addTestCase( 
+{	
+	name: 	'Panel should run tests automatically after it is initialized.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'panel.mediator.onShow() is called.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onShow();
+								
+				runner.assertTrue('panel.mediator.multifileRunner.runTests() should be called.', panel.mediator.multifileRunner.runTestsCalled); 				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'multifileRunner.runTests() should be called when "Run All Tests" button clicked.',
+	
+	given: 	'Panel is first shown (either on startup or by command).',
+	when: 	'panel.mediator.onShow() is called. "Run All Tests" button is clicked.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				panel.mediator.onShow();
+				runner.assertTrue('panel.mediator.multifileRunner.runTests() should be called when panel shown.', panel.mediator.multifileRunner.runTestsCalled); 
+				panel.mediator.multifileRunner.runTestsCalled = false; // runTests() is called when panel shown. Reset flag for next test.
+				panel.mediator.onClickRunAllTests();
+				
+				runner.assertTrue('panel.mediator.dw.saveAll() should be called again when button clicked.', panel.mediator.dw.saveAllCalled); 
+				runner.assertTrue('panel.mediator.dw.canSaveAll() should be called again when button clicked.', panel.mediator.dw.canSaveAllCalled); 				
+				runner.assertTrue('panel.mediator.multifileRunner.runTests() should be called again when button clicked.', panel.mediator.multifileRunner.runTestsCalled); 				
+				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'The "Passed" view should be shown when all tests pass.',
+	
+	given: 	'Panel is first shown (either on startup or by command).  panel.mediator.onShow() is called.',
+	when: 	'All tests pass.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				var results = {status:'passed', numTestFiles:461, numTestCases:1232, theDate: new Date()}; // Fake the results.
+				panel.mediator.multifileRunner.returnValue = results;
+				panel.mediator.onShow();
+				
+				runner.assertTrue('panel.setBrowserCtrlMainContent() should be called.', panel.setBrowserCtrlMainContentCalled);
+				
+				runner.assertEqual('Browser contents should be set to the value returned by panel.mediator.getPassedViewHtml(results).', 
+										panel.mediator.getPassedViewHtml(results),
+										panel.browserCtrl.mainContent); 
+										
+				var html = panel.mediator.passedHtmlTemplate.replace(/NUM_TEST_FILES/, 	results.numTestFiles)
+															.replace(/NUM_TEST_CASES/, 	results.numTestCases)
+															.replace(/TESTS_RUN_AT/, 	formatDate(results.theDate));
+															
+				runner.assertEqual('Browser contents should be set to the "passed html template" value with tokens replaced by values in "results".',
+										html,
+										panel.browserCtrl.mainContent);
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'panel.mediator.makeUrlRelative(fileUrl) should work.',
+	
+	given: 	'A local test file url.',
+	when: 	'Passed to makeUrlRelative(fileUrl).',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				var fileUrl = panel.mediator.dw.getConfigurationPath() + '/TestFile1.htm';
+				runner.assertEqual('The DW config path should be removed from the url.', '/TestFile1.htm', panel.mediator.makeUrlRelative(fileUrl));				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'The "Failed" view should be shown when one or more tests fail.',
+	
+	given: 	'Panel is first shown (either on startup or by command).  panel.mediator.onShow() is called.',
+	when: 	'Two tests fail.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				
+				// Fake the results.
+				var results = 	{	status:		'failed', 
+									records:	[	{testFileUrl:'file:///c/DreamweaverConfigurationPath/TestFile1.htm', testCase:'First test case', message:'Message1'},
+													{testFileUrl:'file:///c/DreamweaverConfigurationPath/TestFile2.htm', testCase:'Second test case', message:'Message2'}
+												]
+								}; 
+								
+				panel.mediator.multifileRunner.returnValue = results;
+				
+				panel.mediator.onShow();
+				
+				runner.assertTrue('panel.setBrowserCtrlMainContent() should be called.', panel.setBrowserCtrlMainContentCalled);
+				
+				runner.assertEqual('Browser contents should be set to the value returned by panel.mediator.getFailedViewHtml(results).', 
+										panel.mediator.getFailedViewHtml(results),
+										panel.browserCtrl.mainContent); 
+										
+				var html = panel.mediator.failedHtmlTemplateHeader;
+				
+				for (var i = 0; i < results.records.length; i++)
+				{
+					var rec = results.records[i];
+					
+					html += panel.mediator.failedHtmlTemplateRecord
+								.replace(/TEST_FILE_URL/,	rec.testFileUrl)
+								.replace(/TEST_FILE/, 		panel.mediator.makeUrlRelative(rec.testFileUrl))
+								.replace(/TEST_CASE/,		rec.testCase)
+								.replace(/MESSAGE/, 		rec.message);
+				}										
+				
+				runner.assertEqual('Browser contents should be set to the "failed html template" value with tokens replaced by values in "results".',
+										html,
+										panel.browserCtrl.mainContent);										
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'The "Error" view should be shown when an error occurs while trying to run the tests.',
+	
+	given: 	'Panel is first shown (either on startup or by command).  panel.mediator.onShow() is called.',
+	when: 	'A test file has a syntax error.',  
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				
+				// Fake the results.
+				var results = 	{	status:			'error', 
+									testFileUrl:	'file:///c/DreamweaverConfigurationPath/TestFile.htm',
+									dwMessage: 		'Unable to run tests--could not compile.', 
+									jsMessage: 		'Msg from interpreter.'
+								}; 
+																		
+				panel.mediator.multifileRunner.returnValue = results;
+				
+				panel.mediator.onShow();
+				
+				runner.assertTrue('panel.setBrowserCtrlMainContent() should be called.', panel.setBrowserCtrlMainContentCalled);
+				
+				runner.assertEqual('Browser contents should be set to the value returned by panel.mediator.getErrorViewHtml(results).', 
+										panel.mediator.getErrorViewHtml(results),
+										panel.browserCtrl.mainContent); 
+				
+				var html = panel.mediator.errorHtmlTemplate
+											.replace(/TEST_FILE_URL/,	results.testFileUrl)
+											.replace(/TEST_FILE/, 		panel.mediator.makeUrlRelative(results.testFileUrl))
+											.replace(/DW_MESSAGE/, 		results.dwMessage)
+											.replace(/JS_MESSAGE/, 		results.jsMessage);										
+
+				runner.assertEqual('Browser contents should be set to the "error html template" value with tokens replaced by values in "results".',
+										html,
+										panel.browserCtrl.mainContent);
+				
+			} 
+});
+/* Right now we have to do some fancy stuff with setTimeout in order to get the file to open.  Unfortunately, that means the next two test cases
+   can't pass as written.
+   
+runner.addTestCase( 
+{	
+	name: 	'File link in "Failed" view should open file in DW when clicked on.',
+	
+	given: 	'Panel is first shown (either on startup or by command). panel.mediator.onShow() is called.  A test failed.',
+	when: 	'The file linked is clicked.',
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				
+				// Fake the results.
+				var results = 	{	status:		'failed', 
+									records:	[{testFileUrl:'file:///c/DreamweaverConfigurationPath/TestFile1.htm', testCase:'First test case', message:'Message1'}]
+								}; 
+								
+				panel.mediator.multifileRunner.returnValue = results;
+				panel.mediator.onShow();
+				panel.mediator.onClickBrowserCtrlFileLink(results.records[0].testFileUrl);
+				
+				runner.assertTrue('panel.mediator.dw.openDocument(fileUrl) should be called.', panel.mediator.dw.openDocumentCalled);
+				//runner.assertEqual('fileUrl passed to panel.mediator.onClickBrowserCtrlFileLink() should be same as testFileUrl return by multifileRunner.',
+					//					results.records[0].testFileUrl,
+						//				panel.mediator.dw.fileUrlToOpen);
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'File link in "Error" view should open file in DW when clicked on.',
+	
+	given: 	'Panel is first shown (either on startup or by command). panel.mediator.onShow() is called.  A error occurred while running tests.',
+	when: 	'The file linked is clicked.',
+	
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+				
+				// Fake the results.
+				var results = 	{	status:			'error', 
+									testFileUrl:	'file:///c/DreamweaverConfigurationPath/TestFile.htm',
+									dwMessage: 		'Unable to run tests--could not compile.', 
+									jsMessage: 		'Msg from interpreter.'
+								}; 
+								
+				panel.mediator.multifileRunner.returnValue = results;
+				
+				panel.mediator.onShow();
+				panel.mediator.onClickBrowserCtrlFileLink(results.testFileUrl);
+				
+				runner.assertTrue('panel.mediator.dw.openDocument(fileUrl) should be called.', panel.mediator.dw.openDocumentCalled);
+				runner.assertEqual('fileUrl passed to panel.mediator.onClickBrowserCtrlFileLink() should be same as testFileUrl return by multifileRunner.',
+										results.testFileUrl,
+										panel.mediator.dw.fileUrlToOpen);
+			} 
+});
+*/
+
+runner.addTestCase( 
+{	
+	name: 	'When panel is resized, the panel should resize the browser ctrl, ensuring the panel has been initialized first.',
+		
+	test: 	function() 
+			{
+				var panel = new FakeJavascriptTestRunnerPanel();
+								
+				panel.mediator.onResize();
+				
+				runner.assertTrue('panel.initUI() should be called.', panel.initUICalled);
+				runner.assertTrue('panel.makeBrowserCtrlFitPanel() should be called.', panel.makeBrowserCtrlFitPanelCalled);
+			} 
+});

@@ -1,0 +1,29 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Menus/MM/ValidateDoc/title" /></TITLE>
+<SCRIPT LANGUAGE="javascript">
+<!--
+function doBTC()
+{
+	dw.getDocumentDOM().runValidation();
+}
+
+function canAcceptCommand()
+{
+  var retVal = false;
+  var dom = dw.getDocumentDOM();
+  if (dom != null) {
+	  var parseMode = dom.getParseMode();
+      if (parseMode == 'html' && (dw.getDocumentDOM().documentType == 'ColdFusion' || dw.getDocumentDOM().documentType == 'CFC'))
+   	    retVal = true;
+  }
+  return retVal;
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY onLoad="doBTC()">
+</BODY>
+</HTML>

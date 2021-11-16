@@ -1,0 +1,6 @@
+sheet PasteSpecial
+{
+interface:
+    PasteSpecialDps_Choice: @Text;
+
+}

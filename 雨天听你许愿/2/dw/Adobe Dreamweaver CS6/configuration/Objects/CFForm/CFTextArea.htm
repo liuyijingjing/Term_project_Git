@@ -1,0 +1,26 @@
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+  <head>
+    <title><MMString:loadString id="Objects/CFForm/CFTextArea/title" /></title>
+  <SCRIPT LANGUAGE="javascript" SRC="../../Shared/MM/Scripts/CMN/docInfo.js"></SCRIPT>
+  <SCRIPT LANGUAGE="javascript" SRC="formInsert.js"></SCRIPT>
+  <SCRIPT LANGUAGE="javascript">
+
+function isDOMRequired() { 
+	// Return false, indicating that this object is available in code view.
+	return false;
+}
+
+function objectTag() {
+  return returnFormTag(document.body.innerHTML);
+}
+
+</SCRIPT>
+  </head>
+
+  <body>
+    <CFTEXTAREA NAME="textarea" cols="45" rows="5"></CFTEXTAREA>
+  </body>
+</html>

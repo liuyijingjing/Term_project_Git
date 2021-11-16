@@ -1,0 +1,84 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+
+<SCRIPT>
+// Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved.
+var HELP_DOC = MM.HELP_sbRestrictAccessToPage;
+</SCRIPT>
+
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ServerBehaviorClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/RadioGroupClass.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/UltraDev/Scripts/accessControlCmn.js"></SCRIPT>
+<SCRIPT SRC="../Shared/AccessControlCmn.js"></SCRIPT>
+<SCRIPT SRC="Restrict Access To Page.js"></SCRIPT>
+<TITLE><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/title" /></TITLE>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm" ACTION="">
+    
+  <table border="0" cellpadding="4" cellspacing="2">
+      <tr valign="baseline">
+        
+      <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/text/Restrict" /></td>
+        
+      <td nowrap>
+          <input type="radio" name="securityMethod" id="DontUseAccessLevel" value="DontUseAccessLevel" onClick="onClickDontUseAccessLevel()" checked>
+        </td>
+        
+      <td colspan="3" nowrap>
+<label for="DontUseAccessLevel"><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/text/Username" /></label></td>
+      </tr>
+      <tr valign="baseline">
+        
+      <td align="right" nowrap>&nbsp;</td>
+        
+      <td nowrap>
+          <input type="radio" name="securityMethod" id="UseAccessLevel" value="UseAccessLevel" onClick="onClickUseAccessLevel()">
+        </td>
+        
+      <td colspan="3" nowrap>
+<label for="UseAccessLevel"><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/text/Username_1" /></label></td>
+      </tr>
+      <tr valign="baseline">
+        
+      <td nowrap></td>
+        
+      <td nowrap></td>
+        
+      <td align="left" valign="top" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/text/Select" />
+        </td>
+        
+      <td nowrap>
+          <select name="listAccessLevels" size="5" multiple class="oneWordOptionList">
+            
+          <option></option>
+          </select>
+        </td>
+        
+      <td valign="top" nowrap>
+          <input name="btnFileBrowserOnFailure2" type="button" MMString:value="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/button/btnFileBrowserOnFailure2/Define" onClick="onClickBtnDefineAuthLevels();focus(this)">
+        </td>
+      </tr>
+      <tr valign="baseline">
+        
+      <td align="right" nowrap><MMString:loadString id="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/text/If" /></td>
+        
+      <td colspan="3" nowrap>
+          <input name="textGoToURLOnFailure" type="text" class="largeTField" value="">
+        </td>
+        
+      <td nowrap>
+          <input name="btnFileBrowserOnFailure" type="button" MMString:value="ServerBehaviors/ColdFusion/Restrict_Access_To_Page/button/btnFileBrowserOnFailure/Browse" onClick="onClickBtnFileBrowserOnFailure();focus(this)">
+        </td>
+      </tr>
+    </table>
+  </FORM>
+</BODY>
+</HTML>

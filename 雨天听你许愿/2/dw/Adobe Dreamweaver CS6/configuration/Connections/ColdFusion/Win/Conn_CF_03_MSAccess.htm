@@ -1,0 +1,72 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!--  Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script language="JavaScript">
+var ISMAC=false;
+</script>
+
+<TITLE><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/title" /></TITLE>
+
+<SCRIPT SRC="../../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/connectionCmn.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/sbManager.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/basicAPI.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/connectionAPI.js"></SCRIPT>
+<SCRIPT SRC="../AdvancedSettings/Conn_CF_common_Adv.js"></SCRIPT>
+<SCRIPT SRC="../Connection_php_adodb.js"></SCRIPT>
+<SCRIPT SRC="Conn_CF_03_MSAccess.js"></SCRIPT>
+<link href="../../../Styles/Conn_CF_03_MSAccess_Win.css" rel="stylesheet" type="text/css" />
+<link href="../../../Styles/Conn_CF_03_MSAccess_Adv.css" rel="stylesheet" type="text/css" />
+<link href="../../../Styles/Conn_CF_common_Adv.css" rel="stylesheet" type="text/css" />
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+
+<form NAME="theForm" ACTION="">
+  <table border=0 class="cls_Conn_CF_03_MSAccess_table_1">
+    <tr valign="baseline">
+      <td class="cls_Conn_CF_03_MSAccess_td_1" align="right"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/CF" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_03_MSAccess_input_ConnectionName_1" name="ConnectionName">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/Database" /></td>
+      <td align="left"><input name="DatabaseFile" type="text" id="DatabaseFile" class="cls_Conn_CF_03_MSAccess_input_DatabaseFile_1">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/System" /></td>
+      <td align="left"><input name="SysDatabaseFile" type="text" id="SysDatabaseFile" class="cls_Conn_CF_03_MSAccess_input_SysDatabaseFile_1">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/ColdFusion" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_03_MSAccess_input_UserName_1" name="UserName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input name="UseDefaultUsername" type="checkbox" id="UseDefaultUsername" value="checkbox" checked>
+<MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/checkbox/UseDefaultUsername/Use" />      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/ColdFusion_1" /></td>
+      <td align="left">
+<input name="Password" type="password" class="cls_Conn_CF_03_MSAccess_input_Password_1" maxlength="16"> <FONT class=label><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/16character" /></FONT>
+
+
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" valign="top"><MMString:loadString id="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/text/Description" /></td>
+      <td align="left"><textarea name="Description" class="cls_Conn_CF_03_MSAccess_textarea_Description_1" ></textarea>
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="2" align="left" valign="top"><input name="AdvancedButton" type="submit" id="advanced" onClick="clickedAdvanced();" MMString:value="Connections/ColdFusion/Win/Conn_CF_03_MSAccess/submit/advanced/Show" class="cls_Conn_CF_03_MSAccess_input_advanced_1"></td>
+    </tr>
+  </table>
+  <div name="AdvancedSettingsDiv"></div>
+</form>
+</BODY>
+</HTML>

@@ -1,0 +1,102 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated. All rights reserved. -->
+<script type="text/javascript" SRC="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/DocUtilsClass.js"></script>
+<script type="text/javascript" SRC="../../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="../../Commands/jQMConstants.js"></script>
+<script type="text/javascript">
+
+function isDOMRequired() {
+	return true;
+}
+
+function insertObject() {
+	var dom = dw.getDocumentDOM();	
+	var isInBody = dwscripts.selectionIsInBody(dom);
+	var docInfo = new DocUtils(dom);
+	
+	//Any locked regions?
+	if (!docInfo.headIsEditable()) {
+        return dw.loadString("insertbar/oawidget/headReadOnlyError");
+	} else if (!docInfo.bodyIsEditable()) {
+        return dw.loadString("insertbar/oawidget/bodyReadOnlyError");
+    }
+	
+	if (isInBody) {
+		var srcCheck = checkForResources(dom);
+		if (dw.getShowDialogsOnInsert()) {
+			if (srcCheck) {
+				//Page has already been inserted, popup page dialog.
+				return dreamweaver.runCommand("jQMPage.htm");
+			} else {
+				//First time inserting, popup files dialog.
+				return configureAssets();
+			}
+		} else {
+			//Generate default markup.
+			return defaultMarkup(dom, srcCheck);
+		}
+	}
+	alert(dw.loadString("Commands/jQM/generic/alert/insertPageError"));
+}
+
+/** Pops up file assets dialog and page dialog if OK is pressed. */
+function configureAssets() {
+	//Setup object to pass to file assets.
+	var result = new Object();
+	result.returnValue = "Cancel";
+	
+	dreamweaver.runCommand("jQMSettings", result);
+	
+	if (result.returnValue == "OK") {
+		dreamweaver.runCommand("jQMPage.htm");
+	}
+}
+
+/** Create and insert default page markup. */
+function defaultMarkup(dom, srcCheck) {
+	widgetId = "page";
+	widgetId = dwscripts.getUniqueId(widgetId);
+	
+	var headerLabel = dw.loadString("Commands/jQM/page/dialog/header");
+	var contentLabel = dw.loadString("Commands/jQM/dummy/page/content");
+	var footerLabel = dw.loadString("Commands/jQM/page/dialog/footer");
+	
+	var headerChecked = dw.getPreferenceString(PREF_SECTION, PREF_PAGE_HEADER, true) == "true";
+	var footerChecked = dw.getPreferenceString(PREF_SECTION, PREF_PAGE_FOOTER, true) == "true";
+	
+	widgetMarkup = '<div data-role="page" id="' + widgetId + '" mmTranslatedValue="transId=%22'+widgetId+'%22">';
+	
+	//Honor Page dialog prefences.
+	if (headerChecked) {
+		widgetMarkup += '<div data-role="header"><h1>' + headerLabel + '</h1></div>';
+	}
+	widgetMarkup += '<div data-role="content">' + contentLabel + '</div>';
+	if (footerChecked) {
+		widgetMarkup += '<div data-role="footer"><h4>' + footerLabel + '</h4></div>';
+	}
+	widgetMarkup += '</div>';
+
+	var curPos = dom.getSelection()[0];
+	var docEl = dom.documentElement;
+	var docElOuterHTML = docEl.outerHTML;
+	docEl.outerHTML = docElOuterHTML.substring(0, curPos) + widgetMarkup + docElOuterHTML.substring(curPos);
+	
+	//Add resources only if they are not already there.
+	if(!srcCheck) {
+		addResources(dom);
+	}
+	
+	highlightNode();
+	
+	return "";	
+}
+
+</script>
+</head>
+
+<body>
+</body>
+
+</html>

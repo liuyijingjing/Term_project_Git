@@ -1,0 +1,106 @@
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 12.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html>
+<head>
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+ Copyright 2011 Adobe Systems Incorporated
+ All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+
+-->
+<script type="text/javascript" src="../Shared/Common/Scripts/StyleSheet.js"></script>
+<script type="text/javascript" src="../Shared/CssGrids/StyleSheetManager.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="Overlay_CssGrids_LayoutDivManipulator.js"></script>
+<script>
+function onNew()
+{	
+	var dom = dw.getDocumentDOM();
+	//
+	// Prefs:
+	//
+	// 	MOBILE_COLUMN, TABLET_COLUMN, DESKTOP_COLUMN, 
+	//	MOBILE_STRETCH, TABLET_STRETCH, DESKTOP_STRETCH, 
+	//	MOBILE_GAP			
+	//
+	// Tokens:
+	//
+	//	'dw-num-cols-mobile-value', 'dw-num-cols-tablet-value', 'dw-num-cols-desktop-value',
+	//	'dw-layout-width-mobile-value','dw-layout-width-tablet-value','dw-layout-width-desktop-value',
+	//	'dw-gutter-percentage-value' 
+	//
+	
+	// Read the values from the prefs.
+	
+	var strPropVals = dw.getPreferenceString("New Document Preferences", "columns info", "4 8 16 91 93 90 35");
+	var propVals = strPropVals.split(' ');		
+	
+	var devices = ['mobile','tablet','desktop'];
+	var numCols = {};
+	var layoutWidth = {};
+	var outerGutterWidth = {};
+	var gutterPct = propVals[6];
+	
+	devices.forEach(function(device, i){
+		numCols[device] = propVals[i];
+		layoutWidth[device] = propVals[i + 3];
+	});
+
+	// Calculate outer gutter widths.
+
+	devices.forEach(function(device, i){
+				
+		// Given:
+		// 1) layoutWidth = numCols*colWidth + numCols*gutterWidth
+		// 2) colWidth = gutterWidth*(100/gutterPct)
+		
+		// Solving for gutterWidth gives us:		
+		
+		var gutterWidth = layoutWidth[device]/(numCols[device]*((100/gutterPct) + 1));		
+		outerGutterWidth[device] = gutterWidth/2;
+	});		
+	
+	// Replace the tokens with the values.
+	
+	var docStr = dom.documentElement.outerHTML;
+	
+	docStr = docStr.replace('dw-gutter-percentage-value', gutterPct);
+	
+	devices.forEach(function(device, i){
+		docStr = docStr.replace('dw-num-cols-' + device + '-value', numCols[device]);
+		var containerWidth = layoutWidth[device] - 2*outerGutterWidth[device];
+		docStr = docStr.replace('dw-layout-width-' + device + '-value', percentFormat(containerWidth) + '%');
+		docStr = docStr.replace('dw-outer-gutter-' + device + '-value', percentFormat(outerGutterWidth[device]) + '%', 'g');				
+	});
+
+	dom.documentElement.outerHTML = docStr;		
+	
+	dom.setModified(false);
+	dom.clearUndos();
+	
+	loadOverlay(dom);
+}
+
+function percentFormat(num) 
+{
+	return Math.floor(num * 10000)/10000;  // Floor after four decimal places.
+}
+
+</script>
+</head>
+<body onLoad="onNew()">
+</body>
+</html>
+

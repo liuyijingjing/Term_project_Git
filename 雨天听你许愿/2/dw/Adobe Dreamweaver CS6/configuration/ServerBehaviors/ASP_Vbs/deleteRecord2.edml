@@ -1,0 +1,13 @@
+<group serverBehavior="Delete Record2.htm" hideFromBuilder="true">
+  <groupParticipants selectParticipant="deleteRecord_query2">
+    <groupParticipant name="connectionref_statement" partType="member" />
+    <groupParticipant name="editOps_declareVars2" partType="member"/> 
+    <!--groupParticipant name="deleteRecord_setVars" partType="identifier"/--> 
+    <groupParticipant name="deleteRecord_query2" partType="identifier"/> 
+    <groupParticipant name="deleteRecord_hiddenEdit" partType="member"/> 
+    <groupParticipant name="editOps_formAttr" partType="member"/> 
+    <groupParticipant name="editOps_formName" partType="member"/> 
+    <groupParticipant name="editOps_methodAttr" partType="member"/> 
+    <groupParticipant name="editOps_hiddenRecordId" partType="member"/> 
+  </groupParticipants>
+</group>

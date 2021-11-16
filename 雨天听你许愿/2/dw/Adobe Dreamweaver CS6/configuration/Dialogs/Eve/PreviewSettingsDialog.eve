@@ -1,0 +1,167 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PreviewSettingsDialog
+{
+    view dialog(center: true,
+                identifier: "IDD_PREVIEWSETTINGS_DIALOG",
+                name: "$$$/Previewsettings/Title/LiveData=Live Data Settings for ",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 5)
+            {
+                row(spacing: 5)
+                {
+                    column(indent: 3,
+                           spacing: 127)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_REQUEST",
+                                    name: "$$$/Previewsettings/Label/UrlRequest=URL request:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_INITSCRIPT",
+                                    name: "$$$/Previewsettings/Label/InitializationScript=Initialization script:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_METHOD",
+                                    name: "$$$/Previewsettings/Label/Method=Method:");
+                    }
+
+                    column(spacing: 5,
+                           vertical: @align_fill)
+                    {
+                        row(child_vertical: @align_center,
+                            horizontal: @align_fill,
+                            spacing: 5)
+                        {
+                            column(horizontal: @align_left)
+                            {
+                                row(spacing: 2)
+                                {
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_ADD2",
+                                                      name: "$$$/Previewsettings/IconButton/AddItem=Add item",
+                                                      tab_next_node: "IDC_BUTTON_REMOVE2",
+                                                      width: 21);
+
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_REMOVE2",
+                                                      name: "$$$/Previewsettings/IconButton/RemoveItem=Remove item",
+                                                      tab_next_node: "IDC_BUTTON_UP2",
+                                                      width: 21);
+                                }
+                            }
+
+                            column(horizontal: @align_right)
+                            {
+                                row(spacing: 2)
+                                {
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_UP2",
+                                                      name: "$$$/Previewsettings/IconButton/MoveItem=Move item up in list",
+                                                      tab_next_node: "IDC_BUTTON_DOWN2",
+                                                      width: 21);
+
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_DOWN2",
+                                                      name: "$$$/Previewsettings/IconButton/MoveItemDownInList=Move item down in list",
+                                                      tab_next_node: "IDC_LIST_REQUEST",
+                                                      width: 21);
+                                }
+                            }
+                        }
+
+                        row(placement: @place_overlay)
+                        {
+                            row()
+                            {
+                                edit_text(characters: 36,
+                                          horizontal_scroll: true,
+                                          identifier: "IDC_INITSCRIPT",
+                                          lines: 7,
+                                          multiLine: true,
+                                          scrollable: true,
+                                          vertical_scroll: true);
+                            }
+
+                            row()
+                            {
+                                list_control(apron_click_deselection: true,
+                                             edit_labels: true,
+                                             empty_selection: true,
+                                             height: 250,
+                                             identifier: "IDC_LIST_REQUEST",
+                                             keyboard_selectable: true,
+                                             single_selection: true,
+                                             tab_next_node: "IDC_METHOD",
+                                             width: 325);
+                            }
+                        }
+
+                        popup(identifier: "IDC_METHOD",
+                              include_custom_item: false,
+                              is_searchable: false,
+                              items: [ { name: "$$$/Previewsettings/Method/item1/Get",
+                                         value: " " },
+                                       { name: "$$$/Previewsettings/Method/item2/Post",
+                                         value: " " } ],
+                              sort: true,
+                              tab_next_node: "IDC_SAVE",
+                              vertical_scroll: true);
+
+                        checkbox(identifier: "IDC_SAVE",
+                                 name: "$$$/Previewsettings/CheckBox/SaveSettings=Save settings for this document",
+                                 tab_next_node: "IDOK",
+                                 vertical: @align_bottom);
+                    }
+                }
+            }
+
+            static_text(identifier: "IDC_STATIC_LINE2",
+                        visible: false);
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/Previewsettings/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/Previewsettings/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/Previewsettings/Button/Help=&Help",
+                       tab_next_node: "IDC_BUTTON_ADD2");
+            }
+        }
+    }
+}

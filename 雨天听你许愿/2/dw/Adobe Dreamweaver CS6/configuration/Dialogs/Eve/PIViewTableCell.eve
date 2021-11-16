@@ -1,0 +1,214 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewTableCell
+{
+    view subview(grow: false,
+                 height: 50,
+                 identifier: "IDD_PROP_INSPECT_TABLECELL",
+                 indent: 1,
+                 margin: 2,
+                 parent_container_id: "sub_inspector",
+                 resizeChildren: false,
+                 shouldConstrain: true,
+		 name:"PIViewTableCell",
+                 spacing: 0,
+                 width: 100)
+    {
+        row(indent: 50,
+            margin: 1,
+            spacing: 12)
+        {
+            column(spacing: 0)
+            {
+                row(spacing: 0)
+                {
+                    column(indent: 2,
+                           spacing: 6)
+                    {
+                        static_text(identifier: "IDC_STATIC_TITLE",
+                                    name: "$$$/PropInspectTablecell/Label/Column=Column");
+
+                        row(spacing: 1)
+                        {
+                            ownerdrawn_button(height: 19,
+                                              identifier: "IDC_BUTTON_MERGE",
+                                              name: "$$$/PropInspectTablecell/IconButton/MergesSelected=Merges selected cells using spans",
+                                              tab_next_node: "IDC_COMBO_HALIGN",
+                                              width: 18);
+
+                            ownerdrawn_button(height: 19,
+                                              identifier: "IDC_BUTTON_SPLIT",
+                                              name: "$$$/PropInspectTablecell/IconButton/SplitsCells=Splits cells into rows or columns",
+                                              tab_next_node: "IDC_COMBO_HALIGN",
+                                              width: 18);
+                        }
+                    }
+                }
+            }
+
+            column(spacing: 0)
+            {
+                row(spacing: 5)
+                {
+                    column(indent: 2)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_HALIGN",
+                                    name: "$$$/PropInspectTablecell/Label/Horz=Hor&z");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_VALIGN",
+                                    name: "$$$/PropInspectTablecell/Label/Vert=Ver&t");
+                    }
+
+                    column(spacing: 3)
+                    {
+                        popup(identifier: "IDC_COMBO_HALIGN",
+				popup_minimum_width_chars:6,
+                              include_custom_item: false,
+                              is_searchable: false,
+                              tab_next_node: "IDC_COMBO_VALIGN",
+                              vertical_scroll: true);
+
+                        popup(identifier: "IDC_COMBO_VALIGN",
+				popup_minimum_width_chars:6,
+                              include_custom_item: false,
+                              is_searchable: false,
+                              tab_next_node: "IDC_EDIT_WIDTH",
+                              vertical_scroll: true);
+                    }
+                }
+            }
+
+            column(spacing: 0)
+            {
+                row(spacing: 5)
+                {
+                    column(indent: 3,
+                           spacing: 11)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_WIDTH",
+                                    name: "$$$/PropInspectTablecell/Label/W=&W");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_HEIGHT",
+                                    name: "$$$/PropInspectTablecell/Label/H=&H");
+                    }
+
+                    column(spacing: 3)
+                    {
+                        edit_text(characters: 4,
+                                  identifier: "IDC_EDIT_WIDTH",
+                                  tab_next_node: "IDC_EDIT_HEIGHT",
+                                  textAlignment: "right");
+
+                        edit_text(characters: 4,
+                                  identifier: "IDC_EDIT_HEIGHT",
+                                  tab_next_node: "IDC_BUTTON_NOWRAP",
+                                  textAlignment: "right");
+                    }
+                }
+            }
+
+            column()
+            {
+                row(spacing: 0)
+                {
+                    column(spacing: 6)
+                    {
+                        row(horizontal: @align_right,
+                            spacing: 2)
+                        {
+                            static_text(identifier: "IDC_STATIC_NOWRAP",
+                                        indent: 2,
+                                        name: "$$$/PropInspectTablecell/Label/NoWrap=N&o wrap");
+
+                            column(indent: 3)
+                            {
+                                checkbox(identifier: "IDC_BUTTON_NOWRAP",
+                                         tab_next_node: "IDC_BUTTON_HEADER");
+                            }
+                        }
+
+                        row(horizontal: @align_right,
+                            spacing: 2)
+                        {
+                            static_text(identifier: "IDC_STATIC_HEADER",
+                                        name: "$$$/PropInspectTablecell/Label/Header=H&eader");
+
+                            column()
+                            {
+                                checkbox(identifier: "IDC_BUTTON_HEADER",
+                                         indent: 1,
+                                         tab_next_node: "IDC_BUTTON_BGCOLOR");
+                            }
+                        }
+                    }
+                }
+            }
+
+            column(spacing: 0)
+            {
+                row(spacing: 0)
+                {
+                    column()
+                    {
+                        row(spacing: 5)
+                        {
+                            static_text(identifier: "IDC_STATIC_BGCOLOR",
+                                        indent: 3,
+                                        name: "$$$/PropInspectTablecell/Label/Bg=B&g");
+
+                            column(spacing: 0)
+                            {
+                                row(spacing: 1)
+                                {
+                                    ownerdrawn_button(height: 18,
+                                                      identifier: "IDC_BUTTON_BGCOLOR",
+                                                      indent: 1,
+                                                      name: "$$$/PropInspectTablecell/IconButton/BackgroundColor=Background color",
+                                                      tab_next_node: "IDC_EDIT_BGCOLOR",
+                                                      width: 21);
+
+                                    edit_text(characters: 9,
+                                              identifier: "IDC_EDIT_BGCOLOR",
+                                              tab_next_node: "IDC_BUTTON_PAGE_PROPERTIES");
+                                }
+                            }
+
+                            column()
+                            {
+                                row(indent: 85)
+                                {
+                                    ownerdrawn_button(identifier: "IDC_BUTTON_PAGE_PROPERTIES",
+                                                      name: "$$$/PropInspectTablecell/IconButton/PageProperties=Page Properties…",
+                                                      width: 130,
+						      nl_width: 155,
+						      es_width: 155,
+						      pt_width: 155);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

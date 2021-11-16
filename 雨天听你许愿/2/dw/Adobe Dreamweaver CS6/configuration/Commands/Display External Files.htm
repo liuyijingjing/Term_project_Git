@@ -1,0 +1,32 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/Display_External_Files/title" /></title>
+<!-- Copyright 2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<script language="javascript">
+
+
+//---------------    LOCAL FUNCTIONS   ---------------
+
+function isDOMRequired()
+{
+  return false;
+}
+
+function isCommandChecked()
+{
+  return dw.getDownloadExternalFiles();
+}
+
+//function: toggle
+//description: toggles the Display External Files option
+function toggle()
+{
+  dw.setDownloadExternalFiles(!dw.getDownloadExternalFiles());
+}
+
+</script>
+</head>
+<body onLoad="toggle()">
+</body>
+</html>

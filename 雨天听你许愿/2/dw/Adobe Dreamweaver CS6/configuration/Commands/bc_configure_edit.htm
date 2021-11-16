@@ -1,0 +1,144 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 10.0//dialog">
+
+<!--
+
+ Copyright 2011 Adobe Systems Incorporated
+ All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+ 
+-->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="bc/moduleeditor/title" /></title>
+<script language="javascript" src="../Floaters/BCCommon.js"></script>
+<script language="javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Reports/Reports.js"></script>
+<script language="javascript" src="bc_configure_edit.js"></script>
+<script language="javascript">
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+//--------------- END LOCALIZEABLE   ---------------
+</script>
+<style type="text/css">
+
+@charset "utf-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+	color: #222;
+	font: 11px/16px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#modal-window {
+	background: #eee;
+}
+
+h1,h2,h3,h4,h5,h6 { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; }
+
+h1 {
+	clear: both;
+	font-size: 19px;
+	letter-spacing: -0.06em;
+	margin: 0 0 32px;
+}
+
+h2 {
+	font-size: 16px;
+	margin: 0 0 15px;
+}
+
+strong { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; font-weight: bold; }
+
+em { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif; font-style:italic; }
+
+#bc_priority_browser {
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#loadingDiv {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	z-index:3;
+
+	display:none;
+}
+
+#loadingBgDiv {
+	float:left;
+	width:100%;
+	height:100%;
+	display:none;
+
+}
+
+#loadingDivText {
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	color: #000;
+	font-size: 13px;
+	font-weight:bolder;
+}
+
+#loadingDivText p {
+	margin-top:12px;
+}
+
+#buttonsDiv {
+	position:absolute;
+	width:100%;
+	bottom:0;
+}
+
+body {
+	padding:0;
+	margin:0;
+}
+
+.button {
+	height:24px;
+	margin-right:10px;
+	width:100px;
+}
+
+</style>
+</head>
+
+<body onLoad="initUI();" onUnload="unload()">
+  <div id="loadingDiv" align="center">
+		<div id="loadingDivText">
+			<div id="loadingDivSwf" style="height:40px">
+				<mm:browsercontrol id="bc_loading" style="height:70px; width:100%; background-color:#d6d6d6; display:none;" />
+			</div>
+		</div>
+  </div>
+  <div id="browserDiv">  
+	<form>
+		<mm:browsercontrol id="bc_priority_browser" />
+	</form>
+  </div>
+  <div id="buttonsDiv" style="padding:20px 5px 15px 15px">
+	   <div id="cancelBtnContainer" style="float:right; width:200px; text-align:right"><input type="button" id="cancelBtn" class="button" onClick="window.close()" MMString:value="bc/uistring/cancel" />  </div>
+	   <div id="dynamicButtons" style="margin-right:auto; overflow:hidden"> </div>
+  </div>
+</body>
+</html>

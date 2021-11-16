@@ -1,0 +1,103 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsDownloadStats
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_DOWNLOAD_STATS",
+                 margin: 0,
+                 name: "$$$/PrefsDownloadStats/Title/WindowSizes=Window Sizes",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(margin: 10,
+            spacing: 5)
+        {
+            column(vertical: @align_fill)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsDownloadStats/Label/WindowSizes=Window sizes:");
+
+                row(vertical: @align_bottom)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 4,
+                                name: "$$$/PrefsDownloadStats/Label/ConnectionSpeed=Connection speed:",
+                                vertical: @align_bottom);
+                }
+            }
+
+            column()
+            {
+                row()
+                {
+                    list_control(apron_click_deselection: true,
+                                 edit_labels: true,
+                                 empty_selection: true,
+                                 height: 228,
+                                 identifier: "IDC_LIST_WINDOWSIZES",
+                                 keyboard_selectable: true,
+                                 single_selection: true,
+                                 tab_next_node: "IDC_ADD_WINDOW_SIZE",
+                                 width: 370.5);
+                }
+
+                row(spacing: 2)
+                {
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_ADD_WINDOW_SIZE",
+                                      name: "$$$/PrefsDownloadStats/IconButton/AddEditor=Add editor",
+                                      tab_next_node: "IDC_REMOVE_WINDOW_SIZE",
+                                      width: 21);
+
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_REMOVE_WINDOW_SIZE",
+                                      name: "$$$/PrefsDownloadStats/IconButton/RemoveEditor=Remove editor",
+                                      tab_next_node: "IDC_DOWNSTATS_MODEM",
+                                      width: 21);
+                }
+
+                row()
+                {
+                    combobox(identifier: "IDC_DOWNSTATS_MODEM",
+                             items: [ { name: "$$$/PrefsDownloadStats/DownstatsModem/item1/00056",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item2/00128",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item3/00384",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item4/00768",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item5/01500",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item6/06000",
+                                        value: " " },
+                                      { name: "$$$/PrefsDownloadStats/DownstatsModem/item7/10000",
+                                        value: " " } ],
+                             vertical_scroll: true);
+
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/PrefsDownloadStats/Label/KilobitsPer=Kilobits per second");
+                }
+            }
+        }
+    }
+}

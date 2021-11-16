@@ -1,0 +1,62 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewFormHidden
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_FORM_HIDDEN",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        row(indent: 45,
+            margin: 3)
+        {
+            column(indent: 3,
+                   spacing: 4)
+            {
+                static_text(identifier: "IDC_STATIC_TYPE",
+                            name: "$$$/PropInspectFormHidden/Label/Hiddenfield=HiddenField");
+
+                edit_text(characters: 8,
+                          identifier: "IDC_EDIT_NAME",
+                          tab_next_node: "IDC_EDIT_VALUE");
+            }
+
+            column(child_vertical: @align_bottom,
+                   vertical: @align_bottom)
+            {
+                row(indent: 30,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC_VALUE",
+                                name: "$$$/PropInspectFormHidden/Label/Value=&Value");
+			
+                    edit_text(characters: 20,
+                              identifier: "IDC_EDIT_VALUE");
+
+                    ownerdrawn_button(identifier: "IDC_BUTTON_DYNAMIC",
+                                      name: "$$$/PropInspectFormHidden/IconButton/AddDynamic=Add dynamic item",width:21,height:18,indent:1);
+                }
+            }
+        }
+    }
+}

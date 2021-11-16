@@ -1,0 +1,255 @@
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2003-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/FlashVideo/title" /></title>
+
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/AssetInfoClass.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/helper.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/DOM.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/niceName.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/UI.js"></script>
+<script type="text/javascript" src="../Shared/MM/Scripts/Class/ListControlClass.js"></script>
+<script type="text/javascript" src="../Shared/Controls/Scripts/CheckBox.js"></script>
+<script type="text/javascript" src="../Shared/Controls/Scripts/URLTextField.js"></script>
+<script type="text/javascript" src="../Shared/Flash/FlashObjectUtils.js"></script>
+<script type="text/javascript" src="FlashVideo.js"></script>
+<script>
+//--------------- LOCALIZEABLE GLOBALS------------------
+var MSG_EnterValidURL = dw.loadString('Commands/FlashVideo/MSG_EnterValidURL');
+var MSG_EnterValidServerURI = dw.loadString('Commands/FlashVideo/MSG_EnterValidServerURI');
+var MSG_SelectFLVFile = dw.loadString('Commands/FlashVideo/MSG_SelectFLVFile');
+var MSG_SelectValidFile = dw.loadString('Commands/FlashVideo/MSG_SelectValidFile');
+var MSG_EnterStreamName = dw.loadString('Commands/FlashVideo/MSG_EnterStreamName');
+var MSG_EnterNumericValue = dw.loadString('Commands/FlashVideo/MSG_EnterNumericValue');
+var MSG_EnterNumericWidth = dw.loadString('Commands/FlashVideo/MSG_EnterNumericWidth');
+var MSG_EnterNumericHeight = dw.loadString('Commands/FlashVideo/MSG_EnterNumericHeight');
+var MSG_MinSizeClearSkin = dw.loadString('Commands/FlashVideo/MSG_MinSizeClearSkin');
+var MSG_MinSizeClearSkin1 = dw.loadString('Commands/FlashVideo/MSG_MinSizeClearSkin1');
+var MSG_MinSizeHaloSkin = dw.loadString('Commands/FlashVideo/MSG_MinSizeHaloSkin');
+var MSG_MinSizeHaloSkin1 = dw.loadString('Commands/FlashVideo/MSG_MinSizeHaloSkin1');
+var MSG_MaxWidth = dw.loadString('Commands/FlashVideo/MSG_MaxWidth');
+var MSG_MaxHeight = dw.loadString('Commands/FlashVideo/MSG_MaxHeight');
+var MSG_EnterValidBufferTime = dw.loadString('Commands/FlashVideo/MSG_EnterValidBufferTime');
+var MSG_EnterValidWidth = dw.loadString('Commands/FlashVideo/MSG_EnterValidWidth');
+var MSG_EnterValidHeight = dw.loadString('Commands/FlashVideo/MSG_EnterValidHeight');
+var MSG_CheckPermissions = dw.loadString('Commands/FlashVideo/MSG_CheckPermissions');
+var MSG_SelectHaloSkinForVCS = dw.loadString('Commands/FlashVideo/MSG_SelectHaloSkinForVCS');
+var MSG_CopyStreamingFiles = dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles');
+var MSG_CopyStreamingFiles1 = dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles1') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles1_1') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles1_2') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles1_3') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles1_4');
+var MSG_CopyStreamingFiles2 = dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles2') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles2_1') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles2_2') + dw.loadString('Commands/FlashVideo/MSG_CopyStreamingFiles2_3');
+var MSG_CopyProgDwnladFiles = dw.loadString('Commands/FlashVideo/MSG_CopyProgDwnladFiles');
+var MSG_CopyProgDwnladFiles1 = dw.loadString('Commands/FlashVideo/MSG_CopyProgDwnladFiles1') + dw.loadString('Commands/FlashVideo/MSG_CopyProgDwnladFiles1_1');
+var MSG_FailedToLoadPlayer = dw.loadString('Commands/FlashVideo/MSG_FailedToLoadPlayer');
+var MSG_UnableToDetectSize = dw.loadString('Commands/FlashVideo/MSG_UnableToDetectSize');
+var MSG_RequiredFiles = dw.loadString('Commands/FlashVideo/MSG_RequiredFiles') + dw.loadString('Commands/FlashVideo/MSG_RequiredFiles_1') + dw.loadString('Commands/FlashVideo/MSG_RequiredFiles_2') + dw.loadString('Commands/FlashVideo/MSG_RequiredFiles_3');
+var MSG_Detecting = dw.loadString('Commands/FlashVideo/MSG_Detecting');
+
+LABEL_VIDEO_TYPE= new Array(dw.loadString('Commands/FlashVideo/LABEL_VIDEO_TYPE'),dw.loadString('Commands/FlashVideo/LABEL_VIDEO_TYPE_1'));
+LABEL_VIDEO_TYPE_SSL= new Array(dw.loadString('Commands/FlashVideo/LABEL_VIDEO_TYPE_SSL'));
+
+var MIN_WIDTH = dw.loadString('Commands/FlashVideo/MIN_WIDTH');
+
+//--------------- END LOCALIZEABLE---------------
+</script>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+<link href="../Styles/FlashVideo.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onLoad="initializeUI();">
+<div id="FLVLoaderDiv" class="cls_FlashVideo_div_FLVLoaderDiv" style="position:absolute; z-index:50; visibility: visible;">
+<embed src="../Shared/MM/Media/FLVLoader.swf" width="1" height="1" name="MM_FLVLoader" type="application/x-shockwave-flash" />
+</div>
+<MMString:loadString id="Commands/FlashVideo/text/Video" />
+<select name="theselector" class="cls_FlashVideo_select_theselector" onChange="updateUI('videoType');"><option><MMString:loadString id="Commands/FlashVideo/option//Select" /></option></select>
+<hr width="100%">
+<div id="theprogDownloadVideo" class="cls_FlashVideo_div_theprogDownloadVideo" style="position:absolute; z-index:1; visibility: visible;">
+<form name="theprogDownloadVideo">
+<table border="0">
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="baseline"><MMString:loadString id="Commands/FlashVideo/text/URL" /></td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="text" name="theprogDownloadVideo.url" class="cls_FlashVideo_input_theprogDownloadVideourl" onBlur="detectVideoInfoForProgressive()">
+        <input name="button" type="button" onClick="browseFLVFile();focus(this);detectVideoInfoForProgressive()" MMString:value="Commands/FlashVideo/button/button/Browse">
+      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_1">&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        &nbsp;<MMString:loadString id="Commands/FlashVideo/text/Enter" />
+      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_2"><img src="../Shared/MM/Images/transparent.gif" height="10"></td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_3" align="right" valign="baseline"><MMString:loadString id="Commands/FlashVideo/text/Skin" /></td>
+      <td colspan="3" align="left" vAlign=baseline noWrap>
+	    <select  name="theprogDownloadVideo.skinName" class="cls_FlashVideo_select_theprogDownloadVideoskinName" onChange="updateUI('theprogDownloadVideo.previewSkin')">
+	    </select>
+	  </td>
+	</tr>
+    <tr>
+      <td class="cls_FlashVideo_td_2">&nbsp;</td>
+      <td colspan="3"><img src="../Templates/images/Clear_Skin_1.png" id="theprogDownloadVideo.skinPreview"></td>
+	</tr>
+    <tr>
+      <td class="cls_FlashVideo_td_2"><img src="../Shared/MM/Images/transparent.gif" height="5"></td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="middle"><MMString:loadString id="Commands/FlashVideo/text/Width" /></td>
+      <td class="cls_FlashVideo_td_4" align="left" valign=baseline>
+        <input type="text" name="theprogDownloadVideo.width" value="" class="cls_FlashVideo_input_theprogDownloadVideowidth" maxlength="5" onBlur="if (this.value) { updateUI('theprogDownloadVideo.videoWidth'); }">
+      </td>
+      <td class="cls_FlashVideo_td_5" valign="baseline">
+        <input name="theprogDownloadVideo.constrain" type="checkbox" checked onClick="updateUI('theprogDownloadVideo.videoMaintainAR')"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.constrain/Constrain" />
+      </td>
+      <td valign=baseline nowrap>
+	    <input name="theprogDownloadVideo.videoDetectSize" type="button" onClick="detectSizeForProgressive();" MMString:value="Commands/FlashVideo/button/theprogDownloadVideo.videoDetectSize/Detect">
+      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="middle"><MMString:loadString id="Commands/FlashVideo/text/Height" /></td>
+      <td class="cls_FlashVideo_td_4" align="left" valign=baseline>
+        <input type="text" name="theprogDownloadVideo.height" value="" class="cls_FlashVideo_input_theprogDownloadVideoheight" maxlength="5" onBlur="if (this.value) { updateUI('theprogDownloadVideo.videoHeight'); }">
+      </td>
+      <td colspan="2" nowrap>
+        <MMString:loadString id="Commands/FlashVideo/text/Total" /> <span id="theprogDownloadVideo.videoTotalDim"></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_2">&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="checkbox" name="theprogDownloadVideo.autoPlay"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.autoPlay/Auto" />
+      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_6">&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="checkbox" name="theprogDownloadVideo.autoRewind"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.autoRewind/Auto" />
+      </td>
+    </tr>
+</table>
+</form>
+</div>
+<div id="thestreamingVideo" class="cls_FlashVideo_div_thestreamingVideo" style="position:absolute; z-index:1; visibility: hidden;">
+<form name="thestreamingVideo">
+<table>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="baseline"><MMString:loadString id="Commands/FlashVideo/text/Server" /></td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="text" name="thestreamingVideo.serverURI" class="cls_FlashVideo_input_thestreamingVideoserverURI" value="rtmp://">      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td_1">&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        &nbsp;<MMString:loadString id="Commands/FlashVideo/text/Enter_1" />     </td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/transparent.gif" height="10"></td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="baseline"><MMString:loadString id="Commands/FlashVideo/text/Stream" /></td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="text" name="thestreamingVideo.streamName" class="cls_FlashVideo_input_thestreamingVideostreamName" onBlur="detectVideoInfoForStreaming()">      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="baseline"><MMString:loadString id="Commands/FlashVideo/text/Skin" /></td>
+      <td colspan="3" align="left" vAlign=baseline noWrap>
+	    <select  name="thestreamingVideo.skinName" class="cls_FlashVideo_select_thestreamingVideoskinName" onChange="updateUI('thestreamingVideo.previewSkin')">
+	    </select>	  </td>
+	</tr>
+    <tr height="1">
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="3"><img src="../Templates/images/Clear_Skin_1.png" id="thestreamingVideo.skinPreview"></td>
+	</tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/transparent.gif" height="5"></td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="middle"><MMString:loadString id="Commands/FlashVideo/text/Width" /></td>
+      <td class="cls_FlashVideo_td_4" align="left" valign=baseline>
+        <input type="text" name="thestreamingVideo.width" value="" class="cls_FlashVideo_input_thestreamingVideowidth" maxlength="5" onBlur="if (this.value) { updateUI('thestreamingVideo.videoWidth'); }">      </td>
+      <td class="cls_FlashVideo_td_5" valign=baseline>
+        <input name="thestreamingVideo.constrain" type="checkbox" checked onClick="updateUI('thestreamingVideo.videoMaintainAR')"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.constrain/Constrain" />      </td>
+      <td valign=baseline>
+        <input name="thestreamingVideo.videoDetectSize" type="button" onClick="detectSizeForStreaming();" MMString:value="Commands/FlashVideo/button/theprogDownloadVideo.videoDetectSize/Detect">      </td>
+    </tr>
+    <tr>
+      <td class="cls_FlashVideo_td" align="right" valign="middle"><MMString:loadString id="Commands/FlashVideo/text/Height" /></td>
+      <td class="cls_FlashVideo_td_4" align="left" valign=baseline>
+        <input type="text" name="thestreamingVideo.height" value="" class="cls_FlashVideo_input_thestreamingVideoheight" maxlength="5" onBlur="if (this.value) { updateUI('thestreamingVideo.videoHeight'); }">      </td>
+      <td colspan="2" nowrap>
+        <MMString:loadString id="Commands/FlashVideo/text/Total" /> <span id="thestreamingVideo.videoTotalDim"></span>	  </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="checkbox" name="thestreamingVideo.isLive" onClick="isValidSkin('isLive')"><MMString:loadString id="Commands/FlashVideo/checkbox/thestreamingVideo.isLive/Live" />      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="checkbox" name="thestreamingVideo.autoPlay"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.autoPlay/Auto" />      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="checkbox" name="thestreamingVideo.autoRewind"><MMString:loadString id="Commands/FlashVideo/checkbox/theprogDownloadVideo.autoRewind/Auto" />      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/FlashVideo/text/Buffer" /></td>
+      <td colspan="3" valign="baseline" nowrap>
+        <input type="text" name="thestreamingVideo.tf_bufferTime" value="0" maxlength="5" class="cls_FlashVideo_input_thestreamingVideotf_bufferTime" >&nbsp;<MMString:loadString id="Commands/FlashVideo/text/seconds" /></td>
+    </tr>
+    <tr>
+</table>
+</form>
+</div>
+<div id="theflaVideoStreamServiceLite" class="cls_FlashVideo_div_theflaVideoStreamServiceLite" style="position:absolute; z-index:1; visibility: hidden;">
+<form name="theflaVideoStreamServiceLite">
+<table>
+  <tr>
+    <td>
+       <a href="" target="_blank" onMouseDown="dw.browseDocument('http://www.macromedia.com/go/fvsslitelogin');"><MMString:loadString id="Commands/FlashVideo/text/Login" /></a> <MMString:loadString id="Commands/FlashVideo/text/to" /> <a href="" target="_blank" onMouseDown="dw.browseDocument('http://www.macromedia.com/go/fvsslite');"><MMString:loadString id="Commands/FlashVideo/text/here" /></a> <MMString:loadString id="Commands/FlashVideo/text/for" />
+    </td>
+  </tr>
+  <tr height=1>
+    <td></td>
+  </tr>
+  <tr>
+    <td nowrap>
+	<MMString:loadString id="Commands/FlashVideo/text/Paste" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+	<textarea rows="15" cols="55" name="theflaVideoStreamServiceLite.code"></textarea>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+<div id="information" class="cls_FlashVideo_div_information" style="position:absolute; z-index:1; visibility: visible;">
+  <table width="100%">
+    <tr>
+      <td colspan="3"><hr>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
+        <span id="infoIcon"><img src="../Shared/MM/Images/P_InfoPC_Lg_N.png"></span>
+      </td>
+      <td>&nbsp;</td>
+      <td align="left" nowrap><MMString:loadString id="Commands/FlashVideo/text/To" /><br>
+       <span id="requiredFiles">&nbsp;</span></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

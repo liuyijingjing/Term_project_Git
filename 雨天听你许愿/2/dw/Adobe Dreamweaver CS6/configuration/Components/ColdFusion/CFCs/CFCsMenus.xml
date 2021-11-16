@@ -1,0 +1,11 @@
+<menubar xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" name="" id="DWCFCsContext">
+	<menu MMString:name="Components/ColdFusion/CFCs/CFCsMenus_xml/DWContext_CFCs/menu/name" id="DWContext_CFCs">
+		<menuitem MMString:name="Components/ColdFusion/CFCs/CFCsMenus_xml/DWContext_CFCs_createNewCFC/menuitem/name"	domRequired="false"	enabled="true" command="createCFC()"		id="DWContext_CFCs_createNewCFC" />
+		<menuitem MMString:name="Components/ColdFusion/CFCs/CFCsMenus_xml/DWContext_CFCs_editCode/menuitem/name"	domRequired="false"	enabled="canGetSelectedCFC()" command="editCFC();" id="DWContext_CFCs_editCode" />
+		<separator/>
+		<menuitem MMString:name="Components/ColdFusion/CFCs/CFCsMenus_xml/DWContext_CFCs_getDetails/menuitem/name"	domRequired="false"	enabled="canGetDetails()" command="getDetails()"		id="DWContext_CFCs_getDetails" />
+		<menuitem MMString:name="Components/ColdFusion/CFCs/CFCsMenus_xml/DWContext_CFCs_getDescription/menuitem/name"	domRequired="false"	enabled="canGetSelectedCFC()" command="getDescription()"		id="DWContext_CFCs_getDescription" />
+		<separator/>
+		<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWShortcuts_ServerComponent_Insert/menuitem/name"    	domRequired="false"	enabled="insertCFCEnabled();" command="clickedInsertCFC();" id="DWShortcuts_ServerComponent_Insert" />
+	</menu>
+</menubar>

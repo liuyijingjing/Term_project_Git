@@ -1,0 +1,171 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TestServerBinDeployDlg
+{
+    view dialog(horizontal: @align_right,
+                identifier: "IDD_TESTSERVER_BIN_DEPLOY",
+                margin: 0,
+                name: "$$$/TestserverBinDeploy/Title/DeploySupporting=Deploy Supporting Files To Testing Server",
+                spacing: 5)
+    {
+        row()
+        {
+            column(margin: 20)
+            {
+                row(guide_mask: [ @guide_label ],
+                    spacing: 5)
+                {
+                    static_text(characters: 25,
+                                identifier: "IDC_STATIC_ACCESS_TYPE",
+                                name: "$$$/TestserverBinDeploy/Label/DreamweaverNeeds=Dreamweaver needs to deploy custom tags used in server behaviors (and proxies used in web services) into your testing server's /bin directory. How do you access the /bin directory?");
+                }
+
+                row(child_horizontal: @align_right,
+                    horizontal: @align_right,
+                    spacing: 5)
+                {
+                    column(child_horizontal: @align_right,
+                           horizontal: @align_right,
+                           indent: 2,
+                           spacing: 18)
+                    {
+                        static_text(characters: 0,
+                                    identifier: "IDC_STATIC_ACCESS",
+                                    name: "$$$/TestserverBinDeploy/Label/Access=&Access:");
+
+                        row(placement: @place_overlay,
+                            spacing: 0)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_HOST",
+                                        name: "$$$/TestserverBinDeploy/Label/FtpHost=FTP &host:");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_BIN_FOLDER",
+                                        name: "$$$/TestserverBinDeploy/Label/BinFolder=/bin f&older:");
+                        }
+
+                        static_text(characters: 0,
+                                    identifier: "IDC_STATIC_BINDIR",
+                                    name: "$$$/TestserverBinDeploy/Label/BinDirectory=/bin &directory:");
+
+                        static_text(characters: 0,
+                                    identifier: "IDC_STATIC_USER",
+                                    name: "$$$/TestserverBinDeploy/Label/Login=&Login:");
+
+                        static_text(characters: 0,
+                                    identifier: "IDC_STATIC_PASSWORD",
+                                    name: "$$$/TestserverBinDeploy/Label/Password=&Password:");
+                    }
+
+                    column()
+                    {
+                        combobox(identifier: "IDC_COMBO_ACCESS", popup_minimum_width_chars: 10,
+                                 items: [ { name: "$$$/TestserverBinDeploy/Access/item1/None",
+                                            value: "" },
+                                          { name: "$$$/TestserverBinDeploy/Access/item2/Localnetwork",
+                                            value: "" },
+                                          { name: "$$$/TestserverBinDeploy/Access/item3/Ftp",
+                                            value: "" } ],
+                                 vertical_scroll: true,
+                                 tab_next_node: "IDC_EDIT_HOST" );
+
+                        row(spacing: 5)
+                        {
+                            edit_text(characters: 20,
+                                      identifier: "IDC_EDIT_HOST",
+                                      tab_next_node: "IDC_BUTTON_BROWSE_NETWORK_DIR");
+
+                            ownerdrawn_button(height: 9,
+                                              identifier: "IDC_BUTTON_BROWSE_NETWORK_DIR",
+                                              name: "$$$/TestserverBinDeploy/IconButton/BrowseFor=Browse for folder",
+                                              width: 13,
+                                              tab_next_node: "IDC_EDIT_DIR");
+                        }
+
+                        edit_text(characters: 20,
+                                  identifier: "IDC_EDIT_DIR",
+                                  tab_next_node: "IDC_EDIT_USER");
+
+                        row(child_vertical: @align_center,
+                            margin: 0,
+                            spacing: 5)
+                        {
+                            edit_text(characters: 15,
+                                      identifier: "IDC_EDIT_USER",
+                                      tab_next_node: "IDC_BUTTON_TEST_LOGIN");
+
+                            button(action: @do_action,
+                                   default: false,
+                                   identifier: "IDC_BUTTON_TEST_LOGIN",
+                                   name: "$$$/TestserverBinDeploy/Button/Test=&Test",
+                                   tab_next_node: "IDC_EDIT_PASSWORD");
+                        }
+
+                        row(spacing: 5)
+                        {
+                            edit_text(characters: 15,
+                                      identifier: "IDC_EDIT_PASSWORD",
+                                      password: true,
+                                      tab_next_node: "IDC_CHECK_SAVE_PASSWORD");
+
+                            checkbox(identifier: "IDC_CHECK_SAVE_PASSWORD",
+                                     name: "$$$/TestserverBinDeploy/CheckBox/Save=&Save",
+                                     tab_next_node: "IDC_CHECK_USE_PASSIVE_FTP");
+                        }
+
+                        checkbox(identifier: "IDC_CHECK_USE_PASSIVE_FTP",
+                                 name: "$$$/TestserverBinDeploy/CheckBox/UsePassive=Use passive &FTP",
+                                 tab_next_node: "IDC_CHECK_USE_FIREWALL");
+
+                        checkbox(identifier: "IDC_CHECK_USE_FIREWALL",
+                                 name: "$$$/TestserverBinDeploy/CheckBox/UseProxy=&Use Proxy (in Preferences)",
+                                 tab_next_node: "IDC_CHECK_USE_SFTP");
+
+                        checkbox(identifier: "IDC_CHECK_USE_SFTP",
+                                 name: "$$$/TestserverBinDeploy/CheckBox/UseSecure=Use Se&cure FTP (SFTP)",
+                                 tab_next_node: "IDOK");
+                    }
+                }
+            }
+
+            column(margin: 20,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/TestserverBinDeploy/Button/Deploy=Deploy",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/TestserverBinDeploy/Button/Cancel=Cancel",
+                       tab_next_node: "ID_BUTTON_HELP");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "ID_BUTTON_HELP",
+                       name: "$$$/TestserverBinDeploy/Button/Help=Help",
+                       tab_next_node: "IDC_COMBO_ACCESS");
+            }
+        }
+    }
+}

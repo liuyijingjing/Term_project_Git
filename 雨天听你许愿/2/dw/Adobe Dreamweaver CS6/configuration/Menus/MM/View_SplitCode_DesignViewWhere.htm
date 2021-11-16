@@ -1,0 +1,118 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<TITLE>
+<MMString:loadString id="menus/DWPopup_SplitCodeOptions_DesignPrimary" /></TITLE>
+<SCRIPT LANGUAGE="javascript">
+<!--
+
+function IsSplitCodeCodeWithRelatedFileView()
+{
+     return ( dw.getDocumentDOM() != null && 
+                dw.getDocumentDOM().getView() == 'split code' && 
+                dw.getDocumentDOM().isRelatedFileViewOpen() ) ;
+}
+
+function receiveArguments()
+{
+    if ( IsSplitCodeCodeWithRelatedFileView() ) 
+    {
+    	if (dw.getPrimaryView() == 'related file')
+	    {
+	        dw.setPrimaryView('code');
+	    }
+	    else
+	    {
+	        dw.setPrimaryView('related file');
+	    }
+    }
+    else
+    {
+	    if (dw.getPrimaryView() == 'design')
+	    {
+	        dw.setPrimaryView('code');
+	    }
+	    else
+	    {
+	        dw.setPrimaryView('design');
+	    }
+	}
+}
+
+function canAcceptCommand()
+{
+    return ( dw.getDocumentDOM() != null && 
+              ( ( dw.getDocumentDOM().getView() == 'split' ) || IsSplitCodeCodeWithRelatedFileView () ) );
+	
+}
+
+// getDynamicContent returns the contents of a dynamically generated menu.
+// returns an array of strings to be placed in the menu, with a unique
+// identifier for each item separated from the menu string by a semicolon.
+//
+// return null from this routine to indicate that you are not adding any
+// items to the menu
+
+var DESIGN_PRIMARY_TOP = dw.loadString('menus/DWPopup_SplitCodeOptions_DesignPrimary_Top');
+var DESIGN_PRIMARY_LEFT = dw.loadString('menus/DWPopup_SplitCodeOptions_DesignPrimary_Left');
+var CODE_PRIMARY_TOP = dw.loadString('menus/DWPopup_SplitCodeOptions_CodeViewPrimary_Top');
+var CODE_PRIMARY_LEFT = dw.loadString('menus/DWPopup_SplitCodeOptions_CodeViewPrimary_Left');
+
+function getDynamicContent(itemID)
+{
+    var menuName = new Array();
+
+    if ( IsSplitCodeCodeWithRelatedFileView () ) 
+    {
+        if(dw.getSplitViewOrientation() == 'vertical')	
+        {
+		    menuName[0] = CODE_PRIMARY_LEFT ;
+        }
+        else
+	    {
+		    menuName[0] = CODE_PRIMARY_TOP;
+	    }
+    }
+    else
+    {
+
+        if(dw.getSplitViewOrientation() == 'vertical')	
+        {
+		    menuName[0] = DESIGN_PRIMARY_LEFT ;
+        }
+        else
+	    {
+		    menuName[0] = DESIGN_PRIMARY_TOP;
+	    }
+
+    }
+
+    menuName[0]  += ";id='" + "DWMenu_View_DesignPrimary" + "'";
+   
+    return menuName;
+}
+
+function isCommandChecked(itemID)
+{
+    if ( IsSplitCodeCodeWithRelatedFileView () ) 
+    {
+        return ( dw.getPrimaryView() == 'code' );
+    }
+    else
+    {
+        return ( dw.getPrimaryView() == 'design' );
+    }
+        
+}
+function isDOMRequired()
+{
+    return false;
+}
+
+// -->   
+</SCRIPT>
+</HEAD>
+<BODY>
+</BODY>
+</HTML>

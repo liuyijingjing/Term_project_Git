@@ -1,0 +1,44 @@
+<participant>
+     <quickSearch><![CDATA[MM_redirectLoginSuccess]]></quickSearch>
+     <insertText location="aboveHTML+81">
+<![CDATA[
+<cfif IsDefined("FORM.@@UsernameField@@")>
+  <cfset MM_redirectLoginSuccess="@@SuccessURL@@">
+  <cfset MM_redirectLoginFailed="@@FailureURL@@">
+  <cfquery  name="MM_rsUser" datasource="@@ConnectionName@@"<@ if (@@UserName@@) @> username="@@UserName@@"<@ endif @><@ if (@@Password@@) @> password="@@Password@@"<@ endif @>>
+  SELECT @@UsernameCol@@,@@PasswordCol@@<@ if (@@AuthLevelCol@@) @>,@@AuthLevelCol@@<@ endif @> FROM @@TableName@@ WHERE @@UsernameCol@@=<cfqueryparam value="#FORM.@@UsernameField@@#" cfsqltype="@@UsernameFieldType@@"<@ if (@@UsernameFieldMaxLength@@) @> maxlength="@@UsernameFieldMaxLength@@"<@ endif @>> AND @@PasswordCol@@=<cfqueryparam value="#FORM.@@PasswordField@@#" cfsqltype="@@PasswordFieldType@@"<@ if (@@PasswordFieldMaxLength@@) @> maxlength="@@PasswordFieldMaxLength@@"<@ endif @>>
+  </cfquery>
+  <cfif MM_rsUser.RecordCount NEQ 0>
+    <cftry>
+			<cflock scope="Session" timeout="30" type="Exclusive">
+				<cfset Session.MM_Username=FORM.@@UsernameField@@>
+				<cfset Session.MM_UserAuthorization=<@ if (@@AuthLevelCol@@) @>MM_rsUser.@@AuthLevelCol@@[1]<@ else @>""<@ endif @>>
+			</cflock>
+			<cfif IsDefined("URL.accessdenied") AND @@GoToReferrerURL@@>
+				<cfset MM_redirectLoginSuccess=URL.accessdenied>
+			</cfif>
+			<cflocation url="#MM_redirectLoginSuccess#" addtoken="no">
+		<cfcatch type="Lock">
+			 <!--- code for handling timeout of cflock --->
+		</cfcatch>
+		</cftry>
+  </cfif>
+  <cflocation url="#MM_redirectLoginFailed#" addtoken="no">
+<cfelse>
+  <cfset MM_LoginAction=CGI.SCRIPT_NAME>
+  <cfif CGI.QUERY_STRING NEQ "">
+    <cfset MM_LoginAction=MM_LoginAction & "?" & XMLFormat(CGI.QUERY_STRING)>
+  </cfif>
+</cfif>
+]]>
+     </insertText>
+     <searchPatterns whereToSearch="tag+cfif">
+       <searchPattern limitSearch="all" isOptional="false"></searchPattern>
+       <searchPattern paramNames="UsernameField" limitSearch="tagOnly"><![CDATA[/IsDefined\s*\(\s*"FORM\.([^\r\n]*)"\s*\)>/i]]></searchPattern>
+       <searchPattern paramNames="SuccessURL"><![CDATA[/<cfset MM_redirectLoginSuccess\s*=\s*"([^\r\n]*?)">/i]]></searchPattern>
+       <searchPattern paramNames="FailureURL"><![CDATA[/<cfset MM_redirectLoginFailed\s*=\s*"([^\r\n]*?)">/i]]></searchPattern>
+       <searchPattern paramNames="ConnectionName,UserName,Password"><![CDATA[/ datasource\s*=\s*"([^"]*)"(?:\s*username\s*=\s*"([^"]*)")?(?:\s*password\s*=\s*"([^"]*)")?/i]]></searchPattern>
+	   <searchPattern paramNames="UsernameCol,PasswordCol,AuthLevelCol,TableName,UsernameFieldType,UsernameFieldMaxLength,PasswordField,PasswordFieldType,PasswordFieldMaxLength"><![CDATA[/SELECT\s+(\w+),(\w+)(?:,(\w+))?\s+FROM\s+([^\r\n]*)\s+WHERE\s+\w+=[\r\n\s\t]*<cfqueryparam value="#FORM\.\w+#" cfsqltype="([^\r\n]*?)"(?: maxlength="([^\r\n]*?)")?>\s+AND\s+\w+=[\r\n\s\t]*<cfqueryparam value="#FORM\.(\w+)#" cfsqltype="([^\r\n]*?)"(?: maxlength="([^\r\n]*?)")?>/i]]></searchPattern>
+       <searchPattern paramNames="GoToReferrerURL"><![CDATA[/cfif\s+IsDefined\s*\(\s*"URL\.accessdenied"\s*\)\s+AND\s+(\w+)\s*>/i]]></searchPattern>
+     </searchPatterns>
+</participant>

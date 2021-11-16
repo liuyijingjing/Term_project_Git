@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mimetypes>
+	<mimetype extension="bmp"  value="image/bmp"/>
+	<mimetype extension="gif"  value="image/gif"/>
+	<mimetype extension="ico"  value="image/x-icon"/>
+	<mimetype extension="jpeg" value="image/jpeg"/>
+	<mimetype extension="jpg"  value="image/jpeg"/>
+	<mimetype extension="pdf"  value="application/pdf" />
+	<mimetype extension="png"  value="image/png" />
+	<mimetype extension="rss"  value="application/rss+xml" />
+	<mimetype extension="svg"  value="image/svg+xml" />
+	<mimetype extension="swf"  value="application/x-shockwave-flash" />
+	<mimetype extension="tif"  value="image/tiff" />
+	<mimetype extension="tiff" value="image/tiff" />
+  <mimetype extension="ttf" value="font/ttf" />
+</mimetypes>

@@ -1,0 +1,42 @@
+layout StylePropPageLang
+{
+	view subview(identifier: "IDD_STYLE_PP_LANG",
+				name: "$$$/StylePpLang/Title/Language=Language",
+				grow: false,
+				margin: 5,
+				resizeChildren: false,
+				parent_container_id: "list_sheet_container",
+				spacing: 5)
+	{
+		column(margin: 5,
+			spacing: 5)
+		{
+ 			row(child_vertical: @align_center,
+				margin: 0,
+				spacing: 5)
+			{
+ 				static_text(identifier: "-1",
+							name: "$$$/StylePpLang/Label/Direction=&Direction:");
+				combobox(identifier: "IDC_STYLE_TYPE_DIRECTION_COMBO",
+						items: [ { name: "$$$/StylePpLang/StyleLangDirection/item1/ltr=ltr", value: "ltr" },
+                		                  	{ name: "$$$/StylePpLang/StyleLangDirection/item2/rtl=rtl", value: "rtl" } ],
+						popup_minimum_width_chars: 6,
+                         			tab_next_node: "IDC_STYLE_TYPE_BIDI_COMBO",
+						vertical_scroll:true);
+			}
+			row(child_vertical: @align_center,
+				margin: 0,
+				spacing: 5)
+			{
+ 				static_text(identifier: "-1",
+							name: "$$$/StylePpLang/Label/Unicodebidi=Unicode-bidi:");
+				combobox(identifier: "IDC_STYLE_TYPE_BIDI_COMBO",
+						items: [ { name: "$$$/StylePpLang/StyleLangBidi/item1/normal=normal", value: "normal" },
+                		                  	{ name: "$$$/StylePpLang/StyleLangBidi/item2/embed=embed", value: "embed" },
+							{ name: "$$$/StylePpLang/StyleLangBidi/item3/bidioverride=bidi-override", value: "bidi-override" } ],
+						popup_minimum_width_chars: 6,
+						vertical_scroll:true);
+			}
+		}
+	}
+}

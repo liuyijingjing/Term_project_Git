@@ -1,0 +1,132 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsCodeHints
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_CODE_HINTS",
+                 margin: 5,
+                 name: "$$$/PrefsCodeHints/Title/CodeHints=Code Hints",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row()
+        {
+            column(spacing: 48)
+            {
+                static_text(identifier: "IDC_STATIC",
+                            name: "$$$/PrefsCodeHints/Label/CloseTags=Close tags:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsCodeHints/Label/Options=Options:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 13,
+                                name: "$$$/PrefsCodeHints/Label/Menus=&Menus:");
+                }
+            }
+
+            column()
+            {
+                row()
+                {
+                    radiogroup()
+                    {
+                        radio_button(identifier: "IDC_RADIO_AUTO_CLOSE_TAG_OPENING_CLOSE_TAG",
+                                     name: "$$$/PrefsCodeHints/RadioButton/AfterTyping=After &typing \'</\'");
+
+                        radio_button(identifier: "IDC_RADIO_AUTO_CLOSE_TAG_AFTER_OPEN_TAG",
+                                     name: "$$$/PrefsCodeHints/RadioButton/AfterTypingTheOpenTags=After typing the &open tag's \'>\'");
+
+                        radio_button(identifier: "IDC_RADIO_AUTO_CLOSE_TAG_NEVER",
+                                     name: "$$$/PrefsCodeHints/RadioButton/Never=&Never");
+                    }
+                }
+
+                row()
+                {
+                    checkbox(identifier: "IDC_CHECK_ENABLE_TAG_HINTS",
+                             name: "$$$/PrefsCodeHints/CheckBox/EnableCode=Enable &code hints");
+
+                    checkbox(identifier: "IDC_CHECK_ENABLE_DESCRIPTION",
+                             name: "$$$/PrefsCodeHints/CheckBox/EnableDescription=Enable d&escription tooltips");
+                }
+
+                row(spacing: 5)
+                {
+                    column()
+                    {
+                        static_text(identifier: "IDC_STATIC_DELAY",
+                                    name: "$$$/PrefsCodeHints/Label/Delay=&Delay:");
+                    }
+
+                    column(spacing: 5)
+                    {
+                        row()
+                        {
+                            slider(center_tick: false,
+                                   identifier: "IDC_SLIDER_TAG_HINT_DELAY",
+                                   interval: 8.18182,
+                                   minLength: 135,
+                                   orientation: @horizontal,
+                                   segments: "",
+                                   slider_point: @none);
+
+                            static_text(characters: 15,
+                                        identifier: "IDC_STATIC_SECONDS",
+                                        name: "$$$/PrefsCodeHints/Label/Seconds=0 Seconds");
+                        }
+
+                        row(spacing: 120)
+                        {
+                            static_text(identifier: "IDC_STATIC_DELAY_MIN",
+                                        name: "$$$/PrefsCodeHints/Label/0=0");
+
+                            static_text(identifier: "IDC_STATIC_DELAY_MAX",
+                                        name: "$$$/PrefsCodeHints/Label/5=5");
+                        }
+                    }
+                }
+
+                row()
+                {
+                    sft_tree(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 180,
+                             identifier: "IDC_MENU_LIST",
+                             keyboard_selectable: true,
+                             width: 321);
+                }
+
+                row(child_vertical: @align_top,
+                    vertical: @align_fill)
+                {
+                    static_text(characters: 18,
+                                identifier: "IDC_STATIC_DESCRIPTION",
+                                name: "ThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehereThisisaverylongstringplacehere.",
+                                vertical: @align_top);
+                }
+            }
+        }
+    }
+}

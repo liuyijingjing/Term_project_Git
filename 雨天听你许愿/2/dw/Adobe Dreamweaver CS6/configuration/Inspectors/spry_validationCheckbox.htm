@@ -1,0 +1,119 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:*, attrname:Spry.Widget.ValidationCheckbox, priority:50, selection:exact, hideclass -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2006-2007 Adobe Systems Incorporated.  All rights reserved. -->
+<title>
+<MMString:LoadString id="spry/widgets/ValidationCheckbox/title" />
+</title>
+<!-- common includes -->
+<script type="text/javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script type="text/javascript" src="../Shared/Controls/Scripts/RadioGroup.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/TagEditClass.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/UltraDev/Scripts/ssDocManager.js"></script>
+<script type="text/javascript" src="_pi_common.js"></script>
+
+<!-- validation checkbox widget includes -->
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetBase.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/Widgets/ValidationCheckbox/DesignTime/SpryValidationCheckboxDesignTime.js" ></script>
+<script type="text/javascript" src="../Shared/Spry/DesignTime/WidgetManager.js" ></script>
+<!-- validation checkbox widget pi include -->
+<script type="text/javascript" src="spry_validationCheckbox.js"></script>
+<!-- pi styles -->
+<link href="_pi_common.css" rel="stylesheet" type="text/css" />
+<link href="../Styles/spry_validationCheckbox.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="piBody">
+<!-- standard image & id fields -->
+<div id="piId"> 
+	<img id="piImage" src="spry_validationCheckbox.png" MMString:alt="spry/widgets/ValidationCheckbox/title" />
+	<div id="idBoxLayer">
+		<table border="0">
+			<tr>
+				<td nowrap><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Spry" /></td>
+			</tr>
+			<tr><td><input id="idEditBox" class="cls_spry_validationCheckbox_div_idEditBox" type="text" onBlur="updateTag('widgetId')" /></td></tr>
+		</table>
+		<div id="piTitle"></div>
+		<div id="piElementId">
+		</div>
+	</div>
+</div>
+
+<div id="topLayer">
+	<div id="message" class="cls_spry_validationCheckbox_div_message"></div>
+<form>	
+	<div id="widgetEditingMain" class="cls_spry_validationCheckbox_div_widgetEditingMain">
+		<table cellpadding="2" cellspacing="0" border="0">
+			<tr>
+				<td nowrap>
+					<input type="radio" id="isRequired" name="required_enforce" onClick="updateTag('required_enforce')" value="isRequired" />
+        </td>
+        <td nowrap>					
+				  <label for="isRequired"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Required" /></label>
+        </td>
+				<td align="right" nowrap><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Preview" /> </td>
+				<td>
+					<select id="widgetStates" name="widgetStates"  class="cls_spry_validationCheckbox_div_widgetStates" onChange="updateTag('widgetStates');">
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td nowrap>
+					<input type="radio" id="enforceRange" name="required_enforce" onClick="updateTag('required_enforce')" value="enforceRange" />
+				</td>
+        <td nowrap>					
+				  <label for="enforceRange"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Enforce" /></label>
+        </td>
+				<td align="right" nowrap colspan="2"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Validate" />
+					<input type="checkbox" id="validateBlur" onClick="updateTag('validateBlur')" /><MMString:loadString id="Inspectors/spry_validationCheckbox/checkbox/validateBlur/Blur" />
+					<input type="checkbox" id="validateChange" onClick="updateTag('validateChange')" /><MMString:loadString id="Inspectors/spry_validationCheckbox/checkbox/validateChange/Change" />
+					<input type="checkbox" id="validateSubmit" onClick="updateTag('validateSubmit')" checked disabled /><label for="FakeTag"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Submit" /></label>
+				</td>
+			</tr>
+		</table>
+	</div>
+  <div id="widgetEditingAdvanced">
+    <table cellpadding="2" cellspacing="0" border="0">
+      <tr>
+        <td nowrap align="right"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Min" /> </td>
+        <td><input type="text" name="minSelectValue" class="min_maxEditBox" onBlur="updateTag('minSelectValue')" /></td>
+      </tr>
+      <tr>
+        <td nowrap align="right"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Max" /> </td>
+        <td><input type="text" name="maxSelectValue" class="min_maxEditBox" onBlur="updateTag('maxSelectValue')" /></td>
+      </tr>
+    </table>
+  </div>
+</form>	
+</div>
+
+<div id="bottomLayer">
+	<p><a href="#" onMouseDown="updateTag('guide');"><MMString:loadString id="Inspectors/spry_validationCheckbox/text/Customize" /></a></p>
+</div>
+
+<div id="errorLayer">
+  <table width="300" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../Shared/MM/Images/infoTopLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoTop.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoTopRight.png" width="7" height="7" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoLeft.png" width="7" height="57" border="0"></td>
+      <td align="center" valign="top" bgcolor="#FFFFCC"><img  src="../Shared/MM/Images/warningIcon.png" width="14" height="13" border="0"></td>
+      <td width="90%" valign="top" bgcolor="#FFFFCC" id="errorMessage">&nbsp;</td>
+      <td><img src="../Shared/MM/Images/infoRight.png" width="7" height="57" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoBottomLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img  src="../Shared/MM/Images/infoBottom.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoBottomRight.png" width="7" height="7" border="0"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

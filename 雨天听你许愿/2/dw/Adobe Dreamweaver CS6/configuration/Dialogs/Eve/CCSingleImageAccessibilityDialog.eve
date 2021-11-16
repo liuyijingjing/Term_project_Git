@@ -1,0 +1,76 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout CCSingleImageAccessibilityDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_CC_IMG_DESC_SINGLE",
+                margin: 0,
+                name: "$$$/CcImgDescSingle/Title/ImageDescription=Image Description (Alt Text)",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(margin: 5,
+                spacing: 5)
+            {
+                static_text(characters: 15,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/CcImgDescSingle/Label/ImageDescription=Image description (Alt text):");
+
+                column(margin: 0,
+                       spacing: 5)
+                {
+                    edit_text(characters: 35,
+                              identifier: "IDC_CC_IMG_DESC_SINGLE_ALTTEXT",
+                              tab_next_node: "IDOK");
+
+                    static_text(characters: 21,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/CcImgDescSingle/Label/ThisDescription=This description will help visually impaired people who use tools that read web pages to them, including written descriptions of images.");
+                }
+            }
+
+            separator(identifier: "IDC_CC_IMGPROP_DIVIDE2");
+
+            row(margin: 5,
+                spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/CcImgDescSingle/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/CcImgDescSingle/Button/Cancel=Cancel",
+                       tab_next_node: "IDHELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "IDHELP",
+                       name: "$$$/CcImgDescSingle/Button/Help=Help",
+                       tab_next_node: "IDC_CC_IMG_DESC_SINGLE_ALTTEXT");
+            }
+        }
+    }
+}

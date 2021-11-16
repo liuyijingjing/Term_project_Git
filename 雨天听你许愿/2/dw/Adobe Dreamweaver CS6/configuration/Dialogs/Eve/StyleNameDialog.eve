@@ -1,0 +1,221 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout StyleNameDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_STYLE_NAME_DIALOG",
+                margin: 0,
+                name: "$$$/StyleName/Title/NewStyle=New Style",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row(margin: 15)
+        {
+            column()
+            {
+                row()
+                {
+                    static_text(identifier: "IDC_STATIC_SELECTOR_TYPE",
+                                name: "$$$/StyleName/Label/SelectorType=Selector Type:");
+                }
+
+                row()
+                {
+                    static_text(identifier: "IDC_STATIC_TYPE_DESCRIPTION",
+                                name: "$$$/StyleName/Label/ChooseA=Choose a contextual selector type for your CSS rule.");
+                }
+
+                row(horizontal: @align_fill,
+                    indent: 63)
+                {
+                    popup(horizontal: @align_fill,
+                          iconpopup_font_size: 11,
+                          iconpopup_icon_column_width: 20,
+                          iconpopup_include_vertical_separator: false,
+                          iconpopup_item_height: 22,
+                          iconpopup_selection_column_width: 22,
+                          iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                          iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                          identifier: "IDC_COMBO_SELECTOR_TYPE",
+                          include_custom_item: false,
+                          popup_maximum_width_chars: 10,
+                          tab_next_node: "IDC_COMBO_SELECTOR_NAME",
+                          vertical_scroll: true);
+
+                    placeholder(width: 40);
+                }
+
+                row()
+                {
+                    column(indent: 10)
+                    {
+                        static_text(identifier: "IDC_STATIC_SELECTOR_NAME",
+                                    name: "$$$/StyleName/Label/SelectorName=Selector Name:");
+                    }
+                }
+
+                row()
+                {
+                    static_text(identifier: "IDC_STATIC_NAME_DESCRIPTION",
+                                name: "$$$/StyleName/Label/ChooseOr=Choose or enter a name for your selector.");
+                }
+
+                row(placement: @place_overlay)
+                {
+                    row(horizontal: @align_center)
+                    {
+                        column(horizontal: @align_center,
+                               indent: 30,
+                               spacing: 0)
+                        {
+                            radio_button(identifier: "IDC_CLASS_RADIO",
+                                         name: "$$$/StyleName/RadioButton/ClassCan=&Class (can apply to any tag)");
+
+                            radio_button(identifier: "IDC_TAG_RADIO",
+                                         name: "$$$/StyleName/RadioButton/TagRedefines=&Tag (redefines the look of a specific tag)");
+
+                            radio_button(identifier: "IDC_OTHER_RADIO",
+                                         name: "$$$/StyleName/RadioButton/AdvancedIds=&Advanced (IDs, pseudo-class selectors)");
+
+                            row(indent: 65,
+                                spacing: 0)
+                            {
+                                static_text(identifier: "IDC_STYLE_NAME_LABEL",
+                                            name: "$$$/StyleName/Label/Xxx=xxx",
+                                            visible: false);
+
+                                combobox(identifier: "IDC_STYLE_NAME_COMBO",
+                                         vertical_scroll: true,
+                                         visible: false);
+                            }
+
+                            row(spacing: 0)
+                            {
+                                static_text(horizontal: @align_left,
+                                            identifier: "IDC_STATIC",
+                                            name: "$$$/StyleName/Label/DefineIn=Define in:",
+                                            visible: false);
+
+                                radio_button(identifier: "IDC_EXTERNAL_FILE_RADIO");
+
+                                popup(identifier: "IDC_EXTERNAL_FILE_COMBO",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      vertical_scroll: true,
+                                      visible: false);
+
+                                radio_button(identifier: "IDC_THIS_DOCUMENT_RADIO",
+                                             name: "$$$/StyleName/RadioButton/ThisDocument=This document only");
+                            }
+                        }
+                    }
+
+                    row()
+                    {
+                        column()
+                        {
+                            row(horizontal: @align_fill,
+                                indent: 63)
+                            {
+                                combobox(horizontal: @align_fill,
+                                         identifier: "IDC_COMBO_SELECTOR_NAME",
+                                         tab_next_node: "IDC_COMBO_RULE_DEFINITION",
+                                         vertical_scroll: true);
+                            }
+
+                            row(indent: 63)
+                            {
+                                edit_text(characters: 48,
+                                          enabled: false,
+                                          horizontal_scroll: true,
+                                          identifier: "IDC_EDIT_DESCRIPTION",
+                                          lines: 12,
+                                          multiLine: true,
+                                          readonly: true,
+                                          vertical_scroll: true);
+                            }
+
+                            row(horizontal: @align_center)
+                            {
+                                button(action: @do_action,
+                                       default: false,
+                                       enabled: false,
+                                       identifier: "IDC_BUTTON_LESS_SPECIFIC",
+                                       name: "$$$/StyleName/Button/LessSpecific=Less Specific");
+
+                                button(action: @do_action,
+                                       default: false,
+                                       enabled: false,
+                                       identifier: "IDC_BUTTON_MORE_SPECIFIC",
+                                       name: "$$$/StyleName/Button/MoreSpecific=More Specific");
+                            }
+                        }
+                    }
+                }
+
+                row()
+                {
+                    column(indent: 10)
+                    {
+                        static_text(identifier: "IDC_STATIC_RULE_DEFINITION",
+                                    name: "$$$/StyleName/Label/RuleDefinition=Rule Definition:");
+                    }
+                }
+
+                row()
+                {
+                    static_text(identifier: "IDC_STATIC_DEFINITION_DESCRIPTION",
+                                name: "$$$/StyleName/Label/ChooseWhere=Choose where your rule will be defined.");
+                }
+
+                row(horizontal: @align_fill,
+                    indent: 63)
+                {
+                    popup(horizontal: @align_fill,
+                          identifier: "IDC_COMBO_RULE_DEFINITION",
+                          include_custom_item: false,
+                          vertical_scroll: true);
+
+                    placeholder(width: 40);
+                }
+            }
+
+            separator(identifier: "IDC_STATIC_LINE",
+                      orientation: @vertical);
+
+            column(vertical: @align_fill)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/StyleName/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/StyleName/Button/Cancel=Cancel");
+
+                button(action: @do_help,
+                       identifier: "ID_HELP",
+                       name: "$$$/StyleName/Button/Help=Help",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

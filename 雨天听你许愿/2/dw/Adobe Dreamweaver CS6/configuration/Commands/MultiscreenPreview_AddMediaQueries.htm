@@ -1,0 +1,1021 @@
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 10.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+ Copyright 2010 Adobe Systems Incorporated
+ All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+
+-->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head> 
+<title><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/title" /></title> 
+<link href="../Styles/MultiscreenPreview_AddMediaQueries.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript"> 
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+var MSG_NoEditableRegionInHeadFound = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_NoEditableRegionInHeadFound');
+var MSG_UnrecognizedQueries = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_UnrecognizedQueries');
+var MSG_NoHeadSection = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_NoHeadSection');
+var Label_CSSFileFilter = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/Label_CSSFileFilter');
+var Label_AllFilesFilter = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/Label_AllFilesFilter');
+var Label_SmallPhone = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/Label_SmallPhone');
+var Label_MediumTablet = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/Label_MediumTablet');
+var Label_LargeDesktop = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/Label_LargeDesktop');
+var MSG_NoHeadTagSoDidntInsert = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_NoHeadTagSoDidntInsert');
+var MSG_SmallLessThanMediumPlease = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_SmallLessThanMediumPlease');
+var MSG_PleaseSelectFolder = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_PleaseSelectFolder');
+var MSG_PleaseSelectCSSFile = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_PleaseSelectCSSFile');
+var MSG_FileAlreadyExists = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_FileAlreadyExists');
+var MSG_CouldNotFindFile = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_CouldNotFindFile');
+var MSG_LabelSelectFolder = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_LabelSelectFolder');
+var MSG_LabelSelectFile = dw.loadString('Commands/MultiscreenPreview_AddMediaQueries/MSG_LabelSelectFile');
+//--------------- END LOCALIZEABLE   ---------------
+
+	
+////////////////////////////////////////////////////////////////////////////////////
+// The following two variables are HTML templates used to create the link tags.
+//	
+var gBlankTag = '<link href="_fileName_" rel="stylesheet" type="text/css" media="only screen and (min-width: _minWidth_px) and (max-width: _maxWidth_px)" >\n';	
+var gBlankDesktopTag ='<link href="_fileName_" rel="stylesheet" type="text/css" media="only screen and (min-width: _minWidth_px)" >\n';
+
+////////////////////////////////////////////////////////////////////////////////////
+// The following variables are regular expressions used to match media queries AMQ has created.
+//	
+var gMatchSmall = /^\s*only\s+screen\s+and\s+\(min-width\:\s+0px\)\s+and\s+\(max-width\:\s+(\d+)px\)\s*$/;  
+var gMatchMedium = /^\s*only\s+screen\s+and\s+\(min-width\:\s+(\d+)px\)\s+and\s+\(max-width\:\s+(\d+)px\)\s*$/;
+var gMatchLarge = /^\s*only\s+screen\s+and\s+\(min-width\:\s+(\d+)px\)\s*$/;	
+
+// The media queries we output in the labs version of AMQ used "all" instead of "only screen", so we need to recognize those, too.
+var gMatchSmallLabsVersion = /^\s*all\s+and\s+\(min-width\:\s+0px\)\s+and\s+\(max-width\:\s+(\d+)px\)\s*$/;  
+var gMatchMediumLabsVersion = /^\s*all\s+and\s+\(min-width\:\s+(\d+)px\)\s+and\s+\(max-width\:\s+(\d+)px\)\s*$/;
+var gMatchLargeLabsVersion = /^\s*all\s+and\s+\(min-width\:\s+(\d+)px\)\s*$/;	
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+var gDefaultSmallMaxWidth = 320;
+var gDefaultMediumMaxWidth = 768;
+
+var gCssFileFilter = new Array(Label_CSSFileFilter, Label_AllFilesFilter);
+
+var gNewSmallFileName = "phone.css";
+var gNewMediumFileName = "tablet.css";
+var gNewLargeFileName = "desktop.css";
+
+var gSmallRowDisabled = false;
+var gMediumRowDisabled = false;
+var gLargeRowDisabled = false;
+
+// These point to the recognized link tags if the user is attempting to edit the media queries.
+var gSmallTag = null;
+var gMediumTag = null;
+var gLargeTag = null;
+
+
+function commandButtons() 
+{ 
+	return new Array(MM.BTN_OK, "addMediaQueries()", MM.BTN_Cancel, "window.close()");
+}    
+function initUI()
+{	
+	/////////////////////////////////////////////////////////////////////////////
+	// Set all the global element pointers
+	//
+	
+	// small
+	gElemSmallLabel = document.getElementById('smallLabel');
+	gElemSmallMinWidth = document.getElementById('smallMinWidth');
+	gElemSmallMaxWidth = document.getElementById('smalMaxWidth');
+	gElemSmallSelect = document.getElementById('smallSelect');
+	gElemSmallPath = document.getElementById('smallPath');
+	gElemSmallFolderImage = document.getElementById('smallFolderImage');
+	
+	// medium
+	gElemMediumLabel = document.getElementById('mediumLabel');
+	gElemMediumMinWidth = document.getElementById('mediumMinWidth');	
+	gElemMediumMaxWidth = document.getElementById('mediumMaxWidth');	
+	gElemMediumSelect = document.getElementById('mediumSelect');
+	gElemMediumPath = document.getElementById('mediumPath');
+	gElemMediumFolderImage = document.getElementById('mediumFolderImage');
+
+	// large
+	gElemLargeLabel = document.getElementById('largeLabel');
+	gElemLargeMinWidth = document.getElementById('largeMinWidth');	
+	gElemLargeWidth = document.getElementById('largeWidth');	
+	gElemLargeWidthDisabled = document.getElementById('largeWidthDisabled');
+	gElemLargeSelect = document.getElementById('largeSelect');
+	gElemLargePath = document.getElementById('largePath');	
+	gElemLargeFolderImage = document.getElementById('largeFolderImage');
+	
+	//
+	/////////////////////////////////////////////////////////////////////////////
+	
+	
+	var dom = dw.getDocumentDOM();
+    var lastSlashPos = dom.URL.lastIndexOf("/");
+    gPath = dom.URL.substr(0, lastSlashPos + 1);
+	
+	gElemSmallMaxWidth.value = gDefaultSmallMaxWidth;
+	gElemMediumMaxWidth.value = gDefaultMediumMaxWidth;
+				
+	if (dw.getDocumentDOM().getElementsByTagName('head').length == 0)
+	{
+		alert(MSG_NoHeadSection);	
+		window.close();
+		return;
+	}
+	else
+	{
+		gElemHead = dw.getDocumentDOM().getElementsByTagName('head')[0];
+	}
+	
+	if (!prepopulateIfDocHasRecognizedMediaQueries())
+	{
+		alert(MSG_UnrecognizedQueries);
+		window.close();
+		return;
+	}					
+	
+	updateMinWidthLabels();
+}    
+function getLinkTagsWithQueries()
+{
+	var outTags = [];
+	var tags = dw.getDocumentDOM().getElementsByTagName('link'); 
+	
+	for (var i = 0; i < tags.length; i++)
+	{
+		var thisTag = tags[i];
+		
+		if (String(thisTag.rel).toLowerCase() == "stylesheet" && String(thisTag.type).toLowerCase() == "text/css" && thisTag.media)
+			outTags.push(thisTag);								
+	}
+	
+	return outTags;
+}
+function prepopulateIfDocHasRecognizedMediaQueries()  // Returns false only if there are queries we don't recognize.
+{		
+	// Try to recognize the media queries in all link tags that have them.
+
+	var tagsWithQueries = getLinkTagsWithQueries();					
+	
+	if (tagsWithQueries.length == 0)
+		return true;
+		
+	if (tagsWithQueries.length > 3)
+		return false;
+		
+	gSmallTag = findTagByQuery(gMatchSmall);	
+	if (!gSmallTag)
+		gSmallTag = findTagByQuery(gMatchSmallLabsVersion);	
+		
+	gMediumTag = findTagByQuery(gMatchMedium);
+	if (!gMediumTag)
+		gMediumTag = findTagByQuery(gMatchMediumLabsVersion);
+		
+	gLargeTag =  findTagByQuery(gMatchLarge);
+	if (!gLargeTag)
+		gLargeTag =  findTagByQuery(gMatchLargeLabsVersion);
+						
+	function findTagByQuery(matchPattern) // This function is nested so we can treat vars in our parent function as global.
+	{
+		for (var i = 0; i < tagsWithQueries.length; i++)
+		{
+			var thisTag = tagsWithQueries[i];
+			var mediaVal = String(thisTag.media);
+			
+			if (matchPattern.test(mediaVal))
+			{
+				tagsWithQueries.splice(i, 1);  // Remove this tag from the array				
+				return thisTag;
+			}
+		}	
+		
+		return null;
+	}
+	
+	if (tagsWithQueries.length != 0)
+	{
+		// We should have recognized every tag that has a media query and removed it from this array by now.
+		return false;
+	}
+	
+	// Now that we have recognized all the tags with queries, get the info from them and prepopulate the dialog.
+	
+	if (gSmallTag)
+	{		
+		if (!gMatchSmall.test(gSmallTag.media))
+			gMatchSmallLabsVersion.test(gSmallTag.media);
+			
+		var smallMaxWidth = Number(RegExp.$1);
+		
+		gElemSmallMaxWidth.value = smallMaxWidth;
+		gElemSmallSelect.selectedIndex = 2;
+		gElemSmallPath.value = String(gSmallTag.href);
+				
+		enableSmallRow(true);	
+	}
+	else
+	{
+		gElemSmallSelect.selectedIndex = 0;
+		enableSmallRow(false);	
+	}
+	
+	
+	if (gMediumTag)
+	{
+		if (!gMatchMedium.test(gMediumTag.media))
+			gMatchMediumLabsVersion.test(gMediumTag.media);
+		
+		var mediumMinWidth = Number(RegExp.$1);
+		var mediumMaxWidth = Number(RegExp.$2);
+		
+		if (gSmallTag && mediumMinWidth != smallMaxWidth + 1) 
+			return false;			
+			
+		gElemMediumMaxWidth.value = mediumMaxWidth;
+		gElemMediumSelect.selectedIndex = 2;
+		gElemMediumPath.value = String(gMediumTag.href);				
+			
+		enableMediumRow(true);
+	}
+	else
+	{
+		gElemMediumSelect.selectedIndex = 0;
+		enableMediumRow(false);
+	}	
+	
+	if (gLargeTag)
+	{
+		if (!gMatchLarge.test(gLargeTag.media))
+			gMatchLargeLabsVersion.test(gLargeTag.media);
+		
+		var largeMinWidth = Number(RegExp.$1);
+		
+		if (gMediumTag && largeMinWidth != mediumMaxWidth + 1)
+			return false;
+			
+		if (!gMediumTag && gSmallTag && largeMinWidth != smallMaxWidth + 1)
+			return false;
+						
+		gElemLargeSelect.selectedIndex = 2;
+		gElemLargePath.value = String(gLargeTag.href);				
+		
+		enableLargeRow(true);
+	}	
+	else
+	{
+		gElemLargeSelect.selectedIndex = 0;
+		enableLargeRow(false);
+	}		
+	
+	return true;
+	
+}
+function addMediaQueries() 
+{   
+		
+	//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+	// Get the user's data from the UI
+	//
+	          
+	var uiData = {};
+	
+	uiData.targetSmall = !gSmallRowDisabled;
+	uiData.targetMedium = !gMediumRowDisabled;
+	uiData.targetLarge = !gLargeRowDisabled;
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	// small
+	//
+	if (!gSmallRowDisabled)
+	{
+		var thisFile = {};
+		thisFile.label = Label_SmallPhone;
+		thisFile.makeNew =  getListValue(gElemSmallSelect) == "new";	
+		thisFile.minWidth = 0;
+		thisFile.maxWidth = parseInt(gElemSmallMaxWidth.value);
+		thisFile.rawPath = gElemSmallPath.value;
+		if (thisFile.makeNew)
+		{						
+			thisFile.pathToFile = gElemSmallPath.value + "/" + gNewSmallFileName;				
+		}
+		else	
+		{
+			thisFile.pathToFile = gElemSmallPath.value;
+		}				
+		thisFile.pathToFile = cleanUpPath(thisFile.pathToFile);				
+		uiData.smallFile = thisFile;				
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	// medium
+	//
+	if (!gMediumRowDisabled)
+	{
+		var thisFile = {};
+		thisFile.label = Label_MediumTablet;
+		thisFile.makeNew =  getListValue(gElemMediumSelect) == "new";	
+		thisFile.minWidth = gSmallRowDisabled? 0 : uiData.smallFile.maxWidth + 1;
+		thisFile.maxWidth = parseInt(gElemMediumMaxWidth.value);
+		thisFile.rawPath = gElemMediumPath.value;
+		if (thisFile.makeNew)
+		{						
+			thisFile.pathToFile = gElemMediumPath.value + "/" + gNewMediumFileName;				
+		}
+		else	
+		{
+			thisFile.pathToFile = gElemMediumPath.value;
+		}
+		thisFile.pathToFile = cleanUpPath(thisFile.pathToFile);
+		uiData.mediumFile = thisFile;
+	}
+
+	
+	//////////////////////////////////////////////////////////////////////////////////	
+	// large
+	//
+	if(!gLargeRowDisabled)
+	{
+		var thisFile = {};
+		thisFile.label = Label_LargeDesktop;
+		thisFile.makeNew =  getListValue(gElemLargeSelect) == "new";		
+		if (gSmallRowDisabled && gMediumRowDisabled)
+			thisFile.minWidth = 0;
+		else if (gMediumRowDisabled)
+			thisFile.minWidth = uiData.smallFile.maxWidth + 1;
+		else 
+			thisFile.minWidth = uiData.mediumFile.maxWidth + 1;		
+		thisFile.rawPath = gElemLargePath.value;
+		if (thisFile.makeNew)
+		{						
+			thisFile.pathToFile = gElemLargePath.value + "/" + gNewLargeFileName;				
+		}
+		else	
+		{
+			thisFile.pathToFile = gElemLargePath.value;
+		}
+		thisFile.pathToFile = cleanUpPath(thisFile.pathToFile);
+		uiData.largeFile = thisFile;
+	}
+		
+	//
+	// End - Get the user's data from the UI	
+	//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+
+	
+	//////////////////////////////////////////////////////////////////////////////////	
+	// Validate the data
+	//
+	
+	var errMsg = validateData(uiData);
+	
+	if (errMsg)
+	{
+		alert(errMsg);
+		return;	
+	}
+	
+	// If the user is editing existing tags, we just delete the old ones and rewrite new ones.
+	if (gSmallTag)
+	{
+		gSmallTag.outerHTML = "";
+		gSmallTag = null;
+	}
+		
+	if (gMediumTag)
+	{
+		gMediumTag.outerHTML = "";
+		gMediumTag = null;
+	}
+		
+	if (gLargeTag)
+	{
+		gLargeTag.outerHTML = "";
+		gLargeTag = null;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////////////////////////////	
+	// Insert the link tags	
+	//
+	
+	var newTagsHTML = ""; // Will hold the HTML of link tags to insert	
+	
+
+	////////////////////////////////////////////////////////////////////////////////
+	// small
+	//
+	if (uiData.smallFile)
+	{
+	    var thisFile = uiData.smallFile;		
+	    if (thisFile.makeNew)
+	    {											
+			var path = gPath + thisFile.pathToFile; 
+			
+			var isSiteRelative = thisFile.pathToFile.indexOf("/") == 0;								
+			
+			if (isSiteRelative)
+				path = dw.getSiteRoot() + thisFile.pathToFile.substring(1);
+									
+			var folder =  path.substring(0, path.lastIndexOf("/"));
+			
+			if (folder && !dwscripts.isFolder(folder))
+				DWfile.createFolder(folder);
+				
+		    DWfile.write(path, '@charset "utf-8";\n');					   		    		    
+	    }
+	    killLinkTag(thisFile.pathToFile);	
+	    newTagsHTML += gBlankTag
+		    .replace(/_fileName_/, thisFile.pathToFile)
+		    .replace(/_minWidth_/, thisFile.minWidth)
+		    .replace(/_maxWidth_/, thisFile.maxWidth);
+	}
+		
+	////////////////////////////////////////////////////////////////////////////////		
+	// medium
+	//
+	if (uiData.mediumFile)
+	{
+	    var thisFile = uiData.mediumFile;		
+	    if (thisFile.makeNew)
+	    {
+		    var path = gPath + thisFile.pathToFile; 
+			
+			var isSiteRelative = thisFile.pathToFile.indexOf("/") == 0;			
+			
+			if (isSiteRelative)
+				path = dw.getSiteRoot() + thisFile.pathToFile.substring(1);
+				
+			var folder =  path.substring(0, path.lastIndexOf("/"));
+			
+			if (folder && !dwscripts.isFolder(folder))
+				DWfile.createFolder(folder);
+								
+		    DWfile.write(path, '@charset "utf-8";\n');			
+	    }
+	    killLinkTag(thisFile.pathToFile);
+	    newTagsHTML += gBlankTag
+		    .replace(/_fileName_/, thisFile.pathToFile)
+		    .replace(/_minWidth_/, thisFile.minWidth)
+		    .replace(/_maxWidth_/, thisFile.maxWidth);
+    }
+		
+	////////////////////////////////////////////////////////////////////////////////			
+	// large
+	//
+	if(uiData.largeFile)
+	{
+		var thisFile = uiData.largeFile;		
+		if (thisFile.makeNew)
+		{
+			var path = gPath + thisFile.pathToFile; 
+			
+			var isSiteRelative = thisFile.pathToFile.indexOf("/") == 0;			
+			
+			if (isSiteRelative)
+				path = dw.getSiteRoot() + thisFile.pathToFile.substring(1);
+				
+			var folder =  path.substring(0, path.lastIndexOf("/"));
+			
+			if (folder && !dwscripts.isFolder(folder))
+				DWfile.createFolder(folder);
+				
+		    DWfile.write(path, '@charset "utf-8";\n');			
+		}
+		killLinkTag(thisFile.pathToFile);
+		newTagsHTML += gBlankDesktopTag
+			.replace(/_fileName_/, thisFile.pathToFile)
+			.replace(/_minWidth_/, thisFile.minWidth);
+
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////////
+	// Write link tag HTML to the document
+	//				
+
+	var heads = dw.getDocumentDOM().getElementsByTagName('head');
+	var headTagFound = heads.length > 0;
+	
+	if (!headTagFound)
+	{
+		alert(MSG_NoHeadTagSoDidntInsert);
+	}
+	
+	if (headTagFound && isTemplateInstance())
+	{				
+		var foundSpot = false;
+		
+		var docString = dw.getDocumentDOM().documentElement.outerHTML;		
+		var pos = docString.search(/<!---*\s+InstanceBeginEditable\s+name="head"\s+-*-->/);
+		
+		if (pos != -1)
+		{				
+			// Since the "search()" method does not take a "startFrom" parameter, like "indexOf()" does,
+			// we have to cut the string to search for the end of the editable area in the "secondPart".
+			
+			var firstPart = docString.substring(0, pos);
+			var secondPart = docString.substring(pos);							
+			
+			pos = secondPart.search(/<!---*\s+InstanceEndEditable\s+-*-->/);
+		
+			if (pos != -1)
+			{
+				foundSpot = true;
+				
+				pos = firstPart.length + pos;
+			
+				firstPart = docString.substring(0, pos);
+				secondPart = docString.substring(pos);			
+			
+				docString = firstPart + newTagsHTML + secondPart;
+		
+				dw.getDocumentDOM().documentElement.outerHTML = docString;
+			}
+		}
+		
+		if (!foundSpot)
+		{
+			alert(MSG_NoEditableRegionInHeadFound);
+		}
+	}
+	
+	if (headTagFound && !isTemplateInstance())
+	{
+		var head = heads[0];
+		var lastCSSLink = null;
+		var firstScriptTag = null;
+		var lastStyleTag = null;
+		var links = head.getElementsByTagName('link');
+		for (var i = 0; i < links.length; i++)		
+		{
+			var rel = String(links[i].rel).toLowerCase();
+			if (rel == "stylesheet")
+				lastCSSLink = links[i];
+		}
+		var scripts = head.getElementsByTagName('script');
+		if (scripts.length > 0)
+		{
+			firstScriptTag = scripts[0];
+		}
+		var styles = head.getElementsByTagName('style');
+		for (var i = 0; i < styles.length; i++)
+		{
+			lastStyleTag = styles[i];
+		}
+		if (lastCSSLink)
+		{
+			lastCSSLink.outerHTML = lastCSSLink.outerHTML + "\n" + newTagsHTML;
+		}
+		else if (lastStyleTag)
+		{
+			lastStyleTag.outerHTML =  lastStyleTag.outerHTML + "\n" + newTagsHTML;
+		}
+		else if (firstScriptTag)
+		{
+			firstScriptTag.outerHTML =  "\n" + newTagsHTML + firstScriptTag.outerHTML;
+		}
+		else
+		{		
+			head.innerHTML = head.innerHTML + "\n" + newTagsHTML;
+		}
+	}
+		
+	
+	//
+	// End - Insert the link tags		
+	//////////////////////////////////////////////////////////////////////////////////	
+	//////////////////////////////////////////////////////////////////////////////////	
+		              
+    window.close();
+		
+}
+function isTemplate()
+{
+	var pos;
+	var str = dw.getDocumentDOM().documentElement.outerHTML;	 
+	pos = str.search(/TemplateBeginEditable/i);	
+	return (pos != -1);
+}
+function isTemplateInstance()
+{
+	var pos;
+	var str = dw.getDocumentDOM().documentElement.outerHTML;	 
+	pos = str.search(/InstanceBeginEditable/i);	
+	return (pos != -1);
+}
+function cleanUpPath(inPath)
+{
+	// We insert an extra slash at the end, in case we need to separate a
+	// folder from a file.  That can cause "//" to appear in the path, so remove that here.
+	//
+	// Also strip off "./" at the beginning since it is unnecessary and can
+	// be misconstrued as going up a folder.
+	
+	var path = String(inPath);
+	
+	if (path.indexOf("//") == 0)
+	{
+		// This occurs when the user wants to create a new css file in the site root folder, "/"
+		path = path.substring(1);
+	}
+	
+	var newPath = path.replace(/([^:])\/\//g, "$1/").replace(/^\.\//, "");  // Excluding when the // is preceded by a : since it could be "http://"
+		
+	return newPath
+}
+function killLinkTag(relativePathToFile)
+{
+	var dom = dw.getDocumentDOM();
+	var tags = dom.getElementsByTagName('link');
+	for (var i = 0; i < tags.length; i++)
+	{
+		var thisTag = tags[i];
+		if (String(thisTag.rel).toLowerCase() == "stylesheet" && thisTag.href == relativePathToFile)
+		{
+			thisTag.outerHTML = "";
+			return;	
+		}		
+	}	
+}
+function validateData(uiData) 
+{	
+	if (uiData.targetSmall && uiData.targetMedium)
+	{
+		if (uiData.smallFile.maxWidth >= uiData.mediumFile.maxWidth)
+			return MSG_SmallLessThanMediumPlease;					
+	}
+	
+	var filesToTest = [];
+	
+	if (uiData.targetSmall)
+	{
+		filesToTest.push(uiData.smallFile); 		
+	}
+	
+	if (uiData.targetMedium)
+	{
+		filesToTest.push(uiData.mediumFile); 												
+	}
+	
+	if(uiData.targetLarge)
+	{
+		filesToTest.push(uiData.largeFile); 
+	}
+		
+		
+	for (var i = 0; i < filesToTest.length; i++)
+	{			
+		var thisFile = filesToTest[i];
+			
+		var url = "";
+						
+		if (String(thisFile.pathToFile).length > 0)						
+			url = dw.relativeToAbsoluteURL(	dw.getDocumentDOM().URL, 	dw.getSiteRoot(),	thisFile.pathToFile	);								
+							
+		if (!url || thisFile.rawPath.replace(/\s/g, "") == "")
+			if (thisFile.makeNew)
+				return dwscripts.sprintf(MSG_PleaseSelectFolder, thisFile.label);				
+			else				
+				return dwscripts.sprintf(MSG_PleaseSelectCSSFile, thisFile.label);				
+										
+		if (dwscripts.isFile(url))				
+		{
+			if (thisFile.makeNew)				
+				return dwscripts.sprintf(MSG_FileAlreadyExists, thisFile.pathToFile);				
+		}
+		else
+		{
+			if (!thisFile.makeNew)				
+				return dwscripts.sprintf(MSG_CouldNotFindFile, thisFile.pathToFile);				
+		}		
+	}
+		
+	// Everything is OK
+	return ""; 
+}
+function updateMinWidthLabels()
+{
+	var smallMax = parseInt(gElemSmallMaxWidth.value);
+	var mediumMax = parseInt(gElemMediumMaxWidth.value);		
+	
+	if (isNaN(smallMax) || smallMax < 0)
+		smallMax = 0;
+		
+	if (isNaN(mediumMax) || mediumMax < 0)
+		mediumMax = 0;
+	
+	if (!gSmallRowDisabled)
+	{
+		gElemSmallMaxWidth.value = smallMax;
+	}
+	if (!gMediumRowDisabled)
+	{
+		gElemMediumMaxWidth.value = mediumMax;
+	}
+	
+	if (!gMediumRowDisabled)
+	{
+		if (gSmallRowDisabled)	
+		{
+			gElemMediumMinWidth.innerHTML = 0;
+		}
+		else 
+		{
+			gElemMediumMinWidth.innerHTML = smallMax + 1;
+		}
+	}
+		
+	if (gSmallRowDisabled && gMediumRowDisabled)	
+	{
+		gElemLargeMinWidth.innerHTML = 0;
+	}
+	else if (gMediumRowDisabled)
+	{
+		gElemLargeMinWidth.innerHTML = smallMax + 1;
+	}
+	else 
+	{
+		gElemLargeMinWidth.innerHTML = mediumMax + 1;
+	}
+}
+function getListValue(elem)
+{
+	return elem.options[elem.selectedIndex].value;
+}
+function smallSelectChanged()
+{
+	var val = getListValue(gElemSmallSelect);
+	gElemSmallPath.value = "";
+	enableSmallRow(val != "none");	
+}
+function clickedFolder(elemSelect, elemPath)
+{
+	var val = getListValue(elemSelect);
+	
+	if (val == "none")
+		return;
+		
+	if (val == "new")
+	{		
+		fullPath = dw.browseForFolderURL(MSG_LabelSelectFolder);
+		
+		if (!fullPath)
+			return; // User cancelled out of "browse for folder" dialog.
+								
+		var linksRelTo = site.getDefaultRelativeTo(site.getSiteForURL(dw.getDocumentDOM().URL));
+		
+		if (linksRelTo == "site")
+		{
+			elemPath.value = dw.absoluteURLToSiteRelative(
+					dw.getDocumentDOM().URL, 
+					dw.getSiteRoot(), 
+					fullPath
+				);
+		}
+		else
+		{
+			elemPath.value = dw.absoluteURLToDocRelative(
+					dw.getDocumentDOM().URL, 
+					dw.getSiteRoot(), 
+					fullPath
+				);
+		}
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        // Special handling for the Mac
+        //
+		if (dwscripts.IS_MAC)
+		{
+			if (fullPath != "" && elemPath.value == "")
+			   elemPath.value = "./"; 
+	           
+			if (elemPath.value + "/" == dw.getSiteRoot())
+				elemPath.value = "/";
+	            
+			// On the mac, instead of "./", we get, "../activeDocFolder", so we fix that here.    
+	        
+			var activeDocFolder = gPath.substring(0, gPath.length - 1);
+			activeDocFolder = activeDocFolder.substring(activeDocFolder.lastIndexOf("/") + 1);
+			if (elemPath.value == "../" + activeDocFolder)
+				elemPath.value = "./";
+        }
+        //
+        // End of special handling
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+		return;
+	}
+	
+	if (val == "existing")
+	{
+		var browsedFile = dw.browseForFileURL('select', MSG_LabelSelectFile, false, true, gCssFileFilter);
+		
+		if (browsedFile)
+		{
+			elemPath.value = dw.absoluteURLToDocRelative(
+					dw.getDocumentDOM().URL, 
+					dw.getSiteRoot(), 
+					browsedFile
+				);
+		}
+		return;
+	}
+}
+function clickedSmallFolder()
+{
+	clickedFolder(gElemSmallSelect, gElemSmallPath);
+}
+function clickedMediumFolder()
+{
+	clickedFolder(gElemMediumSelect, gElemMediumPath);
+}
+function clickedLargeFolder()
+{
+	clickedFolder(gElemLargeSelect, gElemLargePath);
+}
+function enableSmallRow(enable) 
+{
+	if (!enable)
+	{
+		gSmallRowDisabled = true;
+		gElemSmallPath.disabled = true;
+		gElemSmallMaxWidth.value = "--";
+		gElemSmallMaxWidth.disabled = true;
+		gElemSmallLabel.className = "disabledText";
+		gElemSmallMinWidth.innerHTML = "--";
+		gElemSmallMinWidth.className = "disabledText";
+		gElemSmallFolderImage.src = "../Shared/MM/Images/browse_Up_win.png";	
+	}
+	else if	(gSmallRowDisabled)
+	{
+		gSmallRowDisabled = false;
+		gElemSmallPath.disabled = false;
+		gElemSmallMaxWidth.value = gDefaultSmallMaxWidth;
+		gElemSmallMaxWidth.disabled = false;
+		gElemSmallLabel.className = "";
+		gElemSmallMinWidth.innerHTML = "0";
+		gElemSmallMinWidth.className = "";
+		gElemSmallFolderImage.src = "../Shared/MM/Images/browse_Over_win.png";
+	}
+	updateMinWidthLabels();
+}
+function mediumSelectChanged()
+{
+	var val = getListValue(gElemMediumSelect);
+	gElemMediumPath.value = "";
+	enableMediumRow(val != "none");		
+}
+function enableMediumRow(enable)
+{
+	if (!enable)
+	{
+		gMediumRowDisabled = true;
+		gElemMediumPath.disabled = true;
+		gElemMediumMaxWidth.value = "--";
+		gElemMediumMaxWidth.disabled = true;
+		gElemMediumLabel.className = "disabledText";
+		gElemMediumMinWidth.innerHTML = "--";
+		gElemMediumMinWidth.className = "disabledText";
+		gElemMediumFolderImage.src = "../Shared/MM/Images/browse_Up_win.png";	
+	}
+	else if	(gMediumRowDisabled)
+	{
+		gMediumRowDisabled = false;
+		gElemMediumPath.disabled = false;
+		gElemMediumMaxWidth.value = gDefaultMediumMaxWidth;
+		gElemMediumMaxWidth.disabled = false;
+		gElemMediumLabel.className = "";
+		gElemMediumMinWidth.innerHTML = "0";
+		gElemMediumMinWidth.className = "";
+		gElemMediumFolderImage.src = "../Shared/MM/Images/browse_Over_win.png";
+	}
+	updateMinWidthLabels();
+}
+function largeSelectChanged()
+{
+	var val = getListValue(gElemLargeSelect);
+	gElemLargePath.value = "";	
+	enableLargeRow(val != "none");
+}
+function enableLargeRow(enable)
+{
+	if (!enable)
+	{		
+		gLargeRowDisabled = true;
+		gElemLargePath.disabled = true;
+		gElemLargeWidthDisabled.style.display = "";
+		gElemLargeWidth.style.display = "none"; 
+		gElemLargeLabel.className = "disabledText";
+		gElemLargeFolderImage.src = "../Shared/MM/Images/browse_Up_win.png";			
+	}
+	else if	(gLargeRowDisabled)
+	{
+		gLargeRowDisabled = false;
+		gElemLargePath.disabled = false;
+		gElemLargeLabel.className = "";
+		gElemLargeWidthDisabled.style.display = "none"; 
+		gElemLargeWidth.style.display = "";
+		gElemLargeFolderImage.src = "../Shared/MM/Images/browse_Over_win.png";
+	}
+}
+</script>
+</head> 
+<body onLoad="initUI();"> 
+    <form name="form1">    
+  <table id="mainTable" cellpadding=5 cellspacing=0 border=0>
+            <tr><th nowrap  align="center"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/Target" /></th>
+              <th nowrap align="center"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/Min" /></th>
+            <th nowrap align="center"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/Max" /></th>
+            <th nowrap align="center"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/CSS" /></th>
+            </tr>                        
+            <tr>
+              <td nowrap><span id="smallLabel">&nbsp;&nbsp;<MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/Label_SmallPhone" /></span></td>
+              <td nowrap  align="center"><span id="smallMinWidth"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/0" /></span></td>
+            <td nowrap  align="center"><input type=text size=7 id="smalMaxWidth"  onBlur="updateMinWidthLabels()" /></td>
+            <td nowrap  >
+            	<table cellpadding=3 cellspacing=0 border=0>
+                <tr><td valign="middle" nowrap>
+                <select id="smallSelect" onChange="smallSelectChanged()">
+                	<option value="none"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/none/Do" /></option>
+                   	<option value="new"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/new/Create" /></option>                   	
+                    <option value="existing" selected><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/existing/Use" /></option>
+                </select> 
+
+                </td><td valign="middle" nowrap>
+                <input id="smallPath" type="text" class="basicTextField" value="" />
+                <input id="smallFolderImage" type="image" src="../Shared/MM/Images/browse_Over_win.png" onClick="clickedSmallFolder()">
+                </td></tr>
+                                            
+                </table>
+            </td>
+            </tr>
+            <tr>
+              <td nowrap><span id="mediumLabel">&nbsp;&nbsp;<MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/Label_MediumTablet" /></span></td>
+              <td nowrap align="center"><span id="mediumMinWidth"></span></td>
+            <td nowrap align="center"><input type=text size=7 id="mediumMaxWidth" onBlur="updateMinWidthLabels()" /></td>
+            <td nowrap >
+            	<table cellpadding=3 cellspacing=0 border=0>
+                <tr><td valign="middle" nowrap>
+                <select id="mediumSelect" onChange="mediumSelectChanged()">
+                	<option value="none"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/none/Do_1" /></option>
+                   	<option value="new"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/new/Create" /></option>                   	
+                    <option value="existing" selected><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/existing/Use" /></option>
+                </select> 
+
+                </td><td valign="middle" nowrap>
+                <input id="mediumPath" type="text" class="basicTextField" value="" />
+                <input id="mediumFolderImage" type="image" src="../Shared/MM/Images/browse_Over_win.png" onClick="clickedMediumFolder()">
+                </td></tr>
+                                            
+                </table>            
+            </td>
+            </tr>
+            <tr>
+		    <td nowrap><span id="largeLabel">&nbsp;&nbsp;<MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/Label_LargeDesktop" /></span></td>
+		    <td nowrap align="center" colspan=2><span id="largeWidthDisabled" class="disabledText" style="display:none;">--</span><span id="largeWidth"><span id="largeMinWidth"></span> <MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/and" /></span></td>
+              <td nowrap >
+            	<table cellpadding=3 cellspacing=0 border=0>
+                <tr><td valign="middle" nowrap>
+                <select id="largeSelect" onChange="largeSelectChanged()" >
+                	<option value="none"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/none/Do_2" /></option>
+                   	<option value="new"><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/new/Create" /></option>                   	
+                  <option value="existing" selected><MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/existing/Use" /></option>
+                </select> 
+
+                </td><td valign="middle" nowrap>
+                <input id="largePath" type="text" class="basicTextField" value="" />
+                <input id="largeFolderImage" type="image" src="../Shared/MM/Images/browse_Over_win.png" onClick="clickedLargeFolder()">
+                </td></tr>
+                                            
+                </table>               
+              </td>
+            </tr>
+        </table>                                                   
+   	  <div id="helpText">
+        <MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/option/existing/helpText" /><br/><br/>
+		<MMString:loadString id="Commands/MultiscreenPreview_AddMediaQueries/text/This" />
+      </div>        
+    </form> 
+</body> 
+</html>
+

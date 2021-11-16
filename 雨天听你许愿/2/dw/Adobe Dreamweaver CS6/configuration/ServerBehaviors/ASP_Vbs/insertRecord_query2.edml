@@ -1,0 +1,37 @@
+<participant>
+	<insertText location="aboveHTML+30"><![CDATA[<%
+If (CStr(Request("MM_insert")) = "@@formName@@") Then
+  If (Not MM_abortEdit) Then
+    ' execute the insert
+    Dim MM_editCmd
+
+    Set MM_editCmd = Server.CreateObject ("ADODB.Command")
+    MM_editCmd.ActiveConnection = MM_@@cname@@_STRING
+    MM_editCmd.CommandText = "INSERT INTO @@table@@ (@@joinedColumns@@) VALUES (@@joinedValues@@)" 
+    MM_editCmd.Prepared = true
+    <@ loop(@@paramName@@, @@paramType@@, @@paramDirection@@, @@paramSize@@, @@paramValue@@, @@paramTypeDisplayName@@) @>MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("@@paramName@@", @@paramType@@, @@paramDirection@@, @@paramSize@@, @@paramValue@@) ' @@paramTypeDisplayName@@
+    <@ endloop @>MM_editCmd.Execute
+    MM_editCmd.ActiveConnection.Close<@ if (@@redirect__url@@) @>
+
+    ' append the query string to the redirect URL
+    Dim MM_editRedirectUrl
+    MM_editRedirectUrl = "@@redirect__url@@"
+    If (Request.QueryString <> "") Then
+      If (InStr(1, MM_editRedirectUrl, "?", vbTextCompare) = 0) Then
+        MM_editRedirectUrl = MM_editRedirectUrl & "?" & Request.QueryString
+      Else
+        MM_editRedirectUrl = MM_editRedirectUrl & "&" & Request.QueryString
+      End If
+    End If
+    Response.Redirect(MM_editRedirectUrl)<@ endif @>
+  End If
+End If
+%>]]></insertText>
+	<searchPatterns whereToSearch="directive">
+		<searchPattern paramNames="formName,cname,table,joinedColumns,joinedValues,MM_loop1,redirect__url" isOptional="false" limitSearch="all"><![CDATA[/If \(CStr\(Request\("MM_insert"\)\) = "(.*?)"\) Then[ \t\r\n]+If \(Not MM_abortEdit\) Then[ \t\r\n]+' execute the insert[ \t\r\n]+Dim MM_editCmd[ \t\r\n]+Set MM_editCmd = Server\.CreateObject\s*\("ADODB\.Command"\)[ \t\r\n]+MM_editCmd\.ActiveConnection = MM_(.*?)_STRING[ \t\r\n]+MM_editCmd\.CommandText = "INSERT INTO (.*?) \((.*?)\) VALUES \((.*?)\)" [ \t\r\n]+MM_editCmd\.Prepared = true[ \t\r\n]+((?:MM_editCmd\.Parameters\.Append MM_editCmd\.CreateParameter\(.*[ \t\r\n]+)*?)MM_editCmd\.Execute[ \t\r\n]+MM_editCmd\.ActiveConnection\.Close(?:[ \t\r\n]+' append the query string to the redirect URL[ \t\r\n]+Dim MM_editRedirectUrl[ \t\r\n]+MM_editRedirectUrl = "(.*?)"[ \t\r\n]+If \(Request\.QueryString\s*<>\s*""\) Then[ \t\r\n]+If \(InStr\(1, MM_editRedirectUrl, "\?", vbTextCompare\) = 0\) Then[ \t\r\n]+MM_editRedirectUrl = MM_editRedirectUrl & "\?" & Request\.QueryString[ \t\r\n]+Else[ \t\r\n]+MM_editRedirectUrl = MM_editRedirectUrl & "&" & Request\.QueryString[ \t\r\n]+End If[ \t\r\n]+End If[ \t\r\n]+Response\.Redirect\(MM_editRedirectUrl\))?[ \t\r\n]+End If[ \t\r\n]+End If(?=\r|\n|%>)/i]]></searchPattern>
+		<searchPattern paramNames="paramName,paramType,paramDirection,paramSize,paramValue" limitSearch="@@MM_loop1@@" isOptional="true" searchType="multiple"><![CDATA[/MM_editCmd\.Parameters\.Append MM_editCmd\.CreateParameter\("(.*?)", (.*?), (.*?), (.*?), ([^\r\n]*)/i]]></searchPattern>
+	</searchPatterns>
+	<quickSearch>Server.CreateObject ("ADODB.Command")</quickSearch>
+</participant>
+
+<!-- participant modified by hand: we should not match the ending of the CreateParameter lines -->

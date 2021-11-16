@@ -1,0 +1,112 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanDialogConvertLayersMfc
+{
+	view dialog(identifier: "IDD_CONVERT_LAYERS_TO_TABLES",
+				name: "$$$/ConvertLayersToTables/Title/ConvertAp=Convert AP Divs to Table",
+				grow: false,
+				margin: 0,
+				resizeChildren: false,
+				spacing: 5)
+	{
+		column(margin: 5,
+			spacing: 5)
+		{
+ 			row(margin: 5,
+				spacing: 5)
+			{
+ 				static_text(identifier: "IDC_STATIC",
+							name: "$$$/ConvertLayersToTables/Label/TableLayout=Table layout:");
+				column(margin: 0,
+					spacing: 5)
+				{
+ 					radiogroup() {
+						radio_button(identifier: "IDC_ACCURATE",
+								name: "$$$/ConvertLayersToTables/RadioButton/MostAccurate=Most &accurate",
+                                                       tab_next_node: "IDC_SIMPLE");
+						radio_button(identifier: "IDC_SIMPLE",
+								name: "$$$/ConvertLayersToTables/RadioButton/SmallestCollapse=&Smallest: collapse empty cells",
+                                                       tab_next_node: "IDC_COL_WIDTH");
+					}
+					row(child_vertical: @align_center,
+						margin: 0,
+						spacing: 5)
+					{
+ 						static_text(identifier: "IDC_STATIC",
+									name: "$$$/ConvertLayersToTables/Label/LessThan=Less than:");
+						edit_text(identifier: "IDC_COL_WIDTH", tab_next_node: "IDC_USE_TRANS_GIFS");
+						static_text(identifier: "IDC_STATIC",
+									name: "$$$/ConvertLayersToTables/Label/PixelsWide=Pixels wide");
+					}
+					checkbox(identifier: "IDC_USE_TRANS_GIFS",
+							name: "$$$/ConvertLayersToTables/CheckBox/UseTransparent=Use &transparent GIFs",
+                                                tab_next_node: "IDC_CENTER_TABLE");
+					checkbox(identifier: "IDC_CENTER_TABLE",
+							name: "$$$/ConvertLayersToTables/CheckBox/CenterOn=&Center on page",
+                                                tab_next_node: "IDC_PREVENT_OVERLAPS");
+				}
+			}
+			row(margin: 5,
+				spacing: 5)
+			{
+ 				static_text(identifier: "IDC_STATIC",
+							name: "$$$/ConvertLayersToTables/Label/LayoutTools=Layout tools:");
+				column(margin: 0,
+					spacing: 5)
+				{
+ 					checkbox(identifier: "IDC_PREVENT_OVERLAPS",
+							name: "$$$/ConvertLayersToTables/CheckBox/PreventOverlaps=&Prevent overlaps",
+                                                tab_next_node: "IDC_SHOW_LAYERS_PALETTE");
+					checkbox(identifier: "IDC_SHOW_LAYERS_PALETTE",
+							name: "$$$/ConvertLayersToTables/CheckBox/ShowAp=Show &AP Elements panel",
+                                                tab_next_node: "IDC_SHOW_GRIDS");
+					checkbox(identifier: "IDC_SHOW_GRIDS",
+							name: "$$$/ConvertLayersToTables/CheckBox/ShowGrid=Show &grid",
+                                                tab_next_node: "IDC_SNAP_TO_GRID");
+					checkbox(identifier: "IDC_SNAP_TO_GRID",
+							name: "$$$/ConvertLayersToTables/CheckBox/SnapTo=S&nap to grid",
+                                                tab_next_node: "IDOK");
+				}
+			}
+		}
+		
+		separator(identifier: "IDC_STATIC",
+					orientation: @vertical);
+		column(child_horizontal: @align_fill,
+			margin: 5,
+			spacing: 5)
+		{
+ 			button(identifier: "IDOK",
+					name: "$$$/ConvertLayersToTables/Button/Ok=OK",
+					action: @do_ok,
+					default: true,
+                                  tab_next_node: "IDCANCEL");
+			button(identifier: "IDCANCEL",
+					name: "$$$/ConvertLayersToTables/Button/Cancel=Cancel",
+					action: @do_cancel,
+					default: false,
+                                  tab_next_node: "ID_HELP");
+			button(identifier: "ID_HELP",
+					name: "$$$/ConvertLayersToTables/Button/Help=Help",
+					action: @do_help,
+					default: false,
+                                  tab_next_node: "IDC_ACCURATE");
+		}
+	}
+}

@@ -1,0 +1,139 @@
+layout WebFontsAddDialog
+{
+    view dialog(identifier: "ID_WebFontAddDlg",
+                name: "$$$/WebFontAddDialog/Title/Title=Add Web Font",
+                spacing: 10)
+    {
+        column()
+        {
+            row()
+            {
+                column(indent: 4,
+                       spacing: 17)
+                {
+                    static_text(horizontal: @align_right,
+                                name: "$$$/WebFontAddDialog/Label/FontName=Font Name:");
+
+                    static_text(horizontal: @align_right,
+                                name: "$$$/WebFontAddDialog/Label/EOTFont=EOT Font:");
+
+                    static_text(horizontal: @align_right,
+                                name: "$$$/WebFontAddDialog/Label/WOFFFont=WOFF Font:");
+
+                    static_text(horizontal: @align_right,
+                                name: "$$$/WebFontAddDialog/Label/TTFFont=TTF Font:");
+
+                    static_text(horizontal: @align_right,
+                                name: "$$$/WebFontAddDialog/Label/SVGFont=SVG Font:");
+                }
+
+                column()
+                {
+                    row()
+                    {
+                        edit_text(characters: 32,
+                                  identifier: "ID_WebFontAddDlg_FontName");
+                    }
+
+                    row(spacing: 5)
+                    {
+                        edit_text(characters: 32,
+                                  identifier: "ID_WebFontAddDlg_EOTFont");
+
+                        button(action: @do_EOTfont_browse,
+                               height: 18,
+                               identifier: "ID_WebFontAddDlg_EOTFont_Browse",
+                               image: "",
+                               name: "$$$/WebFontAddDialog/Button/Browse=Browse...",
+                               width: 18);
+                    }
+
+                    row(spacing: 5)
+                    {
+                        edit_text(characters: 32,
+                                  identifier: "ID_WebFontAddDlg_WOFFFont");
+
+                        button(action: @do_WOFFfont_browse,
+                               height: 18,
+                               identifier: "ID_WebFontAddDlg_WOFFFont_Browse",
+                               image: "",
+                               name: "$$$/WebFontAddDialog/Button/Browse=Browse...",
+                               width: 18);
+                    }
+
+                    row(spacing: 5)
+                    {
+                        edit_text(characters: 32,
+                                  identifier: "ID_WebFontAddDlg_TTFFont");
+
+                        button(action: @do_TTFfont_browse,
+                               height: 18,
+                               identifier: "ID_WebFontAddDlg_TTFFont_Browse",
+                               image: "",
+                               name: "$$$/WebFontAddDialog/Button/Browse=Browse...",
+                               width: 18);
+                    }
+
+                    row(spacing: 5)
+                    {
+                        edit_text(characters: 32,
+                                  identifier: "ID_WebFontAddDlg_SVGFont");
+
+                        button(action: @do_SVGfont_browse,
+                               height: 18,
+                               identifier: "ID_WebFontAddDlg_SVGFont_Browse",
+                               image: "",
+                               name: "$$$/WebFontAddDialog/Button/Browse=Browse...",
+                               width: 18);
+                    }
+
+                    row(spacing: 0)
+                    {
+                        column(indent: 2)
+                        {
+                            checkbox(horizontal: @align_center,
+                                     identifier: "ID_WebFontAddDlg_LegalCheck");
+                        }
+
+                        column(indent: 2,
+                               spacing: 0)
+                        {
+                            row()
+                            {
+                                static_text(characters: 18,
+                                            name: "$$$/WebFontAddDialog/LegalDisclaimer=I have properly licensed the above Font(s) for website use.");
+                            }
+
+                            row()
+                            {
+                                link_button(action: @do_legal_url,
+                                            name: "$$$/WebFontAddDialog/LegalLinkLabel= What's this?");
+                            }
+                        }
+                    }
+                }
+
+                column(child_horizontal: @align_fill)
+                {
+                    button(action: @do_ok,
+                           default: true,
+                           set_default_focus: true,
+                           identifier: "ID_WebFontAddDlg_Okbutton",
+                           name: "$$$/WebFontAddDialog/Button/OK=OK");
+
+                    button(action: @do_cancel,
+                           cancel: true,
+                           identifier: "ID_WebFontAddDlg_Cancelbutton",
+                           name: "$$$/WebFontAddDialog/Button/Cancel=Cancel");
+
+                    /* for spacing */
+                    row();
+
+                    button(action: @do_help,
+                           identifier: "ID_WebFontAddDlg_Helpbutton",
+                           name: "$$$/WebFontAddDialog/Button/Help=Help");
+                }
+            }
+        }
+    }
+}

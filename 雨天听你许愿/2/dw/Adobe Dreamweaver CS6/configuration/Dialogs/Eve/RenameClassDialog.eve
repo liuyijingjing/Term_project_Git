@@ -1,0 +1,105 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout RenameClassDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_RENAME_CLASS_DIALOG",
+                margin: 0,
+                name: "$$$/RenameClass/Title/RenameStyle=Rename Class",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(margin: 10,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 17)
+                {
+                    static_text(characters: 0,
+                                horizontal: @align_right,
+                                identifier: "IDC_STATIC_RENAME_LABEL",
+                                name: "$$$/RenameClass/Label/RenameStyle=Rename Class:");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/RenameClass/Label/NewName=New name:");
+                }
+
+                column()
+                {
+                    row(horizontal: @align_fill,
+                        placement: @place_overlay)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_FIXED_CLASS",
+                                    name: "$$$/RenameClass/Label/Static=Static");
+
+                        popup(horizontal: @align_fill,
+                              iconpopup_font_size: 11,
+                              iconpopup_icon_column_width: 20,
+                              iconpopup_include_vertical_separator: false,
+                              iconpopup_item_height: 22,
+                              iconpopup_selection_column_width: 22,
+                              iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                              iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                              identifier: "IDC_CLASS_COMBO",
+                              include_custom_item: false,
+                              popup_maximum_width_chars: 255,
+                              sort: true,
+                              tab_next_node: "IDC_NAME_EDIT",
+                              vertical_scroll: true,
+			      ownerDrawn: true);
+                    }
+
+                    edit_text(characters: 24,
+                              horizontal: @align_fill,
+                              identifier: "IDC_NAME_EDIT",
+                              tab_next_node: "IDOK");
+                }
+
+                separator(identifier: "IDC_STATIC",
+                          orientation: @vertical);
+
+                column()
+                {
+                    button(action: @do_ok,
+                           default: true,
+                           identifier: "IDOK",
+                           name: "$$$/RenameClass/Button/Ok=OK",
+                           tab_next_node: "IDCANCEL");
+
+                    button(action: @do_cancel,
+                           default: false,
+                           identifier: "IDCANCEL",
+                           name: "$$$/RenameClass/Button/Cancel=Cancel",
+                           tab_next_node: "ID_HELP");
+
+                    button(action: @do_help,
+                           default: false,
+                           identifier: "ID_HELP",
+                           name: "$$$/RenameClass/Button/Help=Help",
+                           tab_next_node: "IDC_CLASS_COMBO");
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PIViewComment
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_COMMENT",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        row(indent: 50,
+            margin: 5,
+            spacing: 5)
+        {
+            column(indent: 2)
+            {
+                static_text(identifier: "IDC_STATIC_TYPE",
+                            name: "$$$/PropInspectComment/Label/Comment=Comment");
+            }
+
+            column()
+            {
+                edit_text(characters: 100,
+                          height: 80,
+                          identifier: "IDC_EDIT_CONTENTS",
+                          lines: 6,
+                          multiLine: true,
+                          scrollable: true,
+                          vertical_scroll: true,
+                          width: 424);
+            }
+        }
+    }
+}

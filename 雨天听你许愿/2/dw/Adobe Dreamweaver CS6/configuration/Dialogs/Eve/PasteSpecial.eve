@@ -1,0 +1,119 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PasteSpecial
+{
+    view dialog(grow: false,
+                identifier: "ID_PasteSpecial",
+                margin: 0,
+                name: "$$$/PasteSpecial/Title/PasteSpecial=Paste Special",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            group(identifier: "ID_PasteSpecial_Static1",
+                  margin: 10,
+                  name: "$$$/PasteSpecial/GroupBox/PasteAs=Paste as:",
+                  spacing: 5)
+            {
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    radio_button(bind: @PasteSpecialDps_Choice,
+                                 identifier: "ID_PasteSpecial_DpsText",
+                                 name: "$$$/PasteSpecial/RadioButton/TextOnly=&Text only",
+                                 value: @Text);
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    radio_button(bind: @PasteSpecialDps_Choice,
+                                 identifier: "ID_PasteSpecial_DpsStructure",
+                                 name: "$$$/PasteSpecial/RadioButton/TextWith=Text with &structure (paragraphs, lists, tables, etc.)",
+                                 value: @Structure);
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    radio_button(bind: @PasteSpecialDps_Choice,
+                                 identifier: "ID_PasteSpecial_DpsBasic",
+                                 name: "$$$/PasteSpecial/RadioButton/TextWithStructurePlusBasicFormattingBoldItalic=Text with structure plus &basic formatting (bold, italic)",
+                                 value: @Basic);
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    radio_button(bind: @PasteSpecialDps_Choice,
+                                 identifier: "ID_PasteSpecial_DpsFull",
+                                 name: "$$$/PasteSpecial/RadioButton/TextWithStructurePlusFullFormattingBoldItalicStyles=Text with structure plus &full formatting (bold, italic, styles)",
+                                 value: @Full);
+                }
+
+                separator(identifier: "ID_PasteSpecial_Static");
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    checkbox(identifier: "ID_PasteSpecial_DpsRetainBr",
+                             name: "$$$/PasteSpecial/CheckBox/RetainLine=&Retain line breaks");
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    checkbox(identifier: "ID_PasteSpecial_DpsCleanWord",
+                             name: "$$$/PasteSpecial/CheckBox/CleanUp=C&lean up Word paragraph spacing");
+                }
+            }
+
+            row(margin: 0,
+                spacing: 5)
+            {
+                button(action: @do_action,
+                       default: false,
+                       identifier: "ID_PasteSpecial_Preferences",
+                       name: "$$$/PasteSpecial/Button/PastePreferences=&Paste Preferences...");
+            }
+        }
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5)
+        {
+            button(action: @do_ok,
+                   default: true,
+                   identifier: "ID_PasteSpecial_Okbutton",
+                   name: "$$$/PasteSpecial/Button/Ok=&OK");
+
+            button(action: @do_cancel,
+                   default: false,
+                   identifier: "ID_PasteSpecial_Cancelbutton",
+                   name: "$$$/PasteSpecial/Button/Cancel=&Cancel");
+
+            button(action: @do_help,
+                   default: false,
+                   identifier: "ID_PasteSpecial_ButtonHelp",
+                   name: "$$$/PasteSpecial/Button/Help=&Help");
+        }
+    }
+}

@@ -1,0 +1,108 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2009-2010 Adobe Systems Incorporated.  All rights reserved. -->
+<title><MMString:LoadString id="Dinamico/Main/Title" /></title>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<!-- Include the UI helper functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/UI.js"></SCRIPT>
+<!-- Include DOM functions -->
+<script src="../Shared/MM/Scripts/Cmn/string.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="../Shared/Common/Scripts/TreeControlClass.js"></script>
+<script src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+
+<script type="text/javascript" src="../Shared/Dinamico/shared.js"></script>
+<script type="text/javascript" src="Dinamico_Main.js"></script>
+
+<link href="../fields.css" rel="stylesheet" type="text/css" />
+<link href="../Shared/Dinamico/UI/ui.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onLoad="initializeUI();">
+  <form name="dinamicoMain" id="dinamicoMain">
+    <table cellpadding="3" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td nowrap valign="middle" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Main/Label/Structure" /></td>
+        <td>
+          <select name="structureList" id="structureList" class="largeTField" onChange="updateUI('structureList');focus(this);" tabindex="1">
+          </select>
+        </td>
+        <td align="right" class="buttonCell">
+          <input type="image" src="../Shared/Dinamico/Images/import.gif" onClick="updateUI('importStructure');focus(this);" name="importStruct" id="importStruct" MMString:alt="Dinamico/Main/Alt/Import" tabindex="2" />
+          <input type="image" src="../Shared/MM/Images/duplicate.gif" onClick="updateUI('saveStructure');focus(this);" name="saveStruct" id="saveStruct" MMString:alt="Dinamico/Main/Alt/Saveas" tabindex="3" />
+          <input type="image" src="../Shared/MM/Images/rename.gif" onClick="updateUI('renameStructure');focus(this);" name="renameStruct" id="renameStruct" MMString:alt="Dinamico/Main/Alt/Rename" tabindex="4" />
+          <input type="image" src="../Shared/MM/Images/delete.gif" onClick="updateUI('removeStructure');focus(this);" name="deleteStruct" id="deleteStruct" MMString:alt="Dinamico/Main/Alt/Delete" tabindex="5" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" class="hrRow"><hr /></td>
+      </tr>
+      <tr>
+        <td nowrap valign="middle" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Main/Label/Subroot" /></td>
+        <td colspan="2">
+          <input name="subrootFolder" id="subrootFolder" class="xxlargeTField" onBlur="updateUI('subrootFolder');" tabindex="6" />&nbsp;
+          <input type="image" src="../Shared/MM/Images/folder.gif" MMString:alt="Dinamico/Main/Alt/SelectSubroot" class="folderButton" name="browseSubroot" id="browseSubroot" onClick="updateUI('browseSubroot');focus(this);" tabindex="7" />
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="baseline" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Main/Label/Files" /></td>
+        <td colspan="2">
+          <input type="image" src="../Shared/MM/Images/btnAdd.gif" onClick="updateUI('addFile');focus(this);" name="addFile" id="addFile" MMString:alt="Dinamico/Main/Alt/AddFile" tabindex="8" />
+          <input type="image" src="../Shared/MM/Images/btnDel.gif" onClick="updateUI('delFile');focus(this);" name="delFile" id="delFile" MMString:alt="Dinamico/Main/Alt/DelFile" tabindex="9" />
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="2">
+          <mm:treecontrol class="filesTree" name="filesTree" onchange="updateUI('filesTree');focus(this);" tabindex="10">
+            <mm:treecolumn width="135" /><mm:treecolumn width="50" /><mm:treecolumn width="70" /><mm:treecolumn width="110" />
+          </mm:treecontrol>
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="middle" align="right" class="labelColumn"><MMString:loadString id="Dinamico/Main/Label/Update" /></td>
+        <td colspan="2">
+          <input type="text" onBlur="updateUI('fileLocation');" name="fileLocation" id="fileLocation" class="xxlargeTField" tabindex="11" />&nbsp;
+          <input type="image" src="../Shared/MM/Images/folder.gif" MMString:alt="Dinamico/Main/Alt/SelectFile" class="folderButton" name="browseFile" id="browseFile" onClick="updateUI('browseFile');focus(this);" tabindex="12" />
+        </td>
+      </tr>
+      <tr>
+        <td nowrap valign="baseline" align="right" class="labelColumn"></td>
+		<td colspan="2">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td valign="middle">
+                      <input type="checkbox" value="1" name="checkScanCHK" id="checkScanCHK" onClick="updateUI('checkScan');focus(this);" tabindex="13" />
+                    </td>
+                    <td nowrap valign="middle"><label for="checkScanCHK" name="scanLabel" id="scanLabel"><MMString:loadString id="Dinamico/Main/Label/ScanFolder" /></label>&nbsp;&nbsp;</td>
+                    <td valign="middle">
+                      <input type="checkbox" value="1" name="checkRecursive" id="checkRecursive" onClick="updateUI('checkRecursive');focus(this);" tabindex="14" />
+                    </td>
+                    <td nowrap valign="middle"><label for="checkRecursive"><MMString:loadString id="Dinamico/Main/Label/Recursive" />&nbsp;&nbsp;</label></td>
+                    <td>
+                      <input type="button" name="btnExtensions" id="btnExtensions" MMString:value="Dinamico/Main/Label/Extensions" onClick="updateUI('btnExtensions');focus(this);" tabindex="15" />
+                    </td>
+                </tr>
+            </table>
+        </td>
+      </tr>
+    </table>
+    <table cellpadding="3" cellspacing="0" border="0" class="buttonsTable">
+      <tr>
+        <td id="helpButtonTD">
+          <input type="button" id="helpButton" name="helpButton" class="yesNoOkCancel" MMString:value="Dinamico/Main/Buttons/Help" onClick="displayHelp();focus(this);" tabindex="4" />
+        </td>
+        <td class="spacer">&nbsp;</td>
+        <td id="okButtonTD">
+          <input type="button" id="okButton" name="okButton" class="yesNoOkCancel" MMString:value="Dinamico/Main/Buttons/OK" onClick="finishUI();" tabindex="5" />
+        </td>
+        <td id="cancelButtonTD">
+          <input type="button" id="cancelButton" name="cancelButton" class="yesNoOkCancel" MMString:value="Dinamico/Main/Buttons/Cancel" onClick="cancelUI();" tabindex="6" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

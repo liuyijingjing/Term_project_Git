@@ -1,0 +1,124 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Include the UI helper functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/UI.js"></SCRIPT>
+<!-- Include DOM functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/DOM.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Cmn/string.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<SCRIPT src="../Shared/Common/Scripts/ImageButtonClass.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+<script src="ShortcutClass.js"></script> 
+<script src="../Shared/MM/Scripts/keyCodes.js"></script> 
+<script src="EditableTagAttributes.js"></script>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/templateUtils.js"></SCRIPT>
+<SCRIPT>
+<!--Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved.-->
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_newAttr = dw.loadString('Commands/EditableTagAttributes/MSG_newAttr');
+var MSG_newAttrTitle = dw.loadString('Commands/EditableTagAttributes/MSG_newAttrTitle');
+
+var MSG_paramExists = dw.loadString('Commands/EditableTagAttributes/MSG_paramExists');
+var MSG_exprWarning = dw.loadString('Commands/EditableTagAttributes/MSG_exprWarning');
+var MSG_notEditableMessage= dw.loadString('Commands/EditableTagAttributes/MSG_notEditableMessage');
+//--------------- END LOCALIZEABLE   ---------------
+
+
+//---------------    END JAVASCRIPT    ---------------
+
+
+
+</SCRIPT>
+
+
+
+
+<title><MMString:loadString id="Commands/EditableTagAttributes/title" /></title>
+
+
+<link href="../fields.css" rel="stylesheet" type="text/css">
+<link href="../Styles/EditableTagAttributes.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="initializeUI();" valign=top>
+
+
+<form name="theForm">
+
+<TABLE BORDER=0>
+	<TR><TD colspan=2>
+		<span name="messageSpan"><MMString:loadString id="Commands/EditableTagAttributes/text/Choose" /> </span>
+	</TD></TR> 
+	<TR>
+		<TD align=right nowrap>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/Attribute" />
+		</TD><TD nowrap>
+			<SELECT NAME="tagAttr" class="oneWordOptionList" onChange="updateUI('tagAttr')">
+				<OPTION><MMString:loadString id="Commands/EditableTagAttributes/option//This" /></option>
+         	</SELECT>
+         	<INPUT TYPE="button" MMString:value="Commands/EditableTagAttributes/button/value/Add" onClick="addAttribute()">
+		</TD>
+	</TR><TR>
+		<TD>
+		</TD><TD>
+			<INPUT TYPE="checkbox" NAME="editCheck" VALUE="true" onClick="updateUI('editCheck')"><MMString:loadString id="Commands/EditableTagAttributes/checkbox/editCheck/Make" />
+		</TD></TR>
+    <TR>
+		<TD align=right nowrap>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/Label" />
+		</TD><TD>
+			<INPUT NAME="label" TYPE="text" class="medTField" onBlur="updateUI('label')" VALUE="">
+		</TD>
+	</TR><TR>
+		<TD align=right nowrap>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/Type" />
+		</TD><TD>
+			<select NAME="attrType" class="dataTypeList" onChange="updateUI('attrType')">
+				<option value="text"><MMString:loadString id="Commands/EditableTagAttributes/option/text/Text" /></option>
+				<option value="URL"><MMString:loadString id="Commands/EditableTagAttributes/option/URL/URL" /></option>
+				<option value="color"><MMString:loadString id="Commands/EditableTagAttributes/option/color/Color" /></option>
+				<option value="boolean"><MMString:loadString id="Commands/EditableTagAttributes/option/boolean/True/False" /></option>
+				<option value="number"><MMString:loadString id="Commands/EditableTagAttributes/option/number/Number" /></option>
+			</select>
+		</TD>
+	</TR><TR>
+		<TD align=right nowrap>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/Default" />
+		</TD><TD>
+			<INPUT NAME="defaultValue" TYPE="text" class="medTField" onBlur="updateUI('defaultValue')" VALUE="">
+		</TD>
+	</TR><TR>
+		<TD COLSPAN=2>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/To" />
+		</TD>
+	</TR><TR>
+		<TD COLSPAN=2>
+			<MMString:loadString id="Commands/EditableTagAttributes/text/To_1" />
+		</TD>
+	</TR>
+</TABLE>
+
+
+
+
+<!-- 
+<span name="hiddenControls" class="hiddenSpan2"> 
+   <TABLE border=0>
+    <TR>
+      <TD colspan=2>
+		This attribute is not currently editable. Click on the 'Make Attribute Editable' checkbox if you want to make it editable
+		and control how it appears in the instance files for this template. 
+      </TD>
+   </TR>
+</TABLE>
+</span>
+-->
+
+</form>
+</body>
+</html>

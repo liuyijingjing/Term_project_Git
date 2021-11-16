@@ -1,0 +1,15 @@
+<shortcutset language="Italian (Mac only)">
+<shortcut key="Cmd+[" newkey="Cmd+&ugrave;" />
+<shortcut key="Cmd+]" newkey="Cmd+&ograve;" />
+<shortcut key="Cmd+Shift+>" newkey="Cmd+<" />  
+<shortcut key="Cmd+'" newkey="Cmd+Shift+=" />
+<shortcut key="Ctrl+`" newkey="Ctrl+$" />  
+<shortcut key="Cmd+Shift+;" newkey="Cmd+:" />  
+<shortcut key="Cmd+Shift+/" newkey="Cmd+Shift+:" />  
+<shortcut key="Cmd+Shift+[" newkey="Cmd+Shift+&ugrave;" />  
+<shortcut key="Cmd+Shift+]" newkey="Cmd+Shift+&ograve;" />  
+<shortcut key="Cmd+Opt+[" newkey="Cmd+Opt+&ugrave;" />  
+<shortcut key="Cmd+Opt+]" newkey="Cmd+Opt+&ograve;" />  
+<shortcut key="Cmd+`" newkey="Cmd+$" />  
+<shortcut key="Cmd+Shift+`" newkey="Cmd+Shift+$" />
+</shortcutset>

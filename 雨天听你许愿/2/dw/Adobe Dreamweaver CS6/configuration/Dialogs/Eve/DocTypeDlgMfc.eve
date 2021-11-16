@@ -1,0 +1,86 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout DocTypeDlgMfc
+{
+    view dialog(identifier: "IDD_DOC_TYPE_DLG",
+                name: "$$$/DocTypeDlg/Title/ChooseDocument=Choose Document Type",
+                spacing: 5)
+    {
+        row(spacing: 0)
+        {
+            column()
+            {
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    static_text(characters: 20,
+                                height: 100,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/DocTypeDlg/Label/ChooseThe=Choose the testing server related document type for the current document:",
+                                width: 100);
+                }
+
+                row(guide_mask: [ @guide_label ],
+                    indent: 42,
+                    spacing: 5)
+                {
+                    popup(iconpopup_font_size: 11,
+                          iconpopup_icon_column_width: 20,
+                          iconpopup_include_vertical_separator: false,
+                          iconpopup_item_height: 22,
+                          iconpopup_selection_column_width: 22,
+                          iconpopup_selection_icon_dark_name: "CS4_SelectedToolFlyout_D",
+                          iconpopup_selection_icon_name: "CS4_SelectedToolFlyout",
+                          identifier: "IDC_DOCTYPE_COMBO",
+                          include_custom_item: false,
+                          popup_minimum_width_chars: 13,
+                          sort: true,
+                          vertical_scroll: true);
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    static_text(characters: 20,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/DocTypeDlg/Label/NoteChanging=NOTE: Changing the Document Type may change the file extension of your document.");
+                }
+            }
+
+            column(spacing: 8)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/DocTypeDlg/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/DocTypeDlg/Button/Cancel=Cancel");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "IDHELP",
+                       name: "$$$/DocTypeDlg/Button/Help=Help");
+            }
+        }
+    }
+}

@@ -1,0 +1,2792 @@
+<script src="../../../JavascriptTestRunner.js"></script>
+<script src="../../../../Overlays/CssGrids/LayoutDivManipulator.js"></script> 
+<script language="javascript">   
+ 
+var runner = new TestRunner();           
+var mocker = runner.mocker;  
+
+runner.stopHere(); // No tests in this file will be run as long as this line is here.
+
+
+runner.addTestCase( 
+{
+	name:	'Public functions check',  
+
+	test:	function()
+		{					
+			var self = new CssGrids.LayoutDivManipulator();
+		
+			runner.assertListedPublicFunctionsExist(1, self);
+			
+			var publicFunctions = [
+					'init',
+					'onResize_Window',
+					'onResourceLoadingCompleted_Browser',
+					'onMouseDown_Resizing',
+					'onMouseMove_Resizing',
+					'onMouseUp_Resizing',
+					'onMouseDown_Shifting',
+					'onMouseMove_Shifting',
+					'onMouseUp_Shifting',
+					'onMouseOver_OverlayDiv',
+					'onMouseOut_OverlayDiv',
+					'onClick_Document'
+				]
+
+			runner.assertFunctionsArePublic(2, self, publicFunctions);
+
+		}
+});
+
+runner.addTestCase(	 
+{
+	name: 	'Member Variable Initialization',  							
+
+	test: 	function()  							
+		{			
+			var dw = {getActiveWindow: function(){}};
+			var dwscripts = {};
+			var styleSheetManager = {};
+			
+			var self = new CssGrids.LayoutDivManipulator(dw, dwscripts, styleSheetManager);
+			
+			runner.assertEqual(1, self.refs.dw, dw);
+			runner.assertEqual(3, self.refs.styleSheetManager, styleSheetManager);
+			runner.assertEqual(4, self.refs.window, window);
+			runner.assertEqual(5, self.refs.document, document);
+			runner.assertEqual(6, self.refs.selectedDiv, null);
+			runner.assertEqual(7, self.refs.resizeKnobDiv, null);
+			runner.assertEqual(8, self.refs.shiftKnobDiv, null);
+			runner.assertEqual(9, self.refs.marginDiv, null);
+			runner.assertEqual(10, self.refs.startsRowDiv, null);
+			runner.assertEqual(10.5, self.refs.draggingDiv, null);
+			runner.assertArraysEqual(10.6, self.refs.overlayDivs, []);		
+			runner.assertEqual(10.7, self.refs.cssRuleBeingModified, null);
+
+			runner.assertEqual(11, self.data.mouseStartX, -1);
+			runner.assertEqual(11.2, self.data.selectedDivCurrentColSpan, -1);			
+			runner.assertEqual(11.3, self.data.selectedDivStartingColSpan, -1);
+			runner.assertEqual(11.4, self.data.marginsOffsetLeft, -1);			
+			runner.assertEqual(12, self.data.startingSelectedDivOffsetWidth, -1);
+			runner.assertEqual(13, self.data.startingSelectedDivOffsetLeft, -1);
+			runner.assertEqual(15, self.data.selectedUserDivId, '');
+			runner.assertEqual(15.5, self.data.lastColRight, -1);
+												
+			runner.assertEqual(17, self.consts.selectedBorderWidth, 2);			
+			runner.assertEqual(18, self.consts.draggingBorderWidth, 1);
+			
+			runner.assertEqual(19, self.consts.selectedBorder, self.consts.selectedBorderWidth + 'px solid blue');
+			runner.assertEqual(110, self.consts.hoverBorder, self.consts.selectedBorderWidth + 'px solid red');
+			runner.assertEqual(111, self.consts.misalignedDivBorder, self.consts.selectedBorderWidth + 'px solid yellow');
+			runner.assertEqual(112, self.consts.draggingBorder, self.consts.draggingBorderWidth + 'px dashed blue');
+		
+			runner.assertEqual(113, self.flags.isDragging, false);
+			runner.assertEqual(114, self.flags.shouldRestoreSelection, false);					
+		}	 										
+});													
+
+runner.addTestCase(		
+{
+	name: 	'init',							
+													
+	test: 	function()  							
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'init');
+		
+			mocker.bindChainRootToObject('self', self);			
+			
+			//
+			
+			mocker.mock('self.createOverlayControls()');			
+			mocker.mock('self.refs.styleSheetManager.beQuiet().loadGridProps()', false);
+			
+			var retVal = self.init();
+			
+			runner.assertCallCount(1, self.createOverlayControls, 0);
+			runner.assertParamsPassedIn(2, self.refs.styleSheetManager.beQuiet, [true]);		
+	
+			//	
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.styleSheetManager.beQuiet().loadGridProps()', true);
+			mocker.mock('self.refs.document.addEventListener()');
+			mocker.mock('self.refs.window.addEventListener()');
+			mocker.mock('self.refs.dwDom.browser.addEventListener()');			
+			mocker.mock('self.refresh()');			
+			
+			var retVal = self.init();
+			
+			runner.assertParamsPassedIn(14, self.refs.document.addEventListener, ["click", self.onClick_Document]);
+			runner.assertParamsPassedIn(16, self.refs.window.addEventListener, ["resize", self.onResize_Window]);
+			runner.assertParamsPassedIn(18, self.refs.dwDom.browser.addEventListener, ["ResourceLoadingCompleted", self.onResourceLoadingCompleted_Browser]);												
+		}	 										
+});													
+
+runner.addTestCase(		
+{													
+	name: 	'onResize_Window',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onResize_Window');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refresh()');
+			
+			var retVal = self.onResize_Window();
+			
+			runner.assertParamsPassedIn(1, self.refresh, ['grid']);
+												
+		}	 										
+});													
+													
+runner.addTestCase(		
+{													
+	name: 	'onResourceLoadingCompleted_Browser',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onResourceLoadingCompleted_Browser');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			mocker.mock('self.refresh()');						
+			
+			var retVal = self.onResourceLoadingCompleted_Browser();
+			
+			runner.assertParamsPassedIn(1, self.refresh, ['gridAndUserDivs']);			
+			
+		}	 										
+});													
+
+runner.addTestCase(		
+{													
+	name: 	'onMouseDown_Resizing',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseDown_Resizing');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			mocker.bindChainRootToObject('evt', evt);
+			
+			mocker.mock('self.flags.isDragging');
+			mocker.mock('self.data.mouseStartX');
+			mocker.mock('self.selectedDivStartingColSpan');
+			mocker.mock('self.selectedDivCurrentColSpan');
+			mocker.mock('self.getColSpanFromOffsetWidth()', 5);
+			mocker.mock('evt.x', 1001);
+			mocker.mock('self.data.startingSelectedDivOffsetWidth');
+			mocker.mock('self.refs.selectedDiv.offsetWidth', 555);
+			mocker.mock('self.refs.document.addEventListener()');
+			mocker.mock('self.positionDraggingDiv()');
+			mocker.mock('evt.preventDefault()');	
+			mocker.mock('self.data.gridColRects', [{right: 1500}]);
+			mocker.mock('self.findRuleForSelectedDiv()');				
+			mocker.mock('self.setSelectedDivStartingVisibility()');
+						
+			var retVal = self.onMouseDown_Resizing(evt);
+			
+			runner.assertEqual(1, self.flags.isDragging, true);
+			runner.assertEqual(3, self.data.mouseStartX, 1001);
+			runner.assertEqual(4, self.data.selectedDivStartingColSpan, 5)
+			runner.assertEqual(5, self.data.selectedDivCurrentColSpan, 5)
+			runner.assertEqual(7, self.data.startingSelectedDivOffsetWidth, 555);
+			runner.assertParamsPassedIn(12, self.refs.document.addEventListener, ["mousemove", self.onMouseMove_Resizing], ["mouseup", self.onMouseUp_Resizing]);
+			runner.assertCallCount(15, self.positionDraggingDiv, 1);
+			runner.assertCallCount(17, evt.preventDefault, 1);
+			runner.assertEqual(18, self.data.lastColRight, 1500);
+			runner.assertCallCount(19, self.findRuleForSelectedDiv, 1);
+			runner.assertCallCount(20, self.setSelectedDivStartingVisibility, 1);
+												
+		}	 										
+});													
+													
+runner.addTestCase(		
+{													
+	name: 	'onMouseMove_Resizing 1',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseMove_Resizing');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			mocker.bindChainRootToObject('evt', evt);
+			
+			mocker.mock('evt.x', 340);
+			mocker.mock('self.data.mouseStartX', 90);
+			mocker.mock('self.data.startingSelectedDivOffsetWidth', 321);
+			mocker.mock('self.refs.draggingDiv.style.width');
+			mocker.mock('self.snapSelectedDivToNearestValidWidth()');
+			mocker.mock('self.refs.draggingDiv.offsetLeft', 1200);
+			mocker.mock('self.refs.selectedDiv.offsetLeft', 2323);
+			mocker.mock('self.onMouseUp_Resizing()');
+			mocker.mock('self.refs.draggingDiv.offsetTop');
+			mocker.mock('self.refs.selectedDiv.offsetTop', 213);
+			mocker.mock('self.positionDraggingDiv()');
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.ensureSelectedDivStillVisible()');
+			mocker.mock('self.refs.window.scrollX', 0);
+			mocker.mock('self.data.scrollStartX', 0);
+						
+			//
+			
+			mocker.mock('self.data.lastColRight', 500);			
+			
+			var retVal = self.onMouseMove_Resizing(evt);
+			
+			runner.assertStringsEqual(8, self.refs.draggingDiv.style.width, '571px');
+			runner.assertCallCount(9, self.snapSelectedDivToNearestValidWidth, 2);
+			runner.assertCallCount(15, self.onMouseUp_Resizing, 1);
+			runner.assertCallCount(21, self.positionDraggingDiv, 0);
+			runner.assertCallCount(23, evt.preventDefault, 1);
+			runner.assertCallCount(24, self.ensureSelectedDivStillVisible, 1);
+			
+			//
+
+			mocker.mock('self.data.lastColRight', 50);			
+			
+			var retVal = self.onMouseMove_Resizing(evt);
+			
+			runner.assertStringsEqual(25, self.refs.draggingDiv.style.width, '281px');
+			
+			//
+			
+			mocker.mock('self.refs.window.scrollX', 100);
+			mocker.mock('self.data.scrollStartX', 0);
+			mocker.mock('self.data.lastColRight', 500);			
+
+			var retVal = self.onMouseMove_Resizing(evt);
+
+			runner.assertStringsEqual(26, self.refs.draggingDiv.style.width, '671px');
+		}	 										
+});													
+													
+runner.addTestCase(		
+{													
+	name: 	'onMouseMove_Resizing 2',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseMove_Resizing');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			mocker.bindChainRootToObject('evt', evt);
+			
+			mocker.mock('evt.x', 34);
+			mocker.mock('self.data.mouseStartX', 900);
+			mocker.mock('self.data.startingSelectedDivOffsetWidth', 321);
+			mocker.mock('self.refs.draggingDiv.style.width');
+			mocker.mock('self.snapSelectedDivToNearestValidWidth()');
+			mocker.mock('self.refs.draggingDiv.offsetLeft', 2323);
+			mocker.mock('self.refs.selectedDiv.offsetLeft', 2323);
+			mocker.mock('self.onMouseUp_Resizing()');
+			mocker.mock('self.refs.draggingDiv.offsetTop', 214);
+			mocker.mock('self.refs.selectedDiv.offsetTop', 213);
+			mocker.mock('self.positionDraggingDiv()');
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.refs.window.scrollX', 0);
+			mocker.mock('self.data.scrollStartX', 0);
+			mocker.mock('self.ensureSelectedDivStillVisible()');
+			
+			var retVal = self.onMouseMove_Resizing(evt);
+			
+			runner.assertCallCount(9, self.snapSelectedDivToNearestValidWidth, 1);
+			runner.assertCallCount(15, self.onMouseUp_Resizing, 0);
+			runner.assertCallCount(21, self.positionDraggingDiv, 1);															
+		}	 										
+});													
+											
+runner.addTestCase(		
+{													
+	name: 	'onMouseMove_Resizing 3',							
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseMove_Resizing');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			mocker.bindChainRootToObject('evt', evt);
+			
+			mocker.mock('evt.x', 34);
+			mocker.mock('self.data.mouseStartX', 900);
+			mocker.mock('self.data.startingSelectedDivOffsetWidth', 321);
+			mocker.mock('self.refs.draggingDiv.style.width');
+			mocker.mock('self.snapSelectedDivToNearestValidWidth()');
+			mocker.mock('self.refs.draggingDiv.offsetLeft', 2323);
+			mocker.mock('self.refs.selectedDiv.offsetLeft', 2323);
+			mocker.mock('self.onMouseUp_Resizing()');
+			mocker.mock('self.refs.draggingDiv.offsetTop', 213);
+			mocker.mock('self.refs.selectedDiv.offsetTop', 213);
+			mocker.mock('self.positionDraggingDiv()');
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.refs.window.scrollX', 0);
+			mocker.mock('self.data.scrollStartX', 0);
+			mocker.mock('self.ensureSelectedDivStillVisible()');			
+			
+			var retVal = self.onMouseMove_Resizing(evt);
+			
+			runner.assertCallCount(21, self.positionDraggingDiv, 0);
+															
+		}	 										
+});													
+												
+													
+runner.addTestCase(
+{													
+	name: 	'onMouseUp_Resizing',				
+													
+	test: 	function()  							
+		{											
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseUp_Resizing');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.flags.isDragging', true);
+			mocker.mock('self.refs.document.removeEventListener()');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.data.selectedDivCurrentColSpan', 1);
+			mocker.mock('self.data.selectedDivStartingColSpan', 2);
+			mocker.mock('self.refs.draggingDiv');
+			mocker.mock('self.refs.selectedDiv.offsetWidth', 123);
+			mocker.mock('self.onMouseMove_Resizing');
+			mocker.mock('self.refs.cssRuleBeingModified');
+			mocker.mock('self.getDeviceFromWindowWidth()');
+			mocker.mock('self.refs.styleSheetManager.setColSpan()');
+			mocker.mock('self.data.selectedUserDivId');			
+			mocker.mock('self.data.startingSelectedDivOffsetWidth', 544)
+			mocker.mock('self.setSelectedUserNode()');
+
+			var retVal = self.onMouseUp_Resizing();
+			
+			runner.assertEqual(1, self.flags.isDragging, false);
+			runner.assertParamsPassedIn(4, self.refs.document.removeEventListener, 
+											["mousemove", self.onMouseMove_Resizing], ["mouseup", self.onMouseUp_Resizing]);
+			runner.assertParamsPassedIn(8, self.hideDiv, [self.refs.draggingDiv]);
+			runner.assertParamsPassedIn(10, self.refs.styleSheetManager.setColSpan,	[	self.getDeviceFromWindowWidth(), 
+																						'#' + self.data.selectedUserDivId, 
+																						self.data.selectedDivCurrentColSpan
+																					]
+										);
+			runner.assertEqual(11, self.refs.cssRuleBeingModified, null);
+			runner.assertCallCount(11.5, self.setSelectedUserNode, 1);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.data.selectedDivStartingColSpan', 1);
+			
+			var retVal = self.onMouseUp_Resizing();
+			
+			runner.assertCallCount(11, self.refs.styleSheetManager.setColSpan, 0);
+															
+		}	 										
+});
+
+runner.addTestCase(
+{
+	name:	'onMouseDown_Shifting',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseDown_Shifting');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('evt', evt);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.flags.isDragging', false);
+			mocker.mock('self.data.mouseStartX');
+			mocker.mock('evt.x', 100);
+			mocker.mock('self.data.selectedDivStartingColShift');
+			mocker.mock('self.data.selectedDivCurrentColShift');
+			mocker.mock('self.getColShiftFromMarginLeftPx()', 5)
+			mocker.mock('self.data.startingSelectedDivOffsetLeft');
+			mocker.mock('self.refs.selectedDiv.offsetLeft', 50);
+			mocker.mock('self.getCssPropValFromLiveView()', 0);
+			mocker.mock('self.refs.document.addEventListener()');
+			mocker.mock('self.positionDraggingDiv()');
+			mocker.mock('self.onMouseMove_Shifting()');
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.refs.selectedDiv.userDiv');
+			mocker.mock('self.onMouseUp_Shifting');			
+			mocker.mock('self.findRuleForSelectedDiv()');
+			mocker.mock('self.setSelectedDivStartingVisibility()');
+
+			var retVal = self.onMouseDown_Shifting(evt);
+			
+			runner.assertEqual(1, self.flags.isDragging, true);
+			runner.assertEqual(3, self.data.mouseStartX, evt.x);
+			runner.assertEqual(4, self.data.selectedDivStartingColShift, 5);
+			runner.assertEqual(4, self.data.selectedDivCurrentColShift, 5);
+			runner.assertEqual(7, self.data.startingSelectedDivOffsetLeft, 50);
+			runner.assertParamsPassedIn(16, self.refs.document.addEventListener, ["mousemove", self.onMouseMove_Shifting], ["mouseup", self.onMouseUp_Shifting]);
+			runner.assertCallCount(17, self.positionDraggingDiv, 1);
+			runner.assertCallCount(21, evt.preventDefault, 1);
+			runner.assertCallCount(22, self.findRuleForSelectedDiv, 1);
+			runner.assertCallCount(23, self.setSelectedDivStartingVisibility, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'onMouseMove_Shifting',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseMove_Shifting');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('evt', evt);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('evt.x', 200);
+			mocker.mock('self.data.mouseStartX', 50);
+			mocker.mock('self.data.startingSelectedDivOffsetLeft', 123);
+			mocker.mock('self.refs.draggingDiv.style.left');
+			mocker.mock('self.snapSelectedDivToNearestValidLeft()');
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.ensureSelectedDivStillVisible()');
+			mocker.mock('self.refs.window.scrollX', 0);
+			mocker.mock('self.data.scrollStartX', 11);
+			
+			var retVal = self.onMouseMove_Shifting(evt);
+			
+			runner.assertStringsEqual(8, self.refs.draggingDiv.style.left, '262px');
+			runner.assertCallCount(9, self.snapSelectedDivToNearestValidLeft, 1);
+			runner.assertCallCount(11, evt.preventDefault, 1);
+			runner.assertCallCount(11, self.ensureSelectedDivStillVisible, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'onMouseUp_Shifting',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseUp_Shifting');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.flags.isDragging', true);
+			mocker.mock('self.refs.document.removeEventListener()');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.data.selectedDivStartingColShift', 1);
+			mocker.mock('self.data.selectedDivCurrentColShift', 2);			
+			mocker.mock('self.onMouseMove_Shifting');
+			mocker.mock('self.refs.draggingDiv');
+			mocker.mock('self.data.startingUserDivMarginLeft', 500);
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.refs.styleSheetManager.setColShift()');
+			mocker.mock('self.refs.cssRuleBeingModified');
+			mocker.mock('self.getDeviceFromWindowWidth()');
+			mocker.mock('self.data.selectedUserDivId');
+			mocker.mock('self.setSelectedUserNode()');
+			
+			var retVal = self.onMouseUp_Shifting();
+			
+			runner.assertEqual(1, self.flags.isDragging, false);
+			runner.assertParamsPassedIn(4, self.refs.document.removeEventListener, 
+												["mousemove", self.onMouseMove_Shifting], ["mouseup", self.onMouseUp_Shifting]);
+			runner.assertParamsPassedIn(6, self.hideDiv, [self.refs.draggingDiv]);
+			runner.assertParamsPassedIn(10, self.refs.styleSheetManager.setColShift,	[
+																							self.getDeviceFromWindowWidth(),
+																							'#' + self.data.selectedUserDivId,
+																							self.data.selectedDivCurrentColShift
+																						]
+										);
+			runner.assertEqual(11, self.refs.cssRuleBeingModified, null);
+			runner.assertCallCount(12, self.setSelectedUserNode, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionControls',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionControls');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.positionKnob()');
+			mocker.mock('self.positionMarginDiv()');
+			mocker.mock('self.positionNewRowDiv()');
+			
+			var retVal = self.positionControls();
+			
+			runner.assertCallCount(1, self.positionKnob, 2);
+			runner.assertCallCount(5, self.positionMarginDiv, 1);
+			runner.assertCallCount(7, self.positionNewRowDiv, 1);
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'getUserDivs',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getUserDivs');
+			
+			var dom = {};
+
+			mocker.bindChainRootToObject('dom', dom);
+			mocker.bindChainRootToObject('self', self);
+
+			function FakeDiv(offsetWidth, isFluidElem)
+			{
+				this.offsetWidth = offsetWidth;	
+				this.isFluidElem = isFluidElem;
+			}
+			
+			var div1 = new FakeDiv(100, true);
+			var div2 = new FakeDiv(150, false);
+			var div3 = new FakeDiv(200, true);
+			
+			mocker.mock('self.refs.dwDom.browser.getWindow().document', dom);
+			mocker.mock('dom.getElementsByTagName()');
+			mocker.mock('self.isCloseEnough()', function(width1, width2){ return Math.abs(width2 - width1) < 2});
+			mocker.mock('self.nodeListToArray()', [div1, div2, div3]);
+			mocker.mock('self.getValidLayoutDivWidths()', [1, 200, 3]);
+			mocker.mock('self.isFluidElem()', function(elem){return elem.isFluidElem});
+			
+			var retVal = self.getUserDivs();
+			
+			runner.assertEqual(1, retVal[0], div3);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getValidLayoutDivWidths',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getValidLayoutDivWidths');
+			
+			var widths = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.flags.logGridColApiIssue', false);
+			
+			mocker.mock('self.data.gridColRects', [{left: 100, right: 200}, {right: 300}]);
+			
+			var retVal = self.getValidLayoutDivWidths();
+			
+			runner.assertArraysEqual(7, retVal, [100, 200]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'selectDiv 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'selectDiv');
+			
+			var userDom = {};						
+			var overlayDiv = {userDiv:{id:'NewId'}};
+			
+			mocker.bindChainRootToObject('userDom', userDom);
+			mocker.bindChainRootToObject('self', self);
+
+			var origSelectedDiv = {};
+			
+			mocker.mock('self.refs.selectedDiv', origSelectedDiv);
+			mocker.mock('self.consts.selectedBorder');
+			mocker.mock('self.data.selectedUserDivId', 'MyId');
+			mocker.mock('self.isDivMisaligned()', true);
+			mocker.mock('self.consts.misalignedDivBorder');
+			mocker.mock('self.setOverlayDivBorder()');
+			mocker.mock('self.positionControls()');
+			mocker.mock('self.consts.showProtos', true);
+			mocker.mock('self.proto_showPi()');			
+						
+			var retVal = self.selectDiv(overlayDiv);
+			
+			runner.assertStringsEqual(6, self.data.selectedUserDivId, 'NewId');
+			runner.assertParamsPassedIn(8, self.isDivMisaligned, [origSelectedDiv]);
+			runner.assertParamsPassedIn(12, self.setOverlayDivBorder, 
+						[origSelectedDiv, self.consts.misalignedDivBorder], [overlayDiv, self.consts.selectedBorder]);
+			runner.assertCallCount(15, self.positionControls, 1);
+			runner.assertCallCount(16, self.proto_showPi, 1);			
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.consts.showProtos', false);
+						
+			runner.assertCallCount(17, self.proto_showPi, 0);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'selectDiv 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'selectDiv');
+			
+			var overlayDiv = null;
+			
+			mocker.bindChainRootToObject('self', self);
+
+			mocker.mock('self.refs.selectedDiv', null);
+			mocker.mock('self.consts.selectedBorder');
+			mocker.mock('self.data.selectedUserDivId', 'MyId');
+			mocker.mock('self.isDivMisaligned()', true);
+			mocker.mock('self.consts.misalignedDivBorder');
+			mocker.mock('self.setOverlayDivBorder()');
+			mocker.mock('self.positionControls()');
+			mocker.mock('self.showPi()');
+			
+			var retVal = self.selectDiv(overlayDiv);
+			
+			runner.assertCallCount(8, self.isDivMisaligned, 0);
+			runner.assertCallCount(12, self.setOverlayDivBorder, 0);
+			runner.assertCallCount(15, self.positionControls, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setOverlayDivBorder 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'setOverlayDivBorder');
+			
+			var div = {};
+			var border = {};
+			
+			mocker.bindChainRootToObject('div', div);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('div.style.borderWidth', 'hello'); 
+			mocker.mock('self.setDivBorder()', function(){div.style.borderWidth = 'hello2'});
+			mocker.mock('self.deflateDiv()');
+			mocker.mock('self.inflateDiv()');
+			
+			var retVal = self.setOverlayDivBorder(div, border);
+			
+			runner.assertCallCount(5, self.deflateDiv, 0);
+			runner.assertCallCount(7, self.inflateDiv, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setOverlayDivBorder 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'setOverlayDivBorder');
+			
+			var div = {};
+			var border = {};
+			
+			mocker.bindChainRootToObject('div', div);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('div.style.borderWidth', 5);
+			mocker.mock('self.setDivBorder()', function(){div.style.borderWidth = '0px'});
+			mocker.mock('self.deflateDiv()');
+			mocker.mock('self.inflateDiv()');
+			
+			var retVal = self.setOverlayDivBorder(div, border);
+			
+			runner.assertCallCount(5, self.deflateDiv, 0);
+			runner.assertParamsPassedIn(8, self.inflateDiv, [div, 5]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setOverlayDivBorder 3',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'setOverlayDivBorder');
+			
+			var div = {};
+			var border = {};
+			
+			mocker.bindChainRootToObject('div', div);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('div.style.borderWidth', 0);
+			mocker.mock('self.setDivBorder()', function(){div.style.borderWidth = '6px'});
+			mocker.mock('self.deflateDiv()');
+			mocker.mock('self.inflateDiv()');
+			
+			var retVal = self.setOverlayDivBorder(div, border);
+			
+			runner.assertCallCount(5, self.inflateDiv, 0);
+			runner.assertParamsPassedIn(8, self.deflateDiv, [div, 6]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'setDivBorder',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'setDivBorder');
+			
+			var div = {};
+			var border = 'x';
+			
+			mocker.bindChainRootToObject('div', div);
+			
+			mocker.mock('div.style.border');
+			
+			var retVal = self.setDivBorder(div, border);
+			
+			runner.assertStringsEqual(2, div.style.border, 'x');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createOverlayDivs 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createOverlayDivs');
+			
+			var userDivs = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			var userDiv1 = {};
+			var userDiv2 = {};
+			
+			var overlayDiv1 = {};
+			var overlayDiv2 = {};
+			
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.refs.overlayDivs', [1]);
+			mocker.mock('self.destroyOverlayDivs()', function(){self.refs.overlayDivs = []});
+			mocker.mock('self.getUserDivs()', [userDiv1, userDiv2]);
+			mocker.mock('self.createOverlayDiv()', function(userDiv){
+					if (userDiv == userDiv1)
+						return overlayDiv1;
+					return overlayDiv2;
+				});
+			mocker.mock('self.refs.overlayDivs.push()');
+			mocker.mock('self.refs.document.body.appendChild()');
+			mocker.mock('self.syncOverlayDivs()');
+			
+			var retVal = self.createOverlayDivs();
+			
+			runner.assertEqual(1, self.refs.selectedDiv, null);
+			runner.assertArraysEqual(3, self.refs.overlayDivs, [overlayDiv1, overlayDiv2]);
+			runner.assertParamsPassedIn(16, self.refs.document.body.appendChild, [overlayDiv1], [overlayDiv2]);
+			runner.assertCallCount(17, self.syncOverlayDivs, 1);
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'createOverlayDivs',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createOverlayDivs');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.refs.overlayDivs', []);
+			mocker.mock('self.destroyOverlayDivs()');
+			mocker.mock('self.getUserDivs()', []);
+			mocker.mock('self.createOverlayDiv()');
+			mocker.mock('self.refs.overlayDivs.push()');
+			mocker.mock('self.refs.document.body.appendChild()');
+			mocker.mock('self.syncOverlayDivs()');
+			
+			var retVal = self.createOverlayDivs();
+			
+			runner.assertCallCount(5, self.destroyOverlayDivs, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'destroyOverlayDivs',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'destroyOverlayDivs');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			var overlayDiv1 = {userDiv:{overlayDiv:1}};
+			var overlayDiv2 = {userDiv:{overlayDiv:2}};
+			
+			mocker.mock('self.refs.overlayDivs', [overlayDiv1, overlayDiv2]);
+			mocker.mock('self.refs.document.body.removeChild()');
+			
+			var retVal = self.destroyOverlayDivs();
+			
+			runner.assertEqual(1, self.refs.overlayDivs.length, 0);
+			runner.assertEqual(5, overlayDiv1.userDiv.overlayDiv, null);
+			runner.assertEqual(5.5, overlayDiv2.userDiv.overlayDiv, null);
+			runner.assertParamsPassedIn(8, self.refs.document.body.removeChild, [overlayDiv1], [overlayDiv2]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createOverlayDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createOverlayDiv');
+			
+			var overlayDiv = {userDiv:{},style:{}};
+			var userDiv = {};
+			
+			mocker.bindChainRootToObject('overlayDiv', overlayDiv);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.onMouseOver_OverlayDiv');
+			mocker.mock('self.onMouseOut_OverlayDiv');
+			mocker.mock('self.refs.document.createElement()', overlayDiv);
+			mocker.mock('overlayDiv.addEventListener()');
+			
+			var retVal = self.createOverlayDiv(userDiv);
+			
+			runner.assertEqual(7, overlayDiv.userDiv, userDiv);
+			runner.assertStringsEqual(10, overlayDiv.style.position, 'absolute');
+			runner.assertEqual(11, userDiv.overlayDiv, overlayDiv);
+			runner.assertParamsPassedIn(14, overlayDiv.addEventListener, ["mouseover", self.onMouseOver_OverlayDiv], ["mouseout", self.onMouseOut_OverlayDiv]);
+			runner.assertEqual(15, retVal, overlayDiv);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionKnob',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionKnob');
+			
+			var whichKnob = 'resize';
+			
+			var knobDiv = {style:{width:'40px', height:'56px'}};
+			var selectedDiv = {style:{left:'100px', top:'150px', width:'250px', height:'50px'}};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.showDiv()');
+			mocker.mock('self.consts.selectedBorderWidth', 2);			
+			mocker.mock('self.getColSpanFromOffsetWidth()', 'resize display text');
+			mocker.mock('self.getColShiftFromMarginLeftPx()', 'shift display text');			
+			mocker.mock('self.getCssPropValFromLiveView()');
+			
+			//
+			
+			mocker.mock('self.refs.selectedDiv', null);
+			mocker.mock('self.refs.resizeKnobDiv');
+			
+			var retVal = self.positionKnob(whichKnob);
+			
+			runner.assertParamsPassedIn(12, self.hideDiv, [self.refs.resizeKnobDiv]);
+			runner.assertCallCount(39, self.showDiv, 0);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();		
+			
+			mocker.mock('self.refs.selectedDiv', selectedDiv);
+			mocker.mock('self.refs.resizeKnobDiv', knobDiv);
+			mocker.mock('self.isDivMisaligned()', false);	
+			
+			var retVal = self.positionKnob(whichKnob);								
+			
+			runner.assertPropsEqual(140, 'left,top', knobDiv.style, {left: '333px', top: '149px'});
+			runner.assertStringsEqual(141, knobDiv.innerHTML, 'resize display text');
+			runner.assertParamsPassedIn(142, self.showDiv, [knobDiv]);
+			runner.assertCallCount(142.5, self.hideDiv, 0);			
+			
+			//
+
+			mocker.resetParamsAndCallCounts();
+			
+			var whichKnob = 'shift';			
+					
+			mocker.mock('self.refs.selectedDiv', selectedDiv);
+			mocker.mock('self.refs.shiftKnobDiv', knobDiv);
+			mocker.mock('self.isDivMisaligned()', false);	
+			
+			var retVal = self.positionKnob(whichKnob);								
+			
+			runner.assertPropsEqual(143, 'left,top', knobDiv.style, {left: '82px', top: '149px'});
+			runner.assertStringsEqual(144, knobDiv.innerHTML, 'shift display text');
+			runner.assertParamsPassedIn(145, self.showDiv, [knobDiv]);	
+			runner.assertCallCount(146, self.hideDiv, 0);					
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'isDivMisaligned 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'isDivMisaligned');
+			
+			var div = {offsetLeft: 123};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.isCloseEnough()', function(width1, width2){ return Math.abs(width2 - width1) < 2});
+			mocker.mock('self.data.gridColRects', [{left: 50},{left: 100},{left: 150}]);
+			
+			var retVal = self.isDivMisaligned(div);
+			
+			runner.assertEqual(5, retVal, true);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'isDivMisaligned 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'isDivMisaligned');
+			
+			var div = {offsetLeft: 100};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.isCloseEnough()', function(width1, width2){ return Math.abs(width2 - width1) < 2});
+			mocker.mock('self.data.gridColRects', [{left: 50},{left: 100},{left: 150}]);
+			
+			var retVal = self.isDivMisaligned(div);
+			
+			runner.assertEqual(5, retVal, false);
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'positionDraggingDiv 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionDraggingDiv');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.draggingDiv');
+			mocker.mock('self.refs.selectedDiv', null);
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.inflateDiv()');
+			
+			var retVal = self.positionDraggingDiv();
+			
+			runner.assertParamsPassedIn(10, self.hideDiv, [self.refs.draggingDiv]);
+			runner.assertCallCount(11, self.inflateDiv, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionDraggingDiv 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionDraggingDiv');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.draggingDiv');
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.consts.selectedBorderWidth');
+			mocker.mock('self.consts.draggingBorderWidth');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.inflateDiv()');
+			mocker.mock('self.refs.draggingDiv.style');
+			mocker.mock('self.refs.selectedDiv.style');
+			mocker.mock('self.deflateDiv()');
+			mocker.mock('self.showDiv()');
+			
+			var retVal = self.positionDraggingDiv();
+			
+			runner.assertPropsEqual(1, 'left,top,width,height', self.refs.draggingDiv.style, self.refs.selectedDiv.style);
+
+			runner.assertCallCount(9, self.hideDiv, 0);
+			
+			runner.assertParamsPassedIn(12, self.inflateDiv, [self.refs.selectedDiv, self.consts.selectedBorderWidth]);
+			runner.assertParamsPassedIn(18, self.deflateDiv, [self.refs.draggingDiv, self.consts.draggingBorderWidth],
+																[self.refs.selectedDiv, self.consts.selectedBorderWidth]);
+			runner.assertParamsPassedIn(20, self.showDiv, [self.refs.draggingDiv]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createDraggingDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createDraggingDiv');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			var div = {style:{}};
+						
+			mocker.mock('self.refs.document.createElement()', div);
+			mocker.mock('self.consts.draggingBorder');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.refs.document.body.appendChild()');
+			mocker.mock('self.refs.draggingDiv');
+			
+			var retVal = self.createDraggingDiv();
+			
+			runner.assertParamsPassedIn(2, self.refs.document.createElement, ['div']);
+			runner.assertParamsPassedIn(6, self.hideDiv, [div]);
+			runner.assertParamsPassedIn(8, self.refs.document.body.appendChild, [div]);
+			runner.assertEqual(9, self.refs.draggingDiv, div);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'snapSelectedDivToNearestValidWidth',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'snapSelectedDivToNearestValidWidth');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv.offsetLeft');
+			mocker.mock('self.refs.draggingDiv.offsetWidth', 100);
+			mocker.mock('self.refs.selectedDiv.userDiv.style.width');
+			mocker.mock('self.getColSpanFromOffsetWidth()', 5);
+			mocker.mock('self.refs.styleSheetManager.calcCssWidthFromColSpan()', '45.3443%');
+			mocker.mock('self.data.selectedDivCurrentColSpan');
+			mocker.mock('self.syncOverlayDivs()');
+			mocker.mock('self.refs.cssRuleBeingModified.style.width');
+			mocker.mock('self.getDeviceFromWindowWidth()');
+
+			var retVal = self.snapSelectedDivToNearestValidWidth();
+			
+			runner.assertEqual(6, self.data.selectedDivCurrentColSpan, 5);
+			runner.assertStringsEqual(6.5, self.refs.cssRuleBeingModified.style.width, '45.3443%');
+			runner.assertCallCount(7, self.syncOverlayDivs, 1);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.cssRuleBeingModified', null);
+			
+			runner.assertCallCount(6, self.syncOverlayDivs, 0);	
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'syncOverlayDivs',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'syncOverlayDivs');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.consts.misalignedDivBorder');
+			mocker.mock('self.syncSelectedDiv()');
+
+			var div1 = {style:{}, userDiv:{offsetLeft: 100, offsetTop: 10, offsetWidth: 50, offsetHeight: 25}};
+			var div2 = {style:{}, userDiv:{offsetLeft: 200, offsetTop: 110, offsetWidth: 150, offsetHeight: 35}};
+			var div3 = {style:{}, userDiv:{offsetLeft: 300, offsetTop: 210, offsetWidth: 200, offsetHeight: 45}};
+			
+			var divs = [div1, div2, div3];
+			
+			mocker.mock('self.refs.overlayDivs', divs);
+			mocker.mock('self.refs.selectedDiv', div1);
+			mocker.mock('self.setOverlayDivBorder()');
+			mocker.mock('self.isDivMisaligned()', function(div){return div == div3});
+			
+			var retVal = self.syncOverlayDivs();
+			
+			runner.assertCallCount(3, self.syncSelectedDiv, 1);
+			
+			runner.assertEqual(4, typeof div1.style.top, 'undefined');
+			
+			[div2, div3].forEach(function(overlayDiv, i){
+					runner.assertStringsEqual('Top check ' + i, overlayDiv.style.top, overlayDiv.userDiv.offsetTop + "px");					
+					runner.assertStringsEqual('Left check ' + i, overlayDiv.style.left, overlayDiv.userDiv.offsetLeft + "px");					
+					runner.assertStringsEqual('Width check ' + i, overlayDiv.style.width, overlayDiv.userDiv.offsetWidth + "px");					
+					runner.assertStringsEqual('Height check ' + i, overlayDiv.style.height, overlayDiv.userDiv.offsetHeight + "px");					
+				});
+
+			runner.assertParamsPassedIn(10, self.setOverlayDivBorder, [div2, ""], [div3, ""], [div3, self.consts.misalignedDivBorder]);
+
+			runner.assertParamsPassedIn(12, self.isDivMisaligned, [div2], [div3]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'syncSelectedDiv 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'syncSelectedDiv');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv', null);
+			mocker.mock('self.positionControls()');
+			
+			var retVal = self.syncSelectedDiv();
+			
+			runner.assertCallCount(9, self.positionControls, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'syncSelectedDiv 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'syncSelectedDiv');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			var selDiv = {style:{},userDiv:{offsetLeft: 100, offsetTop: 110, offsetWidth: 210, offsetHeight: 65}};
+			var dragDiv = {style:{}};
+			
+			mocker.mock('self.refs.selectedDiv', selDiv);
+			mocker.mock('self.consts.selectedBorderWidth', 2);
+			mocker.mock('self.refs.draggingDiv', dragDiv);
+			mocker.mock('self.consts.draggingBorderWidth', 1);
+			mocker.mock('self.positionControls()');
+			
+			var retVal = self.syncSelectedDiv();
+			
+			var expectedVals = 	[	selDiv.userDiv.offsetLeft + "px", 
+									selDiv.userDiv.offsetTop + "px",
+									selDiv.userDiv.offsetWidth - self.consts.selectedBorderWidth * 2 + "px",
+									selDiv.userDiv.offsetHeight - self.consts.selectedBorderWidth * 2 + "px"
+								];
+			
+			['left', 'top', 'width', 'height'].forEach(function(prop, i){
+					runner.assertStringsEqual('Prop check: ' + prop, self.refs.selectedDiv.style[prop], expectedVals[i]);			
+				});
+			
+			runner.assertStringsEqual(6, self.refs.draggingDiv.style.height, selDiv.userDiv.offsetHeight - self.consts.draggingBorderWidth * 2 + "px");
+			
+			runner.assertCallCount(9, self.positionControls, 1);
+		}
+});
+
+
+
+runner.addTestCase(
+{
+	name:	'selectOverlayDivById 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'selectOverlayDivById');
+			
+			var id = null;
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.overlayDivs');
+			mocker.mock('self.selectDiv()');
+			
+			var retVal = self.selectOverlayDivById(id);
+					
+			runner.assertCallCount(5, self.selectDiv, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'selectOverlayDivById 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'selectOverlayDivById');
+			
+			var id = 'z';
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			var divs = [{userDiv:{id:'x'}},{userDiv:{id:'y'}},{userDiv:{id:'z'}}];
+			
+			mocker.mock('self.refs.overlayDivs', divs);
+			mocker.mock('self.selectDiv()');
+			
+			var retVal = self.selectOverlayDivById(id);
+			
+			runner.assertParamsPassedIn(6, self.selectDiv, [divs[2]]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'selectOverlayDivById 3',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'selectOverlayDivById');
+			
+			var id = 'z';
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			var divs = [{userDiv:{id:'x'}},{userDiv:{id:'y'}},{userDiv:{id:'z2'}}];
+			
+			mocker.mock('self.refs.overlayDivs', divs);
+			mocker.mock('self.selectDiv()');
+			
+			var retVal = self.selectOverlayDivById(id);
+			
+			runner.assertCallCount(6, self.selectDiv, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getDeviceFromWindowWidth',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getDeviceFromWindowWidth');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			mocker.mock('self.refs.dwDom.browser.getWindow().document.documentElement.clientWidth', 400);
+			mocker.mock('self.refs.styleSheetManager.getDeviceFromWindowWidth()');
+			mocker.mock('self.refs.dw.activeViewScale', 2.0);
+		
+			//
+					
+			var retVal = self.getDeviceFromWindowWidth();			
+			
+			runner.assertParamsPassedIn(1, self.refs.styleSheetManager.getDeviceFromWindowWidth, [800]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'showDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'showDiv');
+			
+			var div = {};
+			
+			mocker.bindChainRootToObject('div', div);
+			
+			mocker.mock('div.style.display', 'x');
+
+			var retVal = self.showDiv(div);
+			
+			runner.assertStringsEqual(2, div.style.display, '');
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'hideDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'hideDiv');
+			
+			var div = {};
+			
+			mocker.bindChainRootToObject('div', div);
+
+			mocker.mock('div.style.display', 'x');
+
+			var retVal = self.hideDiv(div);
+			
+			runner.assertStringsEqual(2, div.style.display, 'none');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'inflateDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'inflateDiv');
+			
+			var div = {};
+			var amt = 5;
+			
+			mocker.bindChainRootToObject('div', div);
+			
+			mocker.mock('div.style.width', '400px');
+			mocker.mock('div.style.height', '200px');
+						
+			var retVal = self.inflateDiv(div, amt);
+			
+			runner.assertStringsEqual(2, div.style.width, '410px');
+			runner.assertStringsEqual(4, div.style.height, '210px');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'deflateDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'deflateDiv');
+			
+			var div = {};
+			var amt = 5;
+			
+			mocker.bindChainRootToObject('div', div);
+			
+			mocker.mock('div.style.width', '400px');
+			mocker.mock('div.style.height', '200px');
+						
+			var retVal = self.deflateDiv(div, amt);
+			
+			runner.assertStringsEqual(2, div.style.width, '390px');
+			runner.assertStringsEqual(4, div.style.height, '190px');
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createStartsRowDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createStartsRowDiv');
+			
+			var context = {};
+			var startsRowDiv = {};
+			
+			mocker.bindChainRootToObject('context', context);
+			mocker.bindChainRootToObject('startsRowDiv', startsRowDiv);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.document.getCSSCanvasContext()', context);
+			mocker.mock('context.strokeStyle');
+			mocker.mock('context.lineWidth');
+			mocker.mock('context.fillStyle');
+			mocker.mock('context.beginPath()');
+			mocker.mock('context.moveTo()');
+			mocker.mock('context.lineTo()');
+			mocker.mock('context.fill()');
+			mocker.mock('context.stroke()');
+			mocker.mock('context.closePath()');
+			mocker.mock('self.refs.document.createElement()', startsRowDiv);
+			mocker.mock('startsRowDiv.style.position');
+			mocker.mock('startsRowDiv.style.zIndex');
+			mocker.mock('startsRowDiv.style.width');
+			mocker.mock('startsRowDiv.style.height');
+			mocker.mock('startsRowDiv.style.textAlign');
+			mocker.mock('startsRowDiv.style.fontFamily');
+			mocker.mock('startsRowDiv.style.fontSize');
+			mocker.mock('startsRowDiv.style.cursor');
+			mocker.mock('startsRowDiv.style.backgroundImage');
+			mocker.mock('startsRowDiv.style.backgroundPosition');
+			mocker.mock('startsRowDiv.style.backgroundRepeat');
+			mocker.mock('self.refs.startsRowDiv');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.refs.document.body.appendChild()');
+	
+			var retVal = self.createStartsRowDiv();
+			
+			runner.assertParamsPassedIn(22, self.refs.document.createElement, ['div']);
+			runner.assertEqual(46, self.refs.startsRowDiv, startsRowDiv);
+			runner.assertParamsPassedIn(48, self.hideDiv, [startsRowDiv]);
+			runner.assertParamsPassedIn(50, self.refs.document.body.appendChild, [startsRowDiv]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createMarginDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createMarginDiv');
+			
+			var marginDiv = {style:{}};
+			
+			mocker.bindChainRootToObject('marginDiv', marginDiv);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.document.createElement()', marginDiv);
+			mocker.mock('marginDiv.style.position');
+			mocker.mock('marginDiv.style.backgroundColor');
+			mocker.mock('marginDiv.style.opacity');
+			mocker.mock('self.refs.marginDiv');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.refs.document.body.appendChild()');
+			
+			var retVal = self.createMarginDiv();
+			
+			runner.assertParamsPassedIn(2, self.refs.document.createElement, ['div']);
+			
+			runner.assertPropsEqual(3, 'position, backgroundColor, opacity', marginDiv.style, {position: 'absolute', backgroundColor: 'red', opacity: '.2'});
+			
+			runner.assertEqual(9, self.refs.marginDiv, marginDiv);
+			
+			runner.assertParamsPassedIn(12, self.hideDiv, [marginDiv]);
+			
+			runner.assertParamsPassedIn(14, self.refs.document.body.appendChild, [marginDiv]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionMarginDiv 1',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionMarginDiv');
+			
+			var selDiv = null;
+			var marginDiv = {style:{}};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv', selDiv);
+			mocker.mock('self.refs.marginDiv', marginDiv);
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.getCssPropValFromLiveView()');
+
+			var retVal = self.positionMarginDiv();
+			
+			runner.assertCallCount(9, self.getCssPropValFromLiveView, 0);
+			runner.assertParamsPassedIn(26, self.hideDiv, [marginDiv]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionMarginDiv 2',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionMarginDiv');
+			
+			var selDiv = {offsetTop: 123, offsetLeft: 234, offsetHeight: 1200};
+			var marginDiv = {style:{}};
+			
+			mocker.bindChainRootToObject('selDiv', selDiv);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('selDiv.userDiv');
+			mocker.mock('self.refs.selectedDiv', selDiv);
+			mocker.mock('self.refs.marginDiv', marginDiv);
+			mocker.mock('self.showDiv()');
+			mocker.mock('self.hideDiv()');
+			
+			//
+
+			mocker.mock('self.getCssPropValFromLiveView()', 0);
+			
+			var retVal = self.positionMarginDiv();
+			
+			runner.assertStringsEqual(1, typeof marginDiv.style.top, 'undefined');
+						
+			runner.assertParamsPassedIn(8, self.hideDiv, [marginDiv]);
+				
+			runner.assertCallCount(26, self.showDiv, 0);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.getCssPropValFromLiveView()', 150);
+			
+			var retVal = self.positionMarginDiv();
+			
+			runner.assertPropsEqual(27, 'top, height, width, left', marginDiv.style, {top: '123px', height: '1200px', width: '150px', left: '84px'});
+						
+			runner.assertCallCount(28, self.hideDiv, 0);
+				
+			runner.assertParamsPassedIn(29, self.showDiv, [marginDiv]);
+
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getCssPropValFromLiveView',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getCssPropValFromLiveView');
+			
+			var elem = {};
+			var prop = {};
+						
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.dw.activeViewScale', 1.5);
+						
+			//					
+
+			var expectedReturnType = 'string';
+			
+			mocker.mock('self.refs.dwDom.browser.getWindow().getComputedStyle().getPropertyValue()', 'hello');
+			
+			var retVal = self.getCssPropValFromLiveView(elem, prop, expectedReturnType);
+			
+			runner.assertStringsEqual(4, retVal, 'hello');
+					
+			//					
+			
+			var expectedReturnType = 'int';
+
+			mocker.mock('self.refs.dwDom.browser.getWindow().getComputedStyle().getPropertyValue()', 'hello');			
+			
+			var retVal = self.getCssPropValFromLiveView(elem, prop, expectedReturnType);
+			
+			runner.assertStringsEqual(5, retVal, 0);
+			
+			//					
+			
+			var expectedReturnType = 'int';
+
+			mocker.mock('self.refs.dwDom.browser.getWindow().getComputedStyle().getPropertyValue()', '24px');
+			
+			var retVal = self.getCssPropValFromLiveView(elem, prop, expectedReturnType);
+			
+			runner.assertStringsEqual(6, retVal, 16);
+			
+			//			
+						
+			mocker.mock('self.refs.dwDom.browser.getWindow().getComputedStyle().getPropertyValue()', '24px');
+
+			var retVal = self.getCssPropValFromLiveView(elem, prop); // 3rd param omitted.
+			
+			runner.assertStringsEqual(7, retVal, '24px');
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'nodeListToArray',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'nodeListToArray');
+			
+			var nodeList = [1, 2, 3];
+	
+			var retVal = self.nodeListToArray(nodeList);
+			
+			runner.assertArraysEqual(5, retVal, [1, 2, 3]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createKnobDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createKnobDiv');
+			
+			var context = {};
+			var knobDiv = {style:{}};
+			var whichKnob = 'resize';			
+
+			mocker.bindChainRootToObject('self', self);
+			mocker.bindChainRootToObject('context', context);
+			mocker.bindChainRootToObject('knobDiv', knobDiv);			
+			
+			mocker.mock('self.onMouseDown_Resizing');
+			mocker.mock('self.onMouseDown_Shifting');
+			mocker.mock('self.refs.document.getCSSCanvasContext()', context);
+			mocker.mock('context.beginPath()');
+			mocker.mock('context.moveTo()');
+			mocker.mock('context.lineTo()');
+			mocker.mock('context.fill()');
+			mocker.mock('context.closePath()');
+			mocker.mock('context.arc()');
+			mocker.mock('context.stroke()');
+			mocker.mock('self.refs.document.createElement()', knobDiv);
+			mocker.mock('knobDiv.addEventListener()');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.refs.document.body.appendChild()');			
+			
+			var retVal = self.createKnobDiv(whichKnob);
+			
+			runner.assertEqual(54, self.refs.resizeKnobDiv, knobDiv);			
+			runner.assertParamsPassedIn(55, knobDiv.addEventListener, ['mousedown', self.onMouseDown_Resizing]);
+			runner.assertParamsPassedIn(58, self.hideDiv, [knobDiv]);
+			runner.assertParamsPassedIn(60, self.refs.document.body.appendChild, [knobDiv]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			var whichKnob = 'shift';
+			
+			var retVal = self.createKnobDiv(whichKnob);			
+			
+			runner.assertEqual(61, self.refs.shiftKnobDiv, knobDiv);
+			runner.assertParamsPassedIn(61, knobDiv.addEventListener, ['mousedown', self.onMouseDown_Shifting]);
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getColShiftFromMarginLeftPx',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getColShiftFromMarginLeftPx');						
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv.userDiv');
+			mocker.mock('self.getValidMarginLefts()', function(startsNewRow){
+					var marginsLeft = [0, 92, 184, 276];
+					if (!startsNewRow)
+						marginsLeft = marginsLeft.map(function(marginLeft){ return marginLeft + 24; });
+					return marginsLeft;
+				});
+
+			//			
+
+			var marginLeftPx = 0;
+			
+			mocker.mock('self.startsNewRow()', true);
+			
+			var retVal = self.getColShiftFromMarginLeftPx(marginLeftPx);
+			
+			runner.assertEqual(1, retVal, 0);
+			
+			//
+			
+			var marginLeftPx = 92;
+			
+			mocker.mock('self.startsNewRow()', true);
+			
+			var retVal = self.getColShiftFromMarginLeftPx(marginLeftPx);
+			
+			runner.assertEqual(2, retVal, 1);
+			
+			//
+			
+			var marginLeftPx = 184;
+			
+			mocker.mock('self.startsNewRow()', true);
+			
+			var retVal = self.getColShiftFromMarginLeftPx(marginLeftPx);
+			
+			runner.assertEqual(3, retVal, 2);
+			
+			//
+			
+			var marginLeftPx = 24;
+			
+			mocker.mock('self.startsNewRow()', false);
+			
+			var retVal = self.getColShiftFromMarginLeftPx(marginLeftPx);
+			
+			runner.assertEqual(4, retVal, 0);
+			
+			//
+			
+			var marginLeftPx = 116;
+			
+			mocker.mock('self.startsNewRow()', true);
+			
+			var retVal = self.getColShiftFromMarginLeftPx(marginLeftPx);
+			
+			runner.assertEqual(5, retVal, 1);			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getColSpanFromOffsetWidth',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getColSpanFromOffsetWidth');
+			
+			var validWidths = [68, 160, 252];
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getValidLayoutDivWidths()', validWidths);
+
+			//
+			 
+			var offsetWidth = 100;
+
+			var retVal = self.getColSpanFromOffsetWidth(offsetWidth);
+			
+			runner.assertEqual(1, retVal, 1);
+			
+			//
+			 
+			var offsetWidth = 125;
+
+			var retVal = self.getColSpanFromOffsetWidth(offsetWidth);
+			
+			runner.assertEqual(2, retVal, 2);
+			
+			//
+			 
+			var offsetWidth = 114;
+
+			var retVal = self.getColSpanFromOffsetWidth(offsetWidth);
+			
+			runner.assertEqual(3, retVal, 1);
+			
+			//
+			 
+			var offsetWidth = 115;
+
+			var retVal = self.getColSpanFromOffsetWidth(offsetWidth);
+			
+			runner.assertEqual(4, retVal, 2);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getValidMarginLefts',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getValidMarginLefts');
+			
+			var validWidths = [68, 160, 252];
+			var startsNewRow = false;
+			var colRects = [{left: 45, right: 113}, {left: 137}]
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getValidLayoutDivWidths()', validWidths);
+			mocker.mock('self.refs.styleSheetManager.consts.colWidth', 68);
+			mocker.mock('self.refs.styleSheetManager.consts.gutterWidth', 24);
+			mocker.mock('self.data.gridColRects', colRects);
+
+			//
+
+			var startsNewRow = false;
+						
+			var retVal = self.getValidMarginLefts(startsNewRow);
+			
+			runner.assertArraysEqual(1, retVal, [24, 116, 208]);
+			
+			//
+			
+			var startsNewRow = true;
+						
+			var retVal = self.getValidMarginLefts(startsNewRow);
+			
+			runner.assertArraysEqual(2, retVal, [0, 92, 184]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'isCloseEnough',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'isCloseEnough');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.styleSheetManager.consts.marginOfError', 5);
+			
+			self.isCloseEnough = function (width1, width2) 
+			{
+			    return Math.abs(width1 - width2) <= self.refs.styleSheetManager.consts.marginOfError;
+			}
+			
+			//
+
+			var width1 = 95;
+			var width2 = 100;
+						
+			var retVal = self.isCloseEnough(width1, width2);
+			
+			runner.assertEqual(2, retVal, true);
+					
+			//
+
+			var width1 = 94;
+			var width2 = 100;
+						
+			var retVal = self.isCloseEnough(width1, width2);
+			
+			runner.assertEqual(1, retVal, false);
+									
+			//
+
+			var width1 = 96;
+			var width2 = 100;
+						
+			var retVal = self.isCloseEnough(width1, width2);
+			
+			runner.assertEqual(1, retVal, true);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'snapSelectedDivToNearestValidLeft',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'snapSelectedDivToNearestValidLeft');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.selectedDiv.userDiv');
+			mocker.mock('self.refs.draggingDiv.offsetLeft', 100);
+			mocker.mock('self.data.marginsOffsetLeft', 12);
+			mocker.mock('self.getColShiftFromMarginLeftPx()', 4);
+			mocker.mock('self.startsNewRow()', true);
+			mocker.mock('self.data.selectedDivCurrentColShift');
+			mocker.mock('self.refs.styleSheetManager.calcCssMarginLeftFromColShift()', 'xyz');
+			mocker.mock('self.refs.cssRuleBeingModified.style.marginLeft');
+			mocker.mock('self.syncOverlayDivs()');	
+			mocker.mock('self.getDeviceFromWindowWidth()');
+
+			var retVal = self.snapSelectedDivToNearestValidLeft();
+			
+			runner.assertParamsPassedIn(1, self.getColShiftFromMarginLeftPx, [100 - 12]);
+			runner.assertEqual(2, self.data.selectedDivCurrentColShift, 4);
+			runner.assertParamsPassedIn(3, self.refs.styleSheetManager.calcCssMarginLeftFromColShift, [self.getDeviceFromWindowWidth(), 4, true]);
+			runner.assertStringsEqual(4, self.refs.cssRuleBeingModified.style.marginLeft, 'xyz');
+			runner.assertCallCount(5, self.syncOverlayDivs, 1);	
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.cssRuleBeingModified', null);
+			
+			runner.assertCallCount(6, self.syncOverlayDivs, 0);	
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'startsNewRow',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'startsNewRow');
+			
+			var userDiv = {};
+			
+			mocker.bindChainRootToObject('self', self);
+
+			//
+			
+			mocker.mock('self.getCssPropValFromLiveView()', 'both');
+			
+			var retVal = self.startsNewRow(userDiv);
+			
+			runner.assertEqual(1, retVal, true);
+			
+			//
+			
+			mocker.mock('self.getCssPropValFromLiveView()', 'none');
+			
+			var retVal = self.startsNewRow(userDiv);
+			
+			runner.assertEqual(2, retVal, false);
+		}
+});
+
+runner.addTestCase( 
+{
+	name:	'toggleStartsRow',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'toggleStartsRow');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			mocker.mock('self.flags.shouldRestoreSelection', false);
+			mocker.mock('self.data.selectedUserDivId', 'hello');
+			mocker.mock('self.refs.styleSheetManager.toggleStartsNewRow()');
+			mocker.mock('self.getDeviceFromWindowWidth()');
+			mocker.mock('self.setSelectedDivStartingVisibility()');
+			mocker.mock('self.ensureSelectedDivStillVisible()');
+			mocker.mock('self.setSelectedUserNode()');
+						
+			//
+
+			mocker.mock('self.startsNewRow()', false);
+			
+			var retVal = self.toggleStartsRow();
+
+			runner.assertTrue(1, self.flags.shouldRestoreSelection);
+			runner.assertParamsPassedIn(2, self.refs.styleSheetManager.toggleStartsNewRow, [self.getDeviceFromWindowWidth(), '#hello']);
+			runner.assertCallCount(3, self.setSelectedDivStartingVisibility, 1);
+			runner.assertCallCount(4, self.ensureSelectedDivStillVisible, 1);
+			runner.assertCallCount(5, self.setSelectedUserNode, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'onClick_Document',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onClick_Document');
+			
+			var evt = {};
+			var resizeKnob = {};
+			var shiftKnob = {};
+			var startsRowDiv = {};
+			var nonOverlayDiv = {};
+			var overlayDiv = {userDiv:{}};
+			
+			mocker.bindChainRootToObject('evt', evt);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.resizeKnobDiv', resizeKnob);
+			mocker.mock('self.refs.shiftKnobDiv', shiftKnob);
+			mocker.mock('evt.preventDefault()');
+			mocker.mock('self.refs.startsRowDiv', startsRowDiv);
+			mocker.mock('self.toggleStartsRow()');
+			mocker.mock('evt.target.userDiv');
+			mocker.mock('self.selectDiv()');
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.setSelectedUserNode()');
+
+			//
+			
+			mocker.mock('evt.target', resizeKnob);
+			
+			var retVal = self.onClick_Document(evt);
+
+			runner.assertCallCount(1, evt.preventDefault, 1);
+			runner.assertCallCount(2, self.toggleStartsRow, 0);
+			runner.assertCallCount(3, self.selectDiv, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('evt.target', shiftKnob);
+			
+			var retVal = self.onClick_Document(evt);
+
+			runner.assertCallCount(4, evt.preventDefault, 1);
+			runner.assertCallCount(5, self.toggleStartsRow, 0);
+			runner.assertCallCount(6, self.selectDiv, 0);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('evt.target', startsRowDiv);
+			
+			var retVal = self.onClick_Document(evt);
+
+			runner.assertCallCount(7, evt.preventDefault, 1);
+			runner.assertCallCount(8, self.toggleStartsRow, 1);
+			runner.assertCallCount(9, self.selectDiv, 0);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('evt.target', nonOverlayDiv);
+			
+			var retVal = self.onClick_Document(evt);
+
+			runner.assertCallCount(10, evt.preventDefault, 0);
+			runner.assertCallCount(11, self.toggleStartsRow, 0);
+			runner.assertParamsPassedIn(12, self.selectDiv, [null]);
+
+			//
+			
+			mocker.resetParamsAndCallCounts();
+
+			mocker.mock('evt.target', overlayDiv);
+			
+			var retVal = self.onClick_Document(evt);
+
+			runner.assertCallCount(13, evt.preventDefault, 1);
+			runner.assertCallCount(14, self.toggleStartsRow, 0);
+			runner.assertParamsPassedIn(15, self.selectDiv, [evt.target]);
+			runner.assertCallCount(16, self.setSelectedUserNode, 1);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'positionNewRowDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'positionNewRowDiv');
+			
+			var selectedDiv = {style:{left: 100, top: 120, width: 70, height: 220}};
+			var startsRowDiv = {style:{left: 100, top: 120, width: 70, height: 50}};
+						
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.startsRowDiv', startsRowDiv);
+			mocker.mock('self.refs.selectedDiv.userDiv');
+			mocker.mock('self.hideDiv()');
+			mocker.mock('self.consts.selectedBorderWidth', 2);
+			mocker.mock('self.showDiv()');
+						
+			//
+			
+			mocker.mock('self.refs.selectedDiv', null);
+			
+			var retVal = self.positionNewRowDiv();
+						
+			runner.assertParamsPassedIn(1, self.hideDiv, [startsRowDiv]);
+			runner.assertCallCount(2, self.showDiv, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+						
+			mocker.mock('self.refs.selectedDiv', selectedDiv);
+			mocker.mock('self.startsNewRow()', true);
+			
+			var retVal = self.positionNewRowDiv();
+						
+			runner.assertCallCount(3, self.hideDiv, 0);
+			runner.assertPropsEqual(4, 'left, top, width, height, backgroundImage', 
+											self.refs.startsRowDiv.style,
+											{left: '96px', top: '236px', width: '47px', height: '37px', 
+												backgroundImage: 'url(dw://Configuration/Overlays/CssGrids/images/unwrapDiv.png)'});
+												
+			runner.assertParamsPassedIn(4.5, self.showDiv, [startsRowDiv]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.selectedDiv', selectedDiv);
+			mocker.mock('self.startsNewRow()', false);
+			
+			var retVal = self.positionNewRowDiv();
+						
+			runner.assertCallCount(5, self.hideDiv, 0);
+			runner.assertPropsEqual(6, 'left, top, width, height, backgroundImage', 
+											self.refs.startsRowDiv.style,
+											{left: '92px', top: '237px', width: '50px', height: '37px', 
+												backgroundImage: 'url(dw://Configuration/Overlays/CssGrids/images/wrapDiv.png)'});				
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'onMouseOver_OverlayDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseOver_OverlayDiv');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('evt', evt);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.consts.hoverBorder');
+			mocker.mock('evt.target');
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.setOverlayDivBorder()');
+		
+			//
+			
+			mocker.mock('self.flags.isDragging', true);
+			
+			var retVal = self.onMouseOver_OverlayDiv(evt);
+			
+			runner.assertCallCount(1, self.setOverlayDivBorder, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();			
+
+			mocker.mock('self.flags.isDragging', false);
+			
+			var retVal = self.onMouseOver_OverlayDiv(evt);
+			
+			runner.assertParamsPassedIn(2, self.setOverlayDivBorder, [evt.target, self.consts.hoverBorder]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();			
+			
+			var selectedDiv = {};
+
+			mocker.mock('self.flags.isDragging', false);
+			mocker.mock('evt.target', selectedDiv);
+			mocker.mock('self.refs.selectedDiv', selectedDiv);
+			
+			var retVal = self.onMouseOver_OverlayDiv(evt);
+			
+			runner.assertCallCount(3, self.setOverlayDivBorder, 0);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'onMouseOut_OverlayDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'onMouseOut_OverlayDiv');
+			
+			var evt = {};
+			
+			mocker.bindChainRootToObject('evt', evt);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('evt.target');
+			mocker.mock('self.refs.selectedDiv');
+			mocker.mock('self.consts.misalignedDivBorder');
+			mocker.mock('self.setOverlayDivBorder()');
+
+			
+			//
+			
+			mocker.mock('self.flags.isDragging', true);
+			
+			var retVal = self.onMouseOut_OverlayDiv(evt);
+			
+			runner.assertCallCount(1, self.setOverlayDivBorder, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.flags.isDragging', false);
+			mocker.mock('self.isDivMisaligned()', true);
+			
+			var retVal = self.onMouseOut_OverlayDiv(evt);
+			
+			runner.assertParamsPassedIn(2, self.setOverlayDivBorder, [evt.target, self.consts.misalignedDivBorder]);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.flags.isDragging', false);
+			mocker.mock('self.isDivMisaligned()', false);
+			
+			var retVal = self.onMouseOut_OverlayDiv(evt);
+			
+			runner.assertParamsPassedIn(3, self.setOverlayDivBorder, [evt.target, '']);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'findRule',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'findRule');
+			
+			var sheets = [{cssRules:[]}];
+			var selector = 'LayoutDiv1';
+			var desiredFoundCount = -1;
+			var rule = {};
+			
+			mocker.bindChainRootToObject('sheets', sheets);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.dwDom.browser.getWindow().document.styleSheets', sheets);
+			mocker.mock('self.findRuleInCssRules()', function(selector, countsRec, cssRules){
+					desiredFoundCount = countsRec.desiredFoundCount;
+					return rule;
+				});
+						
+			//
+			
+			var device = 'desktop';
+			
+			var retVal = self.findRule(device, selector);
+			
+			runner.assertEqual(1, retVal, rule);
+			runner.assertEqual(2, desiredFoundCount, 3);
+			
+			//
+			
+			var device = 'tablet';
+			
+			var retVal = self.findRule(device, selector);
+			
+			runner.assertEqual(3, retVal, rule);
+			runner.assertEqual(4, desiredFoundCount, 2);
+
+			//
+			
+			var device = 'mobile';
+			
+			var retVal = self.findRule(device, selector);
+			
+			runner.assertEqual(4.5, retVal, rule);
+			runner.assertEqual(4.6, desiredFoundCount, 1);
+
+			//
+			
+			var device = 'wedervfd';
+			
+			var retVal = self.findRule(device, selector);
+			
+			runner.assertEqual(6, desiredFoundCount, 0);
+			
+			//
+			
+			mocker.mock('self.findRuleInCssRules()', function(){return null;});
+			
+			var retVal = self.findRule(device, selector);
+			
+			runner.assertEqual(7, retVal, null);
+			
+		}
+});
+	
+runner.addTestCase(
+{
+	name:	'findRuleForSelectedDiv',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'findRuleForSelectedDiv');
+			
+			var rule = {};
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getDeviceFromWindowWidth()', 'deviceName');
+			mocker.mock('self.refs.selectedDiv.userDiv.id', 'MyLayoutDiv');
+			mocker.mock('self.findRule()', rule);
+
+			var retVal = self.findRuleForSelectedDiv();
+			
+			runner.assertParamsPassedIn(1, self.findRule, ['deviceName', '#MyLayoutDiv']);
+			runner.assertEqual(2, retVal, rule);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'findRuleInCssRules',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'findRuleInCssRules');
+			
+			var rules = 	[	{	type: 1, 
+									STYLE_RULE: 1,
+									selectorText:'#MyLayoutDiv'
+								}, 								
+								{	type: 4, 
+									MEDIA_RULE: 4,
+									cssRules: 	[	{	type: 1, 
+														STYLE_RULE: 1,
+														selectorText:'#SomeOtherDiv' 
+													},
+													{	type: 1, 
+														STYLE_RULE: 1,
+														selectorText:'#MyLayoutDiv' 
+													}
+												]
+								}
+							];
+
+			var selector = '#MyLayoutDiv';	
+			
+			//				
+			
+			var countsRec = {actualFoundCount:0, desiredFoundCount:1};
+			
+			var retVal = self.findRuleInCssRules(selector, countsRec, rules);
+						
+			runner.assertEqual(1, retVal, rules[0]);
+
+			//			
+							
+			var countsRec = {actualFoundCount:0, desiredFoundCount:2};		
+			
+			var retVal = self.findRuleInCssRules(selector, countsRec, rules);
+						
+			runner.assertEqual(2, retVal, rules[1].cssRules[1]);
+
+			//
+										
+			var countsRec = {actualFoundCount:0, desiredFoundCount:3};		
+			
+			var retVal = self.findRuleInCssRules(selector, countsRec, rules);
+						
+			runner.assertEqual(3, retVal, null);
+
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'calcMarginOfError',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'calcMarginOfError');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getDeviceFromWindowWidth()');
+			mocker.mock('self.data.marginOfError');
+			mocker.mock('self.refs.styleSheetManager.calcMarginOfError()', 12);
+			
+			var retVal = self.calcMarginOfError();
+			
+			runner.assertEqual(1, self.data.marginOfError, 12);
+			runner.assertParamsPassedIn(2, self.refs.styleSheetManager.calcMarginOfError, [self.getDeviceFromWindowWidth()]);
+		}
+});
+ 
+runner.addTestCase(
+{
+	name:	'isFluidElem',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'isFluidElem');
+			
+			// elem is null
+			
+			var elem = null;
+			
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(1, retVal);
+			
+			// elem.getAttribute() returns null
+			
+			var elem = {};
+			
+			mocker.bindChainRootToObject('elem', elem);
+			
+			mocker.mock('elem.getAttribute()', null);
+						
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(2, retVal);
+			
+			// elem.getAttribute is null
+
+			mocker.mock('elem.getAttribute', null);
+						
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(3, retVal);
+			
+			// self.findRule() returns null
+
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('elem.getAttribute()', 'MyId');	
+			mocker.mock('self.getDeviceFromWindowWidth()');		
+			mocker.mock('self.findRule()', null);
+			
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(4, retVal);
+			
+			// rule.style.width is null
+			
+			var rule = {};
+
+			mocker.bindChainRootToObject('rule', rule);
+			
+			mocker.mock('rule.style.width');			
+			mocker.mock('self.findRule()', rule);
+			
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(5, retVal);
+			
+			// rule.style.width does not end in a percent sign
+			
+			mocker.mock('rule.style.width', '100px');
+			
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertFalse(6, retVal);
+			
+			// rule.style.width does end in a percent sign
+			
+			mocker.mock('rule.style.width', '100%');
+			
+			var retVal = self.isFluidElem(elem);
+			
+			runner.assertTrue(7, retVal);
+			
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'createColumnDivs',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createColumnDivs');
+			
+			var div = {};
+			
+			mocker.bindChainRootToObject('div', div);
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.refs.styleSheetManager.getMaxNumColsAllDevices()', 1);
+			mocker.mock('self.refs.document.createElement()', div);
+			mocker.mock('div.style');
+			mocker.mock('self.refs.document.body.appendChild()');
+			mocker.mock('self.refs.columnDivs', []);
+
+			var retVal = self.createColumnDivs();
+			
+			runner.assertParamsPassedIn(1, self.refs.document.body.appendChild, [div])
+			runner.assertEqual(2, self.refs.columnDivs[0], div);
+			runner.assertEqual(3, self.refs.columnDivs.length, 1);
+			runner.assertPropsEqual(
+				4, 
+				'position,top,height,backgroundColor,display,opacity,zIndex',
+				div.style,
+				{position: 'absolute', top: '0px', height: '100%', backgroundColor: 'rgb(150,0,0)', display: 'none', opacity: '.1', zIndex: 0 }
+			);
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'createOverlayControls',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'createOverlayControls');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.createDraggingDiv()');
+			mocker.mock('self.createKnobDiv()');
+			mocker.mock('self.createMarginDiv()');
+			mocker.mock('self.createStartsRowDiv()');
+
+			var retVal = self.createOverlayControls();
+			
+			runner.assertCallCount(1, self.createDraggingDiv, 1);
+			runner.assertParamsPassedIn(2, self.createKnobDiv, ['resize'], ['shift']);
+			runner.assertCallCount(3, self.createMarginDiv, 1);
+			runner.assertCallCount(4, self.createStartsRowDiv, 1);			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'log',
+
+	test:	function()
+		{
+			runner.assertTrue(1, true);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'updateColumns',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'updateColumns');			
+			
+			function FakeColumnDiv() {
+				this.style = {};	
+			}
+			
+			var columnDivs = [new FakeColumnDiv(), new FakeColumnDiv()];
+			
+			function FakeGridColRect(left, right) {
+				this.left = left;
+				this.right = right;
+			}
+						
+			var gridColRects = [new FakeGridColRect(100, 150)];
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.createColumnDivs()');
+			mocker.mock('self.refs.columnDivs', columnDivs);
+			mocker.mock('self.data.gridColRects', gridColRects);
+
+			//									
+			
+			var retVal = self.updateColumns();
+			
+			runner.assertPropsEqual(1, 'left,width,display', columnDivs[0].style, {left: '100px', width: '50px', display: ''});
+			runner.assertStringsEqual(2, columnDivs[1].style.display, 'none');
+			runner.assertCallCount(3, self.createColumnDivs, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.refs.columnDivs', []);
+
+			var retVal = self.updateColumns();
+			
+			runner.assertCallCount(4, self.createColumnDivs, 1);			
+			
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'getGridColRects',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getGridColRects');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			//
+			
+			mocker.mock('self.refs.dwDom.browser.getWindow()', function(){1/0;}); // Throws exception
+			
+			var retVal = self.getGridColRects();
+			
+			runner.assertEqual(1, retVal.length, 0);
+			
+			//
+			
+			var win = {};						
+			var bodyStyle = {};
+			var gridPropsRec = {};
+			
+			mocker.bindChainRootToObject('win', win);
+			mocker.bindChainRootToObject('bodyStyle', bodyStyle);
+			mocker.bindChainRootToObject('gridPropsRec', gridPropsRec);						
+			
+			mocker.mock('self.refs.dw.activeViewScale', 2);
+			mocker.mock('win.document.body');
+			mocker.mock('self.refs.dwDom.browser.getWindow()', win);
+			mocker.mock('win.getComputedStyle()', bodyStyle);
+			mocker.mock('bodyStyle.paddingLeft', 55);
+			mocker.mock('bodyStyle.width', 990);
+			mocker.mock('self.getGridPropsRec()', gridPropsRec);
+			mocker.mock('gridPropsRec.numCols', 2);
+			mocker.mock('gridPropsRec.colWidth', 68);
+			mocker.mock('gridPropsRec.gutterWidth', 24);
+			mocker.mock('gridPropsRec.allColsWidth', 160);	
+			
+			var retVal = self.getGridColRects();		
+									
+			runner.assertEqual(1, retVal[0].left, 27)
+			runner.assertEqual(2, retVal[0].right, 237)
+			runner.assertEqual(3, retVal[1].left, 311.5)
+			runner.assertEqual(4, retVal[1].right, 522)
+		}
+});
+
+
+runner.addTestCase(
+{
+	name:	'getGridPropsRec',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'getGridPropsRec');
+			
+			mocker.bindChainRootToObject('self', self);
+			
+			mocker.mock('self.getDeviceFromWindowWidth()');
+			mocker.mock('self.refs.styleSheetManager.getGridPropsRec()', 'hello');
+
+			var retVal = self.getGridPropsRec();
+			
+			runner.assertEqual(1, retVal, 'hello');
+			runner.assertParamsPassedIn(2, self.refs.styleSheetManager.getGridPropsRec, [self.getDeviceFromWindowWidth()]);
+		}
+});
+
+runner.addTestCase(
+{
+	name:	'refresh',
+
+	test:	function()
+		{
+			var self = mocker.loadObject(new CssGrids.LayoutDivManipulator(), 'refresh');
+			
+			mocker.bindChainRootToObject('self', self);
+
+			//
+			
+			var itemsToRefresh = '';
+
+			mocker.mock('self.data.gridColRects');			
+			mocker.mock('self.getGridColRects()', []);
+			mocker.mock('self.updateColumns()');
+
+			var retVal = self.refresh(itemsToRefresh);
+			
+			runner.assertCallCount(1, self.updateColumns, 0);
+			
+			//
+
+			var itemsToRefresh = 'grid';
+			
+			mocker.mock('self.getGridColRects()', [{left: 100, right: 200}]);			
+			mocker.mock('self.calcMarginOfError()');
+			mocker.mock('self.syncOverlayDivs()');
+			mocker.mock('self.consts.showProtos', true);
+			mocker.mock('self.proto_positionPi()');		
+			mocker.mock('self.createOverlayDivs()');	
+
+			var retVal = self.refresh(itemsToRefresh);
+			
+			runner.assertCallCount(2, self.updateColumns, 1);			
+			runner.assertCallCount(3, self.calcMarginOfError, 1);
+			runner.assertCallCount(4, self.syncOverlayDivs, 1);
+			runner.assertCallCount(5, self.proto_positionPi, 1);
+			runner.assertCallCount(6, self.createOverlayDivs, 0);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			var itemsToRefresh = 'gridAndUserDivs';						
+
+			mocker.mock('self.flags.shouldRestoreSelection', true);			
+			mocker.mock('self.selectOverlayDivById()');
+			mocker.mock('self.data.selectedUserDivId');
+			mocker.mock('self.positionControls()');			
+			mocker.mock('self.setSelectedUserNode()');
+						
+			var retVal = self.refresh(itemsToRefresh);
+			
+			runner.assertCallCount(7, self.createOverlayDivs, 1);
+			runner.assertFalse(8, self.flags.shouldRestoreSelection);
+			runner.assertParamsPassedIn(9, self.selectOverlayDivById, [self.data.selectedUserDivId]);
+			runner.assertCallCount(12, self.positionControls, 0);
+			runner.assertCallCount(13, self.setSelectedUserNode, 1);
+			
+			//
+			
+			mocker.resetParamsAndCallCounts();
+			
+			mocker.mock('self.flags.shouldRestoreSelection', false);			
+			
+			var retVal = self.refresh(itemsToRefresh);
+			
+			runner.assertCallCount(13, self.positionControls, 1);
+			runner.assertCallCount(14, self.selectOverlayDivById, 0);
+															
+		}
+});
+
+
+runner.addTestCase(
+{	
+	name: 	'Scratch',
+	
+
+
+	test: 	function()  
+			{				
+				var dom = dw.getActiveWindow();
+				var fileUrl = dw.getConfigurationPath() + '/Overlays/CssGrids/temp/dragPreviewSupport.css';
+				dom.attachInternalStyleSheet(fileUrl);
+				dom.refreshViews();
+				//runner.dump(1, fileUrl);
+			} 
+});
+
+runner.addTestCase(
+{	
+	name: 	'Dump Untested Functions',
+	
+	skip:	1,
+
+	test: 	function()  
+			{				
+				runner.dumpUntestedFunctions(new CssGrids.LayoutDivManipulator());
+			} 
+});
+
+
+if ( 0 )
+{
+	var method = 'refresh';
+	
+	prompt	(	'Your new test case:', 
+				runner.testCaseCreator.createTestCase	(	new CssGrids.LayoutDivManipulator(),
+															'self', 
+															method, 
+															'CssGrids.LayoutDivManipulator'
+														)
+			);
+}
+
+</script>
+

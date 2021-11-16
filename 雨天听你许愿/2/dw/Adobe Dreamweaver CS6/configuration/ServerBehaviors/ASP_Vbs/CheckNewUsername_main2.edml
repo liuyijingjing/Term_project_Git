@@ -1,0 +1,37 @@
+<participant>
+	<insertText location="aboveHTML+18"><![CDATA[<%
+' *** Redirect if username exists
+MM_flag = "MM_insert"
+If (CStr(Request(MM_flag)) <> "") Then
+  Dim MM_rsKey
+  Dim MM_rsKey_cmd
+  
+  MM_dupKeyRedirect = "@@dupKeyRedirect@@"
+  MM_dupKeyUsernameValue = CStr(Request.Form("@@frmUsername@@"))
+  Set MM_rsKey_cmd = Server.CreateObject ("ADODB.Command")
+  MM_rsKey_cmd.ActiveConnection = MM_@@connName@@_STRING
+  MM_rsKey_cmd.CommandText = "SELECT @@fldUsername@@ FROM @@tableName@@ WHERE @@fldUsername@@ = ?"
+  MM_rsKey_cmd.Prepared = true
+  MM_rsKey_cmd.Parameters.Append MM_rsKey_cmd.CreateParameter("param1", @@paramType@@, 1, @@paramSize@@, MM_dupKeyUsernameValue) ' @@paramTypeDisplayName@@
+  Set MM_rsKey = MM_rsKey_cmd.Execute
+  If Not MM_rsKey.EOF Or Not MM_rsKey.BOF Then 
+    ' the username was found - can not add the requested username
+    MM_qsChar = "?"
+    If (InStr(1, MM_dupKeyRedirect, "?") >= 1) Then MM_qsChar = "&"
+    MM_dupKeyRedirect = MM_dupKeyRedirect & MM_qsChar & "requsername=" & MM_dupKeyUsernameValue
+    Response.Redirect(MM_dupKeyRedirect)
+  End If
+  MM_rsKey.Close
+End If
+%>]]></insertText>
+	<searchPatterns whereToSearch="directive">
+		<searchPattern paramNames="dupKeyRedirect,frmUsername,connName,fldUsername,tableName,paramType,paramSize" isOptional="false" limitSearch="all"><![CDATA[/' \*\*\* Redirect if username exists(?:\r\n|\r(?!\n)|\n)[ \t]*MM_flag = "MM_insert"(?:\r\n|\r(?!\n)|\n)[ \t]*If \(CStr\(Request\(MM_flag\)\)\s*<>\s*""\) Then(?:\r\n|\r(?!\n)|\n)[ \t]*Dim MM_rsKey(?:\r\n|\r(?!\n)|\n)[ \t]*Dim MM_rsKey_cmd(?:\r\n|\r(?!\n)|\n)[ \t]*(?:\r\n|\r(?!\n)|\n)[ \t]*MM_dupKeyRedirect = "([^\r\n]*?)"(?:\r\n|\r(?!\n)|\n)[ \t]*MM_dupKeyUsernameValue = CStr\(Request\.Form\("([^\r\n]*?)"\)\)(?:\r\n|\r(?!\n)|\n)[ \t]*Set MM_rsKey_cmd = Server\.CreateObject \("ADODB\.Command"\)(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.ActiveConnection = MM_([^\r\n]*?)_STRING(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.CommandText = "SELECT ([^\r\n]*?) FROM ([^\r\n]*?) WHERE [^\r\n]*? = \?"(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.Prepared = true(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.Parameters\.Append MM_rsKey_cmd\.CreateParameter\("param1", ([^\r\n]*?), 1, ([^\r\n]*?), MM_dupKeyUsernameValue\)(?:\s*'[^\r\n]*)?(?:\r\n|\r(?!\n)|\n)[ \t]*Set MM_rsKey = MM_rsKey_cmd\.Execute(?:\r\n|\r(?!\n)|\n)[ \t]*If Not MM_rsKey\.EOF Or Not MM_rsKey\.BOF Then (?:\r\n|\r(?!\n)|\n)[ \t]*' the username was found - can not add the requested username(?:\r\n|\r(?!\n)|\n)[ \t]*MM_qsChar = "\?"(?:\r\n|\r(?!\n)|\n)[ \t]*If \(InStr\(1, MM_dupKeyRedirect, "\?"\) >\s*= 1\) Then MM_qsChar = "&"(?:\r\n|\r(?!\n)|\n)[ \t]*MM_dupKeyRedirect = MM_dupKeyRedirect & MM_qsChar & "requsername=" & MM_dupKeyUsernameValue(?:\r\n|\r(?!\n)|\n)[ \t]*Response\.Redirect\(MM_dupKeyRedirect\)(?:\r\n|\r(?!\n)|\n)[ \t]*End If(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey\.Close(?:\r\n|\r(?!\n)|\n)[ \t]*End If(?=\r\n|\r|\n|%>)/i]]></searchPattern>
+	</searchPatterns>
+	<!--searchPatterns whereToSearch="directive">
+		<searchPattern paramNames="dupKeyRedirect,frmUsername,connName,fldUsername,tableName,paramType,paramSize" isOptional="false" limitSearch="all"><![CDATA[/(?:\r\n|\r(?!\n)|\n)[ \t]*MM_dupKeyRedirect = "([^\r\n]*?)"(?:\r\n|\r(?!\n)|\n)[ \t]*MM_dupKeyUsernameValue = CStr\(Request\.Form\("([^\r\n]*?)"\)\)(?:\r\n|\r(?!\n)|\n)[ \t]*Set MM_rsKey_cmd = Server\.CreateObject \("ADODB\.Command"\)(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.ActiveConnection = MM_([^\r\n]*?)_STRING(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.CommandText = "SELECT ([^\r\n]*?) FROM ([^\r\n]*?) WHERE [^\r\n]*? = \?"(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.Prepared = true(?:\r\n|\r(?!\n)|\n)[ \t]*MM_rsKey_cmd\.Parameters\.Append MM_rsKey_cmd\.CreateParameter\("param1", ([^\r\n]*?), 1, ([^\r\n]*?), MM_dupKeyUsernameValue\)/]]></searchPattern>
+		<searchPattern paramNames="dupKeyRedirect_url" limitSearch="all"><![CDATA[/MM_dupKeyRedirect\s*=\s*"([^\r\n]*?)"/]]></searchPattern>
+	</searchPatterns-->
+	<quickSearch>MM_rsKey_cmd.CreateParameter("param1",</quickSearch>
+</participant>
+
+<!-- participant modified by hand: we should not match the ending of the CreateParameter lines -->

@@ -1,0 +1,40 @@
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated. All rights reserved. -->
+<script type="text/javascript" SRC="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../../Shared/Common/Scripts/DocUtilsClass.js"></script>
+<script type="text/javascript" SRC="../../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="../../Commands/jQMConstants.js"></script>
+
+<script type="text/javascript">
+
+function isDOMRequired() {
+	return true;
+}
+
+function insertObject() {
+	var dom = dw.getDocumentDOM();
+	var docInfo = new DocUtils(dom);
+	
+	//Any locked regions?
+	if (!docInfo.headIsEditable()) {
+        alert(dw.loadString("insertbar/oawidget/headReadOnlyError"));
+    } else {
+		var optsLabel = dw.loadString("Commands/jQM/dummy/generic/options");
+		var optLabel = dw.loadString("Commands/jQM/dummy/generic/option");
+		
+		widgetId = "selectmenu";
+		widgetId = dwscripts.getUniqueId(widgetId);
+		widgetMarkup = '<div mmTranslatedValue="transId=%22'+widgetId+'%22" data-role="fieldcontain"><label for="' + widgetId + '" class="select">' + optsLabel + '</label><select name="' + widgetId + '" id="' + widgetId + '"><option value="option1">' + optLabel + ' 1</option><option value="option2">' + optLabel + ' 2</option><option value="option3">' + optLabel + ' 3</option></select></div>';
+	
+	  return addMarkup();
+	}
+}
+
+</script>
+</head>
+
+<body>
+</body>
+
+</html>

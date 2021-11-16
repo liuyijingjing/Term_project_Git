@@ -1,0 +1,105 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:cfselect, priority:1, selection:exact,hline,vline ,serverModel:Cold Fusion -->
+<!-- Copyright 2002-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Inspectors/cf_select/title" /></title>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/TagEditClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../Shared/UltraDev/Scripts/ssDocManager.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscriptsServer.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscriptsExtData.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/ServerBehaviorClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/TagEditClass.js"></SCRIPT>
+<SCRIPT SRC="../Shared/MM/Scripts/sbUtils.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Controls/Scripts/EditableRecordsetMenu.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<script src="../TagLibraries/CFML/strings.js"></script>
+<script src="../TagLibraries/CFML/loc_strings.js"></script>
+<script src="cf_select.js"></script>
+<link href="_pi_common.css" rel="stylesheet" type="text/css">
+<link href="../Styles/cf_select.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="piBody">
+<img id="piImage" name="piImage" src="Img/select.gif"> 
+
+<div id="idBoxLayer"> 
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="left" height="17" NOWRAP><MMString:loadString id="Inspectors/cf_select/text/Cfselect" /></td>
+    </tr>
+    <tr>
+      <td align="left" nowrap>
+        <input name="theName" type="text" id="theName" onBlur="updateTag('name')">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="topLayer" class="cls_cf_select_div_topLayer">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="right" nowrap>&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Type" />&nbsp;</td>
+      <td align="left" nowrap>
+		<input type="radio" name="theMenu" value="theMenu" id="theMenu" onClick="refreshRadioGroup('theType', 'theMenu'); updateTag('type')">
+	  </td>
+	  <td nowrap>
+		<label for="theMenu"><MMString:loadString id="Inspectors/cf_select/text/Menu" /></label> 
+	  </td>
+      <td align="right" nowrap><MMString:loadString id="Inspectors/cf_select/text/List" /> </td>
+      <td align="left" nowrap><input name="theSize" type="text" id="theSize" class="cls_cf_select_input_theSize" style="margin:3px" onBlur="updateTag('size')">&nbsp;<MMString:loadString id="Inspectors/cf_select/text/lines" /></td>
+      <td align="right" nowrap>&nbsp;<input type="button" name="theListValues" MMString:value="Inspectors/cf_select/button/theListValues/Edit" id="theListValues" onClick="listValues()" class="cls_cf_select_input_theListValues" style="margin-left:5px; "></td>
+      <td align="right" class="cls_cf_select_td1">&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Initally" /> </td>
+      <td rowspan="2" align="left" nowrap><select id="theSelected" name="theSelected" size="3" class="cls_cf_select_select_theSelected" style="margin-left:3px; margin-right:0px;" onChange="updateTag('selected')">
+      </select></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td align="left" nowrap>
+        <input type="radio" name="theList" value="theList" id="theList" onClick="refreshRadioGroup('theType', 'theList'); updateTag('type')">
+	  </td>
+	  <td nowrap>
+		<label for="theList"><MMString:loadString id="Inspectors/cf_select/text/List_1" /></label> 
+      </td>
+      <td colspan="3" nowrap>&nbsp;&nbsp;<input type="checkbox" name="theAllowMultiple" value="theAllowMultiple" id="theAllowMultiple" onClick="updateTag('allowMultiple')">
+		<label for="theAllowMultiple"><MMString:loadString id="Inspectors/cf_select/text/Allow" /></label> 
+      </td>
+
+    </tr>
+  </table>
+</div>
+
+
+<div id="bottomLayer" class="cls_cf_select_div_bottomLayer"> 
+  <table width="100%" border="0" cellpadding="1" cellspacing="0">
+    <tr>
+      <td align="right" nowrap><MMString:loadString id="Inspectors/cf_select/text/Recordset" /> </td>
+      <td nowrap class="cls_cf_select_bottom_td1"><select name="theQuery" editable="true" id="theQuery" class="cls_cf_select_select_theQuery" onChange="updateTag('query')" onBlur="updateTag('query')">
+          <option></option>
+      </select><!--<input name="theQuery" type="text" id="theQuery" style="width:70px" onBlur="updateTag('query')">--></td>
+      <td align="right" nowrap>&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Value" /> </td>
+      <td align="left" valign="middle" nowrap><input name="theValue" type="text" id="theValue" class="cls_cf_select_input_theValue" onBlur="updateTag('value')"></td>
+      <td align="right" valign="middle" nowrap>&nbsp;
+      <MMString:loadString id="Inspectors/cf_select/text/Flash" /></td>
+      <td align="left" valign="middle" nowrap><input name="theHeight" type="text" id="theHeight" class="cls_cf_select_input_theHeight" onBlur="updateTag('height')">
+      <MMString:loadString id="Inspectors/cf_select/text/px" />&nbsp;</td>
+      <td align="right" nowrap colspan="2">&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Message" />
+      <input name="theMessage" type="text" id="theMessage" class="cls_cf_select_input_theMessage" onBlur="updateTag('message')"></td>
+    </tr>
+    <tr>
+      <td align="right" nowrap><MMString:loadString id="Inspectors/cf_select/text/Display" /> </td>
+      <td nowrap><input name="theDisplay" type="text" id="theDisplay" class="cls_cf_select_input_theDisplay" onBlur="updateTag('display')"></td>
+      <td align="right" nowrap>&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Flash_1" /> </td>
+      <td align="left" nowrap><input name="theLabel" type="text" id="theLabel" class="cls_cf_select_input_theLabel" onBlur="updateTag('label')"></td>
+      <td align="right" nowrap>&nbsp;<MMString:loadString id="Inspectors/cf_select/text/Flash_2" /> </td>
+      <td align="left" nowrap><input name="theWidth" type="text" id="theWidth" class="cls_cf_select_input_theWidth" onBlur="updateTag('width')"> <MMString:loadString id="Inspectors/cf_select/text/px" />&nbsp;</td>
+      <td nowrap><input type="checkbox" name="theRequired" value="theRequired" style="margin-left:2px" onClick="updateTag('required')"> <MMString:loadString id="Inspectors/cf_select/checkbox/theRequired/Required" /></td>
+      <td align="left" valign="bottom"><input name="tagEditorButton" type="image" id="tagEditorButton" style="margin-left:10px;" title="Display Tag Editor for cfinput" onClick="displayTagDialog()" src="Img/tagDialog.gif" MMString:alt="Inspectors/cf_select/image/alt/Display"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

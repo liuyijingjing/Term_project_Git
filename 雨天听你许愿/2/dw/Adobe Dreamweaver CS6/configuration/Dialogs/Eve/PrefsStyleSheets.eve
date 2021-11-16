@@ -1,0 +1,135 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsStyleSheets
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_STYLESHEETS",
+                 margin: 5,
+                 name: "$$$/PrefsStylesheets/Title/CssStyles=CSS Styles",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column()
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsStylesheets/Label/WhenCreating=When creating CSS rules:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsStylesheets/Label/UseShorthand=Use shorthand for:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 99,
+                                name: "$$$/PrefsStylesheets/Label/WhenEditing=When editing CSS rules:");
+                }
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsStylesheets/Label/UseShorthand1=Use shorthand:");
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 65,
+                                name: "$$$/PrefsStylesheets/Label/WhenDoubleclicking=When double-clicking in CSS panel:");
+                }
+            }
+
+            column(spacing: 30)
+            {
+                row()
+                {
+                    column(indent: 24,
+                           spacing: 5)
+                    {
+                        checkbox(identifier: "IDC_FONT_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/Font=&Font",
+                                 set_default_focus: true,
+                                 tab_next_node: "IDC_BACKGROUND_CHECK");
+
+                        checkbox(identifier: "IDC_BACKGROUND_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/Background=&Background",
+                                 tab_next_node: "IDC_MARGIN_CHECK");
+
+                        checkbox(identifier: "IDC_MARGIN_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/MarginAnd=&Margin and paddingIDC_MARGIN_CHECK",
+                                 tab_next_node: "IDC_BORDER_CHECK");
+
+                        checkbox(identifier: "IDC_BORDER_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/BorderAnd=Border and border &width",
+                                 tab_next_node: "IDC_LIST_CHECK");
+
+                        checkbox(identifier: "IDC_LIST_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/Liststyle=&List-Style",
+                                 tab_next_node: "IDC_ANT_CHECK");
+
+                        checkbox(identifier: "IDC_ANT_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/Transition=&Transition",
+                                 tab_next_node: "IDC_DONT_MUNGE_RADIO");
+                    }
+                }
+
+                row()
+                {
+                    column()
+                    {
+                        radiogroup(tab_next_node: "IDC_OPEN_WINDOW_CHECK")
+                        {
+                            radio_button(identifier: "IDC_DONT_MUNGE_RADIO",
+                                         name: "$$$/PrefsStylesheets/RadioButton/IfOriginal=If &original used shorthand");
+
+                            radio_button(identifier: "IDC_MUNGE_RADIO",
+                                         name: "$$$/PrefsStylesheets/RadioButton/AccordingTo=&According to settings above");
+                        }
+
+                        checkbox(identifier: "IDC_OPEN_WINDOW_CHECK",
+                                 name: "$$$/PrefsStylesheets/CheckBox/OpenCss=Open &CSS files when modified",
+                                 tab_next_node: "IDC_OPEN_WINDOW_CHECK");
+                    }
+                }
+
+                row()
+                {
+                    column()
+                    {
+                        radiogroup()
+                        {
+                            radio_button(identifier: "IDC_EDIT_IN_DIALOG_RADIO",
+                                         name: "$$$/PrefsStylesheets/RadioButton/EditUsing=&Edit using CSS dialog");
+
+                            radio_button(identifier: "IDC_GOTO_INSPECTOR_RADIO",
+                                         name: "$$$/PrefsStylesheets/RadioButton/EditUsingPropertiesPane=Edit using &Properties pane");
+
+                            radio_button(identifier: "IDC_GOTO_CODE_RADIO",
+                                         name: "$$$/PrefsStylesheets/RadioButton/EditUsingCodeView=Edit using co&de view");
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

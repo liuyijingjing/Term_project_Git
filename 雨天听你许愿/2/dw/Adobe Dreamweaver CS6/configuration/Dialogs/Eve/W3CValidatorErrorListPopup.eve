@@ -1,0 +1,85 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout W_CValidatorErrorListPopup
+{
+    view dialog(center: true,
+                identifier: "IDD_W3C_VALIDATOR_ERROR_FILTER_POPUP",
+                name: "$$$/W3cValidatorErrorFilterPopup/Title/W3cValidator=W3C Validator Hidden Errors and Warnings",
+                spacing: 5)
+    {
+        column()
+        {
+            row(margin: 0,
+                spacing: 5)
+            {
+                list_box(apron_click_deselection: true,
+                         empty_selection: true,
+                         height: 252,
+                         identifier: "IDC_LIST1",
+                         keyboard_selectable: true,
+                         sort: true,
+                         tab_next_node: "IDOK",
+                         vertical_scroll: true,
+                         width: 527);
+            }
+
+            row(child_horizontal: @align_fill,
+                horizontal: @align_fill,
+                spacing: 0)
+            {
+                column(horizontal: @align_left)
+                {
+                    button(action: @do_help,
+                           horizontal: @align_left,
+                           identifier: "ID_HELP",
+                           name: "$$$/W3cValidatorErrorFilterPopup/Button/Help=Help",
+                           tab_next_node: "ID_REMOVE");
+                }
+
+                column(child_horizontal: @align_right,
+                       horizontal: @align_right)
+                {
+                    row(child_horizontal: @align_right,
+                        horizontal: @align_right,
+                        spacing: 5)
+                    {
+                        button(action: @do_action,
+                               horizontal: @align_right,
+                               identifier: "ID_REMOVE",
+                               name: "$$$/W3cValidatorErrorFilterPopup/Button/Remove=Remove",
+                               tab_next_node: "IDC_LIST1");
+
+                        button(action: @do_cancel,
+                               horizontal: @align_right,
+                               identifier: "IDCANCEL",
+                               name: "$$$/W3cValidatorErrorFilterPopup/Button/Cancel=Cancel",
+                               tab_next_node: "ID_HELP");
+
+                        button(action: @do_ok,
+                               default: true,
+                               horizontal: @align_right,
+                               identifier: "IDOK",
+                               name: "$$$/W3cValidatorErrorFilterPopup/Button/Ok=OK",
+                               tab_next_node: "IDCANCEL");
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout MultiCSSClassSelection
+{
+    view dialog(margin: 0,
+                name: "$$$/Multiclass/Dialog/Title",
+                spacing: 5)
+    {
+        column(margin: 20)
+        {
+            row()
+            {
+                static_text(name: "$$$/Multiclass/Dialog/Label/Listbox");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_fill,
+                horizontal: @align_fill)
+            {
+                list(height: 200,
+                     horizontal: @align_fill,
+                     identifier: "ID_CSSClassesList_ListCtrl",
+                     useCheckboxes: true);
+            }
+
+            row()
+            {
+                static_text(name: "$$$/Multiclass/Dialog/Label/Editbox");
+            }
+
+            row(horizontal: @align_fill)
+            {
+                edit_text(characters: 40,
+                          max_characters: 1000,
+                          horizontal: @align_fill,
+                          identifier: "ID_CSSClassesApplied_AppliedEditText");
+            }
+
+            row()
+            {
+                static_text(name: "$$$/vertical_spacer= ");
+            }
+
+            row(horizontal: @align_fill)
+            {
+                button(action: @do_help,
+			name: "$$$/Multiclass/Dialog/Button/Help");
+
+                row(horizontal: @align_right)
+                {
+                    button(action: @do_ok,
+                           default: true,
+                           identifier: "ID_MultiCSSClassSelection_OKbutton",
+                           name: "$$$/Multiclass/Dialog/Button/OK");
+
+                    button(action: @do_cancel,
+                           cancel: true,
+                           identifier: "ID_MultiCSSClassSelection_Cancelbutton",
+                           name: "$$$/Multiclass/Dialog/Button/Cancel");
+                }
+            }
+        }
+    }
+}

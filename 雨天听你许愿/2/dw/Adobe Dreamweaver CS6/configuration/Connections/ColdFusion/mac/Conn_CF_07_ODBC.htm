@@ -1,0 +1,68 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!--  Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script language="JavaScript">
+var ISMAC=false;
+</script>
+
+<TITLE><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/title" /></TITLE>
+
+<SCRIPT SRC="../../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/connectionCmn.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/sbManager.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/basicAPI.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/connectionAPI.js"></SCRIPT>
+<SCRIPT SRC="../AdvancedSettings/Conn_CF_common_Adv.js"></SCRIPT>
+<SCRIPT SRC="../Connection_php_adodb.js"></SCRIPT>
+<SCRIPT SRC="Conn_CF_07_ODBC.js"></SCRIPT>
+<link href="../../../Styles/Conn_CF_07_ODBC_mac.css" rel="stylesheet" type="text/css" />
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+
+<form NAME="theForm" ACTION="">
+  <table border=0 class="cls_Conn_CF_07_ODBC_table">
+    <tr valign="baseline">
+      <td class="cls_Conn_CF_07_ODBC_td" align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/CF" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_07_ODBC_input_ConnectionName" name="ConnectionName">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/ODBC" /></td>
+      <td align="left"><input name="ODBCDSN" type="text" id="ODBCDSN" class="cls_Conn_CF_07_ODBC_input_ODBCDSN">
+</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/Trusted" /></td>
+      <td align="left"><input name="TrustedConnection" type="checkbox" id="TrustedConnection" value="checkbox"></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/Username" /></td>
+      <td align="left">
+        <input name="UserName" type="text" class="cls_Conn_CF_07_ODBC_input_UserName" value="system">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/Password" /></td>
+      <td align="left">
+<input name="Password" type="password" class="cls_Conn_CF_07_ODBC_input_Password" maxlength="16"> <FONT class=label><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/16character" /></FONT>
+
+
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" valign="top"><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_07_ODBC/text/Description" /></td>
+      <td align="left"><textarea name="Description" class="cls_Conn_CF_07_ODBC_textarea_Description" ></textarea>
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="3" align="left" valign="top"><input name="AdvancedButton" type="submit" id="advanced" onClick="clickedAdvanced();" MMString:value="Connections/ColdFusion/mac/Conn_CF_07_ODBC/submit/advanced/Show" class="cls_Conn_CF_07_ODBC_input_advanced"></td>
+    </tr>
+  </table>
+  <div name="AdvancedSettingsDiv"></div>
+</form>
+</BODY>
+</HTML>

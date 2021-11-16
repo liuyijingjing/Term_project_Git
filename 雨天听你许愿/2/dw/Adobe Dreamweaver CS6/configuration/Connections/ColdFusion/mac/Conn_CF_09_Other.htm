@@ -1,0 +1,75 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!--  Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script language="JavaScript">
+var ISMAC=false;
+</script>
+
+<TITLE><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/title" /></TITLE>
+
+<SCRIPT SRC="../../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/connectionCmn.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/sbManager.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/basicAPI.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/connectionAPI.js"></SCRIPT>
+<SCRIPT SRC="../AdvancedSettings/Conn_CF_common_Adv.js"></SCRIPT>
+<SCRIPT SRC="../Connection_php_adodb.js"></SCRIPT>
+<SCRIPT SRC="Conn_CF_09_Other.js"></SCRIPT>
+<link href="../../../Styles/Conn_CF_09_Other_mac.css" rel="stylesheet" type="text/css" />
+
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+
+<form NAME="theForm" ACTION="">
+  <table border=0 class="cls_Conn_CF_09_Other_table">
+    <tr valign="baseline">
+      <td class="cls_Conn_CF_09_Other_td" align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/CF" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_09_Other_input_ConnectionName" name="ConnectionName">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/JDBC" /></td>
+      <td align="left"><input type="text" class="cls_Conn_CF_09_Other_input_JDBC_URL" name="JDBC_URL">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/Driver" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_09_Other_input_DriverClass" name="DriverClass">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/Driver_1" /></td>
+      <td align="left"><input type="text" class="cls_Conn_CF_09_Other_input_DriverName" name="DriverName"></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/Username" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_09_Other_input_UserName" name="UserName">
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/Password" /></td>
+      <td align="left">
+<input name="Password" type="password" class="cls_Conn_CF_09_Other_input_Password" maxlength="16"> <FONT class=label><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/16character" /></FONT>
+
+
+      </td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" valign="top"><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_09_Other/text/Description" /></td>
+      <td align="left"><textarea name="Description" class="cls_Conn_CF_09_Other_textarea_Description" ></textarea>
+      </td>
+    </tr>
+    <tr align="left" valign="baseline">
+      <td colspan="3" valign="top"><input name="AdvancedButton" type="submit" id="advanced" onClick="clickedAdvanced();" MMString:value="Connections/ColdFusion/mac/Conn_CF_09_Other/submit/advanced/Show" class="cls_Conn_CF_09_Other_input_advanced"></td>
+    </tr>
+  </table>
+  <div name="AdvancedSettingsDiv"></div>
+</form>
+</BODY>
+</HTML>

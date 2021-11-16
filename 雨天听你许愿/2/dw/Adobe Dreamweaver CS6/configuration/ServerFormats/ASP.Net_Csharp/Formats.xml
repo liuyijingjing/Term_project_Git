@@ -1,0 +1,38 @@
+<formats xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" id="DWMenu_Format_ASPNET_C#_1">
+	<separator />
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DATETIME/menu/name" id="DWMenu_Format_ASPNET_C#_1_DATETIME">
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT2/format/title"					expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;d&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT2"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT3/format/title"	expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;D&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT3"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT4/format/title"					expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;m&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT4"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT5/format/title"				expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;y&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT5"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT7/format/title"						expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;t&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT7"/>
+		<format	file="DateTime"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_DT8/format/title"					expression="<%#\s*DateTime\.Parse\(([\s\S]+)\)\.ToString\(&quot;T&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_DT8"/>
+	</menu>
+	<separator />
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_NUMBER/menu/name" id="DWMenu_Format_ASPNET_C#_1_NUMBER">
+		<format	file="Number"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_NO1/format/title"						expression="<%#\s*Double\.Parse\(([\s\S]+)\)\.ToString\(&quot;F&quot;\)\s*%>"					id="DWMenu_Format_ASPNET_C#_1_NO1"/>
+		<format	file="Number"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_NO2/format/title"							expression="<%#\s*Math\.Round\(Double\.Parse\(([\s\S]+)\)\)\.ToString\(&quot;F&quot;\)\s*%>"		id="DWMenu_Format_ASPNET_C#_1_NO2"/>
+	</menu>
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_CURRENCY/menu/name" id="DWMenu_Format_ASPNET_C#_1_CURRENCY">
+		<format	file="Currency"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_CURRENCY1/format/title"					expression="<%#\s*Double\.Parse\(([\s\S]+)\)\.ToString\(&quot;C&quot;\)\s*%>"					id="DWMenu_Format_ASPNET_C#_1_CURRENCY1"/>
+	</menu>
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_PERCENT/menu/name" id="DWMenu_Format_ASPNET_C#_1_PERCENT">
+		<format	file="Percent"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_PERCENT1/format/title"	expression="<%#\s*Double\.Parse\(([\s\S]+)\)\.ToString\(&quot;P&quot;\)\s*%>"					id="DWMenu_Format_ASPNET_C#_1_PERCENT1"/>
+		<format	file="Percent"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_PERCENT2/format/title"		expression="<%#\s*Double\.Parse\(([\s\S]+)\)\.ToString\(&quot;P0&quot;\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_PERCENT2"/>
+	</menu>
+	<separator />
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_ALPHACASE/menu/name" id="DWMenu_Format_ASPNET_C#_1_ALPHACASE">
+		<format	file="AlphaCase"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_CASELOWER/format/title"	expression="<%#\s*([\s\S]+)\.ToLower\(\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_CASELOWER"/>
+		<format	file="AlphaCase"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_CASEUPPER/format/title"	expression="<%#\s*([\s\S]+)\.ToUpper\(\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_CASEUPPER"/>
+	</menu>
+	<menu MMString:name = "ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_TRIM/menu/name" id="DWMenu_Format_ASPNET_C#_1_TRIM">
+		<format	file="Trim"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_TRIMLEFT/format/title"		expression="<%#\s*([\s\S]+)\.TrimStart\(\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_TRIMLEFT"/>
+		<format	file="Trim"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_TRIMRIGHT/format/title"	expression="<%#\s*([\s\S]+)\.TrimEnd\(\)\s*%>"		id="DWMenu_Format_ASPNET_C#_1_TRIMRIGHT"/>
+		<format	file="Trim"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_TRIMBOTH/format/title"		expression="<%#\s*([\s\S]+)\.Trim\(\)\s*%>"			id="DWMenu_Format_ASPNET_C#_1_TRIMBOTH"/>
+	</menu>
+	<separator />
+	<format	file="Encode"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_URLENCODE/format/title"	expression="<%#\s*Server\.UrlEncode\(([\s\S]+)\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_URLENCODE"/>
+	<format	file="Encode"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_HTMLENCODE/format/title"	expression="<%#\s*Server\.HtmlEncode\(([\s\S]+)\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_HTMLENCODE"/>
+	<separator />
+	<format	file="Map"	MMString:title="ServerFormats/ASP_Net_Csharp/Formats/DWMenu_Format_ASPNET_C#_1_MAPPATH/format/title"	expression="<%#\s*Server\.MapPath\(([\s\S]+)\)\s*%>"	id="DWMenu_Format_ASPNET_C#_1_MAPPATH"/>
+</formats>

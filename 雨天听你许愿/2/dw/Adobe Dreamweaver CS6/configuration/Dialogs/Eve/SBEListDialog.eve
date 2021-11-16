@@ -1,0 +1,91 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SBEListDialog
+{
+    view dialog(identifier: "IDD_SBE_LST",
+                name: "$$$/SbeLst/Title/EditServer=Edit Server Behaviors",
+                spacing: 5)
+    {
+        row()
+        {
+            column(indent: 2,
+                   spacing: 13)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_SERVER_MODEL_LABEL",
+                            name: "$$$/SbeLst/Label/DocumentType=Document type:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_SERVER_BEHAVIOR_LABEL",
+                            name: "$$$/SbeLst/Label/ServerBehaviors=Server behaviors:");
+            }
+
+            column()
+            {
+                popup(horizontal: @align_fill,
+                      identifier: "IDC_SBE_LST_MODEL_LIST",
+                      include_custom_item: false,
+                      sort: true,
+                      tab_next_node: "IDC_SBE_LST_LIST",
+                      vertical_scroll: true);
+
+                list_box(apron_click_deselection: true,
+                         empty_selection: true,
+                         height: 127,
+                         identifier: "IDC_SBE_LST_LIST",
+                         keyboard_selectable: true,
+                         sort: true,
+                         tab_next_node: "IDC_SBE_LST_OPEN",
+                         vertical_scroll: true,
+                         width: 241);
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   vertical: @align_fill)
+            {
+                button(action: @do_action,
+                       default: true,
+                       identifier: "IDC_SBE_LST_OPEN",
+                       name: "$$$/SbeLst/Button/Edit=Edit...",
+                       tab_next_node: "IDC_SBE_LST_DELETE");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_SBE_LST_DELETE",
+                       name: "$$$/SbeLst/Button/Remove=Remove",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SbeLst/Button/Close=Close",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       identifier: "ID_HELP",
+                       name: "$$$/SbeLst/Button/Help=Help",
+                       tab_next_node: "IDC_SBE_LST_MODEL_LIST",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

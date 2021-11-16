@@ -1,0 +1,21 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Commands/Layout_Cell/title" /></TITLE>
+<SCRIPT LANGUAGE="javascript">
+function doCreate()
+{
+    if (MM.layoutBoxArgsWidth == 0 && MM.layoutBoxArgsHeight == 0)
+	    return;
+
+    var doc = dw.getDocumentDOM();
+    if (doc)
+        doc.createLayoutCell(MM.layoutBoxArgsLeft, MM.layoutBoxArgsTop, MM.layoutBoxArgsWidth, MM.layoutBoxArgsHeight);
+}
+</SCRIPT>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY onLoad="doCreate()">
+</BODY>
+</HTML>

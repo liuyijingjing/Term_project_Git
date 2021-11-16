@@ -1,0 +1,82 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!--  Copyright 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<script language="JavaScript">
+var ISMAC=false;
+</script>
+
+<TITLE><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/title" /></TITLE>
+
+<SCRIPT SRC="../../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/connectionCmn.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/UltraDev/Scripts/sbManager.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/basicAPI.js"></SCRIPT>
+<SCRIPT SRC="../../../Shared/RDSAPI/connectionAPI.js"></SCRIPT>
+<SCRIPT SRC="../AdvancedSettings/Conn_CF_common_Adv.js"></SCRIPT>
+<SCRIPT SRC="../Connection_php_adodb.js"></SCRIPT>
+<SCRIPT SRC="Conn_CF_01_DB2.js"></SCRIPT>
+<link href="../../../Styles/Conn_CF_01_DB2_mac.css" rel="stylesheet" type="text/css" />
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+
+<form NAME="theForm" ACTION="">
+  <table border=0 class="cls_Conn_CF_01_DB2_table">
+    <tr valign="baseline">
+      <td class="cls_Conn_CF_01_DB2_td" align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/CF" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_01_DB2_input_ConnectionName" name="ConnectionName">
+      </td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Database" /></td>
+      <td align="left"><input type="text" class="cls_Conn_CF_01_DB2_input_DatabaseName" name="DatabaseName">
+      </td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Server" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_01_DB2_input_HostName" name="HostName">
+      </td>
+      <td align="right"><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Port" /></td>
+      <td align="left"><input name="Port" type="text" id="Port" class="cls_Conn_CF_01_DB2_input_Port" value="50000" maxlength="10"></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Username" /></td>
+      <td align="left">
+        <input type="text" class="cls_Conn_CF_01_DB2_input_UserName" name="UserName">
+      </td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Password" /></td>
+      <td align="left" nowrap>
+<input name="Password" type="password" class="cls_Conn_CF_01_DB2_input_Password" maxlength="16"> <FONT class=label><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/16character" /></FONT>
+
+
+      </td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" valign="top"><MMString:loadString id="Connections/ColdFusion/mac/Conn_CF_01_DB2/text/Description" /></td>
+      <td align="left" valign="baseline"><textarea name="Description" class="cls_Conn_CF_01_DB2_textarea_Description" ></textarea>
+      </td>
+      <td align="left" valign="baseline">&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="3" align="left" valign="top"><input name="AdvancedButton" type="submit" id="advanced" onClick="clickedAdvanced();" MMString:value="Connections/ColdFusion/mac/Conn_CF_01_DB2/submit/advanced/Show" class="cls_Conn_CF_01_DB2_input_advanced"></td>
+      <td align="left">&nbsp;</td>
+    </tr>
+  </table>
+  <div name="AdvancedSettingsDiv"></div></form>
+</BODY>
+</HTML>

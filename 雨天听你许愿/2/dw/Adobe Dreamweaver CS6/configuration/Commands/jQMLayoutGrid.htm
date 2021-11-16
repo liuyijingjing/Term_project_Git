@@ -1,0 +1,47 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 11.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated.  All rights reserved. -->
+<title><MMString:loadString id="Commands/jQM/layoutgrid/title" /></title>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script type="text/javascript" src="../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="jQMLayoutGrid.js"></script>
+<script type="text/javascript" src="jQMConstants.js"></script>
+</head>
+
+<body onLoad="init()">
+	<form>
+		<table border="0" cellpadding="2" cellspacing="4">
+			<tr>
+				<td align="right" nowrap><MMString:loadString id="Commands/jQM/layoutgrid/dialog/numRows" /></td>
+				<td>
+					<select id="rows">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="right" nowrap><MMString:loadString id="Commands/jQM/layoutgrid/dialog/numCols" /></td>
+				<td>
+					<select id="columns">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+			</tr>   
+		</table>
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<participant>
+	<insertText location="aboveHTML+20"><![CDATA[<@ if (@@needIIFInPage@@) @><%
+' IIf implementation
+Function MM_IIf(condition, ifTrue, ifFalse)
+  If condition = "" Then
+    MM_IIf = ifFalse
+  Else
+    MM_IIf = ifTrue
+  End If
+End Function
+%><@ endif @>]]></insertText>
+	<searchPatterns whereToSearch="directive">
+		<searchPattern paramNames="" isOptional="false" limitSearch="all"><![CDATA[/(?:' IIf implementation(?:\r\n|\r(?!\n)|\n)[ \t]*Function MM_IIf\(condition, ifTrue, ifFalse\)(?:\r\n|\r(?!\n)|\n)[ \t]*If condition = "" Then(?:\r\n|\r(?!\n)|\n)[ \t]*MM_IIf = ifFalse(?:\r\n|\r(?!\n)|\n)[ \t]*Else(?:\r\n|\r(?!\n)|\n)[ \t]*MM_IIf = ifTrue(?:\r\n|\r(?!\n)|\n)[ \t]*End If(?:\r\n|\r(?!\n)|\n)[ \t]*End Function)(?=\r\n|\r|\n|%>)/i]]></searchPattern>
+	</searchPatterns>
+	<quickSearch>MM_IIf(condition,</quickSearch>
+</participant>

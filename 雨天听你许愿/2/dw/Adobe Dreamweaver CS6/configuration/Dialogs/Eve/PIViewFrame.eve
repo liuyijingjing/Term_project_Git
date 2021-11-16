@@ -1,0 +1,165 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+layout PIViewFrame
+{
+    view subview(grow: false,
+                 height: 100,
+                 identifier: "IDD_PROP_INSPECT_FRAME",
+                 margin: 0,
+                 resizeChildren: false,
+                 shouldConstrain: true,
+                 spacing: 5,
+                 width: 700)
+    {
+        column(margin: 3,
+               spacing: 4)
+        {
+            row(indent: 45,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 6)
+                {
+                    static_text(font_size: 10,
+                                identifier: "IDC_STATIC_FRAMENAME",
+                                name: "$$$/PropInspectFrame/Label/FrameName=Frame name");
+
+                    edit_text(characters: 8,
+                              identifier: "IDC_EDIT_FRAMENAME",
+                              tab_next_node: "IDC_EDIT_SRC");
+                }
+
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    row(indent: 45)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_SRC",
+                                    name: "$$$/PropInspectFrame/Label/Src=&Src");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_SCROLLING",
+                                name: "$$$/PropInspectFrame/Label/Scroll=Scr&oll");
+                }
+
+                column(spacing: 3)
+                {
+                    row(spacing: 2)
+                    {
+                        edit_text(characters: 30,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_EDIT_SRC",
+                                  tab_next_node: "IDC_BUTTON_BROWSE");
+
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BUTTON_LINK_HREF",
+                                          width: 18);
+
+                        ownerdrawn_button(height: 16,
+                                          identifier: "IDC_BUTTON_BROWSE",
+                                          indent: 2,
+                                          name: "$$$/PropInspectFrame/IconButton/BrowseFor=Browse for file",
+                                          tab_next_node: "IDC_COMBO_BORDERS",
+                                          width: 22);
+                    }
+
+                    row()
+                    {
+                        popup(identifier: "IDC_COMBO_SCROLLING",
+                              include_custom_item: false,
+                              is_searchable: false,
+                              tab_next_node: "IDC_CHECK_NORESIZE",
+                              vertical_scroll: true);
+
+                        checkbox(identifier: "IDC_CHECK_NORESIZE",
+                                 name: "$$$/PropInspectFrame/CheckBox/NoResize=No &resize",
+                                 tab_next_node: "IDC_BORDERCOLOR");
+                    }
+                }
+
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    row(horizontal: @align_right)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_LABEL_BORDERS",
+                                    name: "$$$/PropInspectFrame/Label/Borders=&Borders");
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_BORDERCOLOR",
+                                name: "$$$/PropInspectFrame/Label/BorderColor=Border &color");
+                }
+
+                column(spacing: 3)
+                {
+                    popup(identifier: "IDC_COMBO_BORDERS",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          tab_next_node: "IDC_COMBO_SCROLLING",
+                          vertical_scroll: true);
+
+                    row(spacing: 3)
+                    {
+                        ownerdrawn_button(height: 18,
+                                          identifier: "IDC_BORDERCOLOR",
+                                          indent: 2,
+                                          name: "$$$/PropInspectFrame/IconButton/BoderColor=Boder color",
+                                          tab_next_node: "IDC_EDIT_HEXCOLOR",
+                                          width: 21);
+
+                        edit_text(characters: 8,
+                                  identifier: "IDC_EDIT_HEXCOLOR",
+                                  tab_next_node: "IDC_EDIT_WIDTH");
+                    }
+                }
+            }
+
+            row(indent: 110,
+                spacing: 5)
+            {
+                column(indent: 2,
+                       spacing: 12)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_WIDTH",
+                                name: "$$$/PropInspectFrame/Label/MarginWidth=Margin &width");
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_HEIGHT",
+                                name: "$$$/PropInspectFrame/Label/MarginHeight=Margin &height");
+                }
+
+                column(spacing: 4)
+                {
+                    edit_text(characters: 4,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_WIDTH",
+                              tab_next_node: "IDC_EDIT_HEIGHT");
+
+                    edit_text(characters: 4,
+                              horizontal: @align_center,
+                              identifier: "IDC_EDIT_HEIGHT");
+                }
+            }
+        }
+    }
+}

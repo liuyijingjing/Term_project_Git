@@ -1,0 +1,44 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 9.0//pi">
+<!-- tag:META,priority:5,selection:within,vline,hline -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+
+<head>
+<!-- Copyright 2000, 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<title><MMString:loadString id="Inspectors/meta/title" /></title>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT LANGUAGE="javascript" SRC="_pi_common.js"></SCRIPT>
+<script language="javascript" src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<script src="meta.js"></script>
+<link href="../Styles/meta.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<span id="label" class="cls_meta_span_label" style="position:absolute; z-index:16; "><MMString:loadString id="Inspectors/meta/text/Meta" /></span><span id="image" class="cls_meta_span_image" style="position:absolute; z-index:16; "> 
+<img src="http.gif" width="36" height="36" name="metaImage">
+</span> 
+<span id="topLayer" class="cls_meta_span_topLayer" style="position:absolute; z-index:1; "> 
+<table border="0" cellpadding="2" cellspacing="1">
+  <tr> 
+    <td align="right" valign="baseline"><MMString:loadString id="Inspectors/meta/text/Attribute" /></td>
+    <td valign="baseline" align="left"> <select name="metaAttribute" onChange="setMetaTag()">
+        <option value="name"><MMString:loadString id="Inspectors/meta/option/name/Name" /></option>
+        <option value="http-equiv"><MMString:loadString id="Inspectors/meta/option/http-equiv/HTTPequiv" /></option>
+      </select> </td>
+    <td valign="baseline" align="right"><MMString:loadString id="Inspectors/meta/text/Value" /></td>
+    <td align="left" valign="baseline"> <input type="text" name="metaValue" onBlur="setMetaTag()" class="cls_meta_input_metaValue" value=""> 
+    </td>
+  </tr>
+  <tr> 
+    <td valign="baseline" align="right"><MMString:loadString id="Inspectors/meta/text/Content" /></td>
+    <td colspan="3" align="left" valign="baseline">
+<input type="text" name="metaContent" size="48" onBlur="setMetaTag()" class="cls_meta_input_metaContent" value="">
+    </td>
+  </tr>
+</table>
+</span>
+<span id="tButtonSpan" class="cls_meta_span_tButtonSpan" style="position:absolute; z-index:17; ">
+<input type="image" border="0" src="T4PI.gif" width="15" height="15" onClick="launchQuickTagEditor( true )" name="tButtonImage">
+</span>
+</body>
+</html>

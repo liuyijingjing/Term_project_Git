@@ -1,0 +1,120 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsPreviewBrowsers
+{
+    view subview(grow: false,
+                 identifier: "IDD_PREFS_PREVIEW_BROWSERS",
+                 margin: 5,
+                 name: "$$$/PrefsPreviewBrowsers/Title/PreviewIn=Preview in Browser",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 183)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsPreviewBrowsers/Label/Browsers=Browsers:",
+                            visible: false);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/PrefsPreviewBrowsers/Label/Options=Options:");
+            }
+
+            column()
+            {
+                row(horizontal: @align_fill,
+                    spacing: 5)
+                {
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_BROWSER_LAUNCH_ADD",
+                                      name: "$$$/PrefsPreviewBrowsers/IconButton/AddItem=Add item",
+                                      set_default_focus: true,
+                                      tab_next_node: "IDC_BROWSER_LAUNCH_REMOVE",
+                                      width: 21);
+
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_BROWSER_LAUNCH_REMOVE",
+                                      name: "$$$/PrefsPreviewBrowsers/IconButton/RemoveItem=Remove item",
+                                      tab_next_node: "IDC_BROWSER_LAUNCH_APPLY_CHANGES",
+                                      width: 21);
+
+                    button(action: @do_action,
+                           horizontal: @align_right,
+                           identifier: "IDC_BROWSER_LAUNCH_APPLY_CHANGES",
+                           name: "$$$/PrefsPreviewBrowsers/Button/Edit=&Edit...",
+                           tab_next_node: "IDC_BROWSERS_LIST");
+                }
+
+                row()
+                {
+                    list_box(apron_click_deselection: true,
+                             empty_selection: true,
+                             extendedSel: true,
+                             height: 108,
+                             horizontal_scroll: true,
+                             identifier: "IDC_BROWSERS_LIST",
+                             keyboard_selectable: true,
+                             set_default_focus: true,
+                             sort: true,
+                             tab_next_node: "IDC_PRIMARY",
+                             vertical_scroll: true,
+                             width: 334.5);
+                }
+
+                row()
+                {
+                    column()
+                    {
+                        static_text(identifier: "IDC_STATIC",
+                                    name: "$$$/PrefsPreviewBrowsers/Label/Defaults=Defaults:");
+                    }
+
+                    column()
+                    {
+                        checkbox(identifier: "IDC_PRIMARY",
+                                 name: "$$$/PrefsPreviewBrowsers/CheckBox/PrimaryBrowser=&Primary browser",
+                                 tab_next_node: "IDC_SECONDARY");
+
+                        checkbox(identifier: "IDC_SECONDARY",
+                                 name: "$$$/PrefsPreviewBrowsers/CheckBox/SecondaryBrowser=&Secondary browser",
+                                 tab_next_node: "IDC_PREVIEW_USINGTEMP");
+                    }
+                }
+
+                row()
+                {
+                    checkbox(horizontal: @align_center,
+                             identifier: "IDC_PREVIEW_USINGTEMP",
+                             name: "$$$/PrefsPreviewBrowsers/CheckBox/PreviewUsing=Preview using &temporary file");
+                }
+
+                row()
+                {
+                    static_text(characters: 22,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/PrefsPreviewBrowsers/Label/SelectingThis=Selecting this option will create a temporary copy for preview and server debugging. To update the document directly please uncheck this option. Note that deselecting this option does not apply to previewing XSLT, which always use a temporary file.");
+                }
+            }
+        }
+    }
+}

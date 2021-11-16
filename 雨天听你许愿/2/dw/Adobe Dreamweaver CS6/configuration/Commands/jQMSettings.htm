@@ -1,0 +1,84 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 11.0//dialog">
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2010 Adobe Systems Incorporated.  All rights reserved. -->
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/RadioGroupClass.js"></script>
+<script type="text/javascript" src="../Shared/jQuery/jQueryMobile/jQueryMobileUtils.js"></script>
+<script type="text/javascript" src="jQMSettings.js"></script>
+<script type="text/javascript" src="jQMConstants.js"></script>
+<link href="../fields.css" rel="stylesheet" type="text/css" />
+<title><MMString:loadString id="Commands/jQM/files/title" /></title>
+</head>
+
+<body onLoad="jQM.Settings.initializeUI()">
+	<form name="theForm">
+		<table>
+			<tr>
+			  <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/jQM/files/linktype" /></td>
+			  <td id="srcOpts" valign="baseline" nowrap>
+				<label>
+				  <input align="right" name="linkTojQuery" type="radio" id="linkTojQuery_1" value="radio" checked>
+				  <MMString:loadString id="Commands/jQM/files/remote" /></label>
+				<br>
+				<label>
+				  <input align="right" name="linkTojQuery" type="radio" id="linkTojQuery_0" value="radio">
+				  <MMString:loadString id="Commands/jQM/files/local" /></label>
+				<br>
+			  </td>
+			</tr>
+            
+            <tr>
+			  <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/jQM/files/csstype" /></td>
+			  <td id="cssOpts" valign="baseline" nowrap>
+				<label>
+				  <input align="right" name="jQMCSSType" type="radio" id="jQMCSSSplit" value="radio" checked>
+				  <MMString:loadString id="Commands/jQM/files/split" /></label>
+				<br>
+				<label>
+				  <input align="right" name="jQMCSSType" type="radio" id="jQMCSSAll" value="radio">
+				  <MMString:loadString id="Commands/jQM/files/combined" /></label>
+				<br>
+			  </td>
+			</tr>
+            
+            <tr>
+            	<td align="right" nowrap><span id="jqLibSourceLabel"><MMString:loadString id="Commands/jQM/files/libsrc" /></span></td>
+                <td><input id="jQuerySourceLibrary" type="text" class="xxlargeTField" disabled="true"></td>
+				<td><input type="image" id="jQueryBrowse" MMString:alt="Objects/Common/Hyperlink/image/alt/Browse" src="../Shared/MM/Images/folder.gif"></td>
+			</tr>
+			<tr>
+				<hr />
+			</tr>
+			<tr>
+				<td align="right" nowrap><MMString:loadString id="Commands/jQM/files/jqmJS" />:</td>
+				<td><input name="jQMjs" type="text" id="jqmjsURL" class="xxlargeTField"></td>
+				
+			</tr>
+			<tr>
+				<td align="right" nowrap><MMString:loadString id="Commands/jQM/files/jqmCSS" />:</td>
+				<td>
+				  <input name="jQMcss" type="text" id="jqmcssURL" class="xxlargeTField"></td>
+			</tr>
+			<tr>
+				<td align="right" nowrap><MMString:loadString id="Commands/jQM/files/jquery" />:</td>
+				<td>
+				  <input name="jQuery" type="text" id="jqueryURL" class="xxlargeTField"></td>
+			</tr>
+			<tr>
+            	<td align="right" nowrap><span id="themeLabel"><MMString:loadString id="Commands/jQM/files/jqmTheme" />:</span></td>
+				<td><input id="jQMThemeInput" type="text" class="xxlargeTField" disabled="true" /></td>
+				<td><input type="image" id="themeBrowse" MMString:alt="Objects/Common/Hyperlink/image/alt/Browse" src="../Shared/MM/Images/folder.gif"></td>
+			</tr>
+            <tr><td></td></tr>
+            <tr>
+            	<td></td>
+            	<td nowrap><a MMString:href="Commands/jQM/files/updateLink"><MMString:loadString id="Commands/jQM/files/update" /></a></td>
+            </tr>
+		</table>
+	</form>
+</body>
+
+</html>

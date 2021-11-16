@@ -1,0 +1,87 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout Sharpen
+{
+    interface:
+        sharpenCell : 0;
+        
+        
+    view dialog(grow: false,
+                identifier: "ID_Sharpen",
+                margin: 0,
+                name: "$$$/Sharpen/Title/Sharpen=Sharpen",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                display_text(identifier: "ID_Sharpen_Sharpen",
+                             name: "$$$/Sharpen/Label/Sharpen=Sharpen");
+            }
+
+            row(child_vertical: @align_center,
+                indent: 10,
+                spacing: 5)
+            {
+                slider(bind: @sharpenCell,
+                       min_value : 0,
+                       max_value : 10,
+                       identifier: "ID_Sharpen_SliderSharpen",
+                       interval: 1,
+                       minLength: 181.5,
+                       segments: "",
+                       slider_point: @down);
+
+                dva_edit_number(bind: @sharpenCell,
+                                identifier: "ID_Sharpen_EditSharpen",
+                                max_value: 999999,
+                                min_value: -999999);
+            }
+        }
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5)
+        {
+            button(action: @do_ok,
+                   default: true,
+                   identifier: "ID_Sharpen_Okbutton",
+                   name: "$$$/Sharpen/Button/Ok=OK",
+                   set_default_focus: true);
+
+            button(action: @do_cancel,
+                   default: false,
+                   identifier: "ID_Sharpen_Cancelbutton",
+                   name: "$$$/Sharpen/Button/Cancel=Cancel");
+
+            button(action: @do_help,
+                   default: false,
+                   identifier: "ID_Sharpen_ButtonHelp",
+                   name: "$$$/Sharpen/Button/Help=Help");
+
+            checkbox(identifier: "ID_Sharpen_CheckPreview",
+                     name: "$$$/Sharpen/CheckBox/Preview=Preview");
+        }
+    }
+}

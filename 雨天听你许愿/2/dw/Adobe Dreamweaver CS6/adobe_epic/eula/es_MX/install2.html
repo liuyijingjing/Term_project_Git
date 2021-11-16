@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Rechazar Contrato de licencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./../default.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="./../domutils.js"></script>
+<script language="javascript" src="./../wizardcore.js"></script>
+</head>
+
+<body>
+
+<div id="eula_decline_main-title" class="main-title">
+  Rechazar Contrato de licencia
+</div>
+	<div id="eula_decline_sub-title" class="sub-title">
+  ¿Está seguro de que desea rechazar el Contrato de licencia para el usuario final?
+</div>
+
+
+<div id="eula_decline_content" class="content">
+  <p>Debe aceptar el Contrato de licencia para el usuario final para poder utilizar este producto. Para volver atrás y aceptar el Contrato, seleccione el botón Atrás. Para rechazarlo, seleccione Salir.  </p>
+</div>
+
+
+<div id="eula_decline_rightbutton" class="rightbutton">
+	 	<form name="eula_decline_form" onsubmit="return doEulaAccept();">
+   		<input name="eula_decline_back" type="button" id="eula_decline_back" accesskey="b" tabindex="2" onfocus="markName('eula_decline_back')" onclick="history.back()" value="&nbsp;&nbsp;&nbsp;Atrás&nbsp;&nbsp;&nbsp;">
+   		&nbsp;&nbsp;&nbsp;
+   		<input name="eula_decline_Quit" type="button" id="eula_decline_quit" accesskey="q" tabindex="1" value="&nbsp;&nbsp;&nbsp;&nbsp;Salir&nbsp;&nbsp;&nbsp;&nbsp;" onfocus="markName('eula_decline_quit')" onclick="doDecline()">
+		</form>
+</div>
+
+</body>
+</html>
+

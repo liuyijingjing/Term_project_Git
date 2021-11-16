@@ -1,0 +1,58 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SiteReportsView
+
+{
+    view subview(grow: false,
+                identifier: "IDD_SITEREPORTS_PALETTE",
+                margin: 0,
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(child_vertical: @align_center,
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC_FILTER",
+                            name: "$$$/SitereportsPalette/Label/Show=Show:");
+
+                popup(identifier: "IDC_COMBO_FILTER",
+                      include_custom_item: false,
+                      is_searchable: false,
+                      sort: true,
+                      vertical_scroll: true);
+            }
+
+            row(margin: 0,
+                spacing: 5)
+            {
+                list_control(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 127.5,
+                             identifier: "IDC_RESULTS_LIST",
+                             keyboard_selectable: true,
+                             single_selection: true,
+                             width: 462);
+            }
+        }
+    }
+}

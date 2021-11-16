@@ -1,0 +1,40 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 10.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2009 Adobe Systems Incorporated.  All rights reserved. -->
+<title><MMString:loadString id="meermeerdw/commands/BL_Ask/text/Title" /></title>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<script type="text/javascript" src="BL_PermissionStore.js"></script>
+<SCRIPT SRC="BL_Ask.js"></SCRIPT>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+<body onLoad="initializeUI()">
+<form name="theForm">
+  <table border="0">  
+	<tr>
+		<td>&nbsp;</td>
+		<td><div id="domainList">{List of Domains}</div></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td nowrap align="left" colspan="1">
+			<input type="checkbox" name="cbRemember">
+			<MMString:loadString id="meermeerdw/commands/BL_Ask/checkbox/cbAlwaysAllow/Domains"/>						
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td nowrap>
+			<MMString:loadString id="meermeerdw/commands/BL_Ask/text/PermissionSettings" />		
+		</td>
+	</tr>
+    <tr>
+	  <td><img name="confirmIcon" src="../Shared/MM/Images/confirmIcon.gif" align="middle" ></td>
+      <td colspan="1" valign="middle"><MMString:loadString id="meermeerdw/commands/BL_PermissionSettings/text/extendedTunnelingWarningMessage"/></td>
+    </tr>	
+  </table>
+</form>
+</body>
+</html>

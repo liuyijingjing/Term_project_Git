@@ -1,0 +1,74 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SiteScanDialog
+{
+    view dialog(centerMouse: true,
+                identifier: "IDD_SITE_SCAN_DIALOG",
+                margin: 5,
+                name: "$$$/SiteScan/Title/UpdatingThe=Updating the site cache",
+                spacing: 5)
+    {
+        row(margin: 5)
+        {
+            column(margin: 5,
+                   spacing: 5)
+            {
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC_MSG",
+                                name: "$$$/SiteScan/Label/ScanningAll=Scanning all files in site...");
+                }
+
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+				/*The param alt: "Progress1" was removed from progress_bar as it could be generating erraneous tooltip*/
+                    progress_bar(height: 12,
+                                 identifier: "IDC_PROGRESS",
+                                 set_default_focus: false,
+                                 width: 192);
+                }
+
+                row(margin: 0,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC_STATUS",
+                                name: "$$$/SiteScan/Label/StatusGoes",
+				characters:15);
+                }
+            }
+
+            column(child_horizontal: @align_fill,
+                   horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_cancel,
+                       default: true,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SiteScan/Button/Stop=Stop",
+                       vertical: @align_center);
+            }
+        }
+    }
+}

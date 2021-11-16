@@ -1,0 +1,174 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><MMString:loadString id="Objects/HTML5/video2/title" /></title>
+<script language="javascript">
+function insertObject() 
+{ 
+     var videoscreen = document.form1.video1.value;
+     var videogp = document.form1.video2.value;
+     var errMsg = "";
+     var isValid = true;
+     // ensure that field values are complete and valid 
+     if (videoscreen == "") {
+         errMsg = MSG_please_select;
+     }
+    return errMsg;
+}
+function objectTag(form) 
+{
+var videoscreen="";
+var videogp="";
+var swf="";
+var opttext="";
+var poster =document.form1.posterimg.value;
+var vidurl = document.form1.vidurl.value;
+
+
+videoscreen=document.form1.video1.value;
+videogp=document.form1.video2.value;
+swf=document.form1.swf.value;
+opttext=document.form1.opttext.value;
+
+var height = document.form1.height.value;
+var width = document.form1.width.value;
+
+var sindex = document.form1.typeofvideoscreen.selectedIndex;
+var mediascreentype = document.form1.typeofvideoscreen.options[sindex].text;
+
+var gindex = document.form1.typeofvideogp.selectedIndex;
+var mediahandtype = document.form1.typeofvideogp.options[gindex].text;
+
+
+if (document.form1.video1.value != "" && videogp !="" && swf != "")
+{
+strOut = '<video poster=\"' + poster + '" width="' + width + '" height="' + height + '"  controls \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + swf +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else if (document.form1.video1.value != "" && videogp !="" && opttext != "")
+{
+strOut = '<video controls poster=\"' + poster + '" width="' + width + '" height="' + height + '" \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+/*strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + swf +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';*/
+strOut = strOut + '<p>'+opttext+'</p>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else if (document.form1.video1.value != "" && videogp !="" && vidurl != "")
+{
+strOut = '<video controls poster=\"' + poster + '" width="' + width + '" height="' + height + '" \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + vidurl +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else {
+return('');
+}
+}
+
+
+
+</script>
+
+<script>
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var please_select=dw.loadString('Objects/HTML5/video2/please_select');
+
+//--------------- END LOCALIZEABLE   ---------------
+</script>
+
+
+<link href="../../fields.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<form action="" method="post" enctype="multipart/form-data" name="form1">
+  <table border="0" align="left" cellpadding="3" cellspacing="0">
+    <tr valign="baseline">
+      <td colspan="2" align="right" nowrap><strong><MMString:loadString id="Objects/HTML5/video2/text/Video" /></strong></td>
+      <td width="66" align="right" nowrap>&nbsp;</td>
+      <td width="142">&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td width="92" align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Height" /></td>
+      <td colspan="2"><input name="height" type="text" id="height" size="8" />
+        px.
+        &nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="ctrlFld" id="ctrlFld" />
+      <MMString:loadString id="Objects/HTML5/video2/checkbox/ctrlFld/Controls" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Width" /></td>
+      <td colspan="2"><input name="width" type="text" id="width" size="8" />
+        px.
+        &nbsp;&nbsp;&nbsp;
+<input type="checkbox" name="autoplayFld" id="autoplayFld" />
+      <MMString:loadString id="Objects/HTML5/video2/checkbox/autoplayFld/Autoplay" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Image" /></td>
+      <td colspan="3"><input type="file" name="posterimg" id="posterimg" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="2" align="right" nowrap><strong><MMString:loadString id="Objects/HTML5/video2/text/Source" /></strong></td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="4" align="left" nowrap><MMString:loadString id="Objects/HTML5/video2/text/For" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/First" /></td>
+      <td width="150"><input name="video1" type="file" id="ogg2" size="15" /></td>
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Video_1" /></td>
+      <td><select name="typeofvideoscreen">
+        <option value="video/ogg">video/ogg</option>
+        <option value="video/mp4" selected>video/mp4</option>
+        <option value="video/3gp">video/3gp</option>
+      </select></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Second" /></td>
+      <td><input name="video2" type="file" id="ogg" size="15" /></td>
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Video_1" /></td>
+      <td><select name="typeofvideogp">
+        <option value="video/ogg" selected>video/ogg</option>
+        <option value="video/mp4">video/mp4</option>
+        <option value="video/3gp">video/3gp</option>
+      </select></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Optional" /><br /></td>
+      <td colspan="3"><textarea name="opttext" id="textarea" cols="45" rows="4"></textarea></td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="2" align="right" nowrap><strong><MMString:loadString id="Objects/HTML5/video2/text/Fallback" /></strong></td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td><label for="ogg"></label>
+        <label for="typeofvideo"></label></td>
+    </tr>
+    <tr valign="baseline">
+      <td colspan="4" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Used" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video2/text/Flash" /></td>
+      <td><input name="swf" type="file" size="15" /></td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td><label for="ogg"></label>
+        <label for="typeofvideo"></label></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!-- WARNING: DO NOT CHANGE ANY ID ATTRIBUTES ASSOCIATED WITH MENU ITEMS. -->
+<!-- Changing IDs will make it impossible for other developers to locate -->
+<!-- menu items for installation purposes. -->
+<shortcutlist xmlns:MMString="http://www.macromedia.com/schemes/dat/string/" id="DWConnectionsContext">
+	<shortcut key="Cmd+I"  	domRequired="false"		command="clickedInsert(dw.databasePalette.getSelectedNode());"	enabled="insertEnabled(dw.databasePalette.getSelectedNode());"	id="DWShortcuts_ServerComponent_Insert" />
+	<shortcut key="Del"		domRequired="false"		command="clickedDelete();"		enabled="(dw.databasePalette.getSelectedNode() != null && (dw.databasePalette.getSelectedNode().objectType=='Connection'))"		id="DWShortcuts_ServerComponent_Delete" /> 	
+</shortcutlist>
+<menubar name="" id="DWConnectionsContext">
+	<menu name="" id="DWContext_Connections">
+		<menuitem MMString:name="Components/ColdFusion/Connections/ConnectionsMenus_xml/DWContext_Connections_EditConnection/menuitem/name"			command="clickedEdit();"		enabled="(dw.databasePalette.getSelectedNode() != null && (dw.databasePalette.getSelectedNode().objectType=='Connection'))" 	id="DWContext_Connections_EditConnection" />
+		<!-- for now, don't allow the user to delete connections from the UI. Instead have them go to the CF Admin page
+		<menuitem MMString:name="Components/ColdFusion/Connections/ConnectionsMenus_xml/DWContext_Connections_DeleteConnection/menuitem/name"		command="clickedDelete();"		enabled="(dw.databasePalette.getSelectedNode() != null && (dw.databasePalette.getSelectedNode().objectType=='Connection'))"		id="DWContext_Connections_DeleteConnection" />
+		-->
+		<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWContext_Connections_TestConnection/menuitem/name_14"			command="clickedTest();"		enabled="(dw.databasePalette.getSelectedNode() != null && (dw.databasePalette.getSelectedNode().objectType=='Connection'))"		id="DWContext_Connections_TestConnection" />
+		<separator/>
+		<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWContext_Tables_ViewData/menuitem/name"				command="clickedViewData();"	enabled="(dw.databasePalette.getSelectedNode() != null && (dw.databasePalette.getSelectedNode().objectType=='Table' || dw.databasePalette.getSelectedNode().objectType=='View'))"	id="DWContext_Tables_ViewData" />
+		<separator/>
+		<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWShortcuts_ServerComponent_Insert/menuitem/name"	domRequired="false"  enabled="insertEnabled(dw.databasePalette.getSelectedNode());" command="clickedInsert(dw.databasePalette.getSelectedNode());" id="DWShortcuts_ServerComponent_Insert" />
+		<menuitem MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWContext_Connections_TestConnection/menuitem/name_19"		command="clickedRefresh();"		id="DWContext_Connections_TestConnection" />
+	</menu>
+</menubar>
+<menubar name="" id="DWConnectionsChoosersContext">
+	<menu name="" id="DWContext_ConnectionsChooser">
+		<menuitem dynamic MMString:name="Components/ASP_NET_Csharp/Connections/ConnectionsMenus_xml/DWContext_Connections_Chooser_List/menuitem/name" file="Menus/MM/DB_Connections.htm" id="DWContext_Connections_Chooser_List" />
+	</menu>
+</menubar>

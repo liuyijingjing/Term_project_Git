@@ -1,0 +1,151 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><MMString:loadString id="Objects/HTML5/video/title" /></title>
+<script language="javascript">
+function insertObject() 
+{ 
+     var videoscreen = document.form1.video1.value;
+     var videogp = document.form1.video2.value;
+     var errMsg = "";
+     var isValid = true;
+     // ensure that field values are complete and valid 
+     if (videoscreen == "") {
+         errMsg = MSG_please_select;
+     }
+    return errMsg;
+}
+function objectTag(form) 
+{
+var videoscreen="";
+var videogp="";
+var swf="";
+var opttext="";
+var poster =document.form1.posterimg.value;
+var vidurl = document.form1.vidurl.value;
+
+videoscreen=document.form1.video1.value;
+videogp=document.form1.video2.value;
+swf=document.form1.swf.value;
+opttext=document.form1.opttext.value;
+
+var height = document.form1.height.value;
+var width = document.form1.width.value;
+
+var sindex = document.form1.typeofvideoscreen.selectedIndex;
+var mediascreentype = document.form1.typeofvideoscreen.options[sindex].text;
+
+var gindex = document.form1.typeofvideogp.selectedIndex;
+var mediahandtype = document.form1.typeofvideogp.options[gindex].text;
+
+
+
+if (document.form1.video1.value != "" && videogp !="" && swf != "")
+{
+strOut = '<video controls poster=\"' + poster + '" width="' + width + '" height="' + height + '" \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + swf +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else if (document.form1.video1.value != "" && videogp !="" && opttext != "")
+{
+strOut = '<video controls poster=\"' + poster + '" width="' + width + '" height="' + height + '" \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+/*strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + swf +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';*/
+strOut = strOut + '<p>'+opttext+'</p>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else if (document.form1.video1.value != "" && videogp !="" && vidurl != "")
+{
+strOut = '<video controls poster=\"' + poster + '" width="' + width + '" height="' + height + '" \>';
+strOut = strOut + '<source src=\"' + videoscreen +'\" media="screen" type=\"' + mediascreentype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<source src=\"' + videogp +'\" media="handheld" type=\"' + mediahandtype +'\" width="' + width + '" height="' + height + '"/>';
+strOut = strOut + '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="' + width + '" height="' + height + '" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="src" value=\"' + vidurl +'\"&hl=en&fs=1&" /><embed type="application/x-shockwave-flash" width="' + width + '" height="' + height + '" src="{url}"></embed></object>';
+strOut = strOut + '</video>';
+return (strOut);
+}
+else {
+return('');
+}
+}
+
+</script>
+
+<script>
+//--------------- LOCALIZEABLE GLOBALS---------------
+var MSG_please_select = dw.loadString('Objects/HTML5/video/MSG_please_select');
+//--------------- END LOCALIZEABLE   ---------------
+</script>
+
+<link href="../../fields.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<form action="" method="post" enctype="multipart/form-data" name="form1">
+  <table border="0" align="left" cellpadding="0" cellspacing="0">
+    <tr valign="baseline">
+      <td width="145" align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Select" /></td>
+      <td width="198"><input name="video1" type="file" id="ogg" size="15" /></td>
+      <td width="59" align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Media" /></td>
+      <td width="182"><label for="ogg"></label>
+        <label for="typeofvideo"></label>
+        <select name="typeofvideoscreen">
+          <option value="video/ogg" selected>video/ogg</option>
+          <option value="video/mp4">video/mp4</option>
+        </select></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Select_1" /></td>
+      <td><input name="video2" type="file" id="ogg" size="15" /></td>
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Media" /></td>
+      <td><label for="ogg"></label>
+        <label for="typeofvideo"></label>
+        <select name="typeofvideogp">
+          <option value="video/3gp" selected>video/3gp</option>
+        </select></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Display" /></td>
+      <td><input name="swf" type="file" size="15" /></td>
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Video" />
+        <label for="vidurl"></label></td>
+      <td>
+        <input name="vidurl" type="text" id="vidurl" size="27" /></td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Height" /></td>
+      <td><input name="height" type="text" id="height" size="8">
+        px.</td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Width" /></td>
+      <td><input name="width" type="text" id="width" size="8">
+        px.</td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap><MMString:loadString id="Objects/HTML5/video/text/Poster" /></td>
+      <td><label for="opttext"></label>
+        <label for="textarea">
+          <input type="file" name="posterimg" id="posterimg" />
+        </label></td>
+      <td align="right" nowrap>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr valign="baseline">
+      <td align="right" nowrap> <MMString:loadString id="Objects/HTML5/video/text/Optional" /></td>
+      <td colspan="2"><textarea name="opttext" id="textarea" cols="45" rows="4"></textarea></td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

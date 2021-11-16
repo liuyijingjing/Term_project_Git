@@ -1,0 +1,14 @@
+<codeColoring xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<scheme MMString:name="JavaScript/scheme/name" id="JavaScript">
+  <classlibrary name="SpryTooltipClasses" id="CodeColor_JavascriptSpryClasses">
+    <class>Spry.Widget.Tooltip.Animator.defaultTransition</class>
+    <class>Spry.Widget.Tooltip.Animator</class>
+    <class>Spry.Widget.Tooltip.Blind</class>
+    <class>Spry.Widget.Tooltip.Fade</class>
+    <class>Spry.Widget.Tooltip.addLoadListener</class>
+    <class>Spry.Widget.Tooltip.closeAll</class>
+    <class>Spry.Widget.Tooltip.refreshAll</class>
+    <class>Spry.Widget.Tooltip</class>
+  </classlibrary>        
+</scheme>
+</codeColoring>

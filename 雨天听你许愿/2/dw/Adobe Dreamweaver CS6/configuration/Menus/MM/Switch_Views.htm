@@ -1,0 +1,69 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+<TITLE><MMString:loadString id="Menus/MM/Switch_Views/title" /></TITLE>
+<SCRIPT LANGUAGE="javascript">
+
+function isDOMRequired()
+{
+	// enable this in code view
+	return false;
+}
+
+// Routine in SPlit View switches focus between the visual, code and Code Inspector view (if present), else
+// switches between code and design view layout.
+// Note: this routine is too large to be in menus.xml so it is an external file.
+function switchViews()
+{
+	var focus = dw.getFocus(true);
+	var view = dw.getActiveWindow().getView();
+	// if focus is in a panel or inspector, use the active view of this document.
+	var activeView = dw.getActiveWindow().getActiveView();
+
+	if (focus == 'html') {
+		if (view != 'design')
+			dw.setFocus('textView');
+		else
+			dw.setFocus('document');
+	} 
+	else if (focus == 'textView' || activeView == 'code') {
+		if (view == 'split')
+			dw.setFocus('document');
+		else if( view == 'split code' )
+		    dw.setFocus('nextTextView');
+		else if (!dw.getFloaterVisibility('html')) {
+			if (dw.canShowDesignView(dw.getActiveWindow()))
+				dw.getActiveWindow().setView('design', false);
+		}
+		else
+			dw.setFocus('html');
+	} 
+	else if (focus == 'document' || activeView == 'design') {
+		if (dw.getFloaterVisibility('html'))
+			dw.setFocus('html');
+		else if (view == 'split')
+			dw.setFocus('textView');
+		else
+			dw.getActiveWindow().setView('code', false);
+	}
+}
+
+function canAcceptCommand()
+{
+  var retVal = false;
+  // enabled if the site doesn't have focus and we don't have a text only doc (unless we also have the Code inspector open)
+  var dom = dw.getActiveWindow();
+  if (!dom)
+      return retVal;
+  if ((dw.getFocus() != 'browser' || dom.getDesignViewMode() == 'live') && (dw.canShowDesignView(dom) || dw.getFloaterVisibility('html'))){
+    retVal = true;
+  }
+  return retVal;
+}
+
+</SCRIPT>
+</HEAD>
+<BODY onLoad="switchViews()">
+</BODY>
+</HTML>

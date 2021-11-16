@@ -1,0 +1,570 @@
+<script src="../../../../JavascriptTestRunner.js"></script>
+<script src="../../../../../Shared/Common/Scripts/dwscripts.js"></script>
+<script src="../../../../../Shared/Common/Scripts/StyleSheet.js"></script>
+<script language="javascript">   
+
+var runner = new TestRunner();            
+  
+  
+runner.addTestCase(
+{
+	name:	'Public functions check', 
+
+	test:	function()
+		{					
+			var self = new StyleSheet();
+		
+			runner.assertListedPublicFunctionsExist(1, self);
+			
+			var publicFunctions = [
+					'loadCss',
+					'toString',
+					'toStringNoComments',
+					'appendRule',
+					'getRule',
+					'getProperty',
+					'setProperty',
+					'getSubSheets'
+				]
+
+			runner.assertFunctionsArePublic(2, self, publicFunctions);
+					
+		}
+});
+
+
+runner.addTestCase(  
+{	
+	name: 	'appendRule',	
+	
+	test: 	function() 
+			{								
+				var css = 'body { margin:15px; }';
+				var sheet = new StyleSheet(dw).loadCss(css);
+
+				sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green; }');				
+				runner.assertStringsEqual(
+				
+					'1: When no line breaks are in existing rule, no line breaks will be inserted in new rule.', 
+					
+					'body { margin:15px; }div { color: green; }', 
+					sheet.toString());									
+
+				var css = 'body { margin:15px }';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green; }');				
+				runner.assertStringsEqual(
+				
+					'2: No semicolon necessary after last declaration in existing rule.', 
+					
+					'body { margin:15px }div { color: green; }', 
+					sheet.toString());
+
+				var css = 'body { margin:15px } ';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div{color:green;}');				
+				runner.assertStringsEqual(
+				
+					'3: No spaces necessary in new rule. They get added automatically by copying the format of the previous rule.', 
+					
+					'body { margin:15px } div { color: green; } ', 
+					sheet.toString());
+
+				var css = 'body { margin:15px; }';							
+				var sheet = new StyleSheet(dw).loadCss(css);
+				sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green }');				
+				runner.assertStringsEqual(
+				
+					'4: No semicolon necessary after last declaration in new rule. It will get added automatically.', 
+					
+					'body { margin:15px; }div { color: green; }', 
+					sheet.toString());
+					
+				var css = 'body { \n\tmargin:15px; }';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div ,span { color: green ; font-size: \t\t\r\n14px }');				
+				runner.assertStringsEqual(
+				
+					'5: Line break between { and first declaration in existing rule. The whitespace after the line break goes before each declaration.', 
+					
+					'body { \n\tmargin:15px; }div, span { \n\tcolor: green; \tfont-size: 14px; }', 
+					sheet.toString());															
+
+				var css = 'body { margin:15px; }';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div  { color: green ; font-size: \t\t\r\n14px; border:1px\t14px\rblack }');				
+				runner.assertStringsEqual(
+				
+					'6: Weird whitespace in new rule. Only spaces inside values is preserved.', 
+					
+					'body { margin:15px; }div { color: green;  font-size: 14px;  border: 1px\t14px\rblack; }', 
+					sheet.toString());
+
+				var css = 'body { margin:15px; }';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div > ol,\rspan\t{ color: green ; font-size: \t\t\r\n14px }');
+				runner.assertStringsEqual(
+				
+					'7: Weird whitespace in new selectors.  They get normalized.', 
+					
+					'body { margin:15px; }div > ol, span { color: green;  font-size: 14px; }', 
+					sheet.toString());
+
+				var css = '\n body { margin:15px; }\t\r\n';
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				sheet.appendRule(sheet.refs.subSheets[0], 'div > ol,\rspan\t { color: green ; font-size: \t\t\r\n14px }');
+				runner.assertStringsEqual(
+				
+					'8: Whitespace before and after existing rule is copied to the new rule.', 
+					
+					'\n body { margin:15px; }\t\r\n\n div > ol, span { color: green;  font-size: 14px; }\t\r\n', 
+					sheet.toString());
+																						
+				var css = '\nbody {\n\tmargin:15px;\n}\n\n@media all {\n\n\tdiv {\n\n\t\tcolor:black;\n\t\tfont-size:10pt;\n\t}\n}\n';											
+				var sheet = new StyleSheet(dw).loadCss(css);
+				sheet.appendRule(sheet.refs.subSheets[1], 'p > a, div { color:green; font-size:12pt; font-weight:bold; }');				
+				runner.assertStringsEqual(
+				
+					'9: Example of a sheet that has multiple subsheets.',
+					 
+					'\nbody {\n\tmargin:15px;\n}\n\n@media all {\n\n\tdiv {\n\n\t\tcolor:black;\n\t\tfont-size:10pt;\n\t}\n\n\tp > a, div {\n\n\t\tcolor: green;\n\t\tfont-size: 12pt;\n\t\tfont-weight: bold;\n\t}\n}\n', 
+					sheet.toString());								
+					
+				var css = 'body { margin:15px; }';							
+				var sheet = new StyleSheet(dw).loadCss(css);																						
+				var numCharsInserted = sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green; }');				
+				runner.assertEqual(
+				
+					'10: The function should return the number of characters it inserted into the sheet.', 
+					
+					21, 
+					numCharsInserted);										
+
+				var css = '\n/*This is\na multiline\ncomment*/\n\nbody {\n\tmargin:0px; /* Here is a comment */\n}\n';
+				var sheet = new StyleSheet(dw).loadCss(css);
+				sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green; }');				
+				runner.assertStringsEqual(
+				
+					'11: When the existing rule has comments, the new rule has spaces where the comments were.  Spaces that were comments before and ' +
+						'after the existing rule might get trimmed because we limit the number of line breaks before and after new rules ' +
+						'to avoid putting too much white space in the users doc.  We also trim extra spaces and tabs before line breaks after declarations.',
+				 
+					'\n/*This is\na multiline\ncomment*/\n\nbody {\n\tmargin:0px; /* Here is a comment */\n}\n\ndiv {\n\tcolor: green;\n}\n',
+					sheet.toString());																
+
+				var css = '\r\n\r\n\r\na{p:0}\r\n\r\n\r\n';
+				var sheet = new StyleSheet(dw).loadCss(css);
+				sheet.appendRule(sheet.refs.subSheets[0], 'b{q:0}');				
+				runner.assertStringsEqual(
+				
+					'12: When the existing rule has extra line breaks in front and/or in back, we limit the number of line breaks to one.',
+					 					
+					'\r\n\r\n\r\na{p:0}\r\n\r\n\r\n\r\nb{q: 0;}\r\n',
+					sheet.toString());										
+
+				var css = '';
+				var sheet = new StyleSheet(dw).loadCss(css);	
+				//runner.dump('sheet', sheet);
+				
+				sheet.appendRule(sheet.refs.subSheets[0], 'div { color:green; }');
+				runner.assertStringsEqual(
+				
+					'13: When there are no exising rules in the subSheet, we use "\ndiv {\n\tcolor: green;\n}\n" as the "lastRule" to copy.', 
+					
+					'\ndiv {\n\tcolor: green;\n}\n', 
+					sheet.toString());	
+			}
+});
+
+runner.addTestCase( 
+{	
+	name: 	'getRule',		
+	test: 	function() 
+			{
+				cssText = 'body { color: red;} p { color: blue; } ';
+			
+				var sheet = new StyleSheet(dw).loadCss(cssText);
+								
+				var rule = sheet.getRule(sheet.refs.subSheets[0], 'p');
+								
+				runner.assertStringsEqual('1', rule.text, 'p { color: blue; } ');
+			}
+});
+
+runner.addTestCase( 
+{	
+	name: 	'setProperty',		
+	test: 	function() 
+			{
+				var ruleText = '#LayoutDiv {\r\n\tcolor: red;\r\n\twidth: 123px;\r\n}\r\n';			
+				var sheet = new StyleSheet(dw).loadCss(ruleText);								
+				var rule = sheet.getRule(sheet.refs.subSheets[0], '#LayoutDiv');			
+				sheet.setProperty(rule, 'width', '1000px');				
+				runner.assertStringsEqual('Update property.', sheet.toString(), '#LayoutDiv {\r\n\tcolor: red;\r\n\twidth: 1000px;\r\n}\r\n');
+
+				var ruleText = 'div {\r\n\tcolor: red;\r\n}\r\n';
+				var sheet = new StyleSheet(dw).loadCss(ruleText);				
+				var rule = sheet.refs.subSheets[0].rules[0];
+				sheet.setProperty(rule, 'font-size', '10px');								
+				runner.assertStringsEqual('Formatted append.', sheet.toString(), 'div {\r\n\tcolor: red;\r\n\tfont-size: 10px;\r\n}\r\n'); 
+
+				var ruleText = 'div {\r\n\tcolor: red;\r\nfont-size: 10px;\r\n}\r\n';
+				var sheet = new StyleSheet(dw).loadCss(ruleText);				
+				var rule = sheet.refs.subSheets[0].rules[0];				
+				sheet.setProperty(rule, 'font-size', '');								
+				runner.assertStringsEqual('Clean delete.', sheet.toString(), 'div {\r\n\tcolor: red;\r\n}\r\n'); 				
+
+				var ruleText = 'div { color: red; font-size: 10px; }';
+				var sheet = new StyleSheet(dw).loadCss(ruleText);				
+				var rule = sheet.refs.subSheets[0].rules[0];				
+				sheet.setProperty(rule, 'font-size', '');								
+				runner.assertStringsEqual('Clean delete, no existing line breaks.', sheet.toString(), 'div { color: red;}'); 				
+
+				var ruleText = 'a{b:c;d:e}';
+				var sheet = new StyleSheet(dw).loadCss(ruleText);				
+				var rule = sheet.refs.subSheets[0].rules[0];				
+				sheet.setProperty(rule, 'b', '');								
+				runner.assertStringsEqual('Clean delete, no existing spaces.', sheet.toString(), 'a{d:e}'); 				
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'getProperty',		
+	test: 	function() 
+			{
+				var ruleText = '#LayoutDiv {\r\n\tcolor: red;\r\n\twidth: 123px;\r\n}\r\n';			
+				var sheet = new StyleSheet(dw).loadCss(ruleText);								
+				var rule = sheet.getRule(sheet.refs.subSheets[0], '#LayoutDiv');			
+
+				//
+				
+				var prop = sheet.getProperty(rule, 'width');	
+							
+				runner.assertStringsEqual('Get property 1.', prop, '123px');
+				
+				//
+				
+				var prop = sheet.getProperty(rule, 'color');	
+							
+				runner.assertStringsEqual('Get property 2.', prop, 'red');
+				
+				//
+				
+				var prop = sheet.getProperty(rule, 'font-size');
+							
+				runner.assertStringsEqual('Get property 3.', prop, '');	
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: Empty string.',	
+	test: 	function() 
+			{
+				var css = '';
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+
+				runner.assertEqual('1', sheet.refs.subSheets.length, 			1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 	0);
+			}
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: One rule, one declaration.',
+	test: 	function() 
+			{				
+				var css = 'div {color:red;}';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);								
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 							1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 					1);
+				runner.assertEqual('3', sheet.refs.subSheets[0].rules[0].selectors.length, 		1);
+				runner.assertEqual('4', sheet.refs.subSheets[0].rules[0].declarations.length, 	1);
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: One rule, one declaration, with leading and trailing white space.',	
+	test: 	function() 
+			{				
+				var css = '\t\r\n\t div {\n\tcolor:red;\n}\n ';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 							1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 					1);
+				runner.assertEqual('3', sheet.refs.subSheets[0].rules[0].selectors.length, 		1);
+				runner.assertEqual('4', sheet.refs.subSheets[0].rules[0].declarations.length, 	1);
+				
+				runner.assertStringsEqual('5', css, 			sheet.refs.subSheets[0].rules[0].text);				
+				runner.assertStringsEqual('6', 'div', 			sheet.refs.subSheets[0].rules[0].selectors[0].text);				
+				runner.assertStringsEqual('7', '\tcolor:red', 	sheet.refs.subSheets[0].rules[0].declarations[0].text);
+				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: One rule, one declaration, wrapped in media clause.',	
+	test: 	function() 
+			{				
+				var css = '@media all { div { color:red; } }';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 							1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 					1);
+				runner.assertEqual('3', sheet.refs.subSheets[0].rules[0].selectors.length, 		1);
+				runner.assertEqual('4', sheet.refs.subSheets[0].rules[0].declarations.length, 	1);
+				
+				runner.assertStringsEqual('5', 'div { color:red; } ', 	sheet.refs.subSheets[0].rules[0].text);
+				runner.assertStringsEqual('6', 'div', 					sheet.refs.subSheets[0].rules[0].selectors[0].text);
+				runner.assertStringsEqual('7', 'color:red', 			sheet.refs.subSheets[0].rules[0].declarations[0].text);
+				
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: Two rules, second one wrapped in media clause.',	
+	test: 	function() 
+			{				
+				var css = 'body { font-size: 12pt} @media all { div { color:red; } }';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 			2);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 	1);
+				runner.assertEqual('3', sheet.refs.subSheets[1].rules.length, 	1);
+				
+				runner.assertFalse	('4', sheet.refs.subSheets[0].mediaQueryList);
+				runner.assertTrue	('5', sheet.refs.subSheets[1].mediaQueryList);
+				
+				runner.assertEqual			('6', 31, 		sheet.refs.subSheets[1].mediaQueryList.offset);
+				runner.assertStringsEqual	('7', 'all ', 	sheet.refs.subSheets[1].mediaQueryList.text);															
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: Four rules in three subsheets.',	
+	test: 	function() 
+			{				
+				var css = 'a {b:0} @media print,screen{ c { d:0; } } e {f:0;}g{h:0}';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 3);				
+				
+				runner.assertEqual			('2', 15, 				sheet.refs.subSheets[1].mediaQueryList.offset);
+				runner.assertStringsEqual	('3', 'print,screen', 	sheet.refs.subSheets[1].mediaQueryList.text);															
+
+				runner.assertFalse('4', sheet.refs.subSheets[0].mediaQueryList);
+				runner.assertFalse('5', sheet.refs.subSheets[2].mediaQueryList);
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: One rule with three declarations.',	
+	test: 	function() 
+			{				
+				var css = 'body { font-size: 12pt; color:red; font-weight:bold }';		
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 							1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 					1);
+				runner.assertEqual('3', sheet.refs.subSheets[0].rules[0].declarations.length, 	3);								
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: One rule with three selectors.',	
+	test: 	function() 
+			{				
+				var css = '\n\ta, b\n, c\t{ font-size: 12pt; color:red; font-weight:bold }';		
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);
+				
+				runner.assertEqual('1', sheet.refs.subSheets.length, 							1);
+				runner.assertEqual('2', sheet.refs.subSheets[0].rules.length, 					1);			
+				runner.assertEqual('3', sheet.refs.subSheets[0].rules[0].selectors.length, 		3);
+				runner.assertEqual('4', sheet.refs.subSheets[0].rules[0].declarations.length, 	3);				
+				
+				runner.assertEqual			('5', sheet.refs.subSheets[0].rules[0].selectors[0].offset,	2);
+				runner.assertStringsEqual	('6', sheet.refs.subSheets[0].rules[0].selectors[0].text,	'a');
+
+				runner.assertEqual			('7', sheet.refs.subSheets[0].rules[0].selectors[1].offset,	5);
+				runner.assertStringsEqual	('8', sheet.refs.subSheets[0].rules[0].selectors[1].text,	'b');
+
+				runner.assertEqual			('9',  sheet.refs.subSheets[0].rules[0].selectors[2].offset,	9);
+				runner.assertStringsEqual	('10', sheet.refs.subSheets[0].rules[0].selectors[2].text,	'c');
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: Offsets.',	
+	test: 	function() 
+			{				
+				var css = ' a { b: 0pt} @media only screen and (max-width:500px) { div { color:red; } }';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);								
+				
+				runner.assertEqual('1', 0, sheet.refs.subSheets[0].rules[0].offset);
+				runner.assertEqual('2', 1, sheet.refs.subSheets[0].rules[0].selectors[0].offset);
+				runner.assertEqual('3', 5, sheet.refs.subSheets[0].rules[0].declarations[0].offset);
+
+				runner.assertEqual('4', 56, sheet.refs.subSheets[1].rules[0].offset);
+				runner.assertEqual('5', 56, sheet.refs.subSheets[1].rules[0].selectors[0].offset);
+				runner.assertEqual('6', 62, sheet.refs.subSheets[1].rules[0].declarations[0].offset);
+				
+				runner.assertEqual('7', 20, sheet.refs.subSheets[1].mediaQueryList.offset);
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Parsing: Blanking out comments.',	
+	test: 	function() 
+			{				
+				var css = '/*1*/ div {a:0}/*2*/';								
+
+				var sheet = new StyleSheet(dw).loadCss(css);
+				
+				//runner.dump('sheet', sheet);								
+				
+				runner.assertStringsEqual('1', '      div {a:0}     ', sheet.toStringNoComments());
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'trim',	
+	test: 	function() 
+			{				
+				var sheet = new StyleSheet(dw);
+				
+				var text = '\r \n x\nx  \r\n\t ';								
+				runner.assertStringsEqual('1', 'x\nx', sheet.trim(text));
+				
+				var text = '';								
+				runner.assertStringsEqual('2', '', sheet.trim(text));
+				
+				var text = '\n';								
+				runner.assertStringsEqual('3', '', sheet.trim(text));
+
+				var text = '\nhello ';								
+				runner.assertStringsEqual('4', 'hello', sheet.trim(text));
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'trimExtraLineBreaks',	
+	test: 	function() 
+			{				
+				var sheet = new StyleSheet(dw);				
+				
+				var text = '\n\n\n\nhello\n\n\n\n';				
+				runner.assertStringsEqual('1', '\nhello\n', sheet.trimExtraLineBreaks(text));
+				
+				var text = '\r\n\r\n\r\n\r\nhello\r\n\r\n\r\n\r\n';				
+				runner.assertStringsEqual('2', '\r\nhello\r\n', sheet.trimExtraLineBreaks(text));
+
+				var text = '';
+				runner.assertStringsEqual('3', '', sheet.trimExtraLineBreaks(text));
+
+				var text = '\n';
+				runner.assertStringsEqual('4', '\n', sheet.trimExtraLineBreaks(text));
+
+				var text = '\r';
+				runner.assertStringsEqual('5', '\r', sheet.trimExtraLineBreaks(text));
+
+				var text = '\r\n\r\n  \r\n hello\n\n\n\n\n\n\n\n';
+				runner.assertStringsEqual('6', '\r\n hello\n', sheet.trimExtraLineBreaks(text));
+
+				var text = '\r\r\r\rhi\r\r\r\r\r';
+				runner.assertStringsEqual('7', '\rhi\r', sheet.trimExtraLineBreaks(text));
+
+			} 
+});
+
+runner.addTestCase( 
+{	
+	name: 	'Bug fix for http://watsonexp.corp.adobe.com/#bug=2888144 There should be no extra spaces after the semicolon.',	
+	test: 	function() 
+			{				
+				var ruleText = 'div { color: red;          \n}';
+				var sheet = new StyleSheet(dw).loadCss(ruleText);								
+				var rec = sheet.getPostDeclAndPreCloseBraceWhiteSpace(ruleText);
+				
+				runner.assertStringsEqual('1', '\n', rec.postDecl);
+			} 
+});
+
+runner.addTestCase(
+{	
+	name: 	'Dump Untested Functions',
+	
+	skip:	1,
+
+	test: 	function()  
+			{				
+				runner.dumpUntestedFunctions(new StyleSheet());
+			} 
+});
+
+
+if ( 0 )
+{
+	var method = 'blankOutComments';
+	
+	prompt	(	'Your new test case:', 
+				runner.testCaseCreator.createTestCase	(	new StyleSheet(),
+															'sheet', 
+															method, 
+															'StyleSheet'
+														)
+			);
+}
+
+// Deal with circular refs in objToJson.
+
+// Deal with parse errors.
+
+// import rules.
+
+// @font face.
+
+// Investigate comments inside of json strings and their effect.
+
+// assertStringsEqual does differentiate between a space and a plus.
+
+// Parser doesn't handle empty media clauses.

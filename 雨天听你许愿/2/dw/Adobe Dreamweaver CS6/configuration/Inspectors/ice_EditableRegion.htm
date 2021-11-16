@@ -1,0 +1,260 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:*, attrname:ICE.Region.EditableRegion, priority:1, selection:exact,hline -->
+
+<!--
+  ADOBE CONFIDENTIAL
+  ___________________
+
+  Copyright 2008 Adobe Systems Incorporated
+  All Rights Reserved.
+
+  NOTICE:  All information contained herein is, and remains
+  the property of Adobe Systems Incorporated and its suppliers,
+  if any.  The intellectual and technical concepts contained
+  herein are proprietary to Adobe Systems Incorporated and its
+  suppliers and may be covered by U.S. and Foreign Patents,
+  patents in process, and are protected by trade secret or copyright law.
+  Dissemination of this information or reproduction of this material
+  is strictly forbidden unless prior written permission is obtained
+  from Adobe Systems Incorporated.
+
+  AdobePatentID="B564"
+  AdobePatentID="B565"
+-->
+
+<html xmlns:mmstring="http://www.macromedia.com/schemes/data/string/">
+<head>
+  <!-- Copyright 2006 Adobe Systems, Inc. All rights reserved. -->
+  <title><MMString:LoadString id="ice/regions/CreateEditableRegion/title" /></title>
+
+  <!-- common includes -->
+  <script type="text/javascript" src="../Shared/Common/Scripts/TagEditClass.js"></script>
+  <script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+  <script type="text/javascript" src="../Shared/Controls/Scripts/CheckBox.js"></script>
+  <script type="text/javascript" src="../Shared/UltraDev/Scripts/ssDocManager.js"></script>
+  <script type="text/javascript" src="_pi_common.js"></script>
+
+  <!-- ICE include -->
+  <script type="text/javascript" src="../Shared/ICE/Scripts/ICEUtilsClass.js"></script>
+  <script type="text/javascript" src="../Shared/ICE/Scripts/ICEEditableRegionOptions.js"></script>
+  <script type="text/javascript" src="ice_EditableRegion.js"></script>
+
+  <!-- pi styles -->
+  <link href="_pi_common.css" rel="stylesheet" type="text/css" />
+  <link href="../Styles/ice_EditableRegion.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="piBody">
+
+<!-- standard image & id fields -->
+<div id="piId">
+  <img id="piImage" src="ice_EditableRegion.png" MMString:alt="ice/editableRegion/shortTitle" />
+  <div id="idBoxLayer">
+    <table border="0">
+      <tr>
+        <td nowrap><MMString:LoadString id="ice/editableRegion/shortTitle" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" nowrap>
+          <input type="button" onClick="removeRegion()" MMString:value="ice/editableRegion/PI/removeButton" MMString:accessKey="ice/editableRegion/PI/removeButton/accessKey" />
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div id="topLayer">
+  <div id="message"></div>
+  <div id="mainProps">
+    <form name="form1">
+      <div class="optionsContainer">
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td rowspan="2" valign="middle"><MMString:LoadString id="ice/editableRegion/label/options" /></td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr rowspan="2">
+            <td class="optionsSeparator">&nbsp;</td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="boldButton"><img src="../Shared/ICE/Images/bold.png" MMString:alt="ice/editableRegion/label/bold" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('boldButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="boldButton" name="boldButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="italicButton"><img src="../Shared/ICE/Images/italic.png" MMString:alt="ice/editableRegion/label/italic" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('italicButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="italicButton" name="italicButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="underlineButton"><img src="../Shared/ICE/Images/underline.png" MMString:alt="ice/editableRegion/label/underline" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('underlineButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="underlineButton" name="underlineButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="alignmentButton"><img src="../Shared/ICE/Images/alignment.png" MMString:alt="ice/editableRegion/label/alignment" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('alignmentButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="alignmentButton" name="alignmentButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="fontButton"><img src="../Shared/ICE/Images/font.png" MMString:alt="ice/editableRegion/label/font" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('fontButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="fontButton" name="fontButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="fontSizeButton"><img src="../Shared/ICE/Images/font_size.png" MMString:alt="ice/editableRegion/label/fontSize" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('fontSizeButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="fontSizeButton" name="fontSizeButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr rowspan="2">
+            <td class="optionsSeparator">&nbsp;</td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="indentButton"><img src="../Shared/ICE/Images/indent.png" MMString:alt="ice/editableRegion/label/indent" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('indentButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="indentButton" name="indentButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="listsButton"><img src="../Shared/ICE/Images/numberlist.png" MMString:alt="ice/editableRegion/label/numberedList" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('listsButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="listsButton" name="listsButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="headingsButton"><img src="../Shared/ICE/Images/headings.png" MMString:alt="ice/editableRegion/label/headings" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('headingsButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="headingsButton" name="headingsButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="highlightColorButton"><img src="../Shared/ICE/Images/highlight_color.png" MMString:alt="ice/editableRegion/label/highlightColor" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('highlightColorButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="highlightColorButton" name="highlightColorButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="fontColorButton"><img src="../Shared/ICE/Images/font_color.png" MMString:alt="ice/editableRegion/label/fontColor" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('fontColorButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="fontColorButton" name="fontColorButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="stylesButton"><img src="../Shared/MM/Images/hintCss.gif" MMString:alt="ice/editableRegion/label/styles" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('stylesButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="stylesButton" name="stylesButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr rowspan="2">
+            <td class="optionsSeparator">&nbsp;</td>
+          </tr>
+        </table>
+
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="insertImageButton"><img src="../Shared/ICE/Images/insert_image.png" MMString:alt="ice/editableRegion/label/insertImage" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('insertImageButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="insertImageButton" name="insertImageButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" class="optionTable">
+          <tr>
+            <td class="optionItem" nowrap><label for="insertLinkButton"><img src="../Shared/ICE/Images/link.png" MMString:alt="ice/editableRegion/label/insertLink" onMouseDown="ICEEditableRegionOptions.toggleCheckbox('insertLinkButton')" /></label></td>
+          </tr>
+          <tr>
+            <td class="optionItem" nowrap><input type="checkbox" id="insertLinkButton" name="insertLinkButton" onClick="buttonChecked()" /></td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="bottomLayer">
+  <div id="secondaryProps">
+    <table>
+      <tr>
+        <td class="createLinkCell">
+          <a href="#" onMouseDown="updateTag('gettingStartedWithICE');"><MMString:LoadString id="insertbar/ice/introLinkString" /></a>
+        </td>
+        <td class="buttonsCell">
+          <table>
+            <tr>
+              <td class="selectAllNone">
+                <input type="button" class="checkUncheckAllButton" onClick="updateTag('selectAll');" MMString:value="ice/editableRegion/label/checkAll" MMString:accessKey="ice/editableRegion/label/checkAll/accessKey" />
+              </td>
+              <td class="selectAllNone">
+                <input type="button" class="checkUncheckAllButton" onClick="updateTag('selectNone');" MMString:value="ice/editableRegion/label/uncheckAll" MMString:accessKey="ice/editableRegion/label/uncheckAll/accessKey" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div id="errorLayer">
+  <table width="450" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><img src="../Shared/MM/Images/infoTopLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img src="../Shared/MM/Images/infoTop.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoTopRight.png" width="7" height="7" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoLeft.png" width="7" height="30" border="0"></td>
+      <td align="center" valign="top" bgcolor="#FFFFCC"><img src="../Shared/MM/Images/warningIcon.png" border="0" class="warningIconCell"></td>
+      <td width="100%" valign="top" bgcolor="#FFFFCC" id="errorMessage">&nbsp;</td>
+      <td><img src="../Shared/MM/Images/infoRight.png" width="7" height="30" border="0"></td>
+    </tr>
+    <tr>
+      <td><img src="../Shared/MM/Images/infoBottomLeft.png" width="7" height="7" border="0"></td>
+      <td colspan="2"><img src="../Shared/MM/Images/infoBottom.png" width="100%" height="7" border="0"></td>
+      <td><img src="../Shared/MM/Images/infoBottomRight.png" width="7" height="7" border="0"></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

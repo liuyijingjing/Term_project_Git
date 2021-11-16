@@ -1,0 +1,50 @@
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 12.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<html>
+<head>
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+ Copyright 2011 Adobe Systems Incorporated
+ All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+
+-->
+<script type="text/javascript" src="../Shared/Common/Scripts/StyleSheet.js"></script>
+<script type="text/javascript" src="../Shared/CssGrids/StyleSheetManager.js"></script>
+<script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="Overlay_CssGrids_LayoutDivManipulator.js"></script>
+<script>
+function onOpen()
+{
+	var dom = dw.getActiveWindow();
+	if (!dom)
+		return;
+	
+	//If we can't show design view, there is no reason to try and overlay it
+	if( ! (dw.canShowDesignView(dom) || dw.canShowLiveView(dom)) ) {
+		return;
+	}
+
+	// Listen for when a setting changes to see if we should show.
+	dom.addEventListener("DWPreferenceSettingChanged", function (e) { loadOverlay(e.target.ownerDocument); }, false);
+	
+	// Check and see if we should show now.
+	loadOverlay(dom);	
+}
+</script>
+</head>
+<body onLoad="onOpen()">
+</body>
+</html>
+

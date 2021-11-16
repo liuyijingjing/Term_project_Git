@@ -1,0 +1,38 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<!--  Copyright 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+
+<TITLE><MMString:loadString id="Commands/Connection_cf_login/title" /></TITLE>
+
+<SCRIPT SRC="Connection_cf_login.js"></SCRIPT>
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY onLoad="initializeUI()">
+
+<form name="theForm" action="">
+  <table border=0>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Connection_cf_login/text/Data" /></td>
+      <td align="left" nowrap>
+         <div id="datasourcename"></div>
+      </td>
+    </tr>
+    <tr><td height="2"></td></tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Connection_cf_login/text/Login" /></td>
+      <td align="left"><input name="username" type="text" class="medTField"></td>
+    </tr>
+    <tr><td height="2"></td></tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Connection_cf_login/text/Password" /></td>
+      <td align="left"><input type="password" style="width:150px" name="password"></td>
+    </tr>
+  </table>
+</form>
+</BODY>
+</HTML>

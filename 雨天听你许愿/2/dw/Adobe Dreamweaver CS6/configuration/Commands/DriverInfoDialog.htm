@@ -1,0 +1,39 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2000, 2001, 2002, 2003 Macromedia, Inc. All rights reserved. -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/DriverInfoDialog/title" /></title>
+<SCRIPT SRC="../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<script src="DriverInfoDialog.js"></script>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="initializeUI()">
+<form name="theForm">
+  <table border=0>
+    <tr>
+	  <td align="right" nowrap valign="baseline"><MMString:loadString id="Commands/DriverInfoDialog/text/Driver" /></td>
+	  <td align="left" nowrap valign="baseline"><input name="Driver" type="text" class="basicTextField">
+	  <td align="left" nowrap valign="baseline"><input type="button" style="width:60px" name="UpdateButton" MMString:value="Commands/DriverInfoDialog/button/UpdateButton/Update" onClick="UpdateClicked()"></td>
+	</tr>
+    <tr>
+	  <td align="right" nowrap valign="baseline"><MMString:loadString id="Commands/DriverInfoDialog/text/URL" /></td>
+	  <td align="left" nowrap valign="baseline"><input name="Template" type="text" class="basicTextField"></td>
+	  <td align="left" nowrap valign="baseline"><input type="button" style="width:60px" name="AddButton" MMString:value="Commands/DriverInfoDialog/button/AddButton/Add" onClick="AddClicked()"></td>
+	</tr>
+	<tr>
+	  <td colspan=3><hr></td>
+	</tr>
+	<tr>
+	  <td align="right" nowrap valign="top"><MMString:loadString id="Commands/DriverInfoDialog/text/Driver_1" /></td>
+	  <td align="left" nowrap valign="top"><select name="DriverList" size="12" class="itemList" onChange="SelectionChanged()">
+        </select></td>
+	  <td align="left" nowrap valign="top"><input type="button" style="width:60px" name="RemoveButton" MMString:value="Commands/DriverInfoDialog/button/RemoveButton/Remove" onClick="RemoveClicked()"></td>
+	</tr>
+
+  </table>
+</form>
+</body>
+</html>

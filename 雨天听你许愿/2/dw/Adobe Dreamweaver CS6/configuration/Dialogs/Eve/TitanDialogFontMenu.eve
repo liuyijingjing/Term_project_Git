@@ -1,0 +1,172 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanDialogFontMenu
+{
+    view dialog(identifier: "IDD_DIALOG_FONTMENU",
+                name: "$$$/Fontmenu/Title/EditFont=Edit Font List",
+                spacing: 5)
+    {
+        row()
+        {
+            column(horizontal: @align_fill,
+                   vertical: @align_fill)
+            {
+                row(horizontal: @align_fill,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    ownerdrawn_button(height: 19,
+                                      horizontal: @align_left,
+                                      identifier: "IDC_BUTTON_NEW",
+                                      name: "$$$/Fontmenu/IconButton/AddItem=Add item",
+                                      tab_next_node: "IDC_BUTTON_DELETE",
+                                      width: 18);
+
+                    ownerdrawn_button(height: 19,
+                                      horizontal: @align_left,
+                                      identifier: "IDC_BUTTON_DELETE",
+                                      name: "$$$/Fontmenu/IconButton/RemoveItem=Remove item",
+                                      tab_next_node: "IDC_BUTTON_UP",
+                                      width: 18);
+
+                    static_text(horizontal: @align_center,
+                                identifier: "IDC_STATIC",
+                                name: "$$$/Fontmenu/Label/FontList=Font list:");
+
+                    ownerdrawn_button(height: 19,
+                                      horizontal: @align_right,
+                                      identifier: "IDC_BUTTON_UP",
+                                      name: "$$$/Fontmenu/IconButton/MoveItem=Move item up in list",
+                                      tab_next_node: "IDC_BUTTON_DOWN",
+                                      width: 18);
+
+                    ownerdrawn_button(height: 19,
+                                      horizontal: @align_right,
+                                      identifier: "IDC_BUTTON_DOWN",
+                                      name: "$$$/Fontmenu/IconButton/MoveItemDownInList=Move item down in list",
+                                      tab_next_node: "IDC_LIST_MENU",
+                                      width: 18);
+                }
+
+                row()
+                {
+                    list_box(apron_click_deselection: true,
+                             empty_selection: true,
+                             height: 100,
+                             
+                             identifier: "IDC_LIST_MENU",
+                             keyboard_selectable: true,
+                             tab_next_node: "IDC_LIST_ITEMS",
+                             vertical_scroll: true,
+                             width: 420);
+                }
+
+                row(child_vertical: @align_fill,
+                    vertical: @align_fill)
+                {
+                    column(child_vertical: @align_fill,
+                           vertical: @align_fill)
+                    {
+                        static_text(identifier: "IDC_STATIC",
+                                    name: "$$$/Fontmenu/Label/ChosenFonts=Chosen fonts:");
+
+                        list_box(apron_click_deselection: true,
+                                 empty_selection: true,
+                                 height: 112,
+                                 identifier: "IDC_LIST_ITEMS",
+                                 keyboard_selectable: true,
+                                 tab_next_node: "IDC_BUTTON_APPEND",
+                                 vertical_scroll: true,
+                                 width: 162);
+                    }
+
+                    column(child_vertical: @align_center,
+                           vertical: @align_proportional)
+                    {
+                        placeholder(height: 12);
+
+                        button(action: @do_action,
+                               identifier: "IDC_BUTTON_APPEND",
+                               name: "$$$/Fontmenu/Button/=<<",
+                               tab_next_node: "IDC_BUTTON_REMOVE");
+
+                        button(action: @do_action,
+                               enabled: false,
+                               identifier: "IDC_BUTTON_REMOVE",
+                               name: "$$$/Fontmenu/Button/1=>>",
+                               tab_next_node: "IDC_LIST_FONT",
+                               vertical: @align_bottom,
+                               width: 42);
+                    }
+
+                    column()
+                    {
+                        static_text(identifier: "IDC_STATIC",
+                                    name: "$$$/Fontmenu/Label/AvailableFonts=Available fonts:");
+
+                        list_box(apron_click_deselection: true,
+                                 empty_selection: true,
+                                 height: 81,
+                                 identifier: "IDC_LIST_FONT",
+                                 keyboard_selectable: true,
+                                 tab_next_node: "IDC_EDIT_FONT",
+                                 vertical_scroll: true,
+                                 width: 162);
+
+                        edit_text(horizontal: @align_fill,
+                                  identifier: "IDC_EDIT_FONT",
+                                  tab_next_node: "IDOK");
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/Fontmenu/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/Fontmenu/Button/Cancel=Cancel",
+                       tab_next_node: "IDC_BUTTON_WEBFONTS");
+                       
+                 button(action: @do_webfonts,
+                       default: false,
+                       identifier: "IDC_BUTTON_WEBFONTS",
+                       name: "$$$/Fontmenu/Button/Webfonts=Webfonts...",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       identifier: "ID_HELP",
+                       name: "$$$/Fontmenu/Button/Help=&Help",
+                       tab_next_node: "IDC_BUTTON_NEW",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

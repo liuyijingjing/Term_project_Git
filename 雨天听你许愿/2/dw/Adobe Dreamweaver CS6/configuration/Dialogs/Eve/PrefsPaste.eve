@@ -1,0 +1,79 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout PrefsPaste
+{
+    view subview(child_horizontal: @align_fill,
+                 horizontal: @align_fill,
+                 identifier: "IDD_PREFS_PASTE",
+                 name: "$$$/PrefsPaste/Title/Copypaste=Copy/Paste",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5)
+    {
+        column(margin: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(identifier: "IDC_STATIC_EDITPASTE",
+                            name: "$$$/PrefsPaste/Label/Edit=Edit > Paste from other applications into design view pastes:");
+            }
+
+            row(guide_mask: [ @guide_label ],
+                indent: 20,
+                spacing: 5)
+            {
+                radiogroup(spacing: 10,set_default_focus: true,tab_next_node:"IDC_DPES_RETAIN_BR")
+                {
+                    radio_button(identifier: "IDC_DPES_TEXT",
+                                 name: "$$$/PrefsPaste/RadioButton/TextOnly=&Text only");
+
+                    radio_button(identifier: "IDC_DPES_STRUCTURE",
+                                 name: "$$$/PrefsPaste/RadioButton/TextWith=Text with &structure (paragraphs, lists, tables, etc.)");
+
+                    radio_button(identifier: "IDC_DPES_BASIC",
+                                 name: "$$$/PrefsPaste/RadioButton/TextWithStructurePlusBasicFormattingBoldItalic=Text with structure plus &basic formatting (bold, italic)");
+
+                    radio_button(identifier: "IDC_DPES_FULL",
+                                 name: "$$$/PrefsPaste/RadioButton/TextWithStructurePlusFullFormattingBoldItalicStyles=Text with structure plus &full formatting (bold, italic, styles)");
+                }
+            }
+
+            separator(identifier: "IDC_DIVIDER");
+
+            row(guide_mask: [ @guide_label ],
+                indent: 20,
+                spacing: 5)
+            {
+                column()
+                {
+                    checkbox(identifier: "IDC_DPES_RETAIN_BR",
+                             name: "$$$/PrefsPaste/CheckBox/RetainLine=&Retain line breaks",tab_next_node:"IDC_DPES_CLEAN_WORD");
+
+                    checkbox(identifier: "IDC_DPES_CLEAN_WORD",
+                             name: "$$$/PrefsPaste/CheckBox/CleanUp=&Clean up Word paragraph spacing",tab_next_node:"IDC_DPES_CONVERT_SMART_QUOTES");
+			
+ 		checkbox(identifier: "IDC_DPES_CONVERT_SMART_QUOTES",
+						name: "$$$/PrefsPaste/CheckBox/ConvertSmart=Convert smart &quotes to straight quotes",tab_next_node:"IDC_DPES_TEXT");
+			
+                }
+            }
+        }
+    }
+}

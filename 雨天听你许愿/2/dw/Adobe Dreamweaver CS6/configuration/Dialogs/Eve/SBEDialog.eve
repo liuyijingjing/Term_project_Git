@@ -1,0 +1,328 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SBEDialog
+{
+    view dialog(identifier: "IDD_SBE",
+                name: "$$$/Sbe/Title/SS=%s (%s) - Server Behavior Builder",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 6)
+            {
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC_TITLE",
+                                indent: 3,
+                                name: "$$$/Sbe/Label/CodeBlocks=Code blocks to insert:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 97,
+                                name: "$$$/Sbe/Label/CodeBlock=Code block:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 162,
+                                name: "$$$/Sbe/Label/InsertCode=Insert code:");
+                }
+
+                row(horizontal: @align_right,
+                    placement: @place_overlay)
+                {
+                    row(horizontal: @align_right)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_SBE_TAG_STATIC",
+                                    indent: 10,
+                                    name: "$$$/Sbe/Label/Tag=Tag:");
+                    }
+
+                    row(height: 35,
+                        horizontal: @align_right,
+                        width: 79)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_SBE_LOCATION_REL_STATIC",
+                                    indent: 13,
+                                    name: "$$$/Sbe/Label/RelativePosition=Relative position:");
+                    }
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_SBE_LOCATION_RELTAG_STATIC",
+                                indent: 10,
+                                name: "$$$/Sbe/Label/RelativePosition=Relative position:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 31,
+                                name: "$$$/Sbe/Label/Identifier=Identifier:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 21,
+                                name: "$$$/Sbe/Label/ServerBehavior=Server behavior title:");
+                }
+
+                row(horizontal: @align_right)
+                {
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_STATIC",
+                                indent: 12,
+                                name: "$$$/Sbe/Label/CodeBlockToSelect=Code block to select:");
+                }
+            }
+
+            column()
+            {
+                row(spacing: 400)
+                {
+                    column()
+                    {
+                        row(spacing: 3)
+                        {
+                            ownerdrawn_button(height: 18,
+                                              identifier: "IDC_SBE_ADD_PARTICIPANT",
+                                              name: "$$$/Sbe/IconButton/AddItem=Add item",
+                                              tab_next_node: "IDC_SBE_DELETE_PARTICIPANT",
+                                              width: 21);
+
+                            ownerdrawn_button(enabled: false,
+                                              height: 18,
+                                              identifier: "IDC_SBE_DELETE_PARTICIPANT",
+                                              name: "$$$/Sbe/IconButton/RemoveItem=Remove item",
+                                              tab_next_node: "IDC_SBE_UP_PARTICIPANT",
+                                              width: 21);
+                        }
+                    }
+
+                    column()
+                    {
+                        row(spacing: 3)
+                        {
+                            ownerdrawn_button(enabled: false,
+                                              height: 18,
+                                              identifier: "IDC_SBE_UP_PARTICIPANT",
+                                              name: "$$$/Sbe/IconButton/MoveItem=Move item up in list",
+                                              tab_next_node: "IDC_SBE_DOWN_PARTICIPANT",
+                                              width: 21);
+
+                            ownerdrawn_button(enabled: false,
+                                              height: 18,
+                                              identifier: "IDC_SBE_DOWN_PARTICIPANT",
+                                              name: "$$$/Sbe/IconButton/MoveItemDownInList=Move item down in list",
+                                              tab_next_node: "IDC_SBE_PARTICIPANT_LIST",
+                                              width: 21);
+                        }
+                    }
+                }
+
+                row()
+                {
+                    list_control(apron_click_deselection: true,
+                                 empty_selection: true,
+                                 height: 81,
+                                 identifier: "IDC_SBE_PARTICIPANT_LIST",
+                                 keyboard_selectable: true,
+                                 single_selection: true,
+                                 tab_next_node: "IDC_SBE_RUNTIMECODE",
+                                 width: 495);
+                }
+
+                row()
+                {
+                    edit_text(characters: 58,
+                              enabled: false,
+                              horizontal: @align_center,
+                              horizontal_scroll: true,
+                              identifier: "IDC_SBE_RUNTIMECODE",
+                              lines: 10,
+                              multiLine: true,
+                              scrollable: true,
+                              tab_next_node: "IDC_SBE_MAKEPARAM",
+                              vertical_scroll: true);
+                }
+
+                row()
+                {
+                    button(action: @do_action,
+                           default: false,
+                           enabled: false,
+                           identifier: "IDC_SBE_MAKEPARAM",
+                           name: "$$$/Sbe/Button/InsertParameter=Insert Parameter in Code Block...",
+                           tab_next_node: "IDC_SBE_LOCATION");
+                }
+
+                row(horizontal: @align_fill)
+                {
+                    popup(enabled: false,
+                          horizontal: @align_fill,
+                          identifier: "IDC_SBE_LOCATION",
+                          include_custom_item: false,
+                          tab_next_node: "IDC_SBE_TAG",
+                          vertical_scroll: true);
+
+                    placeholder(width: 292);
+                }
+
+                row(child_horizontal: @align_fill,
+                    spacing: 152)
+                {
+                    row(placement: @place_overlay)
+                    {
+                        row()
+                        {
+                            combobox(horizontal: @align_fill,
+                                     identifier: "IDC_SBE_TAG",
+                                     tab_next_node: "IDC_SBE_LOCATION_REL",
+                                     vertical_scroll: true);
+                        }
+
+                        row()
+                        {
+                            popup(horizontal: @align_fill,
+                                  identifier: "IDC_SBE_LOCATION_REL",
+                                  include_custom_item: false,
+                                  tab_next_node: "IDC_SBE_WEIGHT",
+                                  vertical_scroll: true);
+                        }
+                    }
+
+                    row(horizontal: @align_center,
+                        spacing: 5)
+                    {
+                        static_text(horizontal: @align_center,
+                                    identifier: "IDC_SBE_WEIGHT_STATIC",
+                                    name: "$$$/Sbe/Label/Position=Position:");
+
+                        edit_text(characters: 6,
+                                  enabled: false,
+                                  horizontal: @align_center,
+                                  identifier: "IDC_SBE_WEIGHT",
+                                  tab_next_node: "IDC_BUTTON_EXPANDO");
+                    }
+                }
+
+                row(horizontal: @align_fill)
+                {
+                    column(horizontal: @align_center)
+                    {
+                        row(spacing: 5)
+                        {
+                            static_text(identifier: "IDC_SBE_ATTR_STATIC",
+                                        name: "$$$/Sbe/Label/Attribute=Attribute:");
+
+                            combobox(horizontal: @align_center,
+                                     identifier: "IDC_SBE_ATTRIBUTE",
+                                     sort: true,
+                                     vertical_scroll: true);
+                        }
+                    }
+                }
+
+                row()
+                {
+                    checkbox(enabled: false,
+                             identifier: "IDC_SBE_IDENTIFIER_CHECK",
+                             indent: 21,
+                             name: "$$$/Sbe/CheckBox/IfCode=If code block found in document, display behavior in Server Behaviors panel",
+                             tab_next_node: "IDC_SBE_SB_TITLE_EDIT");
+                }
+
+                separator(identifier: "IDC_STATIC");
+
+                row()
+                {
+                    edit_text(characters: 30,
+                              identifier: "IDC_SBE_SB_TITLE_EDIT",
+                              tab_next_node: "IDC_SBE_PART_TO_SEL_EDIT");
+                }
+
+                row(horizontal: @align_fill,
+                    spacing: 0)
+                {
+                    popup(horizontal: @align_fill,
+                          identifier: "IDC_SBE_PART_TO_SEL_EDIT",
+                          include_custom_item: false,
+                          tab_next_node: "IDC_SBE_SAVE",
+                          vertical_scroll: true);
+
+                    placeholder(width: 240);
+                }
+            }
+
+            static_text(identifier: "IDC_ADVANCED_FRAME",
+                        visible: false);
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(margin: 5,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_action,
+                       default: true,
+                       identifier: "IDC_SBE_SAVE",
+                       name: "$$$/Sbe/Button/Next=Next...",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/Sbe/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/Sbe/Button/Help=Help",
+                       tab_next_node: "IDC_SBE_ADD_PARTICIPANT");
+
+                row()
+                {
+                    column(indent: 260)
+                    {
+                        button(action: @do_action,
+                               default: false,
+                               identifier: "IDC_BUTTON_EXPANDO",
+                               name: "$$$/Sbe/Button/AdvancedS=Advanced %s",
+                               tab_next_node: "IDC_SBE_IDENTIFIER_CHECK");
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 6.0//pi">
+<!-- tag:BASE,priority:5,selection:within,vline,hline -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2000, 2001, 2002, 2003, 2004, 2005 Macromedia, Inc. All rights reserved. -->
+<title><MMString:loadString id="Inspectors/base/title" /></title>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT SRC="../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT LANGUAGE="javascript" SRC="_pi_common.js"></SCRIPT>
+<link href="../Styles/base.css" rel="stylesheet" type="text/css" />
+<script src="base.js"></script>
+</head>
+<body>
+<span id="image" style="position:absolute; width:23px; height:17px; z-index:16; left: 3px; top: 2px"><img src="base.gif" width="36" height="36"></span><span id="label" class="cls_base_lable"><MMString:loadString id="Inspectors/base/text/Base" /></span> 
+<div id="Layer1" class="cls_base_layer1"> 
+  <table width="82%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="middle"> 
+      <td width="38" height="22" align="right"><MMString:loadString id="Inspectors/base/text/Href" />&nbsp;</td>
+      <td width="253" nowrap> 
+        <input type="text" name="Href" size="48" onBlur="setBaseTag()" style="width:250px">
+      </td>
+      <td width="67" valign="middle" nowrap> &nbsp; 
+        <input name="image" type="image" onClick="browseForFile();setBaseTag()" src="../Shared/MM/Images/folder.gif" align="top" width="15" height="15" border="0">
+      </td>
+    </tr>
+    <tr> 
+      <td align="right"><MMString:loadString id="Inspectors/base/text/Target" />&nbsp;</td>
+      <td nowrap> 
+        <select name="frameTarget" onChange="setBaseTag()" style="width:150px">
+          <option selected> </option>
+          <option value="_blank" ><MMString:loadString id="Inspectors/base/option/_blank/blank"   /></option>
+          <option value="new"   ><MMString:loadString id="Inspectors/base/option/_new/new"       /></option>
+          <option value="_parent"><MMString:loadString id="Inspectors/base/option/_parent/parent" /></option>
+          <option value="_self"  ><MMString:loadString id="Inspectors/base/option/_self/self"     /></option>
+          <option value="_top"   ><MMString:loadString id="Inspectors/base/option/_top/top"       /></option>
+        </select>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</div>
+<span id="tButtonSpan" style="position:absolute; width:15px; height:15px; z-index:17; left: -1px; top: 21px">
+<input type="image" border="0" src="T4PI.gif" width="15" height="15" onClick="launchQuickTagEditor( true )" name="tButtonImage">
+</span> 
+</body>
+</html>

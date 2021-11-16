@@ -1,0 +1,42 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- SAFE-IN-TEMPLATES -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript" SRC="Set Text of Status Bar.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/MM/Scripts/setText.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/MM/Scripts/CMN/niceName.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="../../../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_NoMsg = dw.loadString('Behaviors/Actions/Set_Text/Set_Text_of_Status_Bar/MSG_NoMsg');
+var MSG_BadBraces = dw.loadString('Behaviors/Actions/Set_Text/Set_Text_of_Status_Bar/MSG_BadBraces');
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Set_Text/Set_Text_of_Status_Bar/title" /></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<link href="../../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm">
+    <DIV ALIGN="center">
+      <TABLE BORDER=0>
+        <TR>
+          <TD ALIGN="right" VALIGN="baseline" NOWRAP><MMString:loadString id="Behaviors/Actions/Set_Text/Set_Text_of_Status_Bar/text/Message" /></TD>
+          <TD ALIGN="left" VALIGN="baseline"><INPUT NAME="message" TYPE="text" class="xlargeTField"></TD>
+        </TR>
+        <TR>
+          <TD ALIGN="right" VALIGN="baseline" NOWRAP>&nbsp;</TD>
+          <TD ALIGN="left" VALIGN="baseline"><MMString:loadString id="Behaviors/Actions/Set_Text/Set_Text_of_Status_Bar/text/NOTE" /></TD>
+        </TR>
+      </TABLE>
+    </DIV>
+  </FORM>
+</BODY>
+</HTML>

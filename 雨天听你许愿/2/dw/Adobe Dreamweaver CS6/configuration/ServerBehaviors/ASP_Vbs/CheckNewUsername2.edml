@@ -1,0 +1,5 @@
+<group serverBehavior="Check New Username2.htm" hideFromBuilder="true">
+	<groupParticipants selectParticipant="CheckNewUsername_main2">
+		<groupParticipant name="CheckNewUsername_main2" partType="identifier" />
+	</groupParticipants>
+</group>

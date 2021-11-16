@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>사용권 계약 동의 안 함</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./../default.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="./../domutils.js"></script>
+<script language="javascript" src="./../wizardcore.js"></script>
+</head>
+
+<body>
+
+<div id="eula_decline_main-title" class="main-title">
+  사용권 계약 동의 안 함
+</div>
+	<div id="eula_decline_sub-title" class="sub-title">
+  최종 사용자 사용권 계약에 동의하지 않으시겠습니까?
+</div>
+
+
+<div id="eula_decline_content" class="content">
+  <p>이 제품을 사용하려면 최종 사용자 사용권 계약에 동의해야 합니다. 계약에 동의하려면 [뒤로] 단추를 선택하십시오. 동의하지 않으려면 [종료]를 선택하십시오.  </p>
+</div>
+
+
+<div id="eula_decline_rightbutton" class="rightbutton">
+	 	<form name="eula_decline_form" onsubmit="return doEulaAccept();">
+   		<input name="eula_decline_back" type="button" id="eula_decline_back" accesskey="b" tabindex="2" onfocus="markName('eula_decline_back')" onclick="history.back()" value="&nbsp;&nbsp;&nbsp;뒤로&nbsp;&nbsp;&nbsp;">
+   		&nbsp;&nbsp;&nbsp;
+   		<input name="eula_decline_Quit" type="button" id="eula_decline_quit" accesskey="q" tabindex="1" value="&nbsp;&nbsp;&nbsp;&nbsp;종료&nbsp;&nbsp;&nbsp;&nbsp;" onfocus="markName('eula_decline_quit')" onclick="doDecline()">
+   		</form>
+</div>
+
+</body>
+</html>

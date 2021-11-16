@@ -1,0 +1,154 @@
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Include the UI helper functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/UI.js"></SCRIPT>
+<!-- Include DOM functions -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/DOM.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Cmn/string.js"></script>
+<script src="../Shared/Common/Scripts/ListControlClass.js"></script>
+<SCRIPT src="../Shared/Common/Scripts/ImageButtonClass.js"></SCRIPT>
+<script src="../Shared/MM/Scripts/Class/FileClass.js"></script>
+<script src="ShortcutClass.js"></script>
+<script src="../Shared/MM/Scripts/keyCodes.js"></script>
+<script src="Keyboard Shortcuts.js"></script>
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<SCRIPT>
+//--------------- LOCALIZEABLE GLOBALS---------------
+var cssfontStr = dw.loadString('Commands/Keyboard_Shortcuts/cssfontStr');
+var LABEL_MainMenu = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_MainMenu');
+var LABEL_SiteMenu = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_SiteMenu');
+var LABEL_HTMLWindow = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_HTMLWindow');
+var LABEL_MainWindow = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_MainWindow');
+var LABEL_SiteWindow = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_SiteWindow');
+var LABEL_SitePanel = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_SitePanel');
+var LABEL_Snippets = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_Snippets');
+var LABEL_SaveAsHTML = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_SaveAsHTML');
+var LABEL_MacromediaStandard = dw.loadString('Commands/Keyboard_Shortcuts/LABEL_MacromediaStandard');
+var MSG_CannotRenameFactorySet = dw.loadString('Commands/Keyboard_Shortcuts/MSG_CannotRenameFactorySet')
+var MSG_ReassignShortcut = dw.loadString('Commands/Keyboard_Shortcuts/MSG_ReassignShortcut');
+var MSG_LetterShortcutMustHaveCtrl = dw.loadString('Commands/Keyboard_Shortcuts/MSG_LetterShortcutMustHaveCtrl');
+var MSG_ShortcutAssigned = dw.loadString('Commands/Keyboard_Shortcuts/MSG_ShortcutAssigned');
+var MSG_ShortcutWontWorkOnOtherKeyboards = dw.loadString('Commands/Keyboard_Shortcuts/MSG_ShortcutWontWorkOnOtherKeyboards');
+var MSG_DeadKeyInShortcut = dw.loadString('Commands/Keyboard_Shortcuts/MSG_DeadKeyInShortcut');
+var MSG_AltGr = dw.loadString('Commands/Keyboard_Shortcuts/MSG_AltGr');
+var MSG_UsedByIME = dw.loadString('Commands/Keyboard_Shortcuts/MSG_UsedByIME');
+var MSG_NeedToRelaunch = dw.loadString('Commands/Keyboard_Shortcuts/MSG_NeedToRelaunch');
+var MSG_Relaunch = dw.loadString('Commands/Keyboard_Shortcuts/MSG_Relaunch');
+var MSG_SaveShortcutSet = dw.loadString('Commands/Keyboard_Shortcuts/MSG_SaveShortcutSet')
+var MSG_FactorySetCannotBeModified = dw.loadString('Commands/Keyboard_Shortcuts/MSG_FactorySetCannotBeModified')
+var MSG_ReadOnlyFile = dw.loadString('Commands/Keyboard_Shortcuts/MSG_ReadOnlyFile');
+//--------------- END LOCALIZEABLE   ---------------
+
+var g_menuItem = "";
+function receiveArguments()
+{
+	g_menuItem = arguments[0];
+}
+
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<title><MMString:loadString id="Commands/Keyboard_Shortcuts/title" /></title>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onLoad="setTimeout('initializeUI()',10);">
+
+<form name="theForm">
+  <table border="0" cellspacing="4">
+    <tr> 
+      <td align="right" nowrap> 
+        <MMString:loadString id="Commands/Keyboard_Shortcuts/text/Current" />
+      </td>
+      <td> 
+        <select name="selectCurrentSet" class="multiWordOptionList" onChange="updateUI('selectCurrentSet')" onFocus="checkKeyboardLayoutChange()">
+          <option></option>
+        </select>
+      </td>
+      <td align="left" nowrap
+         ><input type="image" name="duplicateBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Duplicate" width="22" height="19" src="../Shared/MM/Images/duplicate.gif" onClick="updateUI('duplicateBtn')"
+         ><input type="image" name="renameBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Rename" width="22" height="19" src="../Shared/MM/Images/rename.gif" onClick="updateUI('renameBtn')"
+         ><input type="image" name="saveAsTextBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Export" width="22" height="19" src="../Shared/MM/Images/saveAsText.gif" onClick="cmdSaveAsText();focus(this);"
+         ><input type="image" name="deleteBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Delete" width="22" height="19" src="../Shared/MM/Images/delete.gif" onClick="updateUI('deleteBtn')"
+      ></td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td colspan="4"  valign="top"> 
+        <hr size="2">
+      </td>
+    </tr>
+    <tr> 
+      <td align="right"> 
+        <MMString:loadString id="Commands/Keyboard_Shortcuts/text/Commands" />
+      </td>
+      <td colspan="2"> 
+        <select name="commandsList" class="multiWordOptionList" onChange="updateUI('commandsList');" onFocus="checkKeyboardLayoutChange()">
+          <option selected></option>
+        </select>
+      </td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td valign="bottom"></td>
+      <td  valign="bottom" colspan="2">
+<mm:treecontrol name= "theTreeControl" style="width:380px; " size="10" onChange="updateUI('theTreeControl');" noheaders onFocus="checkKeyboardLayoutChange()">
+          <mm:treecolumn name="" value = "" width="200"> <mm:treenode selected MMString:value="Commands/Keyboard_Shortcuts/mm:treenode/value/Loading"> 
+          </mm:treenode> 
+        </mm:treecontrol>
+      </td>
+      <td valign="top"><img src="../Shared/MM/Images/transparent.gif" width="20" height="7"></td>
+    </tr>
+    <tr> 
+      <td height="10"></td>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td align="right" height="22" nowrap> 
+        <MMString:loadString id="Commands/Keyboard_Shortcuts/text/Shortcuts" />
+      </td>
+      <td colspan="2"
+        ><img src="../Shared/MM/Images/transparent.gif" width="5" height="1"
+        ><input type="image" name="addBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Add" src="../Shared/MM/Images/btnAdd.gif" onClick="updateUI('addBtn');"
+        ><img src="../Shared/MM/Images/transparent.gif" width="5" height="1"
+        ><input type="image" name="minusBtn" MMString:alt="Commands/Keyboard_Shortcuts/image/alt/Remove" src="../Shared/MM/Images/btnDel.gif" onClick="updateUI('minusBtn');focus();"
+     ></td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td> 
+      </td>
+      <td colspan="2"> 
+        <select name="itemList" size="3" style="width:380px" onFocus="checkKeyboardLayoutChange()">
+          <option selected></option>
+        </select>
+      </td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td align="right" nowrap><MMString:loadString id="Commands/Keyboard_Shortcuts/text/Press" /></td>
+      <td> 
+        <input name="newShortcutEntry" type="text" class="xlargeTField" onKeyDown="getPressedKeys();" onKeyUp="updateUI('newShortcutEntry')" onFocus="checkKeyboardLayoutChange()" value="">
+	  </td>
+	  <td>
+        <input type="button"  name="applyButton" MMString:value="Commands/Keyboard_Shortcuts/button/applyButton/Change" style="width:75px" onClick="updateUI('applyButton');" >
+      </td>
+    </tr>
+    <tr> 
+      <td height="7"></td>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr> 
+      <td></td>
+      <td valign="top" colspan="2" width="300" height="20" name="warningMessage"></td>
+      <td valign="top"></td>
+    </tr>
+  </table>
+        </form>
+</body>
+</html>

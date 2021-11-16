@@ -1,0 +1,85 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout OptionalYesno
+{
+    view dialog(identifier: "IDD_OPTIONAL_YESNO_DIALOG",
+                margin: 0,
+                name: "$$$/OptionalYesno/Title/Dreamweaver=Dreamweaver",
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(margin: 5)
+            {
+                column(margin: 5,
+                       spacing: 5)
+                {
+                    image(border: false,
+                          color_managed: true,
+                          height: 30,
+                          identifier: "IDC_STATIC",
+                          use_padding: false,
+                          width: 30);
+                }
+
+                column(margin: 5,
+                       spacing: 5)
+                {
+                    row(horizontal: @align_fill,
+                        margin: 5,
+                        spacing: 5)
+                    {
+                        static_text(characters: 20,
+                                    horizontal: @align_fill,
+                                    identifier: "IDC_OPTDIALOG_STATIC",
+                                    multiLine: true,
+                                    name: "$$$/OptionalYesno/Label/InsertYour=Insert your text here.");
+                    }
+
+                    row(margin: 5,
+                        spacing: 5)
+                    {
+                        checkbox(identifier: "IDC_OPTDIALOG_CHECK",
+                                 name: "$$$/OptionalYesno/CheckBox/DontShow=&Don't show me this message again.",
+                                 tab_next_node: "IDOK");
+                    }
+
+                    row(margin: 5,
+                        set_default_focus: true,
+                        spacing: 5)
+                    {
+                        button(action: @do_cancel,
+                               default: false,
+                               identifier: "IDCANCEL",
+                               name: "$$$/OptionalYesno/Button/No=&No",
+                               tab_next_node: "IDC_OPTDIALOG_CHECK");
+
+                        button(action: @do_ok,
+                               default: true,
+                               identifier: "IDOK",
+                               name: "$$$/OptionalYesno/Button/Yes=&Yes",
+                               set_default_focus: true,
+                               tab_next_node: "IDCANCEL");
+                    }
+                }
+            }
+        }
+    }
+}

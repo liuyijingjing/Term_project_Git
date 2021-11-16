@@ -1,0 +1,48 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+<!-- Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/Export_Table/title" /></title>
+<script src="Export Table.js"></script>
+<script src="../Shared/MM/Scripts/CMN/UI.js"></script>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<script language="JavaScript">
+//--------------- LOCALIZEABLE GLOBALS---------------
+var ERROR_No_Save_Path = dw.loadString('Commands/Export_Table/ERROR_No_Save_Path');
+var ERROR_No_Save = dw.loadString('Commands/Export_Table/ERROR_No_Save');
+
+OPTIONS_Platforms= new Array(dw.loadString('Commands/Export_Table/OPTIONS_Platforms'),dw.loadString('Commands/Export_Table/OPTIONS_Platforms_1'),dw.loadString('Commands/Export_Table/OPTIONS_Platforms_2'));
+OPTIONS_Delimiters= new Array(dw.loadString('Commands/Export_Table/OPTIONS_Delimiters'),dw.loadString('Commands/Export_Table/OPTIONS_Delimiters_1'),dw.loadString('Commands/Export_Table/OPTIONS_Delimiters_2'),dw.loadString('Commands/Export_Table/OPTIONS_Delimiters_3'),dw.loadString('Commands/Export_Table/OPTIONS_Delimiters_4'));
+
+var LABEL_ExportAs = dw.loadString('Commands/Export_Table/LABEL_ExportAs');
+
+//--------------- END LOCALIZEABLE   ---------------
+</script>
+<link href="../fields.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="initializeUI()">
+<form>
+  <table cellpadding="4" cellspacing="2">
+    <tr>
+      <td height="28" align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Export_Table/text/Delimiter" /></td>
+      <td height="28" align="left" valign="baseline">
+        <select name="Delimiter" class="oneWordOptionList">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="baseline" nowrap><MMString:loadString id="Commands/Export_Table/text/Line" /></td>
+      <td align="left" valign="baseline">
+        <select name="WhichPlatform" class="oneWordOptionList">
+        </select>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

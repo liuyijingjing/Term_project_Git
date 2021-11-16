@@ -1,0 +1,84 @@
+/*
+	 	    Adobe Confidential
+	 	 
+	 	    Copyright 2009 Adobe Systems Incorporated
+	 	    All Rights Reserved.
+*/
+
+layout UDDIListDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_EDIT_UDDI_LIST",
+                margin: 0,
+                name: "$$$/EditUddiList/Title/UddiSites=UDDI Sites",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(margin: 5,
+                spacing: 5)
+            {
+                list_box(apron_click_deselection: true,
+			      sort: true,
+                              empty_selection: true,
+                              height: 109.5,
+                              identifier: "IDC_EDIT_UDDI_LIST",
+                              keyboard_selectable: true,
+                              width: 183,
+			      vertical_scroll: true,
+				tab_next_node: "IDOK");
+            }
+
+            row(margin: 5,
+                spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/EditUddiList/Button/Done=&Done",
+			tab_next_node: "IDC_EDIT_UDDI_NEW_BUTTON");
+            }
+        }
+
+        column(child_horizontal: @align_fill,
+               child_vertical: @align_fill,
+               margin: 10,
+               spacing: 5,
+               vertical: @align_fill)
+        {
+            column(child_vertical: @align_top,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_UDDI_NEW_BUTTON",
+                       name: "$$$/EditUddiList/Button/New=&New",
+			tab_next_node: "IDC_EDIT_UDDI_REMOVE_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_UDDI_REMOVE_BUTTON",
+                       name: "$$$/EditUddiList/Button/Remove=&Remove",
+			tab_next_node: "IDC_EDIT_UDDI_EDIT_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_UDDI_EDIT_BUTTON",
+                       name: "$$$/EditUddiList/Button/Edit=&Edit...",
+			tab_next_node: "ID_HELP");
+            }
+
+            column(child_vertical: @align_bottom)
+            {
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/EditUddiList/Button/Help=Help",
+			tab_next_node: "IDC_EDIT_UDDI_LIST");
+            }
+        }
+    }
+}

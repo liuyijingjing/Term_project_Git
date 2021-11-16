@@ -1,0 +1,214 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout StylePropPageBackground
+{
+    view subview(identifier: "IDD_STYLE_PP_BACKGROUND",
+                 margin: 5,
+                 name: "$$$/StylePpBackground/Title/Background=Background",
+                 parent_container_id: "list_sheet_container",
+                 spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(indent: 3,
+                   spacing: 12)
+            {
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/Backgroundcolor=Background-color:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/Backgroundimage=Background-image:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/Backgroundrepeat=Background-repeat:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/Backgroundattachment=Background-attachment:");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/BackgroundpositionX=Background-position (X):");
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/StylePpBackground/Label/BackgroundpositionY=Background-position (Y):");
+            }
+
+            column(spacing: 5)
+            {
+                row(child_vertical: @align_center,
+                    spacing: 2)
+                {
+                    ownerdrawn_button(height: 18,
+                                      identifier: "IDC_BUTTON_COLOR",
+                                      indent: 1,
+                                      name: "$$$/StylePpBackground/IconButton/BackgroundColor=Background color",
+                                      tab_next_node: "IDC_EDIT_HEXCOLOR",
+                                      width: 21);
+
+                    edit_text(characters: 7,
+                              identifier: "IDC_EDIT_HEXCOLOR",
+                              tab_next_node: "IDC_STYLE_BG_IMAGE_COMBO");
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    combobox(identifier: "IDC_STYLE_BG_IMAGE_COMBO",
+                             items: [ { name: "$$$/StylePpBackground/StyleBgImage/item1/Url",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgImage/item2/None",
+                                        value: " " } ],
+                             popup_minimum_width_chars: 12,
+                             sort: true,
+                             tab_next_node: "IDC_BUTTON_BROWSE",
+                             vertical_scroll: true);
+
+                    button(action: @do_action,
+                           default: false,
+                           identifier: "IDC_BUTTON_BROWSE",
+                           name: "$$$/StylePpBackground/Button/Browse=Browse...",
+                           tab_next_node: "IDC_STYLE_BG_REPEAT_COMBO");
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    combobox(identifier: "IDC_STYLE_BG_REPEAT_COMBO",
+                             items: [ { name: "$$$/StylePpBackground/StyleBgRepeat/item1/Repeat",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgRepeat/item2/Repeatx",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgRepeat/item3/Repeaty",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgRepeat/item4/Norepeat",
+                                        value: " " } ],
+                             popup_minimum_width_chars: 5,
+                             sort: true,
+                             tab_next_node: "IDC_STYLE_BG_ATTACHMENT_COMBO",
+                             vertical_scroll: true);
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    combobox(identifier: "IDC_STYLE_BG_ATTACHMENT_COMBO",
+                             items: [ { name: "$$$/StylePpBackground/StyleBgAttachment/item1/Scroll",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgAttachment/item2/Fixed",
+                                        value: " " } ],
+                             popup_minimum_width_chars: 5,
+                             sort: true,
+                             tab_next_node: "IDC_STYLE_BG_HORIZ_POSITION_COMBO",
+                             vertical_scroll: true);
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    combobox(identifier: "IDC_STYLE_BG_HORIZ_POSITION_COMBO",
+                             items: [ { name: "$$$/StylePpBackground/StyleBgHorizPosition/item1/Left",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgHorizPosition/item2/Center",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgHorizPosition/item3/Right",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgHorizPosition/item4/Value",
+                                        value: " " } ],
+                             popup_minimum_width_chars: 5,
+                             tab_next_node: "IDC_STYLE_BG_HORIZ_POSITION_UNITS_COMBO",
+                             vertical_scroll: true);
+
+                    popup(identifier: "IDC_STYLE_BG_HORIZ_POSITION_UNITS_COMBO",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          items: [ { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item1/Px",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item2/Pt",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item3/In",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item4/Cm",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item5/Mm",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item6/Pc",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item7/Em",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item8/Ex",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgHorizPositionUnits/item9/",
+                                     value: " " } ],
+                          tab_next_node: "IDC_STYLE_BG_VERT_POSITION_COMBO",
+                          vertical_scroll: true);
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    combobox(identifier: "IDC_STYLE_BG_VERT_POSITION_COMBO",
+                             items: [ { name: "$$$/StylePpBackground/StyleBgVertPosition/item1/Top",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgVertPosition/item2/Center",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgVertPosition/item3/Bottom",
+                                        value: " " },
+                                      { name: "$$$/StylePpBackground/StyleBgVertPosition/item4/Value",
+                                        value: " " } ],
+                             popup_minimum_width_chars: 5,
+                             tab_next_node: "IDC_STYLE_BG_VERT_POSITION_UNITS_COMBO",
+                             vertical_scroll: true);
+
+                    popup(identifier: "IDC_STYLE_BG_VERT_POSITION_UNITS_COMBO",
+                          include_custom_item: false,
+                          is_searchable: false,
+                          items: [ { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item1/Px",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item2/Pt",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item3/In",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item4/Cm",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item5/Mm",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item6/Pc",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item7/Em",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item8/Ex",
+                                     value: " " },
+                                   { name: "$$$/StylePpBackground/StyleBgVertPositionUnits/item9/",
+                                     value: " " } ],
+                          vertical_scroll: true);
+                }
+            }
+        }
+    }
+}

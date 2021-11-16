@@ -1,0 +1,140 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 10.0//dialog">
+<!-- MENU-LOCATION=NONE -->
+
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+ Copyright 2010 Adobe Systems Incorporated
+ All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+
+-->
+
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/title" /></title>
+<style type="text/css">
+table#mainTable {
+		border-left: solid #ccc 1px;
+		border-bottom: solid #ccc 1px;
+}
+table#mainTable > tr > td, table#mainTable > tr > th {
+	border-top: solid #ccc 1px;
+	border-right: solid #ccc 1px;
+}
+input[type=text] {
+	width: 50px;	
+}
+</style>
+<script language="javascript" src="../MultiscreenPreview/ReadViewSizes.js"></script>
+<script language="javascript">
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+var Label_ResetToDefaults = dw.loadString('Commands/MultiscreenPreview_EditViewSizes/Label_ResetToDefaults');
+//--------------- END LOCALIZEABLE   ---------------
+
+
+function commandButtons()
+{
+    return new Array(MM.BTN_OK, "onOK()", Label_ResetToDefaults, "onResetToDefaults()", MM.BTN_Cancel, "onCancel()"); 
+}
+function initUI()
+{
+	var sizes = readViewSizes();
+
+	document.smallWidth.value = sizes.smallWidth;
+	document.smallHeight.value = sizes.smallHeight;
+	document.mediumWidth.value = sizes.mediumWidth;
+	document.mediumHeight.value = sizes.mediumHeight;
+	document.largeWidth.value = sizes.largeWidth;
+	document.largeHeight.value = sizes.largeHeight;		
+}
+function onOK()
+{
+	var jsonStr = 
+		"{" +
+		"smallWidth:" + document.smallWidth.value + "," +
+		"smallHeight: " + document.smallHeight.value + "," +
+		"mediumWidth: " + document.mediumWidth.value + "," +
+		"mediumHeight: " + document.mediumHeight.value + "," +
+		"largeWidth: " + document.largeWidth.value + "," +
+		"largeHeight: " + document.largeHeight.value + 
+		" }";
+			
+	DWfile.write(dreamweaver.getConfigurationPath() + "/MultiscreenPreview/viewSizes.txt", jsonStr);
+	
+	window.close();
+}
+function onCancel()
+{
+	window.close();
+}
+function adjust(elem, inMinVal, inMaxVal)
+{
+	var minVal = inMinVal;
+	
+	if (!minVal) 
+		minVal = 100;
+			
+	var theVal = parseInt(elem.value);
+	var newVal = theVal;
+		
+	if (isNaN(theVal))
+		newVal = minVal;
+	else if (theVal < minVal)
+		newVal = minVal;
+	else if (inMaxVal && theVal > inMaxVal)
+		newVal = inMaxVal;
+	
+	elem.value = newVal;
+	
+}
+function onResetToDefaults()
+{
+	document.smallWidth.value = 320;
+	document.smallHeight.value = 300;
+	document.mediumWidth.value = 768;
+	document.mediumHeight.value = 300;
+	document.largeWidth.value = 1126;
+	document.largeHeight.value = 300;	
+}
+</script>
+</head>
+<body onLoad="initUI()">
+<form>
+  <table id="mainTable" cellpadding=5 cellspacing=0 border=0>
+    <tr>
+      <th align="center"><MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/View" /></th>
+      <th align="center"><MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/Width" /></th>
+      <th align="center"><MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/Height" /></th>
+    </tr>
+    <tr>
+      <td valign="baseline" nowrap> <MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/Phone" /> </td>
+      <td><input id="smallWidth" type="text" onBlur="adjust(this, 100, 1000)"></td>
+      <td><input id="smallHeight" type="text" onBlur="adjust(this, 100, 1000)"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" nowrap> <MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/Tablet" /> </td>
+      <td><input id="mediumWidth" type="text" onBlur="adjust(this, 100, 1500)"></td>
+      <td><input id="mediumHeight" type="text" onBlur="adjust(this, 100, 1500)"></td>
+    </tr>
+    <tr>
+      <td valign="baseline" nowrap> <MMString:loadString id="Commands/MultiscreenPreview_EditViewSizes/text/Desktop" /> </td>
+      <td><input id="largeWidth" type="text" onBlur="adjust(this, 100, 2000)"></td>
+      <td><input id="largeHeight" type="hidden" value="1" onBlur="adjust(this, 100, 2000)" ></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

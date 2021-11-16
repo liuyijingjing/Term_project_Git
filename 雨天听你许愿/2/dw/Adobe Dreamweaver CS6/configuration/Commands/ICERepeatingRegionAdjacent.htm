@@ -1,0 +1,62 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 10.0//dialog">
+
+<!--
+  ADOBE CONFIDENTIAL
+  ___________________
+
+  Copyright 2008 Adobe Systems Incorporated
+  All Rights Reserved.
+
+  NOTICE:  All information contained herein is, and remains
+  the property of Adobe Systems Incorporated and its suppliers,
+  if any.  The intellectual and technical concepts contained
+  herein are proprietary to Adobe Systems Incorporated and its
+  suppliers and may be covered by U.S. and Foreign Patents,
+  patents in process, and are protected by trade secret or copyright law.
+  Dissemination of this information or reproduction of this material
+  is strictly forbidden unless prior written permission is obtained
+  from Adobe Systems Incorporated.
+
+  AdobePatentID="B564"
+  AdobePatentID="B565"
+-->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+  <head>
+    <title><MMString:loadString id="ice/repeatingRegionAdjacent/title" /></title>
+    <script type="text/javascript" src="../Shared/Common/Scripts/dwscripts.js"></script>
+    <script type="text/javascript" src="../Shared/Common/Scripts/dwscriptsExtData.js"></script>
+    <script type="text/javascript" src="../Shared/Common/Scripts/AssetInfoClass.js"></script>
+    <script type="text/javascript" src="../Shared/ICE/Scripts/ICEUtilsClass.js"></script>
+    <script type="text/javascript" src="../Shared/ICE/Scripts/ICEOptionClass.js"></script>
+    <script type="text/javascript" src="../Shared/ICE/Scripts/ICEOptionsDispatcherClass.js"></script>
+    <script type="text/javascript" src="../Shared/ICE/Scripts/ICECreateRepeatingRegionClass.js"></script>
+    <script type="text/javascript" src="ICERepeatingRegionAdjacent.js"></script>
+    <link href="../Styles/ICERepeatingRegionAdjacent.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body onLoad="initializeUI();">
+    <form name="form1">
+      <table border="0">
+        <tr>
+          <td class="firstRow" colspan="2" align="left" nowrap><MMString:loadString id="ice/repeatingRegionAdjacent/cmd/label" /></td>
+        </tr>
+        <tr>
+          <td class="leftSeparator">&nbsp;</td>
+          <td class="optionsContainer">
+            <table border="0">
+              <tr>
+                <td><input type="radio" id="option1" name="options" /></td>
+                <td nowrap><label for="option1"><MMString:loadString id="ice/repeatingRegionAdjacent/cmd/option/insertNew" /></label></td>
+              </tr>
+              <tr>
+                <td><input type="radio" id="option2" name="options"/></td>
+                <td nowrap><label for="option2"><MMString:loadString id="ice/repeatingRegionAdjacent/cmd/option/moveUp" /></label></td>
+              </tr>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+// Copyright 2007 Adobe Systems Incorporated.  All rights reserved.
+
+<html>
+<head>
+
+<script language="javascript">
+
+	function receiveArguments()
+	{
+		var selection = dw.getSelection();
+		var node      = dw.offsetsToNode(selection[0], selection[1]);
+		if (!node)
+		{
+			return false;
+		}
+		if (node.tagName == undefined)
+		{
+			return false;
+		}
+
+		var imageSrc  = node.getAttribute("src");
+		var fullPath  = getFullPath(imageSrc);
+
+		dw.updateSmartObjectFromOriginal(fullPath);
+
+		return true;
+	}
+
+	function canAcceptCommand()
+	{
+		var selection   = dw.getSelection();
+		if (!selection)
+			return false;
+			
+		var node        = dw.offsetsToNode(selection[0], selection[1]);
+		if (!node)
+		{
+			return false;
+		}
+		if (node.tagName == undefined)
+		{
+			return false;
+		}
+
+		var imageSrc    = node.getAttribute("src");
+		var width		= node.getAttribute("width");
+		if (!width)
+		{
+			width = "0";
+		}
+		var height		= node.getAttribute("height");
+		if (!height)
+		{
+			height = "0";
+		}
+		var fullPath    = getFullPath(imageSrc);
+
+		var status = dw.getSmartObjectState(fullPath, width, height);
+
+		return dw.canUpdateSmartObjectFromOriginal(status);
+
+	}
+
+</script>
+</head>
+<body>
+</body>
+</html>

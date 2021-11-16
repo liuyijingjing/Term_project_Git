@@ -1,0 +1,104 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SyncDlg
+{
+    view dialog(grow: false,
+                identifier: "IDD_SYNC_DIALOG",
+                margin: 0,
+                name: "$$$/Sync/Title/SynchronizeFiles=Synchronize Files",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        row(margin: 10)
+        {
+            column()
+            {
+                row(spacing: 5)
+                {
+                    column(guide_mask: [ ])
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    name: "$$$/Sync/Label/Synchronize=Synchronize:",
+                                    vertical: @align_center);
+
+                        placeholder();
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    name: "$$$/Sync/Label/Direction=Direction:",
+                                    vertical: @align_center);
+                    }
+
+                    column(horizontal: @align_fill)
+                    {
+                        popup(horizontal: @align_fill,
+                              identifier: "IDC_COMBO_TYPE",
+                              include_custom_item: false,
+                              vertical_scroll: true,
+			      tab_next_node: "IDC_COMBO_DIR");
+
+                        popup(horizontal: @align_fill,
+                              identifier: "IDC_COMBO_DIR",
+                              include_custom_item: false,
+                              vertical_scroll: true,
+			      tab_next_node: "IDC_CHECK_DELETE",
+					items:[{name:"$$$/Sync/Dir/item1/PutNewer",value:" "},{name:"$$$/Sync/Dir/item2/GetNewer",value:" "},{name:"$$$/Sync/Dir/item3/GetAnd",value:" "}]);
+                    }
+                }
+
+                placeholder(height: 6);
+
+                row()
+                {
+                    checkbox(identifier: "IDC_CHECK_DELETE",
+                             name: "$$$/Sync/CheckBox/DeleteLocal=Delete local files not on remote server",
+                             tab_next_node: "IDOK");
+                }
+            }
+
+            separator(identifier: "IDC_STATIC_LINE",
+                      orientation: @vertical);
+
+            column()
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/Sync/Button/Preview=Preview...",
+                       tab_next_node: "IDCANCEL",
+                       width: 120);
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/Sync/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP",
+                       width: 120);
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/Sync/Button/Help=Help",
+                       tab_next_node: "IDC_COMBO_TYPE",
+                       width: 120);
+            }
+        }
+    }
+}

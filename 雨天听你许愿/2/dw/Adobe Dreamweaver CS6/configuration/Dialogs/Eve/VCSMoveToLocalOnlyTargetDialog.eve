@@ -1,0 +1,81 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout VCSMoveToLocalOnlyTargetDialog
+{
+    view dialog(center: true,
+                identifier: "IDD_VCS_MOVE_TO_LOCAL_TARGET",
+                name: "$$$/VcsMoveToLocalTarget/Title/SubversionMove=Subversion Move to Local Target Folder",
+                spacing: 5)
+    {
+        column(spacing: 20)
+        {
+            row(margin: 3)
+            {
+                image(border: false,
+                      color_managed: true,
+                      height: 30,
+                      iconType: "caution",
+                      identifier: "IDC_STATIC",
+                      use_padding: false,
+                      width: 31.5);
+
+                static_text(characters: 30,
+                            identifier: "IDC_VCS_MOVE_TO_LOCAL_FOLDER_MSG",
+                            name: "$$$/VcsMoveToLocalTarget/Label/Static=Staticsfsfhvjsdhcbjkmsdhjcfmehjgfckmefjwbcmkjb,ejkfb,sebckbcfkjbhejee    s							dfsdfsdfgwejgfwekjfhwekjfhkewfhjkcwejfhckesjwhewk,jfhcbek,wjfhcb,ewkjfkewfhkeschkelshfcl,bekc,ejwfhlkwefgkewjfhlwekfeewfewhfbewjmmf\n 					sfsdfsdhjbsjakdsmdjfckmsdjfjkf           															      sdfbsjkfksdjfksdjfdskfjdskjfskdjfksdjfksdjfksdksjdfhksjdfsldfskdhfjhsdkjfskdfhsdlkjfdjsfksdfskjdfkskjdfhskdjfhksdfksjdhfksdhfksdhfkjdskfshdkhfskd dgdfgsdfsdnfbskdjfbksdfsdhfksjdfhsjdklhfkdsjhfksdjhfksjdfkjsdkfjhskjdfhksjdhfkjsdfkjsdhfkjsdhkjfskjdgfhkjjjkgkjgjhgdfsfkhsdjfjjjhjhsjdhfgjsdhfgsdlkfkjsdfksdfsdf                       kjsdfjkaskjasjfdasfhkasjfksjacbkfsdjfhksjdhfksjdgfksdjfgskdjfgskjdfskdjfgskdjfgsladkjfsd                                                                    kjkgkugkmjhkjgjh  fsedee   Some Junk data to make the dialog size small");
+            }
+
+            row(horizontal: @align_fill,
+                spacing: 15)
+            {
+                column(horizontal: @align_right)
+                {
+                    button(action: @do_help,
+                           default: false,
+                           identifier: "IDHELP",
+                           name: "$$$/VcsMoveToLocalTarget/Button/Help=Help",
+                           tab_next_node: "IDOK");
+                }
+
+                column(horizontal: @align_right)
+                {
+                    row(spacing: 5)
+                    {
+                        button(action: @do_ok,
+                               default: true,
+                               identifier: "IDOK",
+                               name: "$$$/VcsMoveToLocalTarget/Button/AddTarget=Add Target Folder",
+                               tab_next_node: "ID_MOVE_WO_VERSION_HISTORY");
+
+                        button(action: @do_action,
+                               default: false,
+                               identifier: "ID_MOVE_WO_VERSION_HISTORY",
+                               name: "$$$/VcsMoveToLocalTarget/Button/MoveLocally=Move Locally",
+                               tab_next_node: "IDCANCEL");
+
+                        button(action: @do_cancel,
+                               default: false,
+                               identifier: "IDCANCEL",
+                               name: "$$$/VcsMoveToLocalTarget/Button/Cancel=Cancel",
+                               tab_next_node: "IDHELP");
+                    }
+                }
+            }
+        }
+    }
+}

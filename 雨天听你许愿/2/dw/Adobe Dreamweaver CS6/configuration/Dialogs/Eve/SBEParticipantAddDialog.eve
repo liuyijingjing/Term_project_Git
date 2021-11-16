@@ -1,0 +1,77 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SBEParticipantAddDialog
+{
+    view dialog(identifier: "IDD_SBE_NEW_PARTICIPANT",
+                name: "$$$/SbeNewParticipant/Title/CreateA=Create a New Code Block",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(margin: 5,
+                   spacing: 5)
+            {
+                row(child_vertical: @align_center,
+                    horizontal: @align_right,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC",
+                                name: "$$$/SbeNewParticipant/Label/Name=Name:");
+
+                    column()
+                    {
+                        row()
+                        {
+                            edit_text(characters: 30,
+                                      identifier: "IDC_SBE_NEWPAR_EDIT",
+                                      indent: 3,
+                                      tab_next_node: "IDOK");
+                        }
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC_LINE2",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/SbeNewParticipant/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/SbeNewParticipant/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/SbeNewParticipant/Button/Help=Help",
+                       tab_next_node: "IDC_SBE_NEWPAR_EDIT");
+            }
+        }
+    }
+}

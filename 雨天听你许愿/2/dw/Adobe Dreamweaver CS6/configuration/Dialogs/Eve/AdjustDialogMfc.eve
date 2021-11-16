@@ -1,0 +1,85 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout AdjustDialogMfc
+
+{
+    view dialog(identifier: "IDD_DIALOG_TRACING_ADJUST",
+                margin: 0,
+                name: "$$$/TracingAdjust/Title/AdjustTracing=Adjust Tracing Image Position",
+                spacing: 0)
+    {
+        row(margin: 5,
+            spacing: 5)
+        {
+            column(margin: 13,
+                   spacing: 5)
+            {
+                row(guide_mask: [ @guide_label ],
+                    spacing: 0)
+                {
+                    static_text(identifier: "IDC_STATIC_TRACING_NUDGE_INSTRUCTIONS",
+                                name: "$$$/TracingAdjust/Label/UseArrow=Use arrow keys to position image or enter coordinates:");
+                }
+
+                row(child_vertical: @align_center,
+                    margin: 0,
+                    spacing: 5)
+                {
+                    static_text(identifier: "IDC_STATIC_TRACINGX",
+                                name: "$$$/TracingAdjust/Label/X=X:");
+
+                    edit_text(identifier: "IDC_EDIT_TRACINGX",
+                              tab_next_node: "IDC_EDIT_TRACINGY");
+
+                    static_text(identifier: "IDC_STATIC_TRACINGY",
+                                name: "$$$/TracingAdjust/Label/Y=Y:");
+
+                    edit_text(identifier: "IDC_EDIT_TRACINGY",
+                              tab_next_node: "IDOK");
+                }
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   indent: 6,
+                   margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/TracingAdjust/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/TracingAdjust/Button/Cancel=Cancel",
+                       tab_next_node: "IDC_BUTTON_TRACING_NUDGE_HELP");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_BUTTON_TRACING_NUDGE_HELP",
+                       name: "$$$/TracingAdjust/Button/Help=Help");
+            }
+        }
+    }
+}

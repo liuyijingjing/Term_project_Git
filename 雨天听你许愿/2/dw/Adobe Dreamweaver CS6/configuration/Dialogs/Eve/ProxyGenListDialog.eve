@@ -1,0 +1,98 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout ProxyGenListDialog
+{
+    view dialog(grow: false,
+                identifier: "IDD_EDIT_PROXY_GENERATORS",
+                margin: 10,
+                name: "$$$/EditProxyGenerators/Title/ProxyGenerators=Proxy Generators",
+                resizeChildren: false,
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 15)
+        {
+            row(spacing: 5)
+            {
+                sequence_list(height: 138,
+                              identifier: "IDC_EDIT_PROXYGEN_LIST",
+                              sort: true,
+                              tab_next_node: "IDOK",
+                              vertical_scroll: true,
+                              width: 219);
+            }
+
+            row(spacing: 35)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/EditProxyGenerators/Button/Done=&Done",
+                       tab_next_node: "IDC_EDIT_PROXYGEN_NEW_BUTTON");
+            }
+        }
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 15,
+               vertical: @align_fill)
+        {
+            row(child_horizontal: @align_fill,
+                placement: @place_column)
+            {
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_PROXYGEN_NEW_BUTTON",
+                       name: "$$$/EditProxyGenerators/Button/New=&New",
+                       tab_next_node: "IDC_EDIT_PROXYGEN_REMOVE_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_PROXYGEN_REMOVE_BUTTON",
+                       name: "$$$/EditProxyGenerators/Button/Remove=&Remove",
+                       tab_next_node: "IDC_EDIT_PROXYGEN_EDIT_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_PROXYGEN_EDIT_BUTTON",
+                       name: "$$$/EditProxyGenerators/Button/Edit=&Edit...",
+                       tab_next_node: "IDC_EDIT_PROXYGEN_DUPLICATE_BUTTON");
+
+                button(action: @do_action,
+                       default: false,
+                       identifier: "IDC_EDIT_PROXYGEN_DUPLICATE_BUTTON",
+                       name: "$$$/EditProxyGenerators/Button/Duplicate=Du&plicate...",
+                       tab_next_node: "ID_HELP");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_bottom,
+                placement: @place_column,
+                spacing: 0,
+                vertical: @align_fill)
+            {
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/EditProxyGenerators/Button/Help=Help",
+                       tab_next_node: "IDC_EDIT_PROXYGEN_LIST");
+            }
+        }
+    }
+}

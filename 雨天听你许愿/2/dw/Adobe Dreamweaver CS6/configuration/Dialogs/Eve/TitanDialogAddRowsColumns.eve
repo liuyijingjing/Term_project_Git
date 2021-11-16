@@ -1,0 +1,117 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanDialogAddRowsColumns
+{
+    view dialog(identifier: "IDD_DIALOG_INSERT_ROWS_COLUMNS",
+                name: "$$$/InsertRowsColumns/Title/InsertRows=Insert Rows or Columns",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column(spacing: 0)
+            {
+                row(spacing: 5)
+                {
+                    column(spacing: 12)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_INSERT",
+                                    name: "$$$/InsertRowsColumns/Label/Insert=Insert:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_ROW_COL",
+                                    name: "$$$/InsertRowsColumns/Label/NumberOf=&Number of rows:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_WHERE",
+                                    name: "$$$/InsertRowsColumns/Label/Where=Where:");
+                    }
+
+                    column(spacing: 8)
+                    {
+                        row(placement: @place_column,
+                            spacing: 0)
+                        {
+                            radiogroup(placement: @place_row,
+                                       tab_next_node: "IDC_EDIT_NUMBER")
+                            {
+                                radio_button(horizontal: @align_left,
+                                             identifier: "IDC_RADIO_INSERT_ROW",
+                                             name: "$$$/InsertRowsColumns/RadioButton/Rows=&Rows");
+
+                                radio_button(horizontal: @align_left,
+                                             identifier: "IDC_RADIO_INSERT_COLUMN",
+                                             name: "$$$/InsertRowsColumns/RadioButton/Columns=&Columns");
+                            }
+                        }
+
+                        row(spacing: 5)
+                        {
+                            edit_text(identifier: "IDC_EDIT_NUMBER",
+                                      tab_next_node: "IDC_RADIO_BEFORE");
+                        }
+
+                        row(spacing: 5)
+                        {
+                            column()
+                            {
+                                radiogroup(spacing: 5,
+                                           tab_next_node: "IDOK")
+                                {
+                                    radio_button(identifier: "IDC_RADIO_BEFORE",
+                                                 name: "$$$/InsertRowsColumns/RadioButton/BeforeCurrent=&Before current row",
+                                                 width: 300);
+
+                                    radio_button(identifier: "IDC_RADIO_AFTER",
+                                                 name: "$$$/InsertRowsColumns/RadioButton/AfterCurrent=&After current row");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/InsertRowsColumns/Button/Ok=OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/InsertRowsColumns/Button/Cancel=Cancel",
+                       tab_next_node: "ID_HELP");
+
+                button(action: @do_help,
+                       identifier: "ID_HELP",
+                       name: "$$$/InsertRowsColumns/Button/Help=&Help",
+                       tab_next_node: "IDC_RADIO_INSERT_ROW",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

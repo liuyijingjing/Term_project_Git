@@ -1,0 +1,158 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout StylePropPageTransition
+{
+    view subview(grow: false,
+                 identifier: "IDD_STYLE_PP_TRANSITION",
+                 margin: 5,
+                 name: "$$$/StylePpTransition/Title/Transition=Transition",
+                 parent_container_id: "list_sheet_container",
+                 resizeChildren: false,
+                 spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 15)
+        {
+            row()
+            {
+                checkbox(horizontal: @align_center,
+                         identifier: "IDC_CHECK_ALL_PROP",
+                         name: "$$$/StylePpTransition/CheckBox/AllAnimatable=&All animatable properties",
+                         tab_next_node: "IDC_BUTTON_ADD_PROPERTY");
+            }
+
+            row()
+            {
+                column(spacing: 5)
+                {
+                    row(child_vertical: @align_center,
+                        horizontal: @align_fill,
+                        spacing: 5)
+                    {
+                        column()
+                        {
+                            static_text(identifier: "IDC_STATIC_TRANSITION_PROPERTY",
+                                        name: "$$$/StylePpTransition/Label/Property=Property:");
+                        }
+
+                        column(horizontal: @align_right)
+                        {
+                            row(spacing: 3)
+                            {
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_BUTTON_ADD_PROPERTY",
+                                                  name: "$$$/StylePpTransition/IconButton/AddA=Add a transition property",
+                                                  tab_next_node: "IDC_BUTTON_REMOVE_PROPERTY",
+                                                  width: 20);
+
+                                ownerdrawn_button(height: 18,
+                                                  identifier: "IDC_BUTTON_REMOVE_PROPERTY",
+                                                  name: "$$$/StylePpTransition/IconButton/RemoveSelected=Remove selected transition property",
+                                                  tab_next_node: "IDC_TRANSITION_PROPERTY_LIST",
+                                                  width: 20);
+                            }
+                        }
+                    }
+
+                    row()
+                    {
+                        list_box(apron_click_deselection: true,
+                                 empty_selection: true,
+                                 height: 150,
+                                 horizontal_scroll: true,
+                                 identifier: "IDC_TRANSITION_PROPERTY_LIST",
+                                 keyboard_selectable: true,
+                                 tab_next_node: "IDC_CHECK_USE_PRIOR",
+                                 vertical_scroll: true,
+                                 width: 150);
+                    }
+                }
+
+                column(indent: 18)
+                {
+                    row(spacing: 5)
+                    {
+                        column(indent: 3,
+                               spacing: 12)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_DURATION",
+                                        name: "$$$/StylePpTransition/Label/Duration=Duration:");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_DELAY",
+                                        name: "$$$/StylePpTransition/Label/Delay=Delay:");
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_STATIC_TIMING_FUNCTION",
+                                        name: "$$$/StylePpTransition/Label/TimingFunction=&Timing function:");
+                        }
+
+                        column(spacing: 5)
+                        {
+                            row(spacing: 3)
+                            {
+                                edit_text(characters: 7,
+                                          identifier: "IDC_STYLE_TRANSITION_DURATION_EDIT",
+                                          tab_next_node: "IDC_TRANSITION_DURATION_UNITS");
+
+                                popup(identifier: "IDC_TRANSITION_DURATION_UNITS",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      items: [ { name: "$$$/StylePpTransition/TransitionDurationUnits/item1/s",
+                                                 value: "" },
+                                               { name: "$$$/StylePpTransition/TransitionDurationUnits/item2/ms",
+                                                 value: "" } ],
+                                      tab_next_node: "IDC_STYLE_TRANSITION_DELAY_EDIT",
+                                      vertical_scroll: true);
+                            }
+
+                            row(spacing: 3)
+                            {
+                                edit_text(characters: 7,
+                                          identifier: "IDC_STYLE_TRANSITION_DELAY_EDIT",
+                                          tab_next_node: "IDC_TRANSITION_DELAY_UNITS");
+
+                                popup(identifier: "IDC_TRANSITION_DELAY_UNITS",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      items: [ { name: "$$$/StylePpTransition/TransitionDelayUnits/item1/s",
+                                                 value: "" },
+                                               { name: "$$$/StylePpTransition/TransitionDelayUnits/item2/ms",
+                                                 value: "" } ],
+                                      tab_next_node: "IDC_STYLE_TRANSITION_FUNCTION_COMBO",
+                                      vertical_scroll: true);
+                            }
+
+                            row(child_vertical: @align_center,
+                                horizontal: @align_fill,
+                                spacing: 5,
+                                vertical: @align_fill)
+                            {
+                                combobox(horizontal: @align_fill,
+                                         identifier: "IDC_STYLE_TRANSITION_FUNCTION_COMBO",
+                                         vertical_scroll: true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

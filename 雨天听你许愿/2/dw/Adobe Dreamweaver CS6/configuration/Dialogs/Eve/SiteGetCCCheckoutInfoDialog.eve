@@ -1,0 +1,91 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout SiteGetCCCheckoutInfoDialog
+{
+    view dialog(centerMouse: true,
+                identifier: "IDD_CC_SITE_GET_CCCHECKOUT_INFO",
+                name: "$$$/CcSiteGetCccheckoutInfo/Title/ContributeSite=Contribute Site Settings",
+                spacing: 5)
+    {
+        row(spacing: 5)
+        {
+            column()
+            {
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    static_text(characters: 23,
+                                identifier: "IDC_STATIC_CCCHECKOUT_DESC",
+                                name: "$$$/CcSiteGetCccheckoutInfo/Label/ContributeNeeds=Contribute needs some information to identify you when you edit web pages on this website.");
+                }
+
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    column(spacing: 5)
+                    {
+                        static_text(identifier: "IDC_STATIC_CCCHECKOUT_ALIAS",
+                                    name: "$$$/CcSiteGetCccheckoutInfo/Label/CheckOut=Check out &name:");
+
+                        edit_text(characters: 27,
+                                  identifier: "IDC_EDIT_CCCHECKOUT_ALIAS",
+                                  tab_next_node: "IDC_EDIT_CCCHECKOUT_EMAIL");
+                    }
+                }
+
+                row(guide_mask: [ @guide_label ],
+                    margin: 0,
+                    spacing: 5)
+                {
+                    column(spacing: 5)
+                    {
+                        static_text(identifier: "IDC_STATIC_CCCHECKOUT_EMAIL",
+                                    name: "$$$/CcSiteGetCccheckoutInfo/Label/EmailAddress=&Email address:");
+
+                        edit_text(characters: 27,
+                                  identifier: "IDC_EDIT_CCCHECKOUT_EMAIL",
+                                  tab_next_node: "IDOK");
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC_LINE",
+                      orientation: @vertical);
+
+            column(child_horizontal: @align_fill,
+                   margin: 5,
+                   spacing: 5)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/CcSiteGetCccheckoutInfo/Button/Ok=&OK",
+                       tab_next_node: "IDCANCEL");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/CcSiteGetCccheckoutInfo/Button/Cancel=&Cancel",
+                       tab_next_node: "IDC_EDIT_CCCHECKOUT_ALIAS");
+            }
+        }
+    }
+}

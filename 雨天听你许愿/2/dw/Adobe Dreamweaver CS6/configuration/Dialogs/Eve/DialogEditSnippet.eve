@@ -1,0 +1,193 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout DialogEditSnippet
+{
+    view dialog(identifier: "IDD_DIALOG_EDIT_SNIPPET",
+                margin: 0,
+                name: "$$$/EditSnippet/Title/Snippet=Snippet",
+                spacing: 5)
+    {
+        row(margin: 15,
+            spacing: 5)
+        {
+            column()
+            {
+                placeholder(height: -8);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/EditSnippet/Label/Name=Name:");
+
+                placeholder(height: -4);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/EditSnippet/Label/Description=Description:");
+
+                placeholder(height: 23);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/EditSnippet/Label/SnippetType=Snippet type:");
+
+                placeholder(height: -8);
+
+                row(horizontal: @align_right,
+                    placement: @place_overlay)
+                {
+                    row(horizontal: @align_right)
+                    {
+                        column(child_horizontal: @align_right,
+                               horizontal: @align_right)
+                        {
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_EDIT_SNIPPET_BEFORE_STATIC",
+                                        name: "$$$/EditSnippet/Label/InsertBefore=Insert before:");
+
+                            placeholder(height: 115);
+
+                            static_text(horizontal: @align_right,
+                                        identifier: "IDC_EDIT_SNIPPET_AFTER_STATIC",
+                                        name: "$$$/EditSnippet/Label/InsertAfter=Insert after:");
+                        }
+                    }
+
+                    static_text(horizontal: @align_right,
+                                identifier: "IDC_EDIT_SNIPPET_CODE_STATIC",
+                                name: "$$$/EditSnippet/Label/InsertCode=Insert code:",
+                                visible: false);
+                }
+
+                placeholder(height: 75);
+
+                static_text(horizontal: @align_right,
+                            identifier: "IDC_STATIC",
+                            name: "$$$/EditSnippet/Label/PreviewType=Preview type:");
+            }
+
+            column()
+            {
+                edit_text(characters: 45,
+                          identifier: "IDC_EDIT_SNIPPET_NAME",
+                          tab_next_node: "IDC_EDIT_SNIPPET_DESCRIPTION");
+
+                edit_text(characters: 45,
+                          identifier: "IDC_EDIT_SNIPPET_DESCRIPTION",
+                          lines: 3,
+                          multiLine: true,
+                          scrollable: true,
+                          tab_next_node: "IDC_RADIO_SNIPPET_WRAP",
+                          vertical_scroll: true);
+
+                row()
+                {
+                    radiogroup()
+                    {
+                        row()
+                        {
+                            radio_button(identifier: "IDC_RADIO_SNIPPET_WRAP",
+                                         name: "$$$/EditSnippet/RadioButton/WrapSelection=&Wrap selection",
+                                         tab_next_node: "IDC_EDIT_SNIPPET_BEFORE");
+
+                            radio_button(identifier: "IDC_RADIO_SNIPPET_BLOCK",
+                                         name: "$$$/EditSnippet/RadioButton/InsertBlock=&Insert block",
+                                         tab_next_node: "IDC_EDIT_SNIPPET_CODE");
+                        }
+                    }
+                }
+
+                row(placement: @place_overlay)
+                {
+                    row()
+                    {
+                        column()
+                        {
+                            edit_text(characters: 45,
+                                      horizontal_scroll: true,
+                                      identifier: "IDC_EDIT_SNIPPET_BEFORE",
+                                      lines: 10,
+                                      multiLine: true,
+                                      scrollable: true,
+                                      tab_next_node: "IDC_EDIT_SNIPPET_AFTER",
+                                      vertical_scroll: true);
+
+                            edit_text(characters: 45,
+                                      horizontal_scroll: true,
+                                      identifier: "IDC_EDIT_SNIPPET_AFTER",
+                                      lines: 7,
+                                      multiLine: true,
+                                      scrollable: true,
+                                      tab_next_node: "IDC_RADIO_SNIPPET_CODE",
+                                      vertical_scroll: true);
+                        }
+                    }
+
+                    row()
+                    {
+                        edit_text(characters: 45,
+                                  horizontal_scroll: true,
+                                  identifier: "IDC_EDIT_SNIPPET_CODE",
+                                  lines: 17,
+                                  multiLine: true,
+                                  scrollable: true,
+                                  tab_next_node: "IDC_RADIO_SNIPPET_CODE",
+                                  vertical_scroll: true,
+                                  visible: false);
+                    }
+                }
+
+                row()
+                {
+                    radiogroup()
+                    {
+                        row()
+                        {
+                            radio_button(identifier: "IDC_RADIO_SNIPPET_DESIGN",
+                                         name: "$$$/EditSnippet/RadioButton/Design=D&esign");
+
+                            radio_button(identifier: "IDC_RADIO_SNIPPET_CODE",
+                                         name: "$$$/EditSnippet/RadioButton/Code=&Code");
+                        }
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column()
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/EditSnippet/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/EditSnippet/Button/Cancel=Cancel");
+
+                button(action: @do_help,
+                       default: false,
+                       identifier: "ID_HELP",
+                       name: "$$$/EditSnippet/Button/Help=&Help");
+            }
+        }
+    }
+}

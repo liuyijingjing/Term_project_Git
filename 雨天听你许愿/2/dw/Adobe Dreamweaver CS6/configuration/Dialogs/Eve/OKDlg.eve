@@ -1,0 +1,48 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+                                                                                                                                                                                                        layout OKDlg
+{
+	view dialog(identifier: "IDD_IBANYURL_OK",
+				grow: false,
+				margin: 0,
+				resizeChildren: false,
+				spacing: 5)
+	{
+		column(margin: 5,
+			spacing: 5)
+		{
+ 			row(guide_mask: [ @guide_label ],
+				margin: 0,
+				spacing: 5)
+			{
+ 				static_text(identifier: "IDC_IBANYURL_MSG",
+							name: "$$$/IbanyurlOk/Label/Static=Static",
+						characters:20);
+			}
+			row(margin: 0,
+				spacing: 5)
+			{
+ 				button(identifier: "IDOK",
+						name: "$$$/IbanyurlOk/Button/Ok=Ok",
+						action: @do_ok,
+						default: true);
+			}
+		}
+	}
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- SAFE-IN-TEMPLATES -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<SCRIPT SRC="Validate Form.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/string.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/docInfo.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/DOM.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/menuItem.js"></SCRIPT>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<SCRIPT LANGUAGE="javascript">
+// Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_FldNotFound = dw.loadString('Behaviors/Actions/Validate_Form/MSG_FldNotFound');
+var MSG_NoSelection = dw.loadString('Behaviors/Actions/Validate_Form/MSG_NoSelection');
+var MSG_InvalidRange = dw.loadString('Behaviors/Actions/Validate_Form/MSG_InvalidRange');
+var MSG_UnidentifiedField = dw.loadString('Behaviors/Actions/Validate_Form/MSG_UnidentifiedField');
+var MSG_NoFieldsSet = dw.loadString('Behaviors/Actions/Validate_Form/MSG_NoFieldsSet')
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</SCRIPT>
+<TITLE><MMString:loadString id="Behaviors/Actions/Validate_Form/title" /></TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY onLoad="initializeUI()">
+  <FORM NAME="theForm" ACTION="">
+    
+  <TABLE cellpadding="4" cellspacing="2">
+        <TR>
+          
+        <TD>
+          <TD NOWRAP ROWSPAN=2 COLSPAN=3>
+            <SELECT NAME="fieldMenu" SIZE=4 class="namedObjectsList" onChange="displaySelection()">
+              
+          <OPTION><MMString:loadString id="Behaviors/Actions/Validate_Form/option//no" />
+            </select></TD>
+        </TR><TR>
+          <TD ALIGN="right" VALIGN="top" NOWRAP>
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/text/Fields" /></TD>
+        </TR>
+    <TR valign="baseline">
+          
+        
+      <TD ALIGN="right" NOWRAP>
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/text/Value" /></TD>
+          
+      <TD NOWRAP COLSPAN=3>
+            <INPUT TYPE="checkbox" NAME="isReqd" onClick="saveCheckToMenu('required')">
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/checkbox/isReqd/Required" /></TD>
+        </TR>
+    <TR valign="baseline">
+          
+        
+      <TD>
+        </TR>
+    <TR valign="baseline">
+          
+        
+      <TD ALIGN="right" NOWRAP>
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/text/Accept" /></TD>
+          
+      <TD NOWRAP>
+            <INPUT TYPE="radio" NAME="theCheck" value="anything" CHECKED onClick="saveCheckToMenu('')">
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/radiobutton/theCheck/Anything" /></TD>
+          
+      <TD NOWRAP COLSPAN=2>
+            <INPUT TYPE="radio" NAME="theCheck" onClick="saveCheckToMenu('isNum')">
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/radiobutton/theCheck/Number" /></TD>
+        </TR>
+    <TR valign="baseline">
+          
+        
+      <TD></TD>
+          
+      <TD NOWRAP>
+            <INPUT TYPE="radio" NAME="theCheck" onClick="saveCheckToMenu('isEmail')">
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/radiobutton/theCheck/Email" /></TD>
+          
+      <TD NOWRAP>
+            <INPUT TYPE="radio" NAME="theCheck" onClick="saveRangeToMenu('inRange',true)">
+            <MMString:loadString id="Behaviors/Actions/Validate_Form/radiobutton/theCheck/Number_1" />
+          
+      <TD NOWRAP>
+            <INPUT NAME="fromNum" TYPE="text" class="smallNumOrChar" onBlur="saveRangeToMenu('inRange')">
+            &nbsp;<MMString:loadString id="Behaviors/Actions/Validate_Form/text/to" />&nbsp;
+            <INPUT NAME="toNum" TYPE="text" class="smallNumOrChar" onBlur="saveRangeToMenu('inRange')"></TD>
+        </TR>
+      </TABLE>
+  </FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,144 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TitanTagPPListGeneral
+{
+    view dialog(identifier: "IDD_TAG_PP_LIST_GENERAL",
+                margin: 5,
+                name: "$$$/TagPpListGeneral/Title/ListProperties=List Properties",
+                spacing: 5)
+    {
+        row()
+        {
+            column(margin: 5,
+                   spacing: 5)
+            {
+                row(spacing: 5)
+                {
+                    column(spacing: 18)
+                    {
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC",
+                                    name: "$$$/TagPpListGeneral/Label/ListType=List type:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_INITIAL_FORMAT",
+                                    name: "$$$/TagPpListGeneral/Label/Style=Style:");
+
+                        static_text(horizontal: @align_right,
+                                    identifier: "IDC_STATIC_START_COUNT",
+                                    name: "$$$/TagPpListGeneral/Label/StartCount=Start count:");
+                    }
+
+                    column(child_horizontal: @align_fill,
+                           horizontal: @align_fill)
+                    {
+                        popup(identifier: "IDC_LIST_TYPE",
+                              include_custom_item: false,
+                              is_searchable: false,
+                              tab_next_node: "IDOK",
+                              vertical_scroll: true);
+
+                        popup(identifier: "IDC_LIST_FORMAT",
+                              include_custom_item: false,
+                              is_searchable: false,
+                              vertical_scroll: true);
+
+                        row(child_vertical: @align_center,
+                            margin: 0,
+                            spacing: 5)
+                        {
+                            edit_text(auto_hscroll: true,
+                                      identifier: "IDC_LIST_INITIAL_VALUE");
+
+                            static_text(identifier: "IDC_STATIC",
+                                        name: "$$$/TagPpListGeneral/Label/Number=(Number)");
+                        }
+                    }
+                }
+
+                row()
+                {
+                    group(guide_mask: [ @guide_label ],
+                          identifier: "IDC_STATIC_LIST_ITEM_FRAME",
+                          margin: 10,
+                          name: "$$$/TagPpListGeneral/GroupBox/ListItem=List item",
+                          spacing: 5)
+                    {
+                        row(spacing: 5)
+                        {
+                            column(spacing: 20)
+                            {
+                                static_text(horizontal: @align_right,
+                                            identifier: "IDC_STATIC_NEW_FORMAT",
+                                            name: "$$$/TagPpListGeneral/Label/NewStyle=New style:");
+
+                                static_text(horizontal: @align_right,
+                                            identifier: "IDC_STATIC_RESET_COUNT",
+                                            name: "$$$/TagPpListGeneral/Label/ResetCount=Reset count to:");
+                            }
+
+                            column(child_horizontal: @align_fill,
+                                   horizontal: @align_fill)
+                            {
+                                popup(identifier: "IDC_LIST_ITEM_FORMAT",
+                                      include_custom_item: false,
+                                      is_searchable: false,
+                                      vertical_scroll: true);
+
+                                row(child_vertical: @align_center,
+                                    margin: 0,
+                                    spacing: 5)
+                                {
+                                    edit_text(auto_hscroll: true,
+                                              identifier: "IDC_LIST_ITEM_VALUE");
+
+                                    static_text(identifier: "IDC_STATIC",
+                                                name: "$$$/TagPpListGeneral/Label/Number1=(Number)");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            separator(identifier: "IDC_STATIC",
+                      orientation: @vertical);
+
+            column(margin: 5,
+                   spacing: 5,
+                   vertical: @align_fill)
+            {
+                button(action: @do_ok,
+                       default: true,
+                       identifier: "IDOK",
+                       name: "$$$/TagPpListGeneral/Button/Ok=OK");
+
+                button(action: @do_cancel,
+                       default: false,
+                       identifier: "IDCANCEL",
+                       name: "$$$/TagPpListGeneral/Button/Cancel=Cancel");
+
+                button(action: @do_help,
+                       identifier: "IDHELP",
+                       name: "$$$/TagPpListGeneral/Button/Help=Help",
+                       vertical: @align_bottom);
+            }
+        }
+    }
+}

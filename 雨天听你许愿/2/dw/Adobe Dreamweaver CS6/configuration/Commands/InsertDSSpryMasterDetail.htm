@@ -1,0 +1,114 @@
+<!-- MENU-LOCATION=NONE -->
+<!DOCTYPE HTML SYSTEM "-//Adobe//DWExtension layout-engine 10.0//dialog">
+
+<!--
+
+ ADOBE CONFIDENTIAL
+ ___________________
+
+  Copyright 2007 Adobe Systems Incorporated
+  All Rights Reserved.
+
+ NOTICE:  All information contained herein is, and remains
+ the property of Adobe Systems Incorporated and its suppliers,
+ if any.  The intellectual and technical concepts contained
+ herein are proprietary to Adobe Systems Incorporated and its
+ suppliers and may be covered by U.S. and Foreign Patents,
+ patents in process, and are protected by trade secret or copyright law.
+ Dissemination of this information or reproduction of this material
+ is strictly forbidden unless prior written permission is obtained
+ from Adobe Systems Incorporated.
+-->
+
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+
+<head>
+  <title><MMString:loadString id="spry/dataset/insert master-detail/title" /></title>
+
+  <script language="javascript" src="../Shared/MM/Scripts/CMN/displayHelp.js"></script>
+  <script type="text/javascript" src="../shared/common/scripts/ListControlClass.js"></script>
+  <script type="text/javascript" src="../shared/common/scripts/TreeControlClass.js"></script>
+	<script type="text/javascript" src="../Shared/Spry/DesignTime/DataSetInsertStructure.js"></script>
+	<script type="text/javascript" src="InsertDSSpryMasterDetail.js"></script>
+  
+  <link href="../fields.css" rel="stylesheet" type="text/css">
+  <link href="../Styles/SpryDataSet.css" rel="stylesheet" type="text/css" />
+  
+</head>
+
+<body onload="initializeUI()" class="cls_InsertDSSpryMasterDetail_body">
+  <form name="theForm">
+  <table width="100%">
+   <tr>
+    <td width="17%"></td>
+    <td>
+      <table width="100%">
+        <tr>
+          <td>
+            <input type="image" src="../Shared/MM/Images/btnAdd.gif" onclick="onAddColumn('masterColumns')">
+            <input type="image" src="../Shared/MM/Images/btnDel.gif" onclick="onRemoveColumn('masterColumns')">
+           </td>                       
+           <td align="right">
+            <input type="image" src="../Shared/MM/Images/btnUp.gif" onclick="updateUI('moveUpMasterColumn')">
+            <input type="image" src="../Shared/MM/Images/btnDown.gif" onclick="updateUI('moveDownMasterColumn')">
+           </td>                     
+        </tr>
+      </table>
+    </td>
+   </tr>
+   <tr>
+    <td nowrap valign="top" align="right"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/text/Master" /></td>
+    <td>
+      <select name="masterColumns" id="masterColumns" size="5" style="width: 100%">
+      </select>
+    </td>
+   </tr>
+   <tr>
+    <td colspan="2" height="5px">
+   </tr>
+   <tr>
+    <td></td>
+    <td>
+      <table width="100%">
+        <tr>
+          <td>
+            <input type="image" src="../Shared/MM/Images/btnAdd.gif" onclick="onAddColumn('detailColumns')">
+            <input type="image" src="../Shared/MM/Images/btnDel.gif" onclick="onRemoveColumn('detailColumns')">
+           </td>                       
+           <td align="right">
+            <input type="image" src="../Shared/MM/Images/btnUp.gif" onclick="_detailColumns.moveRowUp()">
+            <input type="image" src="../Shared/MM/Images/btnDown.gif" onclick="_detailColumns.moveRowDown()">
+           </td>                     
+        </tr>
+      </table>
+    </td>
+   </tr>
+   <tr>
+    <td nowrap valign="top" align="right"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/text/Detail" /></td>
+    <td>
+		  <mm:treecontrol noexpandbuttons name="detailColumns" id="detailColumns" onchange="updateUI('detailColumns')" style="width: 100%;" class="cls_InsertDSSpryMasterDetail_detailColumns">
+  			<mm:treecolumn width="155" MMString:value="Commands/InsertDSSpryMasterDetail/mm:treecolumn/value/Column">
+  			<mm:treecolumn width="100" MMString:value="Commands/InsertDSSpryMasterDetail/mm:treecolumn/value/Container">
+		  </mm:treecontrol>
+    </td>
+   </tr>
+   <tr>
+    <td nowrap align="right"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/text/Container" /></td>
+    <td>
+      <select name="containerType" id="containerType" class="cls_InsertDSSpryMasterDetail_select_containerType" onchange="updateUI('containerType')">
+        <option value="DIV" selected><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/DIV/DIV" /></option>
+        <option value="P"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/P/P" /></option>
+        <option value="SPAN"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/SPAN/SPAN" /></option>
+        <option value="H1"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H1/H1" /></option>
+        <option value="H2"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H2/H2" /></option>
+        <option value="H3"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H3/H3" /></option>
+        <option value="H4"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H4/H4" /></option>
+        <option value="H5"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H5/H5" /></option>
+        <option value="H6"><MMString:loadString id="Commands/InsertDSSpryMasterDetail/option/H6/H6" /></option>
+      </select>
+    </td>
+   </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<!-- SAFE-IN-TEMPLATES -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<HEAD>
+<link href="../../fields.css" rel="stylesheet" type="text/css">
+<SCRIPT SRC="Change Property.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/dwscripts.js"></SCRIPT>
+<SCRIPT SRC="../../Shared/Common/Scripts/ListControlClass.js"></SCRIPT>
+<script src="../../Shared/MM/Scripts/CMN/DOM.js"></script>
+<!-- Remove the following SCRIPT tag if you are modifying this file for your own use. -->
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<!-- End removal area. -->
+<script language="javascript">
+// Copyright 2000-2006 Adobe Macromedia Software LLC and its licensors. All rights reserved.
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+
+var MSG_UnnamedObj = dw.loadString('Behaviors/Actions/Change_Property/MSG_UnnamedObj');
+var MSG_NoSelection = dw.loadString('Behaviors/Actions/Change_Property/MSG_NoSelection');
+var MSG_TagNotFound = dw.loadString('Behaviors/Actions/Change_Property/MSG_TagNotFound');
+var MSG_ObjNotFound = dw.loadString('Behaviors/Actions/Change_Property/MSG_ObjNotFound');
+
+var MENUITEM_NoTypeSelected = dw.loadString('Behaviors/Actions/Change_Property/MENUITEM_NoTypeSelected');
+var MENUITEM_ItemsNotFnd = dw.loadString('Behaviors/Actions/Change_Property/MENUITEM_ItemsNotFnd'); // %s is a requested tag, such as FORM
+
+//This must parallel (same order) the TAGTYPES array defined with globals
+TAGNAMES= new Array(dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_1'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_2'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_3'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_4'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_5'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_6'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_7'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_8'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_9'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_10'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_11'),dw.loadString('Behaviors/Actions/Change_Property/TAGNAMES_12'));
+
+//--------------- END LOCALIZEABLE   ---------------
+//---------------    END JAVASCRIPT    ---------------
+</script>
+<title><MMString:loadString id="Behaviors/Actions/Change_Property/title" /></title>
+<meta http-equiv="Content-Type" content="text/html">
+</head>
+<body onLoad="initializeUI()">
+  <form name="theForm">
+   <div align="center">
+     
+    <table border="0" cellpadding="2" cellspacing="4">
+      <TR valign="baseline">
+        <TD ALIGN="right" NOWRAP>
+          <MMString:loadString id="Behaviors/Actions/Change_Property/text/Type" /></TD>
+        <TD NOWRAP COLSPAN=2>
+          <SELECT NAME="typeOfObj" class="itemList" onChange="loadAllMenus()">
+            <OPTION><MMString:loadString id="Behaviors/Actions/Change_Property/option//loading" />
+          </select></TD>
+      </TR>
+	  <TR valign="baseline">
+        <TD ALIGN="right" NOWRAP>
+          <MMString:loadString id="Behaviors/Actions/Change_Property/text/Element" /></TD>
+        <td nowrap colspan="2">
+          <select name="namedObjs" class="namedObjectsList" onChange="loadPropMenu()">
+            <OPTION><MMString:loadString id="Behaviors/Actions/Change_Property/option//select" />
+          </select></TD>
+      </TR>
+	  <tr valign="baseline">
+        <td align="right" nowrap>
+          <MMString:loadString id="Behaviors/Actions/Change_Property/text/Property" /></td>
+        <td nowrap>
+          <input type="radio" name="theRadio" checked>
+          <MMString:loadString id="Behaviors/Actions/Change_Property/radiobutton/theRadio/Select" /></td>
+        <td nowrap>
+          <select name="propMenu" class="paramNameList" onChange="selectRadio(0)">
+            <option selected>*********</option>
+          </select></td>
+      </tr>
+      <tr valign="baseline">
+        <td></td>
+        <td nowrap>
+          <input name="theRadio" type="radio">
+          <MMString:loadString id="Behaviors/Actions/Change_Property/radiobutton/theRadio/Enter" /></td>
+        <td nowrap>
+          <input name="theProp" type="text" class="basicTextField" onBlur="if(this.value)selectRadio(1)"></td>
+      </tr>
+      <tr valign="baseline">
+        <td align="right" nowrap>
+          <MMString:loadString id="Behaviors/Actions/Change_Property/text/New" /></td>
+        <td nowrap colspan=2>
+          <input name="theValue" type="text" class="xlargeTField"></td>
+      </tr>
+     </table>
+   </div>
+  </form>
+</body>
+</html>

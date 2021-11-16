@@ -1,0 +1,5 @@
+sheet ExportEditableAsXml
+{
+  interface:
+    use_method: @standard_tags;
+}

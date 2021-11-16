@@ -1,0 +1,56 @@
+<!-- MENU-LOCATION=NONE -->
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<!-- Copyright 2006 Adobe Macromedia Software LLC and its licensors. All rights reserved. -->
+<title><MMString:LoadString id="spry/widgets/menubar/title" /></title>
+
+<script type="text/javascript" src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script type="text/javascript" src="../../Shared/MM/Scripts/CMN/TemplateUtils.js"></script> 
+<script type="text/javascript" src="../../Shared/Spry/DesignTime/EditingUtils.js"></script>
+
+<script language="javascript">
+
+function canInsertObject(){    
+  var dom = dw.getDocumentDOM();
+  return dom.getIsLibraryDocument() == false;
+}
+
+function isDOMRequired() {
+	return true;
+}
+
+function objectTag(){
+  // We're keeping this a separate command, as we want to use the
+  // "buttons at the bottom" style.
+  var dom = dreamweaver.getDocumentDOM();
+  
+  Spry.DesignTime.Editing.Utils.removeCachedObjects(dom, "Spry.Widget.MenuBar");
+  
+  if( !Spry.DesignTime.Editing.Utils.canInsertWidget(dom) )
+  {
+	  return;
+  }
+  
+  var cmdFile = dreamweaver.getConfigurationPath() + "/Commands/SpryMenuBar.htm";
+  var cmdDOM = dreamweaver.getDocumentDOM(cmdFile);
+  dreamweaver.popupCommand("SpryMenuBar.htm");
+
+  var assetList = cmdDOM.parentWindow.getAssetList();
+  var scriptStr = cmdDOM.parentWindow.getScriptStr();
+
+  // tell Dreamweaver to add js references and copy the necessary js file to the site
+  if (assetList && assetList.length)
+    dom.copyAssets(assetList);
+
+  // add JavaScript constructor of our widget
+  if (scriptStr)
+    dom.addJavaScript(scriptStr, false);
+
+  return (cmdDOM.parentWindow.createWidgetStr());	
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/*************************************************************************
+*
+* ADOBE CONFIDENTIAL
+* ___________________
+*
+*  Copyright 2011 Adobe Systems Incorporated
+*  All Rights Reserved.
+*
+* NOTICE:  All information contained herein is, and remains
+* the property of Adobe Systems Incorporated and its suppliers,
+* if any.  The intellectual and technical concepts contained
+* herein are proprietary to Adobe Systems Incorporated and its
+* suppliers and are protected by trade secret or copyright law.
+* Dissemination of this information or reproduction of this material
+* is strictly forbidden unless prior written permission is obtained
+* from Adobe Systems Incorporated.
+**************************************************************************/
+
+layout TracingAdjust
+{
+    view dialog(identifier: "ID_TracingAdjust",
+                margin: 15,
+                name: "$$$/TracingAdjust/Title/AdjustTracing=Adjust Tracing Image Positon",
+                spacing: 5)
+    {
+        column(margin: 5,
+               spacing: 5)
+        {
+            row(guide_mask: [ @guide_label ],
+                margin: 0,
+                spacing: 5)
+            {
+                static_text(characters: 16,
+                             identifier: "ID_TracingAdjust_UseArrow",
+                             name: "$$$/TracingAdjust/Label/UseArrow=Use the up or down arrow keys to increase or decrease coordinate values, or enter exact coordinates:");
+            }
+
+            row(child_horizontal: @align_fill,
+                child_vertical: @align_center,
+                indent: 5,
+                spacing: 5)
+            {
+                display_text(identifier: "ID_TracingAdjust_X",
+                             name: "$$$/TracingAdjust/Label/X=X:",
+                             set_default_focus: true);
+
+                dva_edit_number(horizontal: @align_fill,
+                                identifier: "ID_TracingAdjust_EditTracingx");
+
+                display_text(identifier: "ID_TracingAdjust_Y",
+                             name: "$$$/TracingAdjust/Label/Y=Y:");
+
+                dva_edit_number(horizontal: @align_fill,
+                                identifier: "ID_TracingAdjust_EditTracingy");
+            }
+        }
+
+        separator(identifier: "ID_TracingAdjust_Static",
+                  orientation: @vertical);
+
+        column(child_horizontal: @align_fill,
+               margin: 5,
+               spacing: 5)
+        {
+            button(action: @do_ok,
+                   default: true,
+                   identifier: "ID_TracingAdjust_Okbutton",
+                   name: "$$$/TracingAdjust/Button/Ok=OK");
+
+            button(action: @do_cancel,
+                   default: false,
+                   identifier: "ID_TracingAdjust_Cancelbutton",
+                   name: "$$$/TracingAdjust/Button/Cancel=Cancel");
+
+            button(action: @do_help,
+                   default: false,
+                   identifier: "ID_TracingAdjust_ButtonTracingNudgeHelp",
+                   name: "$$$/TracingAdjust/Button/Help=Help");
+        }
+    }
+}

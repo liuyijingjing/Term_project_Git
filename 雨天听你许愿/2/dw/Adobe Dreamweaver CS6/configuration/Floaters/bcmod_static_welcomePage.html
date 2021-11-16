@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>welcome</title>
+	<style type="text/css">
+		body
+		{
+			font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			font-size:11px;
+			text-align: center;
+			background-color: #D7D7D7;
+			margin: 0;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		p
+		{
+			text-align:left;
+		}
+
+		a.button {
+			background-image:url('../Shared/BC/Images/button.png');
+			background-repeat:repeat-x;
+			border-top: 1px solid #8b8b8b;
+			border-left: 1px solid #777;
+			border-right: 1px solid #777;
+			border-bottom: 1px solid #656565;
+			border-radius: 2px;
+			box-shadow: 0 1px #f3f3f3;	
+			color: #333;
+			display: inline-block;
+			font-size: 11px;
+			height: 18px;
+			line-height: 20px;
+			margin: 0 10px 0 0;
+			min-width: 58px;
+			padding: 0 15px;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		a.button {
+			box-shadow: 0 1px #e7e7e7;
+		}
+
+		a.button:hover {
+			background-image:url('../Shared/BC/Images/button_hover.png');
+		}
+			
+		a.button:active {
+			background-image:url('../Shared/BC/Images/button_active.png');
+		}
+
+		img#video {
+			cursor:pointer;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		function setString(id, value) {
+			var element = document.getElementById(id);
+						
+			if (element) {
+				element.innerHTML = value;
+			}
+		}
+
+		//--------------------------------------------------------------------
+		// Do not modify the names of the below functions
+		// They provide app specific implementation (they are overriden in DW)
+		//--------------------------------------------------------------------
+		var bcEndpoints = {
+			// Handles click on the online content area
+			// Overridden by DW
+			goToUrl: function (url) {
+			},
+	 
+			// Handles click on the Get Started button
+			// Overridden by DW
+			getStarted: function () {
+			}
+    };
+	</script>
+</head>
+
+	<body>
+		<div>
+			<p id="paragraph1">Build and publish business websites and powerful online stores within Dreamweaver.</p>        
+			<img id="video" alt="" src="../Shared/BC/Images/dw_getting_started_video.jpg" onclick="bcEndpoints.goToUrl('http://www.businesscatalyst.com/landing/dreamweaver?sdid=JOSAT&autoplay=true'); return false;" />
+			<p id="paragraph2">Try Adobe Business Catalyst for free today!</p>
+		</div>
+		<a id="getStartedButton" class="button" href="#" onMouseDown="bcEndpoints.getStarted();">Get Started</a>
+	</body>
+</html>

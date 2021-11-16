@@ -1,0 +1,163 @@
+<!-- Copyright  2003, 2004 Macromedia, Inc. All rights reserved. -->
+<!DOCTYPE HTML SYSTEM "-//Macromedia//DWExtension layout-engine 5.0//dialog">
+<teamadminStrings xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<html xmlns:MMString="http://www.macromedia.com/schemes/data/string/">
+<head>
+<title><MMString:loadString id="Reports/WorkFlow/RecentlyModified/title" /></title>
+<script src="../../Shared/MM/Scripts/CMN/UI.js"></script>
+<script language="JavaScript" src="../../Shared/MM/Scripts/CMN/DOM.js"></script>
+<script language="JavaScript" src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script language="JavaScript" src="../../Shared/MM/Scripts/Class/PreferencesClass.js"></script>
+<script language="JavaScript" src="../Reports.js"></script>
+<script language="JavaScript" src="../../Shared/Common/Scripts/dwscripts.js"></script>
+<script language="JavaScript" src="../../Shared/Common/Scripts/ListControlClass.js"></script>
+<script language="JavaScript" src="../../Shared/Common/Scripts/RadioGroupClass.js"></script>
+<SCRIPT SRC="../../Shared/MM/Scripts/CMN/displayHelp.js"></SCRIPT>
+<script src="../TeamAdminCommon.js"></script>
+<script src="RecentlyModified.js"></script>
+<script language="JavaScript">
+
+//--------------- LOCALIZEABLE GLOBALS---------------
+ARR_FullMonths= new Array(dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_1'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_2'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_3'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_4'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_5'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_6'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_7'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_8'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_9'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_10'),dw.loadString('Reports/WorkFlow/RecentlyModified/ARR_FullMonths_11'));
+var startYear = 0;
+var endYear = 6;
+
+//alert messages
+MM.MSG_enterNumberBetween = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_enterNumberBetween');
+MM.MSG_noTestServerDefined = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_noTestServerDefined');
+MM.MSG_contribute = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_contribute');
+
+//Report display.
+MM.MSG_FileName = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_FileName');
+MM.MSG_Modified = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_Modified');
+MM.MSG_ModifiedDt = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_ModifiedDt');
+MM.MSG_ModifiedBy = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_ModifiedBy');
+MM.MSG_ReportDt = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_ReportDt');
+MM.MSG_TotalFiles = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_TotalFiles');
+MM.MSG_DateRange = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_DateRange');
+MM.MSG_To = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_To');
+MM.MSG_Notknown = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_Notknown');
+MM.MSG_NotContribute = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.MSG_NotContribute');
+
+MM.Lable_recentlyModified = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.Lable_recentlyModified');
+MM.Column_NotKnown = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.Column_NotKnown');
+MM.Column_View = dw.loadString('Reports/WorkFlow/RecentlyModified/MM.Column_View');
+
+//--------------- END LOCALIZEABLE   ---------------
+
+</script>
+</head>
+<body onLoad = "initializeUI()">
+<form name="myForm" id="myForm" >
+<input name="daysModifiedhid" type="hidden" value="0">
+<input name="viewPathhid" type="hidden" value="0">
+
+  <table width="100%" border="0">
+    <tr>
+      <td align="Left" nowrap>
+        <input type="radio" name="optDaysModified" value="radio" checked="True" onClick="onChangeRadio()">
+      </td>
+      <td colspan="3" align="Left" nowrap>
+        <label><MMString:loadString id="reports_0" /></label>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td align="Left" colspan="2" valign="baseline" nowrap>
+        <input name="numDays" type="text" maxlength="3"  size="7" value="7">
+        &nbsp;
+        <label><MMString:loadString id="reports_1" /></label>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>
+        <input type="radio" name="optDaysModified" value="radio" onClick="onChangeRadio()">
+      </td>
+      <td colspan="3" align="Left" nowrap>
+        <label><MMString:loadString id="reports_2" /></label>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td align="Left" colspan="2" nowrap>
+        <select name="fromMonth" onChange="onChangeFromMonth()" style="width:90px" disabled>
+          <option value="" selected></option>
+        </select>
+        <select name="fromDay" style="width:60px" disabled>
+          <option value="" selected></option>
+        </select>
+        <select name="fromYear" onChange="onChangeFromYear()" style="width:75px" disabled>
+          <option value="" selected></option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td align="Left" nowrap>
+        <label><MMString:loadString id="reports_3" /></label>
+      </td>
+      <td align="Left" colspan="2" nowrap>
+        <select name="toMonth" onChange="onChangeToMonth()" style="width:90px" disabled>
+        </select>
+        <select name="toDay" style="width:60px" disabled>
+        </select>
+        <select name="toYear" style="width:75px" onchange ="onChangeToYear()" disabled>
+        </select>
+      </td>
+    </tr>
+	<tr>
+	</tr>
+    <tr>
+      <td colspan="2" align="Left" nowrap>
+        <label><MMString:loadString id="reports_4" /></label>
+      <td colspan="2" align="Left" valign="baseline" nowrap>
+        <input type="text" name="modifiedBy" disabled>
+      </td>
+	</tr>
+	<tr>
+	  <td colspan="2" align="Left" nowrap>&nbsp;
+
+	  </td>
+      <td colspan="2" align="Left" nowrap>
+        <label><Div id="Contribute"></Div></label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>&nbsp;</td>
+      <td colspan="3" align="left">
+        <label><MMString:loadString id="reports_6" /></label>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>
+        <input type="radio" name="ViewPath" value="radio" checked="True" onClick="onChangeView()">
+      </td>
+      <td colspan="3" align="Left" nowrap>
+        <label><MMString:loadString id="reports_7"/></label>
+      </td>
+    </tr>
+    <tr>
+      <td align="Left" nowrap>
+        <input type="radio" name="ViewPath" value="radio" onClick="onChangeView()">
+      </td>
+      <td colspan="3" align="Left" nowrap>
+        <label><MMString:loadString id="reports_8" /></label>
+      </td>
+    </tr>
+	<tr>
+	</tr>
+    <tr>
+      <td colspan="2" align="Left" nowrap>&nbsp;</td>
+	  <td colspan="2" align="Left" valign="baseline" nowrap><input size="40" type="text" value ="" name="otherLocation" ></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

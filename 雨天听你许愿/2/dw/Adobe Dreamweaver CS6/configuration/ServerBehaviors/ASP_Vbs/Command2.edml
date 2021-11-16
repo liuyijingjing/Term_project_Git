@@ -1,0 +1,9 @@
+<group name="Command" version="8.0" serverBehavior="Command2.htm" hideFromBuilder="true">
+	<TITLE>Command (@@cdName@@)</TITLE>
+	<groupParticipants selectParticipant="Command2_main">
+		<groupParticipant name="connectionref_statement" partType="member" />
+		<groupParticipant name="Command2_variable" partType="multiple" />
+		<groupParticipant name="functionIIF" partType="option" />
+		<groupParticipant name="Command2_main" partType="identifier" />
+	</groupParticipants>
+</group>
