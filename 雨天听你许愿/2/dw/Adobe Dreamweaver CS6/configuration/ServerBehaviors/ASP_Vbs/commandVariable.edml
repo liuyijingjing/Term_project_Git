@@ -1,6 +1,0 @@
-<participant>
-	<insertText><![CDATA[@@cdName@@__@@variableName@@ & ""]]></insertText>
-	<searchPatterns whereToSearch="directive">
-		<searchPattern paramNames="cdName,variableName" isOptional="false" limitSearch="all"><![CDATA[/([^\r\n]*?)__([^\r\n]*?) & ""/i]]></searchPattern>
-	</searchPatterns>
-</participant>

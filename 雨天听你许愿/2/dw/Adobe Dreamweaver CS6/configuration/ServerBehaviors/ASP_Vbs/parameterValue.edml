@@ -1,6 +1,0 @@
-<participant>
-	<insertText><![CDATA[<@ if (@@trueValue@@ && @@falseValue@@) @>MM_IIF(<@ endif @>Request.Form("@@formControl@@")<@ if (@@trueValue@@ && @@falseValue@@) @>, @@trueValue@@, @@falseValue@@)<@ endif @>]]></insertText>
-	<searchPatterns whereToSearch="directive">
-		<searchPattern paramNames="formControl,trueValue,falseValue" isOptional="false" limitSearch="all"><![CDATA[/(?:MM_IIF\()?Request\.\w+\("([^\r\n]*?)"\)(?:, ([^\r\n]*?), ([^\r\n]*?)\)|()())/i]]></searchPattern>
-	</searchPatterns>
-</participant>

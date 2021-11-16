@@ -1,3 +1,0 @@
-Safari 1.0
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2003-2005 Macromedia Inc. All rights reserved.

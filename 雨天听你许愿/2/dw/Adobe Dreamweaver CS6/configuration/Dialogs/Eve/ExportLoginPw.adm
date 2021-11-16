@@ -1,5 +1,0 @@
-sheet ExportLoginPw
-{
-  interface:
-    ExportLoginPw_choice: @ExportLoginPw_Backup;
-}

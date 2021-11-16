@@ -1,8 +1,0 @@
-<group serverBehavior="Login User2.htm" hideFromBuilder="true">
-	<groupParticipants selectParticipant="LoginUser_formAttr">
-		<groupParticipant name="connectionref_statement" partType="member" />
-		<groupParticipant name="LoginUser_main2" partType="identifier" />
-		<groupParticipant name="LoginUser_formAttr" partType="member" />
-		<groupParticipant name="LoginUser_methodAttr" partType="member" />
-	</groupParticipants>
-</group>

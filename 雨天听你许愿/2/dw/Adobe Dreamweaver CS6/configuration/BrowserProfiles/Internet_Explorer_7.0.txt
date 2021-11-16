@@ -1,4 +1,0 @@
-Internet Explorer 7.0
-PROFILE_TYPE=BROWSER_PROFILE
--- Copyright 2002-2005 Macromedia, Inc. All rights reserved.
-
