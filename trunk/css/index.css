@@ -333,8 +333,6 @@
 .ebooks .left-box .content .ebooks-list > ul > li > p:not(:first-child){
     color: crimson;
 }
-.ebooks .left-box .content .ebooks-list ul li:not(:first-child){
-}
 /*电子书轮播*/
 .ebooks .left-box .content .ebooks-list  > ul >  li:first-child{
     width: 332px;
@@ -375,7 +373,7 @@
     line-height: 16px;
     height: 150px;
     color: #333;
-    display: none;s
+    display: none;
 }
 .ebooks .right-box ul li .desc img {
     margin-right: 9px;
@@ -751,7 +749,7 @@
 /**********************9.家居日用**********************/
 .daily{
     height: 540px;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 /*顶部*/
 .daily .top {
@@ -795,7 +793,7 @@
 }
 .daily .centent .daily-right .right-list-top ul li {
     height: 338px;
-    width: 175px;
+    width: 174px;
     float: left;
     border-right: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
@@ -810,7 +808,7 @@
     width: 707px;
 }
 .daily .centent .daily-right .right-list-bottom ul li {
-    width: 175px;
+    width: 174px;
     height: 158px;
     float: left;
     border-right: 2px solid #ccc;
@@ -821,96 +819,121 @@
     height: 158px;   
 }
 /**********************10.推广商品**********************/
-.promotion{
-    height: 652px;
-    margin-top: 50px;
+.promotion {
+    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
 }
-/*顶部*/
-.promotion .top {
+/*标题*/
+
+.promotion .title {
     height: 40px;
     line-height: 40px;
-    background-color: #fff;
-    border-bottom: 6px solid #ff6700;
-}
-.promotion .top .title {
-    text-indent: 20px;
+    margin-top: 10px;
+    text-indent: 24px;
     font-size: 24px;
     font-weight: 300;
     color: #ff6700;
+    border-bottom: 6px solid #ff6700;
 }
-.promotion .top ul li {
+
+.promotion .title ul li {
+    /*设置圆点的宽、高、背景颜色，再设置圆点半径所占百分比*/
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+    /*设置圆点与其后面的内容水平显示*/
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.promotion .title ul li.active {
+    background-color: #ff6700;
+}
+
+
+/* 推荐内容 */
+
+.promotion .promotion-content {
+    width: 1170px;
+    height: 600px;
+    margin: 30px auto;
+    margin-left: 60px;
+}
+
+
+/* 外部盒子 */
+
+.promotion .promotion-content .out-box {
+    width: 1170px;
+    height: 600px;
+    margin: 20px auto;
+    /* 超出隐藏 */
+    overflow: hidden;
+}
+
+
+/* 内部盒子 */
+
+.promotion .promotion-content .out-box .inner-box {
+    width: 2340px;
+    height: 600px;
+    position: relative;
+}
+
+
+/* 列表容器 */
+
+.promotion .promotion-content .promotion-list {
+    width: 1170px;
+    height: 600px;
+}
+
+
+/* 推荐列表li */
+
+.promotion .promotion-content .promotion-list li {
+    width: 213px;
+    height: 290px;
+    background-color: #fff;
     float: left;
-    font-size: 18px;
-    width: 100px;
+    padding-top: 10px;
     text-align: center;
 }
-/*右侧激活类*/
-.promotion .top ul li.active{
-    background-color: #ff6700;
-    color: #fff;
-}
-/*内容*/
-.promotion .centent ul {
-    width: 1176;
-    height: 606px;
-    margin-left: 12px;
-    margin-right: 12px;
-    background-color: #ffffff;
-}
-.promotion .centent ul li {
-    width: 235px;
-    height: 303px;
-    float: left;
-}
-/*第一个li背景色*/
-.promotion .centent ul li .active {
-    background-color: #f2f2f2;
-}
-.promotion .centent ul li p:first-child img {
-    width: 153px;
-    height: 151px;
-    margin-bottom: 5px;
-    margin-left: 30px;
-}
-.promotion .centent ul li p:nth-child(2) {
-    text-align: left;
-    font-size: 15px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-.promotion .centent ul li p:nth-child(3) {
-    text-align: left;
-    font-size: 18px;
-    color: red;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.promotion .centent ul li p:nth-child(4) {
-    text-align: left;
-    font-size: 12px;
-    margin-left: 20px;
-    margin-right: 20px;
-    color: #333;
-}
-.promotion .centent ul li p:nth-child(4) img {
 
+
+/* p标签样式 */
+
+.promotion .promotion-content .promotion-list li p {
+    text-align: center;
+    text-indent: 10px;
+    font-size: 16px;
 }
-.promotion .centent ul li p:nth-child(4) span {
+
+.promotion .promotion-content .promotion-list li p.limit-time span {
     color: red;
+}
+
+.promotion .promotion-content .promotion-list li p.text {
+    color: red;
+}
+
+
+/* 价格 */
+
+.promotion .promotion-content .promotion-list li p.price {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: 120px;
 }
 /**********************11.尾部**********************/
 .footer{
-    height: 512px;
-    margin-top: 10px;
-}
-/*按钮图片*/
-.footer .img-up {
-    height: 50px;
-}
-.footer .img-up img {
-    float: right;
+    height: 502px;
+    margin-top: 50px;
 }
 /*内容*/
 .footer .centent {

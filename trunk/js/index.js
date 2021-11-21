@@ -81,23 +81,16 @@ $(function() {
         controlsColor:"#d7d7d7",//普通控制按钮的颜色
         controlsCurrentColor:"green",//当前控制按钮的颜色
     });
-    /*电子书 table切换*/
-    var $lis = $('.ebooks .ebooks-nav >li');
-    $lis.mouseover(function() {
-        //给自己添加激活类active 把兄弟的都干掉
-        $(this).addClass('active').siblings().removeClass('active');
-        //获取index
-        var index = $(this).index();
-        //选中内容
-        var $ebooksList = $('.ebooks-list');
-        //显示索引等于当前index
-        $ebooksList.eq(index).show().siblings('.ebooks-list').hide();
-    });
-    /*推广商品切换 */
-    $('.promotion title ul li').mouseover(function() {
-        //导航激活类
-        $(this).addClass('active').siblings().removeClass('active')
-            //内容切换
-
-    });
+/* 推广产品切换*/
+$('.promotion .title ul li').mouseenter(function() {
+    //导航激活类的切换
+    $(this).addClass('active').siblings().removeClass('active')
+        //内容切换
+        //获取对应index
+    var index = $(this).index();
+    //左右移动
+    $('.promotion .promotion-content  .inner-box').animate({
+        'left': -index * 1170
+    })
+})
 })
