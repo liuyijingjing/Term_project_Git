@@ -1,0 +1,344 @@
+/*1.**************顶部****************/
+/* 顶部外层容器 */
+.topbar{
+   height: 28px;
+   background-color:#101010;
+}
+/* 顶部里层容器 */
+.topbar .container{
+   height: 28px;
+   background-color: #101010;
+}
+/* 里面的P标签 */
+.topbar .container p{
+  height: 28px;
+  line-height: 28px;
+  color: #f1f1f1;
+}
+/* 第一个P标签 */
+.topbar .container p:first-child{
+  text-indent: 210px;
+}
+/* 第二个P标签 */
+.topbar .container p:nth-child(2){
+  margin-right:10px;
+}
+/* 第一个P标签下面的a标签 */
+.topbar .container p:first-child a{
+ color: #fff;
+ text-decoration: none;
+ text-indent: 210px;
+}
+/* 第二个P标签 下面的标题 和 注册 */
+.topbar .container p:nth-child(2) .title, 
+.topbar .container p:nth-child(2) .register{
+  color: #ff6700;
+}
+/*第二个P标签下面的登录*/
+.topbar .container p:nth-child(2) .login {
+  color: #fff;
+}
+/*2.*******************导航*********************/
+.nav{
+  height: 80px;
+  background-color:#fff;
+}
+.nav .search-shopcart-order {
+  margin-top: 5px;
+  height: 35px;
+}
+
+.nav .search-shopcart-order .search-input {
+  width: 440px;
+  height: 35px;
+  background-color: #ff6700;
+  margin-right: 38px;
+}
+.nav .search-shopcart-order .search-input span {
+  display: inline-block;
+  width: 50px;
+  height: 35px;
+  position: absolute;
+  background-image: url(../img/bgicon.png);
+}
+.nav .search-shopcart-order .shopcart-order{
+  width: 200px;
+  height: 35px; 
+  background-color: pink;
+  font-size: 0;
+}
+.nav .search-shopcart-order .shopcart-order button {
+  width: 100px;
+  height: 35px;
+  background-color: #ebebeb;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  color:#333 ;
+}
+.nav .search-shopcart-order .shopcart-order button:nth-child(1){
+  background-color: #ff6700;
+  color: #ccc;
+  background-image: url(../img/bgicon.png);
+  background-position: -6px -44px;
+}
+.nav .search-shopcart-order .search-input .search {
+  width: 390px;
+  height: 31px;
+  border: 2px solid #ff6700;
+  text-indent: 10px;
+  color: #333;
+  outline: none;
+}
+.nav .category-menu {
+  margin-top: 15px;
+  height: 30px;
+}
+.nav .category-menu .left-logo{
+  height: 30px;
+  width:200px;
+  position: relative;
+}
+.nav .category-menu .left-logo img{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.nav .category-menu ul{
+  width: 1000px;
+  height: 30px;
+}
+.nav .category-menu ul li{
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  width: 80px;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 700;
+}
+/*3.*******************尾部*********************/
+.footer{
+   height: 502px;
+   margin-top: 50px;
+}
+/*内容*/
+.footer .centent {
+   height: 462px;
+   border-top: 6px solid #ff6700;
+}
+/*顶部*/
+.footer .centent .top {
+   height: 100px;
+   background-color: #f2f2f2;
+   margin-bottom: 40px;
+}
+.footer .centent .top .top-list {
+   height: 100px;
+}
+.footer .centent .top .top-list ul{
+   margin-left: 150px;
+   margin-right: 150px;
+}
+.footer .centent .top .top-list ul li {
+   height: 100px;
+   width: 225px;
+   float: left;
+   text-align: center;
+   margin-top: 25px;
+}
+/*中间*/
+.footer .centent .center {
+   height: 160px;
+}
+.footer .centent .center ul {
+   height: 160px;
+   width: 900px;
+   margin-left: 150px;
+}
+.footer .centent .center ul li {
+   height: 160px;
+   float: left;
+   width: 140px;
+}
+.footer .centent .center ul li:first-child {
+   margin-left: 100px;
+}
+.footer .centent .center ul li p {
+   height: 30px;
+   font-size:14px;
+   line-height: 30px;
+   color: #333;
+   text-align:center;
+   
+}
+.footer .centent .center ul li p:first-child {
+   color: #000000;
+   font-size:16px;
+}
+.footer .centent .center .center-logo {
+   height: 160px;
+   width: 150px;
+}
+.footer .centent .center .center-logo img {
+   margin-top: 15px;
+}
+/*尾部*/
+.footer .centent .bottom {
+   height: 172px;
+   text-align: center;
+}
+.footer .centent .bottom ul {
+   margin-left: 200px;
+   margin-right: 200px;
+   height: 50px;
+} 
+.footer .centent .bottom ul li {
+   float: left;
+   text-indent: 40px;
+   font-size: 12px;
+   line-height: 40px;
+}
+
+/*3.*******************放大镜*********************/
+.product-Detail {
+   height: 500px;
+
+}
+/*左边盒子*/
+.product-Detail .left-box {
+   height: 470px;
+   width: 340px;
+   background-color: #fcfcfc;
+}
+.product-Detail .bianhao {
+   height: 30px;
+   width: 340px;
+   text-align: center;
+   font-size: 14px;
+   line-height: 30px;
+   color: #b1b1b1;
+}
+.magnifier-container {
+   height: 380px !important;
+}
+
+.tushu {
+   height:55px;
+   font-size: 14px;
+   line-height: 55px;
+   font-weight: 100px;
+   color: #b5b5b5;
+}
+.tushu p span {
+   color: #000000;
+   font-size: 20px;
+   font-weight: 600px;
+}
+/*右边盒子*/
+.product-Detail .right-box{
+   width: 800px;
+   height: 500px;
+   text-indent: 10px;
+   font-size: 14px;
+   color: #7f7f7f;
+}
+.product-Detail .right-box h2{
+   font-size: 20px;
+}
+.product-Detail .right-box .Details{
+   margin: 7px;
+   color:red;
+   font-size: 16px;
+}
+.product-Detail .right-box .author{
+   margin: 10px;
+}
+.product-Detail .right-box .kind{
+   margin-top: 10px;
+}
+.product-Detail .right-box .kind button{
+   width: 100px;
+   height: 35px;
+   border: 1px solid #ccc;
+}
+.product-Detail .right-box .kind .jing{
+   border: 2px solid #ff6700;
+}
+.product-Detail .right-box .hint{
+   margin-top: 30px;
+}
+.product-Detail .right-box .switch{
+   margin-top: 60px;
+}
+.product-Detail .right-box .switch input{
+   width:60px;
+   height: 35px;
+   font-size: 22px;
+   text-align: center;
+}
+.product-Detail .right-box .switch button{
+   height:30px;
+   width: 40px;
+   
+}
+.product-Detail .right-box .switch .add-shopcart{
+   background-color: #ff6700;
+   width: 200px;
+   height: 70px;
+   color: #fcfcfc;
+   font-size: 24px;
+   margin-left: 40px;
+}
+.product-Detail .right-box .rightbox-center{
+   background-color: #ebebeb;
+   height: 150px;
+   margin-top: 15px;
+}
+.product-Detail .right-box .rightbox-center .price{
+   margin-top: 10px;
+}
+.product-Detail .right-box .rightbox-center .price span{
+   color: red;
+   font-weight: 400px;
+   font-size: 20px;
+   font-weight: 600;
+}
+.product-Detail .right-box .rightbox-center .promotion{
+   margin-top:10px;
+}
+.product-Detail .right-box .rightbox-center .promotion span{
+   color:red;
+   font-weight: 400px;
+}
+.product-Detail .right-box .rightbox-center .ticket{
+   margin-top: 20px;
+}
+.product-Detail .right-box .rightbox-center .comment{
+   float: right;
+   position: relative;
+   top: -105px;
+   border-left: 1px solid #ccc;
+}
+.product-Detail .right-box .rightbox-center .comment .number{
+   color:red;
+}
+.product-Detail .right-box .rightbox-center .ticket button{
+   background-color: #ff6700;
+   border: 2x solid #ff6700;
+   width: 80px;
+   height: 40px;
+}
+.product-Detail .right-box .switch .text{
+   height: 40px;
+}
+.product-Detail .right-box .switch .add {
+   width: 20px;
+}
+.product-Detail .right-box .switch .reduce {
+   width: 20px;
+}
+.magnifier-container{
+   height: 380px !important;
+
+}

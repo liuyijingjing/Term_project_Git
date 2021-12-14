@@ -1,0 +1,162 @@
+.ez {
+    height: 546px;
+    margin: 50px auto;
+}
+.ez .ez-title {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 6px solid #ff6700;
+    background-color: #fff;
+    color: #ff6700;
+    font-size: 24px;
+    text-indent: 20px;
+}
+.ez .ez-title h1 {
+    font-weight: 200;
+}
+.ez .ez-title ul li {
+    float: left;
+    width: 100px;
+    font-size: 14px;
+    color: #333;
+}
+.ez .ez-title ul li.active {
+    background-color: #ff6700;
+    color:#fff;
+}
+.ez .ez-content {
+    height: 500px;
+}
+.ez-list {
+    width: 1200px;
+    height: 440px;
+}
+.ez-list p{
+    width: 200px;
+    height: 220px;
+    float: inline-start;
+    text-align: center;
+
+
+    /*完美拆分*/
+    box-sizing: border-box;
+}
+.ez-list p img {
+    width: 80% !important;
+    height: 80% !important;
+}
+/**********************10.猜你喜欢**********************/
+.guess-you-like {
+    height: 600px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
+}
+/*标题*/
+
+.guess-you-like .title {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    text-indent: 24px;
+    font-size: 24px;
+    font-weight: 200;
+    color: #ff6700;
+    border-bottom: 6px solid #ff6700;
+}
+.guess-you-like .title ul li {
+    /*设置圆点的宽、高、背景颜色，再设置圆点半径所占百分比*/
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+    /*设置圆点与其后面的内容水平显示*/
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.guess-you-like .title ul li.active {
+    background-color: #ff6700;
+}
+
+
+/* 推荐内容 */
+
+.guess-you-like .guess-you-like-content {
+    width: 1170px;
+    height: 600px;
+    margin: 30px auto;
+    margin-left: 60px;
+}
+
+
+/* 外部盒子 */
+
+.guess-you-like .guess-you-like-content .out-box {
+    width: 1170px;
+    height: 600px;
+    margin: 20px auto;
+    /* 超出隐藏 */
+    overflow: hidden;
+}
+
+
+/* 内部盒子 */
+
+.guess-you-like .guess-you-like-content .out-box .inner-box {
+    width: 2340px;
+    height: 600px;
+    position: relative;
+}
+
+
+/* 列表容器 */
+
+.guess-you-like .guess-you-like-content .guess-you-like-list {
+    width: 1170px;
+    height: 600px;
+}
+
+
+/* 推荐列表li */
+
+.guess-you-like .guess-you-like-content .guess-you-like-list li {
+    width: 213px;
+    height: 290px;
+    background-color: #fff;
+    float: left;
+    padding-top: 10px;
+    text-align: center;
+}
+
+
+/* p标签样式 */
+
+.guess-you-like .guess-you-like-content .guess-you-like-list li p {
+    text-align: center;
+    text-indent: 10px;
+    font-size: 16px;
+}
+
+
+.guess-you-like .guess-you-like-content .guess-you-like-list li p.text {
+    color: red;
+}
+
+
+/* 价格 */
+
+.guess-you-like .guess-you-like-content .guess-you-like-list li p.price {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+    font-weight: 120px;
+}
+.guess-you-like .guess-you-like-content .guess-you-like-list li p:nth-child(3){
+    color: #cdcdcd;
+}
+.guess-you-like .guess-you-like-content .guess-you-like-list li p:nth-child(4) s{
+    color: #cdcdcd;
+}
+

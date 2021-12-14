@@ -104,7 +104,7 @@ $(function () {
         calcgoodsCount() //调用商品总数量
     })
     
-    //计算总价的函数
+    //计算总价和数量的函数
     function calcTotalPrice() {
         //定一个数量
         var count = 0;
@@ -130,6 +130,18 @@ $(function () {
          $('.goodsCount').text( $('table tbody tr').length )
          calcgoodsCount;//一进入页面就自动调用一次
     }
-    
+    //删除选中的商品
+    $('.deleteChecked').on('click',function () {
+        //循环复选框 如果选中 干掉自己（删除的是一行）
+        $bodyInput.each(function (i, input){
+            if ($(this).prop('checked')) {
+                $(this).closest('tr').remove();
+            }
+        })
+        //总价和数量
+        calcTotalPrice();
+        //计算商品数量
+        calcgoodsCount();
+    })
     
 })
