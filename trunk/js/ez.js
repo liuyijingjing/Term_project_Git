@@ -25,18 +25,58 @@ $(function () {
        var index = $(this).index();
        //显示对应内容
        $('.ez-banner') .eq(index).show().siblings().hide();
-    })
+    });
 
     //猜你喜欢导航切换
-    $('.guess-you-like .title ul li').mouseenter(function() {
+   /*$('.guess-you-like .title .chenge').click(function() {
         //导航激活类的切换
-         $(this).addClass('active').siblings().removeClass('active')
+         $(this).addClass('chenge').siblings().removeClass('chenge')
         //内容切换
         //获取对应index
         var index = $(this).index();
-        //左右移动
-        $('.guess-you-like .guess-you-like-content  .inner-box').animate({
-        'left': -index * 1170
+        //上下移动
+        $('.inner-box').animate({
+        'top': -index * 600
+        })
+    })*/
+
+    /*换一批 */
+    //定一个索引
+    //上下滑动
+     /*  var index = 0;
+    $('.chenge').click(function () {
+        
+        index ++;
+        //边界判断
+        index = index > 2 ? 0 :index;
+        //让里面的 inner-box 运动
+        $('.inner-box').animate({
+            top : -index *600
+        })
+    })*/
+    //左右滑动
+    var index = 0;
+    $('.chenge').click(function () {
+        
+        index ++;
+        //边界判断
+        //让里面的 inner-box 运动
+        $('.inner-box').stop(true).animate({left : -index * 1200}, function () {
+            if (index === 3) {
+                index = 0;
+                $('.inner-box').css('left',0);     
+             }
+        })
+        
     })
-    })
+
+   //新书上架手风琴效果
+   $('.new-books .right-box ul>li').mouseenter(function() {
+    //所有兄弟：隐藏详情，显示标题
+    $(this).siblings().find('.desc').hide();
+    $(this).siblings().find('.ebooks-title').show();
+    //当前:隐藏标题，显示详情
+    $(this).find('.ebooks-title').hide(); //隐藏标题
+    $(this).find('.desc').show(); //显示详情
+    });
 }) 
