@@ -1,0 +1,225 @@
+/*1.**************顶部****************/
+/* 顶部外层容器 */
+.topbar{
+    height: 28px;
+    background-color:#101010;
+}
+/* 顶部里层容器 */
+.topbar .container{
+    height: 28px;
+    background-color: #101010;
+}
+/* 里面的P标签 */
+.topbar .container p{
+   height: 28px;
+   line-height: 28px;
+   color: #f1f1f1;
+}
+/* 第一个P标签 */
+.topbar .container p:first-child{
+   text-indent: 210px;
+}
+/* 第二个P标签 */
+.topbar .container p:nth-child(2){
+   margin-right:10px;
+}
+ /* 第一个P标签下面的a标签 */
+.topbar .container p:first-child a{
+  color: #fff;
+  text-decoration: none;
+  text-indent: 210px;
+}
+/* 第二个P标签 下面的标题 和 注册 */
+.topbar .container p:nth-child(2) .title, 
+.topbar .container p:nth-child(2) .register{
+   color: #ff6700;
+}
+/*第二个P标签下面的登录*/
+.topbar .container p:nth-child(2) .login {
+   color: #fff;
+}
+/*2.*******************导航*********************/
+.nav{
+   height: 80px;
+   background-color:#fff;
+}
+.nav .search-shopcart-order {
+   margin-top: 5px;
+   height: 35px;
+}
+
+.nav .search-shopcart-order .search-input {
+   width: 440px;
+   height: 35px;
+   background-color: #ff6700;
+   margin-right: 38px;
+}
+.nav .search-shopcart-order .search-input span {
+   display: inline-block;
+   width: 50px;
+   height: 35px;
+   position: absolute;
+   background-image: url(../img/bgicon.png);
+}
+.nav .search-shopcart-order .shopcart-order{
+   width: 200px;
+   height: 35px; 
+   background-color: pink;
+   font-size: 0;
+}
+.nav .search-shopcart-order .shopcart-order button {
+   width: 100px;
+   height: 35px;
+   background-color: #ebebeb;
+   border: 1px solid #ccc;
+   font-size: 13px;
+   color:#333 ;
+}
+.nav .search-shopcart-order .shopcart-order button:nth-child(1){
+   background-color: #ff6700;
+   color: #ccc;
+   background-image: url(../img/bgicon.png);
+   background-position: -6px -44px;
+}
+.nav .search-shopcart-order .search-input .search {
+   width: 390px;
+   height: 31px;
+   border: 2px solid #ff6700;
+   text-indent: 10px;
+   color: #333;
+   outline: none;
+}
+.nav .category-menu {
+   margin-top: 15px;
+   height: 30px;
+}
+.nav .category-menu .left-logo{
+   height: 30px;
+   width:200px;
+   position: relative;
+}
+.nav .category-menu .left-logo img{
+   position: absolute;
+   bottom: 0;
+   left: 0;
+}
+.nav .category-menu ul{
+   width: 1000px;
+   height: 30px;
+}
+.nav .category-menu ul li{
+   float: left;
+   height: 30px;
+   line-height: 30px;
+   width: 80px;
+   color: #333;
+   font-size: 14px;
+   text-align: center;
+   font-weight: 700;
+}
+/*3.*******************尾部*********************/
+.footer{
+    height: 502px;
+    margin-top: 50px;
+}
+/*内容*/
+.footer .centent {
+    height: 462px;
+    border-top: 6px solid #ff6700;
+}
+/*顶部*/
+.footer .centent .top {
+    height: 100px;
+    background-color: #f2f2f2;
+    margin-bottom: 40px;
+}
+.footer .centent .top .top-list {
+    height: 100px;
+}
+.footer .centent .top .top-list ul{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+.footer .centent .top .top-list ul li {
+    height: 100px;
+    width: 225px;
+    float: left;
+    text-align: center;
+    margin-top: 25px;
+}
+/*中间*/
+.footer .centent .center {
+    height: 160px;
+}
+.footer .centent .center ul {
+    height: 160px;
+    width: 900px;
+    margin-left: 150px;
+}
+.footer .centent .center ul li {
+    height: 160px;
+    float: left;
+    width: 140px;
+}
+.footer .centent .center ul li:first-child {
+    margin-left: 100px;
+}
+.footer .centent .center ul li p {
+    height: 30px;
+    font-size:14px;
+    line-height: 30px;
+    color: #333;
+    text-align:center;
+    
+}
+.footer .centent .center ul li p:first-child {
+    color: #000000;
+    font-size:16px;
+}
+.footer .centent .center .center-logo {
+    height: 160px;
+    width: 150px;
+}
+.footer .centent .center .center-logo img {
+    margin-top: 15px;
+}
+/*尾部*/
+.footer .centent .bottom {
+    height: 172px;
+    text-align: center;
+}
+.footer .centent .bottom ul {
+    margin-left: 200px;
+    margin-right: 200px;
+    height: 50px;
+} 
+.footer .centent .bottom ul li {
+    float: left;
+    text-indent: 40px;
+    font-size: 12px;
+    line-height: 40px;
+}
+
+/****************注册页面*****************/
+
+.register-content {
+    height: 670px;
+    width: 500px;
+    margin: 30px auto;
+}
+.register-content h3{
+    font-size: 25px;
+}
+.register-content p{
+    margin-bottom: 30px;
+}
+.register-content p input {
+    height: 20px;
+    width: 200px;
+}
+.error {
+    color: tomato;
+}
+.error:first-child{
+    border: 1PX solid red;
+}
