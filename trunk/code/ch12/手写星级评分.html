@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>手写星级评分</title>
+   <!-- 引入样式 -->
+   <link rel="stylesheet" href="/trunk/iconfont/iconfont.css">
+   <link rel="stylesheet" href="/trunk/css/starRate.css">
+   <style>
+        .on{
+           color: gold;
+           font-size: 50px;
+       }
+       .half{
+           color: gold;
+           font-size: 50px;
+       }
+       .off{
+           color: gray;
+           font-size: 50px;
+       } 
+
+   </style>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+    <div class="box2">
+
+    </div>
+    <div class="box3">
+
+    </div>
+<!-- 引入jquery.min.js -->
+<script src="/trunk/js/jquery.min.js"></script>
+<!-- 引入自己写的js -->
+<script src="/trunk/js/starRate.js"></script>
+<script>
+    $(function () {
+       var star1 = creatStarRate(3.7);
+      $('.box1').html(star1);
+
+
+      // $('.box1').append( $star1 )
+
+        var star2 = creatStarRate(3.2);
+        $('.box2').html(star2);
+
+    //    var star3 = creatStarRate(4.7);
+    //     $('.box3').html(star3);
+
+        //扩展
+        //$('.box1').creatStarRate(3.7);
+    })
+       
+</script>
+</body>
+</html>

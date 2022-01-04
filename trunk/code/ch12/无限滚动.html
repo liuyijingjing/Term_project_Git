@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <title>无限滚动</title>
+
+   <style>
+       * {
+           margin: 0;
+           padding: 0;
+       }
+        ul{
+            list-style: none;
+            width: 1000px;
+            position: relative;
+            left: 0;
+        }
+        ul li {
+            float: left;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background-color: red;
+        }
+        .clearfix::after {
+            content: '';
+            display: inline-block;
+            height: 0;
+            clear: both;
+        }
+        .out-box {
+            width: 100px;
+            height: 100px;
+            overflow: hidden; 
+            margin: 100px auto;
+        }
+
+   </style>
+</head>
+<body>
+    <div class="out-box">
+        <ul class="clearfix">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>1</li>
+        </ul>
+    </div>
+<!-- 引入jquery.min.js -->
+<script src="/trunk/js/jquery.min.js"></script>
+
+<script>
+    $(function () {
+
+        //定义索引
+        var index = 0;
+        setInterval(function () {
+            index++;
+           $('ul').animate({
+               left: -index * 100
+           },300, function () {
+               if(index > 8) {
+                   index = 0;
+                   $('ul').css('left',0)
+               }
+            })
+        },1000)  
+    })
+</script>
+</body>
+</html>
